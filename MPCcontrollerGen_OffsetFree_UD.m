@@ -72,8 +72,7 @@ plant=ss(A,B,C,D);
 plantD=c2d(plant,Ts);
 
 % augumented input disturbance model
-%Bd=[eye(6);zeros(7,6)];
-Bd=[eye(12);zeros(1,12)];
+Bd=[10^-5*eye(6);eye(6);zeros(1,6)];
 Cd=zeros(13,6);
 
 A2=plantD.A;
@@ -82,13 +81,13 @@ C2=plantD.C;
 D2=[zeros(13,12),Bd*0];
 plantDA=ss(A2,B2,C2,D2,Ts);
 plantDA.InputGroup.MV=1:12;
-plantDA.InputGroup.UD=13:24;
+plantDA.InputGroup.UD=13:18;
 plantDA.OutputGroup.MO=1:13;
 
 plantD2=c2d(plant,Ts_DynSim);
 
 norminal.X=[Pc;theta;[0;0;0];[0;0;0];9.8];
-norminal.U=[0;0;1;0;0;1;0;0;1;0;0;1;zeros(12,1)]*m*9.8/4;
+norminal.U=[0;0;1;0;0;1;0;0;1;0;0;1;zeros(6,1)]*m*9.8/4;
 norminal.Y=plantDA.C*norminal.X+plantDA.D*norminal.U;
 norminal.DX=plantDA.A*norminal.X+plantDA.B*norminal.U-norminal.X;
 %% create MPC controller
@@ -185,7 +184,8 @@ outdist=diag(ones(13,1))*modnor;
 outdist(13,13)=0;
 %setoutdist(mpcPuppy,'model',outdist);
 setoutdist(mpcPuppy,'model',tf(zeros(13,1))); % remove output disturbance model
-setindist(mpcPuppy,'model',diag([0.1,0.1,0.1,1,1,1,0.1*ones(1,6)])*modnor);
+%setindist(mpcPuppy,'model',tf(zeros(6,1))); % remove output disturbance model
+setindist(mpcPuppy,'model',diag([0.001,0.001,0.001,1,1,0.1])*modnor);
 %setindist(mpcPuppy,'integrators');
 %setEstimator(mpcPuppy,'custom');
 xmpc=mpcstate(mpcPuppy);

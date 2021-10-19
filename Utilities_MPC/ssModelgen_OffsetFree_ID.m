@@ -72,7 +72,7 @@ classdef ssModelgen_OffsetFree_ID< matlab.System
             
 %         A=eye(13)+obj.Ts*Ac;
 %         B=Bc*obj.Ts;
-            Bd=[eye(12);zeros(1,12)];
+            Bd=[10^-5*eye(6);eye(6);zeros(1,6)];
             
 %             %%% for input disturbance model
             Anow=A;
@@ -87,7 +87,7 @@ classdef ssModelgen_OffsetFree_ID< matlab.System
                 end
             end
             Unow=Unow*obj.m*9.8/sum(SPLeg);
-            Unow=[Unow;zeros(12,1)];
+            Unow=[Unow;zeros(6,1)];
             
             % for output disturbance model
 %             Anow=A;
@@ -123,11 +123,11 @@ classdef ssModelgen_OffsetFree_ID< matlab.System
         
         function [s1,s2,s3,s4,s5,s6,s7,s8,s9] = getOutputSizeImpl(~)
             s1=[13,13];
-            s2=[13,24];
+            s2=[13,18];
             s3=[13,13];
-            s4=[13,24];
+            s4=[13,18];
             s5=[13,1];
-            s6=[24,1];
+            s6=[18,1];
             s7=[13,1];
             s8=[13,1];
             s9=[3,3];
