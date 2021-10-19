@@ -1,0 +1,10 @@
+Ts=0.005;
+KF_A=[eye(3),eye(3)*Ts;
+    zeros(3,3),eye(3);
+    ];
+KF_B=[0.5*Ts^2*eye(3);Ts*eye(3)];
+KF_C=[eye(3),zeros(3,3);
+    zeros(3,3),eye(3);
+    ];
+KF_G=[eye(3);eye(3)];
+KF_D=zeros(6,3);
