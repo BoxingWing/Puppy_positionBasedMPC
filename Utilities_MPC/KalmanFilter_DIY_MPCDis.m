@@ -41,7 +41,8 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             C=diag(ones(13,1));
             
             %Bdis=zeros(13,6);
-            Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
+            %Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
+            Bdis=[obj.Ts*eye(6);eye(6);zeros(1,6)];
             Cdis=[zeros(6,6);0*eye(6);zeros(1,6)];
             
             Anew=[A,Bdis;zeros(6,13),eye(6)];
