@@ -100,7 +100,7 @@ classdef LegSequence_RT_v3< matlab.System
                 0;obj.roll_Off;-obj.r0(3); ...
                0;-obj.roll_Off;-obj.r0(3);];
             obj.MPC_Count_Old=0;
-            obj.vNowN=zeros(3,80);
+            obj.vNowN=zeros(3,20);
         end
         
         function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,zSur,OscStop,LegStateMPC)
@@ -144,6 +144,7 @@ classdef LegSequence_RT_v3< matlab.System
             obj.vNowN(:,end)=vNowL;
             
             vNowFilt=sum(obj.vNowN)/length(obj.vNowN(1,:));
+            
             v=vDesL+[-obj.kx*(vDesL(1)-vNowFilt(1)); ...
                 -obj.ky*(vDesL(2)-vNowFilt(2));0];
             desAllL=v*obj.T/4*[1,1,1,1]+obj.pLnorm;

@@ -84,7 +84,7 @@ plantDA.InputGroup.MV=1:12;
 plantDA.InputGroup.UD=13:18;
 plantDA.OutputGroup.MO=1:13;
 
-plantD2=c2d(plant,Ts_DynSim);
+%plantD2=c2d(plant,Ts_DynSim);
 
 norminal.X=[Pc;theta;[0;0;0];[0;0;0];9.8];
 norminal.U=[0;0;1;0;0;1;0;0;1;0;0;1;zeros(6,1)]*m*9.8/4;

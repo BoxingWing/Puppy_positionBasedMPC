@@ -22,7 +22,7 @@ classdef ssModelgen_estDis< matlab.System
             obj.U_stand=[0;0;1;0;0;1;0;0;1;0;0;1]*obj.m/4*9.8;
         end
         
-        function [Anow,Bnow,Cnow,Dnow,X,U,Y,DX,Inow] = stepImpl(obj,PendAll,xFB,SPLeg)
+        function [Anew,Bnew,Cnew,Dnew,X,U,Y,DX,Inow] = stepImpl(obj,PendAll,xFB,SPLeg)
             %Pc=XOld(1:3);
             Pc=xFB(1:3);
             theta=xFB(4:6);
@@ -49,13 +49,13 @@ classdef ssModelgen_estDis< matlab.System
             
             [A,B]=DS_gen(obj.Ts,obj.m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
             
-            Bdis=zeros(13,6);
-            Cdis=[eye(6);zeros(7,6)];
+            Bd=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
+            Cd=zeros(13,6);
             
-            Anew=[A,Bdis;zeros(6,13),eye(6)];
-            Bnew=[B;zeros(6,12)];
-            Cnew=[C,Cdis];
-            Dnew=zeros(13,12);
+            Anew=A;
+            Bnew=[B,Bd];
+            Cnew=eye(13);
+            Dnew=[zeros(13,12),Cd*0];
             
             Unow=zeros(12,1);
             for i=1:1:4
@@ -64,11 +64,12 @@ classdef ssModelgen_estDis< matlab.System
                 end
             end
             Unow=Unow*obj.m*9.8/sum(SPLeg);
+            Unow=[Unow;zeros(6,1)];
             
             X=xFB;
             U=Unow;
-            Y=Cnow*X+Dnow*Unow;
-            DX=Anow*X+Bnow*Unow-X;
+            Y=Cnew*X+Dnew*Unow;
+            DX=Anew*X+Bnew*Unow-X;
         end
         
         function [d1,d2,d3,d4,d5,d6,d7,d8,d9] = getOutputDataTypeImpl(~)
@@ -84,14 +85,14 @@ classdef ssModelgen_estDis< matlab.System
         end
         
         function [s1,s2,s3,s4,s5,s6,s7,s8,s9] = getOutputSizeImpl(~)
-            s1=[19,19];
-            s2=[19,12];
-            s3=[13,19];
-            s4=[13,12];
-            s5=[19,1];
-            s6=[12,1];
+            s1=[13,13];
+            s2=[13,18];
+            s3=[13,13];
+            s4=[13,18];
+            s5=[13,1];
+            s6=[18,1];
             s7=[13,1];
-            s8=[19,1];
+            s8=[13,1];
             s9=[3,3];
         end
         
