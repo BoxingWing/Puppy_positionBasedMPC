@@ -92,7 +92,7 @@ numM=2; % control horizon
 %%% weights
 %%% W.OutputVariables=ones(numP,1)*[[2,10,50],[0.25,0.5,10],[0.2,0.2,0.1],[0,0,0.3],0]; %2 10 50 0.25 0.5 10
 
-W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.01,0.01,0.01],[0.01,0.01,0.01],0];
+W.OutputVariables=ones(numP,1)*[[10,10,60],[40,40,2],[0.01,0.01,0.01],[0.01,0.01,0.01],0];
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
@@ -186,19 +186,19 @@ outdist(12,12)=modnor*0;
 %setoutdist(mpcPuppy,'model',outdist);
 setoutdist(mpcPuppy,'model',tf(zeros(13,1))); % remove output disturbance model
 setEstimator(mpcPuppy,'custom');
-mpcPuppy.DV(1).ScaleFactor=2;
-mpcPuppy.DV(2).ScaleFactor=2;
-mpcPuppy.DV(3).ScaleFactor=2;
-mpcPuppy.DV(4).ScaleFactor=100;
-mpcPuppy.DV(5).ScaleFactor=100;
-mpcPuppy.DV(6).ScaleFactor=100;
+% mpcPuppy.DV(1).ScaleFactor=2;
+% mpcPuppy.DV(2).ScaleFactor=2;
+% mpcPuppy.DV(3).ScaleFactor=2;
+% mpcPuppy.DV(4).ScaleFactor=100;
+% mpcPuppy.DV(5).ScaleFactor=100;
+% mpcPuppy.DV(6).ScaleFactor=100;
 xmpc=mpcstate(mpcPuppy);
 
 %%% add constraints
 % friction pyramid and payload balance
 miu=0.5;
-deltaFz=10; % w.r.t body coordinate
-deltaFx=10; % w.r.t body coordinate
+deltaFz=20; % w.r.t body coordinate
+deltaFx=20; % w.r.t body coordinate
 maxFz=60; % w.r.t. body coordinate
 
 % friction cone----------------------

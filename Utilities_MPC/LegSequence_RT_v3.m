@@ -145,8 +145,8 @@ classdef LegSequence_RT_v3< matlab.System
             
             vNowFilt=sum(obj.vNowN)/length(obj.vNowN(1,:));
             
-            v=vDesL+[-obj.kx*(vDesL(1)-vNowFilt(1)); ...
-                -obj.ky*(vDesL(2)-vNowFilt(2));0];
+            v=vDesL+[-obj.kx*(vDesL(1)-vNowL(1)); ...
+                -obj.ky*(vDesL(2)-vNowL(2));0];
             desAllL=v*obj.T/4*[1,1,1,1]+obj.pLnorm;
 %             desAll=Rz(desYaw)*Ry(desPit)*Rx(desRoll)*desAllL+[X_FB(1);X_FB(2);0]*[1,1,1,1];
 %             for i=1:1:4
@@ -193,7 +193,7 @@ classdef LegSequence_RT_v3< matlab.System
             theta=X_FB(4:6);
             Pc=reshape(X_FB(1:3),3,1);
             R=Rz(theta(3))*Ry(theta(2))*Rx(theta(1));
-            interpolNUM=3;
+            interpolNUM=4;
             
             if sum(abs(obj.MPC_Count_Old-MPC_Count))<0.1
                 if obj.interpol_Count>=interpolNUM

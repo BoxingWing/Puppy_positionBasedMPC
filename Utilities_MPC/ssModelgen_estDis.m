@@ -49,7 +49,7 @@ classdef ssModelgen_estDis< matlab.System
             
             [A,B]=DS_gen(obj.Ts,obj.m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
             
-            Bd=[obj.Ts*eye(6); eye(6);zeros(1,6)];
+            Bd=[eye(6); eye(6);zeros(1,6)];
             Cd=zeros(13,6);
             
             Anew=A;

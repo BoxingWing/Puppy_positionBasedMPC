@@ -7,9 +7,9 @@
  *
  * Code generation for model "raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis".
  *
- * Model version              : 2.372
+ * Model version              : 2.382
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Thu Oct 21 12:01:29 2021
+ * C source code generated on : Thu Oct 21 17:55:56 2021
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -118,10 +118,10 @@ typedef struct {
   real_T Fp1_m[20384];
   real_T Ep1[18816];
   real_T Ep1_c[18816];
-  real_T bb[12348];
+  real_T ab[12348];
   real_T MvCC[10976];
   real_T Sp1[10976];
-  real_T eb[6300];
+  real_T db[6300];
   real_T Su[5616];
   real_T MuCC[5376];
   real_T Ep1_k[5376];
@@ -129,8 +129,8 @@ typedef struct {
   real_T dv[5184];
   real_T Dv[4459];
   real_T c_Hv[3822];
-  real_T y[3276];
-  real_T ab[3024];
+  real_T x[3276];
+  real_T y[3024];
   real_T MxCC[2912];
   real_T Mu1CC[2688];
   real_T Ep1_b[2688];
@@ -158,7 +158,7 @@ typedef struct {
   real_T Bv[637];
   real_T Dv_g[637];
   real_T CA[637];
-  real_T cb[625];
+  real_T bb[625];
   real_T c_Linv[625];
   real_T d_Linv[625];
   real_T c_A[625];
@@ -235,6 +235,7 @@ typedef struct {
   int8_T b_f[625];
   real_T b_varargout_3[78];
   real_T b_varargout_1_a[78];
+  real_T Bdis[78];
   real_T b_utarget[72];
   real_T dv13[72];
   real_T b_I1_j[72];
@@ -270,13 +271,13 @@ typedef struct {
   real_T work[25];
   real_T varargin_1[25];
   real_T work_m[25];
-  real_T vNowFilt[20];
   real_T b_varargout_1_c[19];
   real_T Xpre[19];
   real_T Anew_md[19];
   real_T B_m[19];
   int8_T b_I_j[144];
   real_T b_varargout_6[18];
+  real_T dv16[18];
   real_T U_h[18];
   real_T TmpSignalConversionAtToFile[17];
   real_T TmpSignalConversionAtToFi_f[16];
@@ -290,24 +291,24 @@ typedef struct {
   real_T xk1[13];                      /* '<S46>/FixedHorizonOptimizer' */
   real_T xest[13];                     /* '<S46>/FixedHorizonOptimizer' */
   real_T TmpSignalConversionAtToFi_n[13];
-  real_T dv16[13];
   real_T dv17[13];
-  real_T b_varargout_4[13];
-  real_T xFB[13];
   real_T dv18[13];
+  real_T b_varargout_4[13];
+  real_T tmp[13];
   real_T dv19[13];
+  real_T dv20[13];
   real_T Anew_p[13];
   real_T Bnew[13];
   real_T xQP[13];
   real_T b_C_p[13];
   real_T Dv_a[13];
   real_T ref[13];
-  real_T dv20[13];
+  real_T dv21[13];
   real_T b_uoff[12];
   real_T b_varargout_6_e[12];
-  real_T dv21[12];
   real_T dv22[12];
   real_T dv23[12];
+  real_T dv24[12];
   real_T old_u[12];
   real_T u[12];
   real_T W[12];
@@ -342,12 +343,12 @@ typedef struct {
   real_T Rz_i[9];
   real_T Iinv[9];
   real_T Rsur[9];
-  real_T dv24[9];
+  real_T dv25[9];
   real_T headX_tmp[9];
   real_T headX_tmp_f[9];
   real_T b_A_i[9];
   real_T Vf[9];
-  real_T dv25[9];
+  real_T dv26[9];
   real_T pP_tmp[9];
   real_T pP_tmp_f[9];
   real_T Gb1[8];
@@ -361,7 +362,7 @@ typedef struct {
   int32_T ii_data[12];
   real_T b_voff[6];
   real_T b_varargout_17[6];
-  real_T dv26[6];
+  real_T dv27[6];
   real_T estDis[6];                    /* '<Root>/MATLAB Function7' */
   real_T y_c[6];
   real_T b_varargout_5[4];
@@ -398,11 +399,11 @@ typedef struct {
   real_T work_h[3];
   real_T pP_tmp_m[3];
   real_T pP_tmp_mc[3];
-  boolean_T x[12];
+  boolean_T x_h[12];
   int8_T Unow[12];
-  int8_T b_I_h[9];
   int8_T b_I_c[9];
   int8_T b_I_k[9];
+  int8_T b_I_p[9];
   uint32_T PinNameLoc;
   MW_SPI_Mode_type ClockModeValue;
   MW_SPI_FirstBitTransfer_Type MsbFirstTransferLoc;
@@ -454,8 +455,8 @@ typedef struct {
   real_T temp_p;
   real_T absx;
   real_T s;
-  real_T b_varargout_5_p;
-  real_T b_varargout_4_a;
+  real_T b_varargout_5_a;
+  real_T b_varargout_4_j;
   real_T q;
   real_T t4;
   real_T t6;
@@ -464,66 +465,66 @@ typedef struct {
   real_T t9;
   real_T t10;
   real_T t11;
-  real_T t4_j;
-  real_T t6_e;
-  real_T t7_o;
-  real_T t8_b;
-  real_T t9_a;
-  real_T t11_g;
+  real_T t4_e;
+  real_T t6_o;
+  real_T t7_b;
+  real_T t8_a;
+  real_T t9_g;
+  real_T t11_e;
   real_T t12;
-  real_T t6_ex;
-  real_T t7_f;
-  real_T t8_h;
-  real_T t9_e;
-  real_T t10_c;
-  real_T t11_a;
-  real_T t6_d;
-  real_T t7_a;
-  real_T t8_p;
-  real_T t9_m;
-  real_T t11_o;
-  real_T t12_n;
+  real_T t6_f;
+  real_T t7_h;
+  real_T t8_e;
+  real_T t9_c;
+  real_T t10_a;
+  real_T t11_d;
+  real_T t6_a;
+  real_T t7_p;
+  real_T t8_m;
+  real_T t9_o;
+  real_T t11_n;
+  real_T t12_l;
   real_T t14;
   real_T t16;
   real_T t5;
-  real_T t10_l;
+  real_T t10_p;
   real_T t14_p;
-  real_T t16_p;
-  real_T t5_f;
-  real_T t10_i;
-  real_T t14_o;
-  real_T s_k;
+  real_T t16_f;
+  real_T t5_i;
+  real_T t10_o;
+  real_T t14_k;
+  real_T s_i;
   real_T Switch1;                      /* '<S14>/Switch1' */
   real_T rtb_headG_tmp;
-  real_T rtb_headG_tmp_i;
   real_T rtb_headG_tmp_o;
   real_T rtb_headG_tmp_m;
+  real_T rtb_headG_tmp_c;
   real_T b_varargout_10_idx_1;
   real_T b_varargout_9_idx_1;
   real_T b_varargout_9_idx_0;
   real_T b_varargout_10_idx_0;
   real_T v2_idx_2;
   real_T v2_idx_1;
-  real_T Angle3new_c;
+  real_T Angle3new_f;
   real_T rtb_pArray_L_Adm_tmp;
   real_T rtb_pArray_L_Adm_tmp_tmp;
   real_T rtb_headG_tmp_tmp;
-  real_T rtb_headG_tmp_tmp_f;
-  real_T rtb_pArray_L_Adm_tmp_tmp_h;
+  real_T rtb_headG_tmp_tmp_h;
+  real_T rtb_pArray_L_Adm_tmp_tmp_m;
   real_T MATLABSystem3_o1;             /* '<Root>/MATLAB System3' */
   real_T MATLABSystem3_o2_f;           /* '<Root>/MATLAB System3' */
   real_T absx11;
   real_T absx21;
   real_T absx31;
-  real_T temp_m;
+  real_T temp_a;
   real_T smax;
-  real_T s_a;
-  real_T d_k;
-  real_T smax_p;
-  real_T s_b;
-  real_T absx11_c;
-  real_T absx21_n;
-  real_T absx31_i;
+  real_T s_k;
+  real_T d_p;
+  real_T smax_b;
+  real_T s_c;
+  real_T absx11_n;
+  real_T absx21_i;
+  real_T absx31_m;
   real_T t2;
   real_T t3;
   real_T t28;
@@ -568,137 +569,137 @@ typedef struct {
   real_T t131;
   real_T t156;
   real_T t134_tmp;
-  real_T t134_tmp_m;
+  real_T t134_tmp_j;
   real_T t140_tmp;
-  real_T t140_tmp_j;
+  real_T t140_tmp_e;
   real_T t133_tmp;
-  real_T t133_tmp_e;
+  real_T t133_tmp_m;
   real_T t138_tmp;
   real_T t138_tmp_m;
   real_T t132_tmp;
-  real_T t132_tmp_m;
+  real_T t132_tmp_j;
   real_T t136_tmp;
-  real_T t136_tmp_j;
+  real_T t136_tmp_f;
   real_T t139_tmp;
-  real_T t139_tmp_f;
+  real_T t139_tmp_a;
   real_T t146_tmp;
-  real_T t146_tmp_a;
+  real_T t146_tmp_g;
   real_T t137_tmp;
-  real_T t137_tmp_g;
+  real_T t137_tmp_n;
   real_T t144_tmp;
-  real_T t144_tmp_n;
+  real_T t144_tmp_d;
   real_T t135_tmp;
-  real_T t135_tmp_d;
+  real_T t135_tmp_n;
   real_T t142_tmp;
-  real_T t142_tmp_n;
+  real_T t142_tmp_c;
   real_T t145_tmp;
-  real_T t145_tmp_c;
+  real_T t145_tmp_f;
   real_T t152_tmp;
-  real_T t152_tmp_f;
+  real_T t152_tmp_p;
   real_T t143_tmp;
   real_T t143_tmp_p;
   real_T t150_tmp;
-  real_T t150_tmp_p;
+  real_T t150_tmp_n;
   real_T t141_tmp;
-  real_T t141_tmp_n;
+  real_T t141_tmp_k;
   real_T t148_tmp;
-  real_T t148_tmp_k;
+  real_T t148_tmp_n;
   real_T t151_tmp;
-  real_T t151_tmp_n;
+  real_T t151_tmp_o;
   real_T t155_tmp;
-  real_T t155_tmp_o;
+  real_T t155_tmp_g;
   real_T t149_tmp;
-  real_T t149_tmp_g;
+  real_T t149_tmp_c;
   real_T t154_tmp;
   real_T normH;
-  real_T s_c;
-  real_T t2_c;
-  real_T t3_m;
-  real_T t28_j;
-  real_T t31_k;
-  real_T t92_m;
-  real_T t117_p;
-  real_T t118_d;
-  real_T t119_g;
+  real_T s_cj;
+  real_T t2_m;
+  real_T t3_j;
+  real_T t28_k;
+  real_T t31_m;
+  real_T t92_p;
+  real_T t117_d;
+  real_T t118_g;
+  real_T t119_c;
   real_T t120_c;
-  real_T t121_c;
-  real_T t122_i;
-  real_T t123_d;
-  real_T t124_g;
-  real_T t125_l;
-  real_T t126_f;
-  real_T t127_d;
-  real_T t128_j;
-  real_T t132_i;
-  real_T t133_h;
-  real_T t134_n;
-  real_T t135_o;
-  real_T t136_c;
-  real_T t137_b;
-  real_T t138_e;
-  real_T t139_d;
-  real_T t140_i;
-  real_T t141_g;
-  real_T t142_n;
-  real_T t143_l;
-  real_T t144_c;
-  real_T t145_n;
-  real_T t146_p;
-  real_T t147_d;
-  real_T t148_o;
-  real_T t149_j;
-  real_T t150_c;
-  real_T t151_h;
-  real_T t152_d;
-  real_T t153_c;
+  real_T t121_i;
+  real_T t122_d;
+  real_T t123_g;
+  real_T t124_l;
+  real_T t125_f;
+  real_T t126_d;
+  real_T t127_j;
+  real_T t128_i;
+  real_T t132_h;
+  real_T t133_n;
+  real_T t134_o;
+  real_T t135_c;
+  real_T t136_b;
+  real_T t137_e;
+  real_T t138_d;
+  real_T t139_i;
+  real_T t140_g;
+  real_T t141_n;
+  real_T t142_l;
+  real_T t143_c;
+  real_T t144_n;
+  real_T t145_p;
+  real_T t146_d;
+  real_T t147_o;
+  real_T t148_j;
+  real_T t149_c;
+  real_T t150_h;
+  real_T t151_d;
+  real_T t152_c;
+  real_T t153_p;
   real_T t154_p;
-  real_T t155_p;
-  real_T t131_a;
-  real_T t156_o;
-  real_T t134_tmp_j;
+  real_T t155_a;
+  real_T t131_o;
+  real_T t156_j;
   real_T t134_tmp_p;
-  real_T t140_tmp_o;
+  real_T t134_tmp_o;
   real_T t140_tmp_l;
-  real_T t133_tmp_k;
+  real_T t140_tmp_k;
   real_T t133_tmp_j;
-  real_T t138_tmp_f;
+  real_T t133_tmp_f;
   real_T t138_tmp_c;
-  real_T t132_tmp_f;
+  real_T t138_tmp_f;
   real_T t132_tmp_n;
-  real_T t136_tmp_i;
+  real_T t132_tmp_i;
   real_T t136_tmp_l;
-  real_T t139_tmp_i;
+  real_T t136_tmp_i;
   real_T t139_tmp_k;
-  real_T t146_tmp_f;
-  real_T t146_tmp_al;
-  real_T t137_tmp_d;
+  real_T t139_tmp_f;
+  real_T t146_tmp_a;
+  real_T t146_tmp_d;
   real_T t137_tmp_e;
-  real_T t144_tmp_e;
+  real_T t137_tmp_eh;
   real_T t144_tmp_b;
-  real_T t135_tmp_a;
+  real_T t144_tmp_a;
   real_T t135_tmp_i;
-  real_T t142_tmp_f;
+  real_T t135_tmp_f;
   real_T t142_tmp_j;
+  real_T t142_tmp_o;
+  real_T t145_tmp_fr;
   real_T t145_tmp_o;
-  real_T t145_tmp_f;
-  real_T t152_tmp_o;
   real_T t152_tmp_l;
-  real_T t143_tmp_l;
+  real_T t152_tmp_lu;
   real_T t143_tmp_g;
+  real_T t143_tmp_d;
   real_T t150_tmp_d;
-  real_T t150_tmp_dv;
-  real_T t141_tmp_j;
+  real_T t150_tmp_j;
   real_T t141_tmp_f;
-  real_T t148_tmp_j;
+  real_T t141_tmp_j;
   real_T t148_tmp_h;
-  real_T t151_tmp_c;
-  real_T t151_tmp_nu;
-  real_T t155_tmp_k;
+  real_T t148_tmp_c;
+  real_T t151_tmp_n;
+  real_T t151_tmp_k;
   real_T t155_tmp_a;
+  real_T t155_tmp_f;
   real_T desH;
   real_T sy;
-  real_T headX_tmp_fn;
   real_T headX_tmp_j;
+  real_T headX_tmp_k;
   real_T nrm;
   real_T rt;
   real_T ztest0;
@@ -709,7 +710,7 @@ typedef struct {
   real_T roe;
   real_T absa;
   real_T absb;
-  real_T scale_k;
+  real_T scale_b;
   real_T xW;
   real_T yW;
   real_T d1;
@@ -729,66 +730,66 @@ typedef struct {
   real_T pP_idx_0;
   real_T pP_idx_1;
   real_T D;
-  real_T E_b;
-  real_T F_h;
-  real_T temp_e;
+  real_T E_h;
+  real_T F_e;
+  real_T temp_h;
   real_T yo1;
   real_T a_tmp;
-  real_T RP_h;
+  real_T RP_k;
   real_T b_pRy;
   real_T b_pRz;
   real_T b_errFlag;
   real_T b_xout;
   real_T b_yout;
-  real_T pC_tmp_k;
-  real_T pC_j;
-  real_T pB_idx_1_o;
-  real_T pP_idx_0_c;
-  real_T pP_idx_1_h;
-  real_T D_i;
-  real_T E_p;
-  real_T F_f;
-  real_T temp_ew;
-  real_T yo1_n;
+  real_T pC_tmp_j;
+  real_T pC_o;
+  real_T pB_idx_1_c;
+  real_T pP_idx_0_h;
+  real_T pP_idx_1_i;
+  real_T D_p;
+  real_T E_f;
+  real_T F_ew;
+  real_T temp_n;
+  real_T yo1_h;
   real_T scale_h;
-  real_T absxk_h;
-  real_T scale_f;
+  real_T absxk_f;
+  real_T scale_i;
   int8_T b_ipiv[6];
   int32_T b_k;
   int32_T i;
   int32_T Eb2_tmp;
-  int32_T Eb2_tmp_i;
+  int32_T Eb2_tmp_f;
   int32_T k;
   int32_T e_i;
-  int32_T i_f;
   int32_T i_c;
   int32_T i_n;
+  int32_T i_h;
   int32_T i1;
-  int32_T b_k_h;
+  int32_T b_k_k;
   int32_T c_k;
   int32_T ct;
-  int32_T i_k;
+  int32_T i_hz;
   int32_T i2;
-  int32_T i_h;
+  int32_T i_b;
   int32_T b_i;
   int32_T c_i;
-  int32_T e_i_b;
-  int32_T iC_o;
+  int32_T e_i_o;
+  int32_T iC_n;
   int32_T j;
-  int32_T i_nq;
+  int32_T i_m;
   int32_T ii;
   int32_T knt;
-  int32_T b_k_m;
-  int32_T c_k_k;
-  int32_T i_j;
+  int32_T b_k_ku;
+  int32_T c_k_j;
+  int32_T i_hc;
   int32_T mmi_tmp;
   int32_T vcol;
   int32_T ar;
   int32_T ia;
   int32_T b_ic;
-  int32_T c_h;
-  int32_T estEN;
-  int32_T i_f2;
+  int32_T c_f;
+  int32_T estEN;                       /* '<Root>/Chart' */
+  int32_T i_d;
   int32_T p1;
   int32_T p2;
   int32_T p3;
@@ -797,16 +798,16 @@ typedef struct {
   int32_T jBcol;
   int32_T jAcol;
   int32_T kBcol;
-  int32_T b_j_d;
-  int32_T b_l;
-  int32_T i_kg;
+  int32_T b_j_l;
+  int32_T b_kg;
+  int32_T i_i;
   int32_T i3;
   int32_T i4;
   int32_T itau;
   int32_T iaii;
-  int32_T b_ich;
-  int32_T b_k_h5;
-  int32_T i_m;
+  int32_T b_h;
+  int32_T b_k_m;
+  int32_T i_g;
   B_MATLABSystem4_raspberrypi_m_T MATLABSystem9;/* '<Root>/MATLAB System4' */
   B_MATLABSystem4_raspberrypi_m_T MATLABSystem4;/* '<Root>/MATLAB System4' */
 } B_raspberrypi_multicore_MPCte_T;
@@ -1294,7 +1295,7 @@ struct P_raspberrypi_multicore_MPCte_T_ {
                                         * Referenced by: '<S55>/Digital Read'
                                         */
   real_T Q_Value[361];
-  /* Expression: diag([5e-3,5e-3,5e-3,5e-3,5e-3,5e-3,1e-3,1e-3,1e-3,1e-3,1e-3,1e-3,1e-3,1e-5,1e-5,1e-5,5e-5,5e-5,5e-5])
+  /* Expression: diag([5e-3,5e-3,5e-3,5e-3,5e-3,5e-3,1e-3,1e-3,1e-3,1e-3,1e-3,1e-3,1e-3,1e-7,1e-7,1e-7,5e-7,5e-7,5e-7])
    * Referenced by: '<Root>/Q'
    */
   real_T RateTransition_InitialCondition[67];/* Expression: zeros(67,1)
@@ -1366,21 +1367,24 @@ struct P_raspberrypi_multicore_MPCte_T_ {
                                         * Referenced by: '<Root>/Constant'
                                         */
   real_T R_Value[169];
-  /* Expression: diag([1e-7,5e-8,1e-8,1e-6,1e-6,1e-6,1e-5,1e-4,1e-4,1e-4,1e-3,1e-3,1e-3])
+  /* Expression: diag([1e-7,5e-8,1e-8,1e-6,1e-6,1e-6,1e-5,1e-3,1e-3,1e-3,1e-3,1e-3,1e-3])
    * Referenced by: '<Root>/R'
    */
+  real_T Constant9_Value;              /* Expression: 0
+                                        * Referenced by: '<Root>/Constant9'
+                                        */
   real_T Constant25_Value;             /* Expression: 66
                                         * Referenced by: '<Root>/Constant25'
                                         */
+  real_T RateTransition1_InitialConditio[55];/* Expression: zeros(55,1)
+                                              * Referenced by: '<Root>/Rate Transition1'
+                                              */
   real_T UnitDelay7_InitialCondition[12];/* Expression: [0;0;0.19;zeros(9,1)]
                                           * Referenced by: '<Root>/Unit Delay7'
                                           */
   real_T Switch1_Threshold_k;          /* Expression: 0.5
                                         * Referenced by: '<Root>/Switch1'
                                         */
-  real_T RateTransition1_InitialConditio[55];/* Expression: zeros(55,1)
-                                              * Referenced by: '<Root>/Rate Transition1'
-                                              */
   real_T ymin_scale1_Gain[416];     /* Expression: Yscale(:,ones(1,max(nCC,1)))'
                                      * Referenced by: '<S18>/ymin_scale1'
                                      */

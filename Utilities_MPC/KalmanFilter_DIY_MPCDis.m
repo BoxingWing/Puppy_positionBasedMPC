@@ -1,5 +1,6 @@
 classdef KalmanFilter_DIY_MPCDis < matlab.System
     % Coventional kalman filter for single-rigid-body state estimation, offset variable are included.
+    % Note dis in Xbar is Bd*Xd
     properties
         Ts=0.005;
         m=3;
@@ -68,11 +69,13 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             %             end
             
             xhat=Xpre+K*(xFB-Cnew*Xpre);
+            tmp=Bdis*xhat(14:19);
+            dx=tmp(1:6);
             if Reset>0.5
                 xhat=[xFB;zeros(6,1)];
                 P=obj.P0;
             end
-            estXbar=xhat;
+            estXbar=[xhat(1:13);dx];
             obj.XOld=xhat;
             obj.POld=P;
         end
