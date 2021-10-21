@@ -16,7 +16,7 @@ classdef algebraicDisEstmator < matlab.System
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
             obj.count=0;
-            nX=19;
+            nX=25;
             obj.estXbarOld=zeros(nX,1);
             obj.UOld=zeros(12,1);
         end
@@ -38,22 +38,22 @@ classdef algebraicDisEstmator < matlab.System
             
             %Bdis=zeros(13,6);
             %Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
-            Bdis=[obj.Ts*eye(6);eye(6);zeros(1,6)];
-            Cdis=[zeros(6,6);0*eye(6);zeros(1,6)];
+            Bdis=[eye(12);zeros(1,12)];
+            Cdis=zeros(13,12);
             
-            Anew=[A,Bdis;zeros(6,13),eye(6)];
-            Bnew=[B;zeros(6,12)];
+            Anew=[A,Bdis;zeros(12,13),eye(12)];
+            Bnew=[B;zeros(12,12)];
             Cnew=[C,Cdis];
-            Dnew=zeros(13,12);
+            Dnew=zeros(25,12);
             
-            Kx=eye(13); %13*13
-            Kd=[zeros(6,6),eye(6),zeros(6,1)]; % 6*13
+            Kx=0.8*eye(13); %13*13
+            Kd=0.01*[eye(12),zeros(12,1)]; % 12*13
             K=[Kx;Kd];
             ystar=Cnew*(Anew*obj.estXbarOld+Bnew*obj.UOld);
             estXbar=Anew*obj.estXbarOld+Bnew*obj.UOld+K*(xFB(1:13)-ystar);
             
             if Reset>0.5
-                estXbar=[xFB;zeros(6,1)];
+                estXbar=[xFB;zeros(12,1)];
             end
             obj.UOld=U_MPC;
             obj.estXbarOld=estXbar;
