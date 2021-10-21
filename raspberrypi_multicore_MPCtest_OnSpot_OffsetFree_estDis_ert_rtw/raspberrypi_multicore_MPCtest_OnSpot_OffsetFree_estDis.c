@@ -7,9 +7,9 @@
  *
  * Code generation for model "raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis".
  *
- * Model version              : 2.382
+ * Model version              : 2.392
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Thu Oct 21 17:55:56 2021
+ * C source code generated on : Thu Oct 21 19:49:16 2021
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -106,56 +106,58 @@ static void raspberrypi_multicore_MP_DS_gen(real_T Ts, real_T m, const real_T
   real_T in7[3], const real_T in8[3], real_T Ad[169], real_T Bd[156]);
 static void raspberrypi_multicore_MP_xgetrf(const real_T A[169], real_T b_A[169],
   int32_T ipiv[13], int32_T *info);
-static void raspberrypi_multicore_MPC_mrdiv(const real_T A[247], const real_T B
-  [169], real_T Y[247]);
+static void raspberrypi_multicore_MPC_mrdiv(const real_T A[325], const real_T B
+  [169], real_T Y[325]);
 static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj,
   const real_T U_MPC[12], const real_T xFB[13], const real_T pW[12], const
-  real_T Q[361], const real_T R[169], real_T Reset, real_T estXbar[19], real_T
-  P[361]);
+  real_T Q[625], const real_T R[169], real_T Reset, real_T estXbar[25], real_T
+  P[625]);
 static void raspberrypi_mul_SystemCore_step(KalmanFilter_DIY_MPCDis_raspb_T *obj,
   const real_T varargin_1[12], const real_T varargin_2[13], const real_T
-  varargin_3[12], const real_T varargin_4[361], const real_T varargin_5[169],
-  real_T varargin_6, real_T varargout_1[19], real_T varargout_2[361]);
+  varargin_3[12], const real_T varargin_4[625], const real_T varargin_5[169],
+  real_T varargin_6, real_T varargout_1[25], real_T varargout_2[625]);
+static void ra_ssModelgen_estDis_stepImpl_a(const
+  ssModelgen_estDis_raspberrypi_T *obj, const real_T PendAll[12], const real_T
+  xFB[13], const real_T SPLeg[4], real_T Anew[169], real_T Bnew[312], real_T U
+  [24], real_T Y[13], real_T DX[13], real_T Inow[9]);
+static void raspberrypi_m_SystemCore_step_a(const
+  ssModelgen_estDis_raspberrypi_T *obj, const real_T varargin_1[12], const
+  real_T varargin_2[13], const real_T varargin_3[4], real_T varargout_1[169],
+  real_T varargout_2[312], real_T varargout_5[13], real_T varargout_6[24],
+  real_T varargout_7[13], real_T varargout_8[13], real_T varargout_9[9]);
 static real_T raspberrypi_multicore__norm_amt(const real_T x[3]);
 static void raspberrypi__SystemCore_step_am(refTrajectory_v4_raspberrypi__T *obj,
   real_T varargin_1, real_T varargin_2, real_T varargin_3, const real_T
   varargin_4[3], const real_T varargin_5[3], const real_T varargin_6[13], real_T
   varargin_7, real_T varargout_1[78], real_T varargout_2[13], real_T
   varargout_3[78], real_T varargout_4[3], real_T varargout_5[3]);
-static void ra_ssModelgen_estDis_stepImpl_a(const
-  ssModelgen_estDis_raspberrypi_T *obj, const real_T PendAll[12], const real_T
-  xFB[13], const real_T SPLeg[4], real_T Anew[169], real_T Bnew[234], real_T U
-  [18], real_T Y[13], real_T DX[13], real_T Inow[9]);
-static void raspberrypi_m_SystemCore_step_a(const
-  ssModelgen_estDis_raspberrypi_T *obj, const real_T varargin_1[12], const
-  real_T varargin_2[13], const real_T varargin_3[4], real_T varargout_1[169],
-  real_T varargout_2[234], real_T varargout_5[13], real_T varargout_6[18],
-  real_T varargout_7[13], real_T varargout_8[13], real_T varargout_9[9]);
-static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[234],
-  real_T c[169], real_T d[234], real_T b_A[169], real_T b_B[416], real_T b_C[169],
-  real_T b_D[416], const real_T b_mvindex[12], const real_T b_mdindex[6], const
-  real_T b_myindex[13], const real_T b_Uscale[18], const real_T b_Yscale[13],
-  real_T Bu[156], real_T Bv[91], real_T Cm[169], real_T Dv[91], real_T Dvm[91],
+static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[312],
+  real_T c[169], real_T d[312], real_T b_A[169], real_T b_B[494], real_T b_C[169],
+  real_T b_D[494], const real_T b_mvindex[12], const real_T b_mdindex[12], const
+  real_T b_myindex[13], const real_T b_Uscale[24], const real_T b_Yscale[13],
+  real_T Bu[156], real_T Bv[169], real_T Cm[169], real_T Dv[169], real_T Dvm[169],
   real_T QQ[169], real_T RR[169], real_T NN[169]);
 static real_T raspberrypi_multicore_MPC_mod_p(real_T x);
 static real_T raspberrypi_multicore_MPCte_mod(real_T x);
 static void raspberry_mpc_updateFromNominal(real_T b_Mlim[252], const real_T
-  b_Mrows[28], const real_T U0[18], const real_T b_Uscale[18], const real_T
-  old_mvoff[12], const real_T b_mvindex[12], const real_T b_mdindex[6], real_T
+  b_Mrows[28], const real_T U0[24], const real_T b_Uscale[24], const real_T
+  old_mvoff[12], const real_T b_mvindex[12], const real_T b_mdindex[12], real_T
   b_utarget[72], const real_T Y0[13], const real_T b_Yscale[13], const real_T
   old_yoff[13], const real_T b_myindex[13], const real_T X0[13], real_T b_xoff
-  [13], const real_T DX0[13], real_T Bv[637], real_T new_mvoff[12], real_T
-  new_mdoff[6], real_T new_yoff[13], real_T new_myoff[13]);
+  [13], const real_T DX0[13], real_T Bv[1183], real_T new_mvoff[12], real_T
+  new_mdoff[12], real_T new_yoff[13], real_T new_myoff[13]);
 static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
-  Bu[156], const real_T Bv[91], const real_T b_C[169], const real_T Dv[91],
+  Bu[156], const real_T Bv[169], const real_T b_C[169], const real_T Dv[169],
   const real_T b_Jm[1728], real_T b_SuJm[1872], real_T b_Sx[1014], real_T b_Su1
-  [936], real_T b_Hv[3822]);
+  [936], real_T b_Hv[7098]);
+static void raspberrypi_multicore_MP_kron_i(const real_T b_A[49], const real_T
+  b_B[416], real_T K[20384]);
 static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
-  real_T b_Sx[1014], const real_T b_Su1[936], const real_T b_Hv[3822], const
-  real_T b_C[169], const real_T Dv[637], const real_T b_Jm[1728], const real_T
-  E[384], const real_T F[416], const real_T S[192], const real_T G[32], const
-  real_T mvoff[12], const real_T mdoff[6], const real_T b_yoff[13], real_T Mu
-  [5376], real_T b_Mv[10976], real_T b_Mu1[2688], real_T b_Mx[2912], real_T
+  real_T b_Sx[1014], const real_T b_Su1[936], const real_T b_Hv[7098], const
+  real_T b_C[169], const real_T Dv[1183], const real_T b_Jm[1728], const real_T
+  E[384], const real_T F[416], const real_T S[384], const real_T G[32], const
+  real_T mvoff[12], const real_T mdoff[12], const real_T b_yoff[13], real_T Mu
+  [5376], real_T b_Mv[20384], real_T b_Mu1[2688], real_T b_Mx[2912], real_T
   b_Mlim[224]);
 static void raspberrypi_multicore_MPCt_kron(const real_T b_A[36], const real_T
   b_B[144], real_T K[5184]);
@@ -164,9 +166,9 @@ static void raspberrypi_multicore_MP_WtMult(const real_T W[12], const real_T M
 static void raspberryp_mpc_calculatehessian(const real_T b_Wy[78], const real_T
   b_Wu[12], const real_T b_Wdu[12], const real_T b_SuJm[1872], const real_T
   I2Jm[1728], const real_T b_Jm[1728], const real_T b_I1[864], const real_T
-  b_Su1[936], const real_T b_Sx[1014], const real_T b_Hv[3822], real_T nmv,
+  b_Su1[936], const real_T b_Sx[1014], const real_T b_Hv[7098], real_T nmv,
   real_T b_ny, real_T b_H[576], real_T b_Ku1[288], real_T b_Kut[1728], real_T
-  b_Kx[312], real_T b_Kv[1176], real_T b_Kr[1872]);
+  b_Kx[312], real_T b_Kv[2184], real_T b_Kr[1872]);
 static int32_T raspberrypi_multicore_MP_xpotrf(real_T b_A[625]);
 static real_T raspberrypi_multicore_M_minimum(const real_T x[25]);
 static void raspberrypi_mu_mpc_checkhessian(real_T b_H[625], real_T L[625],
@@ -209,7 +211,7 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
   lambda[252], real_T *status);
 static void raspberrypi_multico_mpc_solveQP(const real_T xQP[13], const real_T
   b_Kx[312], const real_T b_Kr[1872], const real_T rseq[78], const real_T b_Ku1
-  [288], const real_T old_u[12], const real_T b_Kv[1176], const real_T vseq[49],
+  [288], const real_T old_u[12], const real_T b_Kv[2184], const real_T vseq[91],
   const real_T b_Kut[1728], const real_T b_utarget[72], const real_T b_Linv[625],
   const real_T b_Hinv[625], const real_T b_Ac[6300], const real_T Bc[252],
   boolean_T iA[252], real_T zopt[25], real_T f[25], real_T *status);
@@ -217,21 +219,21 @@ static void raspberrypi_multic_mpc_clipping(const real_T uk[12], const real_T
   uk1[12], const real_T b_uoff[12], const real_T b_Mlim[252], const real_T
   b_Mrows[28], real_T b_p, real_T b_ny, real_T b_degrees, real_T uk_clipped[12]);
 static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
-  vseq[49], real_T switch_in, const real_T x[13], const real_T old_u[12], const
+  vseq[91], real_T switch_in, const real_T x[13], const real_T old_u[12], const
   boolean_T iA[252], real_T b_Mlim[252], real_T b_Mx[3276], real_T b_Mu1[3024],
-  real_T b_Mv[12348], const real_T b_utarget[72], const real_T b_uoff[12], const
-  real_T b_voff[6], const real_T b_yoff[13], real_T b_enable_value, real_T b_H
+  real_T b_Mv[22932], const real_T b_utarget[72], const real_T b_uoff[12], const
+  real_T b_voff[12], const real_T b_yoff[13], real_T b_enable_value, real_T b_H
   [625], real_T b_Ac[6300], const real_T b_Wy[78], const real_T b_Wdu[12], const
   real_T b_Jm[1728], const real_T b_Wu[12], const real_T b_I1[864], const real_T
-  b_A[169], const real_T Bu[1092], const real_T Bv[637], const real_T b_C[169],
-  const real_T Dv[637], const real_T b_Mrows[28], const real_T b_Ecc[384], const
-  real_T b_Fcc[416], const real_T b_Scc[192], const real_T b_Gcc[32], real_T u
-  [12], real_T useq[84], real_T *status, boolean_T iAout[252]);
+  b_A[169], const real_T Bu[1092], const real_T Bv[1183], const real_T b_C[169],
+  const real_T Dv[1183], const real_T b_Mrows[28], const real_T b_Ecc[384],
+  const real_T b_Fcc[416], const real_T b_Scc[384], const real_T b_Gcc[32],
+  real_T u[12], real_T useq[84], real_T *status, boolean_T iAout[252]);
 static void raspberrypi_multicore_MP_repmat(const real_T a[13], real_T b[91]);
 static void raspberrypi_mpc_computeSequence(const real_T x[13], const real_T
-  uopt[84], const real_T v[49], const real_T mvoff[12], const real_T b_yoff[13],
+  uopt[84], const real_T v[91], const real_T mvoff[12], const real_T b_yoff[13],
   const real_T b_xoff[13], const real_T b_A[169], const real_T Bu[1092], const
-  real_T Bv[637], const real_T b_C[169], const real_T Dv[637], real_T yopt[91],
+  real_T Bv[1183], const real_T b_C[169], const real_T Dv[1183], real_T yopt[91],
   real_T xopt[91]);
 
 /*
@@ -433,12 +435,12 @@ static void KalmanFilter_DIY_Offrm_setupImp(KalmanFilter_DIY_Offrm_raspbe_T *obj
   /*  Perform one-time calculations, such as computing constants */
   a_tmp = obj->Ts * obj->Ts * 0.5;
   for (i = 0; i < 9; i++) {
-    raspberrypi_multicore_MPCtest_B.b_I_c[i] = 0;
+    raspberrypi_multicore_MPCtest_B.b_I_cs[i] = 0;
   }
 
-  raspberrypi_multicore_MPCtest_B.b_I_c[0] = 1;
-  raspberrypi_multicore_MPCtest_B.b_I_c[4] = 1;
-  raspberrypi_multicore_MPCtest_B.b_I_c[8] = 1;
+  raspberrypi_multicore_MPCtest_B.b_I_cs[0] = 1;
+  raspberrypi_multicore_MPCtest_B.b_I_cs[4] = 1;
+  raspberrypi_multicore_MPCtest_B.b_I_cs[8] = 1;
   for (i = 0; i < 9; i++) {
     raspberrypi_multicore_MPCtest_B.b_I_k[i] = 0;
   }
@@ -454,14 +456,14 @@ static void KalmanFilter_DIY_Offrm_setupImp(KalmanFilter_DIY_Offrm_raspbe_T *obj
   raspberrypi_multicore_MPCtest_B.b_I_p[4] = 1;
   raspberrypi_multicore_MPCtest_B.b_I_p[8] = 1;
   for (i = 0; i < 9; i++) {
-    raspberrypi_multicore_MPCtest_B.dv26[i] = (real_T)tmp_5[i] * obj->Ts;
+    raspberrypi_multicore_MPCtest_B.dv24[i] = (real_T)tmp_5[i] * obj->Ts;
   }
 
   for (i = 0; i < 3; i++) {
     tmp = tmp_5[3 * i];
-    raspberrypi_multicore_MPCtest_B.d2 = raspberrypi_multicore_MPCtest_B.dv26[3 *
+    raspberrypi_multicore_MPCtest_B.d2 = raspberrypi_multicore_MPCtest_B.dv24[3 *
       i];
-    obj->A[9 * i] = raspberrypi_multicore_MPCtest_B.b_I_c[3 * i];
+    obj->A[9 * i] = raspberrypi_multicore_MPCtest_B.b_I_cs[3 * i];
     tmp_0 = 9 * (i + 3);
     obj->A[tmp_0] = raspberrypi_multicore_MPCtest_B.d2;
     tmp_1 = 9 * (i + 6);
@@ -480,9 +482,9 @@ static void KalmanFilter_DIY_Offrm_setupImp(KalmanFilter_DIY_Offrm_raspbe_T *obj
     b_k = 3 * i + 1;
     tmp = tmp_5[b_k];
     raspberrypi_multicore_MPCtest_B.d2 =
-      raspberrypi_multicore_MPCtest_B.dv26[b_k];
+      raspberrypi_multicore_MPCtest_B.dv24[b_k];
     tmp_2 = 9 * i + 1;
-    obj->A[tmp_2] = raspberrypi_multicore_MPCtest_B.b_I_c[b_k];
+    obj->A[tmp_2] = raspberrypi_multicore_MPCtest_B.b_I_cs[b_k];
     obj->A[tmp_0 + 1] = raspberrypi_multicore_MPCtest_B.d2;
     tmp_6 = a_tmp * (real_T)tmp;
     obj->A[tmp_1 + 1] = tmp_6;
@@ -500,9 +502,9 @@ static void KalmanFilter_DIY_Offrm_setupImp(KalmanFilter_DIY_Offrm_raspbe_T *obj
     b_k = 3 * i + 2;
     tmp = tmp_5[b_k];
     raspberrypi_multicore_MPCtest_B.d2 =
-      raspberrypi_multicore_MPCtest_B.dv26[b_k];
+      raspberrypi_multicore_MPCtest_B.dv24[b_k];
     tmp_2 = 9 * i + 2;
-    obj->A[tmp_2] = raspberrypi_multicore_MPCtest_B.b_I_c[b_k];
+    obj->A[tmp_2] = raspberrypi_multicore_MPCtest_B.b_I_cs[b_k];
     obj->A[tmp_0 + 2] = raspberrypi_multicore_MPCtest_B.d2;
     tmp_6 = a_tmp * (real_T)tmp;
     obj->A[tmp_1 + 2] = tmp_6;
@@ -520,31 +522,31 @@ static void KalmanFilter_DIY_Offrm_setupImp(KalmanFilter_DIY_Offrm_raspbe_T *obj
   }
 
   for (i = 0; i < 9; i++) {
-    raspberrypi_multicore_MPCtest_B.b_I_c[i] = 0;
+    raspberrypi_multicore_MPCtest_B.b_I_cs[i] = 0;
   }
 
-  raspberrypi_multicore_MPCtest_B.b_I_c[0] = 1;
-  raspberrypi_multicore_MPCtest_B.b_I_c[4] = 1;
-  raspberrypi_multicore_MPCtest_B.b_I_c[8] = 1;
+  raspberrypi_multicore_MPCtest_B.b_I_cs[0] = 1;
+  raspberrypi_multicore_MPCtest_B.b_I_cs[4] = 1;
+  raspberrypi_multicore_MPCtest_B.b_I_cs[8] = 1;
   for (i = 0; i < 9; i++) {
     raspberrypi_multicore_MPCtest_B.b_I_k[i] = 0;
   }
 
   for (b_k = 0; b_k < 3; b_k++) {
     raspberrypi_multicore_MPCtest_B.b_I_k[b_k + 3 * b_k] = 1;
-    obj->C[6 * b_k] = raspberrypi_multicore_MPCtest_B.b_I_c[3 * b_k];
+    obj->C[6 * b_k] = raspberrypi_multicore_MPCtest_B.b_I_cs[3 * b_k];
     i = 6 * (b_k + 3);
     obj->C[i] = 0.0;
     tmp = 6 * (b_k + 6);
     obj->C[tmp] = 0.0;
     obj->C[6 * b_k + 3] = 0.0;
     tmp_0 = 3 * b_k + 1;
-    obj->C[6 * b_k + 1] = raspberrypi_multicore_MPCtest_B.b_I_c[tmp_0];
+    obj->C[6 * b_k + 1] = raspberrypi_multicore_MPCtest_B.b_I_cs[tmp_0];
     obj->C[i + 1] = 0.0;
     obj->C[tmp + 1] = 0.0;
     obj->C[6 * b_k + 4] = 0.0;
     tmp_1 = 3 * b_k + 2;
-    obj->C[6 * b_k + 2] = raspberrypi_multicore_MPCtest_B.b_I_c[tmp_1];
+    obj->C[6 * b_k + 2] = raspberrypi_multicore_MPCtest_B.b_I_cs[tmp_1];
     obj->C[i + 2] = 0.0;
     obj->C[tmp + 2] = 0.0;
     obj->C[6 * b_k + 5] = 0.0;
@@ -601,7 +603,7 @@ static message_decoder_PC_raspberryp_T *message_decoder_PC_message_deco
   obj->vyPercent_Old = 0.0;
   obj->wzPercent_Old = 0.0;
   obj->phi_Old = 0.0;
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < 12; i++) {
     obj->estDis_Old[i] = 0.0;
   }
 
@@ -613,6 +615,7 @@ static message_decoder_PC_raspberryp_T *message_decoder_PC_message_deco
 static real_T raspberrypi_multicore_M_xnrm2_l(int32_T n, const real_T x[9],
   int32_T ix0)
 {
+  real_T absxk;
   real_T t;
   real_T y;
   int32_T k;
@@ -621,17 +624,13 @@ static real_T raspberrypi_multicore_M_xnrm2_l(int32_T n, const real_T x[9],
   raspberrypi_multicore_MPCtest_B.scale_h = 3.3121686421112381E-170;
   kend = (ix0 + n) - 1;
   for (k = ix0; k <= kend; k++) {
-    raspberrypi_multicore_MPCtest_B.absxk_f = fabs(x[k - 1]);
-    if (raspberrypi_multicore_MPCtest_B.absxk_f >
-        raspberrypi_multicore_MPCtest_B.scale_h) {
-      t = raspberrypi_multicore_MPCtest_B.scale_h /
-        raspberrypi_multicore_MPCtest_B.absxk_f;
+    absxk = fabs(x[k - 1]);
+    if (absxk > raspberrypi_multicore_MPCtest_B.scale_h) {
+      t = raspberrypi_multicore_MPCtest_B.scale_h / absxk;
       y = y * t * t + 1.0;
-      raspberrypi_multicore_MPCtest_B.scale_h =
-        raspberrypi_multicore_MPCtest_B.absxk_f;
+      raspberrypi_multicore_MPCtest_B.scale_h = absxk;
     } else {
-      t = raspberrypi_multicore_MPCtest_B.absxk_f /
-        raspberrypi_multicore_MPCtest_B.scale_h;
+      t = absxk / raspberrypi_multicore_MPCtest_B.scale_h;
       y += t * t;
     }
   }
@@ -659,20 +658,20 @@ static real_T raspberrypi_multicore__xnrm2_lk(const real_T x[3], int32_T ix0)
   real_T y;
   int32_T k;
   y = 0.0;
-  raspberrypi_multicore_MPCtest_B.scale_i = 3.3121686421112381E-170;
+  raspberrypi_multicore_MPCtest_B.scale_hp = 3.3121686421112381E-170;
   for (k = ix0; k <= ix0 + 1; k++) {
     absxk = fabs(x[k - 1]);
-    if (absxk > raspberrypi_multicore_MPCtest_B.scale_i) {
-      t = raspberrypi_multicore_MPCtest_B.scale_i / absxk;
+    if (absxk > raspberrypi_multicore_MPCtest_B.scale_hp) {
+      t = raspberrypi_multicore_MPCtest_B.scale_hp / absxk;
       y = y * t * t + 1.0;
-      raspberrypi_multicore_MPCtest_B.scale_i = absxk;
+      raspberrypi_multicore_MPCtest_B.scale_hp = absxk;
     } else {
-      t = absxk / raspberrypi_multicore_MPCtest_B.scale_i;
+      t = absxk / raspberrypi_multicore_MPCtest_B.scale_hp;
       y += t * t;
     }
   }
 
-  return raspberrypi_multicore_MPCtest_B.scale_i * sqrt(y);
+  return raspberrypi_multicore_MPCtest_B.scale_hp * sqrt(y);
 }
 
 /* Function for MATLAB Function: '<Root>/MATLAB Function2' */
@@ -789,6 +788,7 @@ static void raspberrypi_multicore_MPC_xrotg(real_T *a, real_T *b, real_T *c,
 {
   real_T ads;
   real_T bds;
+  real_T scale;
   raspberrypi_multicore_MPCtest_B.roe = *b;
   raspberrypi_multicore_MPCtest_B.absa = fabs(*a);
   raspberrypi_multicore_MPCtest_B.absb = fabs(*b);
@@ -797,26 +797,23 @@ static void raspberrypi_multicore_MPC_xrotg(real_T *a, real_T *b, real_T *c,
     raspberrypi_multicore_MPCtest_B.roe = *a;
   }
 
-  raspberrypi_multicore_MPCtest_B.scale_b = raspberrypi_multicore_MPCtest_B.absa
-    + raspberrypi_multicore_MPCtest_B.absb;
-  if (raspberrypi_multicore_MPCtest_B.scale_b == 0.0) {
+  scale = raspberrypi_multicore_MPCtest_B.absa +
+    raspberrypi_multicore_MPCtest_B.absb;
+  if (scale == 0.0) {
     *s = 0.0;
     *c = 1.0;
-    raspberrypi_multicore_MPCtest_B.scale_b = 0.0;
+    scale = 0.0;
     *b = 0.0;
   } else {
-    ads = raspberrypi_multicore_MPCtest_B.absa /
-      raspberrypi_multicore_MPCtest_B.scale_b;
-    bds = raspberrypi_multicore_MPCtest_B.absb /
-      raspberrypi_multicore_MPCtest_B.scale_b;
-    raspberrypi_multicore_MPCtest_B.scale_b *= sqrt(ads * ads + bds * bds);
+    ads = raspberrypi_multicore_MPCtest_B.absa / scale;
+    bds = raspberrypi_multicore_MPCtest_B.absb / scale;
+    scale *= sqrt(ads * ads + bds * bds);
     if (raspberrypi_multicore_MPCtest_B.roe < 0.0) {
-      raspberrypi_multicore_MPCtest_B.scale_b =
-        -raspberrypi_multicore_MPCtest_B.scale_b;
+      scale = -scale;
     }
 
-    *c = *a / raspberrypi_multicore_MPCtest_B.scale_b;
-    *s = *b / raspberrypi_multicore_MPCtest_B.scale_b;
+    *c = *a / scale;
+    *s = *b / scale;
     if (raspberrypi_multicore_MPCtest_B.absa >
         raspberrypi_multicore_MPCtest_B.absb) {
       *b = *s;
@@ -827,7 +824,7 @@ static void raspberrypi_multicore_MPC_xrotg(real_T *a, real_T *b, real_T *c,
     }
   }
 
-  *a = raspberrypi_multicore_MPCtest_B.scale_b;
+  *a = scale;
 }
 
 /* Function for MATLAB Function: '<Root>/MATLAB Function2' */
@@ -1581,54 +1578,54 @@ static void raspberrypi_multico_Get1From2_a(real_T x1, real_T b_y1, real_T x2,
     raspberrypi_multicore_MPCtest_B.a_tmp;
   D_tmp_tmp = raspberrypi_multicore_MPCtest_B.yo1 *
     raspberrypi_multicore_MPCtest_B.yo1;
-  raspberrypi_multicore_MPCtest_B.F_e = D_tmp + D_tmp_tmp;
-  raspberrypi_multicore_MPCtest_B.D = sqrt(raspberrypi_multicore_MPCtest_B.F_e);
-  raspberrypi_multicore_MPCtest_B.temp_h = l1 + l2;
+  raspberrypi_multicore_MPCtest_B.F_h = D_tmp + D_tmp_tmp;
+  raspberrypi_multicore_MPCtest_B.D = sqrt(raspberrypi_multicore_MPCtest_B.F_h);
+  raspberrypi_multicore_MPCtest_B.temp_e = l1 + l2;
   guard1 = false;
-  if (raspberrypi_multicore_MPCtest_B.temp_h > raspberrypi_multicore_MPCtest_B.D)
+  if (raspberrypi_multicore_MPCtest_B.temp_e > raspberrypi_multicore_MPCtest_B.D)
   {
     raspberrypi_multicore_MPCtest_B.a_tmp = l1 - l2;
     if (fabs(raspberrypi_multicore_MPCtest_B.a_tmp) <
         raspberrypi_multicore_MPCtest_B.D) {
       raspberrypi_multicore_MPCtest_B.D = l1 * l1;
       E_tmp = l2 * l2;
-      raspberrypi_multicore_MPCtest_B.E_h =
+      raspberrypi_multicore_MPCtest_B.E_b =
         (((-raspberrypi_multicore_MPCtest_B.D + E_tmp) *
           raspberrypi_multicore_MPCtest_B.yo1 + (D_tmp - b_y1 * y2) * (b_y1 + y2))
          + rt_powd_snf(b_y1, 3.0)) + rt_powd_snf(y2, 3.0);
-      raspberrypi_multicore_MPCtest_B.F_e *= 2.0;
-      raspberrypi_multicore_MPCtest_B.temp_h = sqrt
-        (((raspberrypi_multicore_MPCtest_B.temp_h *
-           raspberrypi_multicore_MPCtest_B.temp_h - D_tmp) - D_tmp_tmp) *
+      raspberrypi_multicore_MPCtest_B.F_h *= 2.0;
+      raspberrypi_multicore_MPCtest_B.temp_e = sqrt
+        (((raspberrypi_multicore_MPCtest_B.temp_e *
+           raspberrypi_multicore_MPCtest_B.temp_e - D_tmp) - D_tmp_tmp) *
          ((-(raspberrypi_multicore_MPCtest_B.a_tmp *
              raspberrypi_multicore_MPCtest_B.a_tmp) + D_tmp) + D_tmp_tmp));
       raspberrypi_multicore_MPCtest_B.a_tmp = x2 *
-        raspberrypi_multicore_MPCtest_B.temp_h;
-      raspberrypi_multicore_MPCtest_B.temp_h *= x1;
+        raspberrypi_multicore_MPCtest_B.temp_e;
+      raspberrypi_multicore_MPCtest_B.temp_e *= x1;
       raspberrypi_multicore_MPCtest_B.yo1 =
-        ((raspberrypi_multicore_MPCtest_B.temp_h -
+        ((raspberrypi_multicore_MPCtest_B.temp_e -
           raspberrypi_multicore_MPCtest_B.a_tmp) +
-         raspberrypi_multicore_MPCtest_B.E_h) /
-        raspberrypi_multicore_MPCtest_B.F_e;
+         raspberrypi_multicore_MPCtest_B.E_b) /
+        raspberrypi_multicore_MPCtest_B.F_h;
       *yout = ((raspberrypi_multicore_MPCtest_B.a_tmp -
-                raspberrypi_multicore_MPCtest_B.temp_h) +
-               raspberrypi_multicore_MPCtest_B.E_h) /
-        raspberrypi_multicore_MPCtest_B.F_e;
+                raspberrypi_multicore_MPCtest_B.temp_e) +
+               raspberrypi_multicore_MPCtest_B.E_b) /
+        raspberrypi_multicore_MPCtest_B.F_h;
       raspberrypi_multicore_MPCtest_B.a_tmp =
         raspberrypi_multicore_MPCtest_B.yo1 - b_y1;
       D_tmp = sqrt(raspberrypi_multicore_MPCtest_B.D -
                    raspberrypi_multicore_MPCtest_B.a_tmp *
                    raspberrypi_multicore_MPCtest_B.a_tmp);
-      raspberrypi_multicore_MPCtest_B.E_h = D_tmp + x1;
-      raspberrypi_multicore_MPCtest_B.temp_h =
-        raspberrypi_multicore_MPCtest_B.E_h - x2;
+      raspberrypi_multicore_MPCtest_B.E_b = D_tmp + x1;
+      raspberrypi_multicore_MPCtest_B.temp_e =
+        raspberrypi_multicore_MPCtest_B.E_b - x2;
       raspberrypi_multicore_MPCtest_B.a_tmp =
         raspberrypi_multicore_MPCtest_B.yo1 - y2;
-      if (fabs((raspberrypi_multicore_MPCtest_B.temp_h *
-                raspberrypi_multicore_MPCtest_B.temp_h +
+      if (fabs((raspberrypi_multicore_MPCtest_B.temp_e *
+                raspberrypi_multicore_MPCtest_B.temp_e +
                 raspberrypi_multicore_MPCtest_B.a_tmp *
                 raspberrypi_multicore_MPCtest_B.a_tmp) - E_tmp) > 0.0001) {
-        raspberrypi_multicore_MPCtest_B.E_h = -D_tmp + x1;
+        raspberrypi_multicore_MPCtest_B.E_b = -D_tmp + x1;
       }
 
       raspberrypi_multicore_MPCtest_B.a_tmp = *yout - b_y1;
@@ -1636,45 +1633,45 @@ static void raspberrypi_multico_Get1From2_a(real_T x1, real_T b_y1, real_T x2,
         - raspberrypi_multicore_MPCtest_B.a_tmp *
         raspberrypi_multicore_MPCtest_B.a_tmp);
       *xout = raspberrypi_multicore_MPCtest_B.D + x1;
-      raspberrypi_multicore_MPCtest_B.temp_h = *xout - x2;
+      raspberrypi_multicore_MPCtest_B.temp_e = *xout - x2;
       raspberrypi_multicore_MPCtest_B.a_tmp = *yout - y2;
-      if (fabs((raspberrypi_multicore_MPCtest_B.temp_h *
-                raspberrypi_multicore_MPCtest_B.temp_h +
+      if (fabs((raspberrypi_multicore_MPCtest_B.temp_e *
+                raspberrypi_multicore_MPCtest_B.temp_e +
                 raspberrypi_multicore_MPCtest_B.a_tmp *
                 raspberrypi_multicore_MPCtest_B.a_tmp) - E_tmp) > 0.0001) {
         *xout = -raspberrypi_multicore_MPCtest_B.D + x1;
       }
 
       if (fabs(raspberrypi_multicore_MPCtest_B.yo1 - *yout) < 0.0001) {
-        *xout = 2.0 * x1 - raspberrypi_multicore_MPCtest_B.E_h;
+        *xout = 2.0 * x1 - raspberrypi_multicore_MPCtest_B.E_b;
       }
 
       switch ((int32_T)limit) {
        case 0:
         if (raspberrypi_multicore_MPCtest_B.yo1 > *yout) {
           *yout = raspberrypi_multicore_MPCtest_B.yo1;
-          *xout = raspberrypi_multicore_MPCtest_B.E_h;
+          *xout = raspberrypi_multicore_MPCtest_B.E_b;
         }
         break;
 
        case 1:
         if (raspberrypi_multicore_MPCtest_B.yo1 < *yout) {
           *yout = raspberrypi_multicore_MPCtest_B.yo1;
-          *xout = raspberrypi_multicore_MPCtest_B.E_h;
+          *xout = raspberrypi_multicore_MPCtest_B.E_b;
         }
         break;
 
        case 2:
-        if (raspberrypi_multicore_MPCtest_B.E_h < *xout) {
+        if (raspberrypi_multicore_MPCtest_B.E_b < *xout) {
           *yout = raspberrypi_multicore_MPCtest_B.yo1;
-          *xout = raspberrypi_multicore_MPCtest_B.E_h;
+          *xout = raspberrypi_multicore_MPCtest_B.E_b;
         }
         break;
 
        case 3:
-        if (raspberrypi_multicore_MPCtest_B.E_h > *xout) {
+        if (raspberrypi_multicore_MPCtest_B.E_b > *xout) {
           *yout = raspberrypi_multicore_MPCtest_B.yo1;
-          *xout = raspberrypi_multicore_MPCtest_B.E_h;
+          *xout = raspberrypi_multicore_MPCtest_B.E_b;
         }
         break;
 
@@ -2093,72 +2090,71 @@ static void raspberrypi_multicore_Get1From2(real_T x2, real_T y2, real_T l1,
   /*            1  infeasible */
   /*            2  limit intput error */
   *Flag = 0.0;
-  raspberrypi_multicore_MPCtest_B.yo1_h = (0.0 - x2) * (0.0 - x2);
+  raspberrypi_multicore_MPCtest_B.yo1_n = (0.0 - x2) * (0.0 - x2);
   D_tmp_tmp = (0.0 - y2) * (0.0 - y2);
-  raspberrypi_multicore_MPCtest_B.F_ew = raspberrypi_multicore_MPCtest_B.yo1_h +
+  raspberrypi_multicore_MPCtest_B.F_f = raspberrypi_multicore_MPCtest_B.yo1_n +
     D_tmp_tmp;
-  raspberrypi_multicore_MPCtest_B.D_p = sqrt
-    (raspberrypi_multicore_MPCtest_B.F_ew);
-  raspberrypi_multicore_MPCtest_B.temp_n = l1 + l2;
+  raspberrypi_multicore_MPCtest_B.D_i = sqrt(raspberrypi_multicore_MPCtest_B.F_f);
+  raspberrypi_multicore_MPCtest_B.temp_ew = l1 + l2;
   guard1 = false;
-  if (raspberrypi_multicore_MPCtest_B.temp_n >
-      raspberrypi_multicore_MPCtest_B.D_p) {
+  if (raspberrypi_multicore_MPCtest_B.temp_ew >
+      raspberrypi_multicore_MPCtest_B.D_i) {
     a = l1 - l2;
-    if (fabs(a) < raspberrypi_multicore_MPCtest_B.D_p) {
+    if (fabs(a) < raspberrypi_multicore_MPCtest_B.D_i) {
       E_tmp = l1 * l1;
-      raspberrypi_multicore_MPCtest_B.D_p = l2 * l2;
-      raspberrypi_multicore_MPCtest_B.E_f =
-        ((raspberrypi_multicore_MPCtest_B.yo1_h - 0.0 * y2) * y2 + (-E_tmp +
-          raspberrypi_multicore_MPCtest_B.D_p) * (0.0 - y2)) + rt_powd_snf(y2,
+      raspberrypi_multicore_MPCtest_B.D_i = l2 * l2;
+      raspberrypi_multicore_MPCtest_B.E_p =
+        ((raspberrypi_multicore_MPCtest_B.yo1_n - 0.0 * y2) * y2 + (-E_tmp +
+          raspberrypi_multicore_MPCtest_B.D_i) * (0.0 - y2)) + rt_powd_snf(y2,
         3.0);
-      raspberrypi_multicore_MPCtest_B.F_ew *= 2.0;
-      raspberrypi_multicore_MPCtest_B.temp_n = sqrt
-        (((raspberrypi_multicore_MPCtest_B.temp_n *
-           raspberrypi_multicore_MPCtest_B.temp_n -
-           raspberrypi_multicore_MPCtest_B.yo1_h) - D_tmp_tmp) *
-         ((raspberrypi_multicore_MPCtest_B.yo1_h + -(a * a)) + D_tmp_tmp));
-      a = x2 * raspberrypi_multicore_MPCtest_B.temp_n;
-      raspberrypi_multicore_MPCtest_B.yo1_h = ((0.0 *
-        raspberrypi_multicore_MPCtest_B.temp_n - a) +
-        raspberrypi_multicore_MPCtest_B.E_f) /
-        raspberrypi_multicore_MPCtest_B.F_ew;
-      *yout = ((a - 0.0 * raspberrypi_multicore_MPCtest_B.temp_n) +
-               raspberrypi_multicore_MPCtest_B.E_f) /
-        raspberrypi_multicore_MPCtest_B.F_ew;
-      raspberrypi_multicore_MPCtest_B.E_f = sqrt(E_tmp -
-        raspberrypi_multicore_MPCtest_B.yo1_h *
-        raspberrypi_multicore_MPCtest_B.yo1_h);
-      raspberrypi_multicore_MPCtest_B.temp_n =
-        raspberrypi_multicore_MPCtest_B.E_f - x2;
-      a = raspberrypi_multicore_MPCtest_B.yo1_h - y2;
-      if (fabs((raspberrypi_multicore_MPCtest_B.temp_n *
-                raspberrypi_multicore_MPCtest_B.temp_n + a * a) -
-               raspberrypi_multicore_MPCtest_B.D_p) > 0.0001) {
-        raspberrypi_multicore_MPCtest_B.E_f =
-          -raspberrypi_multicore_MPCtest_B.E_f;
+      raspberrypi_multicore_MPCtest_B.F_f *= 2.0;
+      raspberrypi_multicore_MPCtest_B.temp_ew = sqrt
+        (((raspberrypi_multicore_MPCtest_B.temp_ew *
+           raspberrypi_multicore_MPCtest_B.temp_ew -
+           raspberrypi_multicore_MPCtest_B.yo1_n) - D_tmp_tmp) *
+         ((raspberrypi_multicore_MPCtest_B.yo1_n + -(a * a)) + D_tmp_tmp));
+      a = x2 * raspberrypi_multicore_MPCtest_B.temp_ew;
+      raspberrypi_multicore_MPCtest_B.yo1_n = ((0.0 *
+        raspberrypi_multicore_MPCtest_B.temp_ew - a) +
+        raspberrypi_multicore_MPCtest_B.E_p) /
+        raspberrypi_multicore_MPCtest_B.F_f;
+      *yout = ((a - 0.0 * raspberrypi_multicore_MPCtest_B.temp_ew) +
+               raspberrypi_multicore_MPCtest_B.E_p) /
+        raspberrypi_multicore_MPCtest_B.F_f;
+      raspberrypi_multicore_MPCtest_B.E_p = sqrt(E_tmp -
+        raspberrypi_multicore_MPCtest_B.yo1_n *
+        raspberrypi_multicore_MPCtest_B.yo1_n);
+      raspberrypi_multicore_MPCtest_B.temp_ew =
+        raspberrypi_multicore_MPCtest_B.E_p - x2;
+      a = raspberrypi_multicore_MPCtest_B.yo1_n - y2;
+      if (fabs((raspberrypi_multicore_MPCtest_B.temp_ew *
+                raspberrypi_multicore_MPCtest_B.temp_ew + a * a) -
+               raspberrypi_multicore_MPCtest_B.D_i) > 0.0001) {
+        raspberrypi_multicore_MPCtest_B.E_p =
+          -raspberrypi_multicore_MPCtest_B.E_p;
       }
 
       *xout = sqrt(E_tmp - *yout * *yout);
-      raspberrypi_multicore_MPCtest_B.temp_n = *xout - x2;
+      raspberrypi_multicore_MPCtest_B.temp_ew = *xout - x2;
       a = *yout - y2;
-      if (fabs((raspberrypi_multicore_MPCtest_B.temp_n *
-                raspberrypi_multicore_MPCtest_B.temp_n + a * a) -
-               raspberrypi_multicore_MPCtest_B.D_p) > 0.0001) {
+      if (fabs((raspberrypi_multicore_MPCtest_B.temp_ew *
+                raspberrypi_multicore_MPCtest_B.temp_ew + a * a) -
+               raspberrypi_multicore_MPCtest_B.D_i) > 0.0001) {
         *xout = -*xout;
       }
 
-      if (fabs(raspberrypi_multicore_MPCtest_B.yo1_h - *yout) < 0.0001) {
-        *xout = 0.0 - raspberrypi_multicore_MPCtest_B.E_f;
+      if (fabs(raspberrypi_multicore_MPCtest_B.yo1_n - *yout) < 0.0001) {
+        *xout = 0.0 - raspberrypi_multicore_MPCtest_B.E_p;
       }
 
       if ((int32_T)limit == 2) {
-        if (raspberrypi_multicore_MPCtest_B.E_f < *xout) {
-          *yout = raspberrypi_multicore_MPCtest_B.yo1_h;
-          *xout = raspberrypi_multicore_MPCtest_B.E_f;
+        if (raspberrypi_multicore_MPCtest_B.E_p < *xout) {
+          *yout = raspberrypi_multicore_MPCtest_B.yo1_n;
+          *xout = raspberrypi_multicore_MPCtest_B.E_p;
         }
-      } else if (raspberrypi_multicore_MPCtest_B.E_f > *xout) {
-        *yout = raspberrypi_multicore_MPCtest_B.yo1_h;
-        *xout = raspberrypi_multicore_MPCtest_B.E_f;
+      } else if (raspberrypi_multicore_MPCtest_B.E_p > *xout) {
+        *yout = raspberrypi_multicore_MPCtest_B.yo1_n;
+        *xout = raspberrypi_multicore_MPCtest_B.E_p;
       }
     } else {
       guard1 = true;
@@ -2194,10 +2190,10 @@ static void raspberrypi_multicore_IK_IK_one(const
   switch ((int32_T)LegNum) {
    case 1:
    case 3:
-    raspberrypi_multicore_MPCtest_B.RP_k = sqrt((p[1] * p[1] + p[2] * p[2]) -
+    raspberrypi_multicore_MPCtest_B.RP_h = sqrt((p[1] * p[1] + p[2] * p[2]) -
       obj->OR * obj->OR);
     raspberrypi_multicore_Get1From2(p[1], p[2], obj->OR,
-      raspberrypi_multicore_MPCtest_B.RP_k, 3.0,
+      raspberrypi_multicore_MPCtest_B.RP_h, 3.0,
       &raspberrypi_multicore_MPCtest_B.b_pRy,
       &raspberrypi_multicore_MPCtest_B.b_pRz,
       &raspberrypi_multicore_MPCtest_B.b_errFlag);
@@ -2207,98 +2203,98 @@ static void raspberrypi_multicore_IK_IK_one(const
       *Flag = 1.0;
     } else {
       raspberrypi_multicore_Get1From2(p[0],
-        -raspberrypi_multicore_MPCtest_B.RP_k, obj->BC, obj->DP, 2.0,
+        -raspberrypi_multicore_MPCtest_B.RP_h, obj->BC, obj->DP, 2.0,
         &raspberrypi_multicore_MPCtest_B.b_xout,
         &raspberrypi_multicore_MPCtest_B.b_yout,
         &raspberrypi_multicore_MPCtest_B.b_errFlag);
       if (raspberrypi_multicore_MPCtest_B.b_errFlag != 0.0) {
         *Flag = 2.0;
       } else {
-        raspberrypi_multicore_MPCtest_B.pP_idx_0_h = p[0] -
+        raspberrypi_multicore_MPCtest_B.pP_idx_0_c = p[0] -
           raspberrypi_multicore_MPCtest_B.b_xout;
-        raspberrypi_multicore_MPCtest_B.pP_idx_1_i =
-          -raspberrypi_multicore_MPCtest_B.RP_k -
+        raspberrypi_multicore_MPCtest_B.pP_idx_1_h =
+          -raspberrypi_multicore_MPCtest_B.RP_h -
           raspberrypi_multicore_MPCtest_B.b_yout;
         raspberrypi_multicore_MPCtest_B.b_errFlag = cos(-obj->CDP);
-        raspberrypi_multicore_MPCtest_B.pC_tmp_j = sin(-obj->CDP);
-        raspberrypi_multicore_MPCtest_B.pC_o =
-          (raspberrypi_multicore_MPCtest_B.pC_tmp_j *
-           raspberrypi_multicore_MPCtest_B.pP_idx_0_h +
+        raspberrypi_multicore_MPCtest_B.pC_tmp_k = sin(-obj->CDP);
+        raspberrypi_multicore_MPCtest_B.pC_j =
+          (raspberrypi_multicore_MPCtest_B.pC_tmp_k *
+           raspberrypi_multicore_MPCtest_B.pP_idx_0_c +
            raspberrypi_multicore_MPCtest_B.b_errFlag *
-           raspberrypi_multicore_MPCtest_B.pP_idx_1_i) / obj->DP * obj->AB +
+           raspberrypi_multicore_MPCtest_B.pP_idx_1_h) / obj->DP * obj->AB +
           raspberrypi_multicore_MPCtest_B.b_yout;
-        raspberrypi_multicore_MPCtest_B.pB_idx_1_c =
-          raspberrypi_multicore_MPCtest_B.pC_o -
+        raspberrypi_multicore_MPCtest_B.pB_idx_1_o =
+          raspberrypi_multicore_MPCtest_B.pC_j -
           raspberrypi_multicore_MPCtest_B.b_yout;
 
         /*  angle for 11 angle */
         /*  angle for 12 angle */
-        if (-raspberrypi_multicore_MPCtest_B.RP_k >
+        if (-raspberrypi_multicore_MPCtest_B.RP_h >
             raspberrypi_multicore_MPCtest_B.b_yout) {
           *Flag = 3.0;
 
           /*  AD collides with DP */
-        } else if (-raspberrypi_multicore_MPCtest_B.RP_k >
-                   raspberrypi_multicore_MPCtest_B.pC_o) {
+        } else if (-raspberrypi_multicore_MPCtest_B.RP_h >
+                   raspberrypi_multicore_MPCtest_B.pC_j) {
           *Flag = 4.0;
 
           /*  elbow touches the ground */
         } else {
           if (raspberrypi_multicore_MPCtest_B.b_yout < 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = -1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = -1.0;
           } else if (raspberrypi_multicore_MPCtest_B.b_yout > 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 1.0;
           } else if (raspberrypi_multicore_MPCtest_B.b_yout == 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 0.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 0.0;
           } else {
-            raspberrypi_multicore_MPCtest_B.RP_k = (rtNaN);
+            raspberrypi_multicore_MPCtest_B.RP_h = (rtNaN);
           }
 
           Angle[0] = acos((0.0 * raspberrypi_multicore_MPCtest_B.b_yout +
                            -raspberrypi_multicore_MPCtest_B.b_xout) / obj->BC) *
-            raspberrypi_multicore_MPCtest_B.RP_k;
-          if (-raspberrypi_multicore_MPCtest_B.pB_idx_1_c < 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = -1.0;
-          } else if (-raspberrypi_multicore_MPCtest_B.pB_idx_1_c > 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 1.0;
-          } else if (-raspberrypi_multicore_MPCtest_B.pB_idx_1_c == 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 0.0;
+            raspberrypi_multicore_MPCtest_B.RP_h;
+          if (-raspberrypi_multicore_MPCtest_B.pB_idx_1_o < 0.0) {
+            raspberrypi_multicore_MPCtest_B.RP_h = -1.0;
+          } else if (-raspberrypi_multicore_MPCtest_B.pB_idx_1_o > 0.0) {
+            raspberrypi_multicore_MPCtest_B.RP_h = 1.0;
+          } else if (-raspberrypi_multicore_MPCtest_B.pB_idx_1_o == 0.0) {
+            raspberrypi_multicore_MPCtest_B.RP_h = 0.0;
           } else {
-            raspberrypi_multicore_MPCtest_B.RP_k = (rtNaN);
+            raspberrypi_multicore_MPCtest_B.RP_h = (rtNaN);
           }
 
           Angle[1] = acos((-(((raspberrypi_multicore_MPCtest_B.b_errFlag *
-                               raspberrypi_multicore_MPCtest_B.pP_idx_0_h +
-                               -raspberrypi_multicore_MPCtest_B.pC_tmp_j *
-                               raspberrypi_multicore_MPCtest_B.pP_idx_1_i) /
+                               raspberrypi_multicore_MPCtest_B.pP_idx_0_c +
+                               -raspberrypi_multicore_MPCtest_B.pC_tmp_k *
+                               raspberrypi_multicore_MPCtest_B.pP_idx_1_h) /
                               obj->DP * obj->AB +
                               raspberrypi_multicore_MPCtest_B.b_xout) -
                              raspberrypi_multicore_MPCtest_B.b_xout) + 0.0 *
-                           raspberrypi_multicore_MPCtest_B.pB_idx_1_c) / obj->AB)
-            * raspberrypi_multicore_MPCtest_B.RP_k;
+                           raspberrypi_multicore_MPCtest_B.pB_idx_1_o) / obj->AB)
+            * raspberrypi_multicore_MPCtest_B.RP_h;
           if (raspberrypi_multicore_MPCtest_B.b_pRz < 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = -1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = -1.0;
           } else if (raspberrypi_multicore_MPCtest_B.b_pRz > 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 1.0;
           } else if (raspberrypi_multicore_MPCtest_B.b_pRz == 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 0.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 0.0;
           } else {
-            raspberrypi_multicore_MPCtest_B.RP_k = (rtNaN);
+            raspberrypi_multicore_MPCtest_B.RP_h = (rtNaN);
           }
 
           Angle[2] = acos((0.0 * raspberrypi_multicore_MPCtest_B.b_pRz +
                            raspberrypi_multicore_MPCtest_B.b_pRy) / obj->OR) *
-            raspberrypi_multicore_MPCtest_B.RP_k;
+            raspberrypi_multicore_MPCtest_B.RP_h;
         }
       }
     }
     break;
 
    default:
-    raspberrypi_multicore_MPCtest_B.RP_k = sqrt((p[1] * p[1] + p[2] * p[2]) -
+    raspberrypi_multicore_MPCtest_B.RP_h = sqrt((p[1] * p[1] + p[2] * p[2]) -
       obj->OR * obj->OR);
     raspberrypi_multicore_Get1From2(p[1], p[2], obj->OR,
-      raspberrypi_multicore_MPCtest_B.RP_k, 2.0,
+      raspberrypi_multicore_MPCtest_B.RP_h, 2.0,
       &raspberrypi_multicore_MPCtest_B.b_pRy,
       &raspberrypi_multicore_MPCtest_B.b_pRz,
       &raspberrypi_multicore_MPCtest_B.b_errFlag);
@@ -2308,7 +2304,7 @@ static void raspberrypi_multicore_IK_IK_one(const
       *Flag = 1.0;
     } else {
       raspberrypi_multicore_Get1From2(p[0],
-        -raspberrypi_multicore_MPCtest_B.RP_k, obj->BC, obj->DP, 2.0,
+        -raspberrypi_multicore_MPCtest_B.RP_h, obj->BC, obj->DP, 2.0,
         &raspberrypi_multicore_MPCtest_B.b_xout,
         &raspberrypi_multicore_MPCtest_B.b_yout,
         &raspberrypi_multicore_MPCtest_B.b_errFlag);
@@ -2316,80 +2312,80 @@ static void raspberrypi_multicore_IK_IK_one(const
         *Flag = 2.0;
       } else {
         raspberrypi_multicore_MPCtest_B.b_errFlag = sin(-obj->CDP);
-        raspberrypi_multicore_MPCtest_B.pC_tmp_j = cos(-obj->CDP);
-        raspberrypi_multicore_MPCtest_B.pP_idx_0_h = p[0] -
+        raspberrypi_multicore_MPCtest_B.pC_tmp_k = cos(-obj->CDP);
+        raspberrypi_multicore_MPCtest_B.pP_idx_0_c = p[0] -
           raspberrypi_multicore_MPCtest_B.b_xout;
-        raspberrypi_multicore_MPCtest_B.pP_idx_1_i =
-          -raspberrypi_multicore_MPCtest_B.RP_k -
+        raspberrypi_multicore_MPCtest_B.pP_idx_1_h =
+          -raspberrypi_multicore_MPCtest_B.RP_h -
           raspberrypi_multicore_MPCtest_B.b_yout;
-        raspberrypi_multicore_MPCtest_B.pC_o =
+        raspberrypi_multicore_MPCtest_B.pC_j =
           (raspberrypi_multicore_MPCtest_B.b_errFlag *
-           raspberrypi_multicore_MPCtest_B.pP_idx_0_h +
-           raspberrypi_multicore_MPCtest_B.pC_tmp_j *
-           raspberrypi_multicore_MPCtest_B.pP_idx_1_i) / obj->DP * obj->AB +
+           raspberrypi_multicore_MPCtest_B.pP_idx_0_c +
+           raspberrypi_multicore_MPCtest_B.pC_tmp_k *
+           raspberrypi_multicore_MPCtest_B.pP_idx_1_h) / obj->DP * obj->AB +
           raspberrypi_multicore_MPCtest_B.b_yout;
-        raspberrypi_multicore_MPCtest_B.pB_idx_1_c =
-          raspberrypi_multicore_MPCtest_B.pC_o -
+        raspberrypi_multicore_MPCtest_B.pB_idx_1_o =
+          raspberrypi_multicore_MPCtest_B.pC_j -
           raspberrypi_multicore_MPCtest_B.b_yout;
 
         /*  angle for 11 servo */
         /*  angle for 12 servo */
-        if (-raspberrypi_multicore_MPCtest_B.RP_k >
+        if (-raspberrypi_multicore_MPCtest_B.RP_h >
             raspberrypi_multicore_MPCtest_B.b_yout) {
           *Flag = 3.0;
 
           /*  AD collides with DP */
-        } else if (-raspberrypi_multicore_MPCtest_B.RP_k >
-                   raspberrypi_multicore_MPCtest_B.pC_o) {
+        } else if (-raspberrypi_multicore_MPCtest_B.RP_h >
+                   raspberrypi_multicore_MPCtest_B.pC_j) {
           *Flag = 4.0;
 
           /*  elbow touches the ground */
         } else {
           if (-raspberrypi_multicore_MPCtest_B.b_yout < 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = -1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = -1.0;
           } else if (-raspberrypi_multicore_MPCtest_B.b_yout > 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 1.0;
           } else if (-raspberrypi_multicore_MPCtest_B.b_yout == 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 0.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 0.0;
           } else {
-            raspberrypi_multicore_MPCtest_B.RP_k = (rtNaN);
+            raspberrypi_multicore_MPCtest_B.RP_h = (rtNaN);
           }
 
           Angle[0] = acos((0.0 * raspberrypi_multicore_MPCtest_B.b_yout +
                            -raspberrypi_multicore_MPCtest_B.b_xout) / obj->BC) *
-            raspberrypi_multicore_MPCtest_B.RP_k;
-          if (raspberrypi_multicore_MPCtest_B.pB_idx_1_c < 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = -1.0;
-          } else if (raspberrypi_multicore_MPCtest_B.pB_idx_1_c > 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 1.0;
-          } else if (raspberrypi_multicore_MPCtest_B.pB_idx_1_c == 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 0.0;
+            raspberrypi_multicore_MPCtest_B.RP_h;
+          if (raspberrypi_multicore_MPCtest_B.pB_idx_1_o < 0.0) {
+            raspberrypi_multicore_MPCtest_B.RP_h = -1.0;
+          } else if (raspberrypi_multicore_MPCtest_B.pB_idx_1_o > 0.0) {
+            raspberrypi_multicore_MPCtest_B.RP_h = 1.0;
+          } else if (raspberrypi_multicore_MPCtest_B.pB_idx_1_o == 0.0) {
+            raspberrypi_multicore_MPCtest_B.RP_h = 0.0;
           } else {
-            raspberrypi_multicore_MPCtest_B.RP_k = (rtNaN);
+            raspberrypi_multicore_MPCtest_B.RP_h = (rtNaN);
           }
 
-          Angle[1] = acos((-(((raspberrypi_multicore_MPCtest_B.pC_tmp_j *
-                               raspberrypi_multicore_MPCtest_B.pP_idx_0_h +
+          Angle[1] = acos((-(((raspberrypi_multicore_MPCtest_B.pC_tmp_k *
+                               raspberrypi_multicore_MPCtest_B.pP_idx_0_c +
                                -raspberrypi_multicore_MPCtest_B.b_errFlag *
-                               raspberrypi_multicore_MPCtest_B.pP_idx_1_i) /
+                               raspberrypi_multicore_MPCtest_B.pP_idx_1_h) /
                               obj->DP * obj->AB +
                               raspberrypi_multicore_MPCtest_B.b_xout) -
                              raspberrypi_multicore_MPCtest_B.b_xout) + 0.0 *
-                           raspberrypi_multicore_MPCtest_B.pB_idx_1_c) / obj->AB)
-            * raspberrypi_multicore_MPCtest_B.RP_k;
+                           raspberrypi_multicore_MPCtest_B.pB_idx_1_o) / obj->AB)
+            * raspberrypi_multicore_MPCtest_B.RP_h;
           if (-raspberrypi_multicore_MPCtest_B.b_pRz < 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = -1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = -1.0;
           } else if (-raspberrypi_multicore_MPCtest_B.b_pRz > 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 1.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 1.0;
           } else if (-raspberrypi_multicore_MPCtest_B.b_pRz == 0.0) {
-            raspberrypi_multicore_MPCtest_B.RP_k = 0.0;
+            raspberrypi_multicore_MPCtest_B.RP_h = 0.0;
           } else {
-            raspberrypi_multicore_MPCtest_B.RP_k = (rtNaN);
+            raspberrypi_multicore_MPCtest_B.RP_h = (rtNaN);
           }
 
           Angle[2] = acos((0.0 * raspberrypi_multicore_MPCtest_B.b_pRz +
                            -raspberrypi_multicore_MPCtest_B.b_pRy) / obj->OR) *
-            raspberrypi_multicore_MPCtest_B.RP_k;
+            raspberrypi_multicore_MPCtest_B.RP_h;
         }
       }
     }
@@ -2582,7 +2578,7 @@ static void raspberrypi_multicore_M_mrdiv_a(const real_T A[54], const real_T B
   int32_T k;
   int32_T kBcol;
   int8_T b_ipiv;
-  memcpy(&raspberrypi_multicore_MPCtest_B.c_A_o[0], &B[0], 36U * sizeof(real_T));
+  memcpy(&raspberrypi_multicore_MPCtest_B.c_A_i[0], &B[0], 36U * sizeof(real_T));
   for (b_j = 0; b_j < 6; b_j++) {
     raspberrypi_multicore_MPCtest_B.b_ipiv[b_j] = (int8_T)(b_j + 1);
   }
@@ -2593,10 +2589,10 @@ static void raspberrypi_multicore_M_mrdiv_a(const real_T A[54], const real_T B
     c_0 = 6 - b_j;
     a = 1;
     raspberrypi_multicore_MPCtest_B.smax_b = fabs
-      (raspberrypi_multicore_MPCtest_B.c_A_o[jj]);
+      (raspberrypi_multicore_MPCtest_B.c_A_i[jj]);
     for (k = 2; k <= c_0; k++) {
       raspberrypi_multicore_MPCtest_B.s_c = fabs
-        (raspberrypi_multicore_MPCtest_B.c_A_o[(c + k) - 3]);
+        (raspberrypi_multicore_MPCtest_B.c_A_i[(c + k) - 3]);
       if (raspberrypi_multicore_MPCtest_B.s_c >
           raspberrypi_multicore_MPCtest_B.smax_b) {
         a = k;
@@ -2605,26 +2601,26 @@ static void raspberrypi_multicore_M_mrdiv_a(const real_T A[54], const real_T B
       }
     }
 
-    if (raspberrypi_multicore_MPCtest_B.c_A_o[(c + a) - 3] != 0.0) {
+    if (raspberrypi_multicore_MPCtest_B.c_A_i[(c + a) - 3] != 0.0) {
       if (a - 1 != 0) {
         a += b_j;
         raspberrypi_multicore_MPCtest_B.b_ipiv[b_j] = (int8_T)a;
         for (k = 0; k < 6; k++) {
           jA = k * 6 + b_j;
           raspberrypi_multicore_MPCtest_B.smax_b =
-            raspberrypi_multicore_MPCtest_B.c_A_o[jA];
+            raspberrypi_multicore_MPCtest_B.c_A_i[jA];
           c_0 = (k * 6 + a) - 1;
-          raspberrypi_multicore_MPCtest_B.c_A_o[jA] =
-            raspberrypi_multicore_MPCtest_B.c_A_o[c_0];
-          raspberrypi_multicore_MPCtest_B.c_A_o[c_0] =
+          raspberrypi_multicore_MPCtest_B.c_A_i[jA] =
+            raspberrypi_multicore_MPCtest_B.c_A_i[c_0];
+          raspberrypi_multicore_MPCtest_B.c_A_i[c_0] =
             raspberrypi_multicore_MPCtest_B.smax_b;
         }
       }
 
       k = c - b_j;
       for (a = c; a <= k + 4; a++) {
-        raspberrypi_multicore_MPCtest_B.c_A_o[a - 1] /=
-          raspberrypi_multicore_MPCtest_B.c_A_o[jj];
+        raspberrypi_multicore_MPCtest_B.c_A_i[a - 1] /=
+          raspberrypi_multicore_MPCtest_B.c_A_i[jj];
       }
     }
 
@@ -2632,13 +2628,13 @@ static void raspberrypi_multicore_M_mrdiv_a(const real_T A[54], const real_T B
     jA = jj;
     for (a = 0; a < c_0; a++) {
       raspberrypi_multicore_MPCtest_B.smax_b =
-        raspberrypi_multicore_MPCtest_B.c_A_o[(jj + a * 6) + 6];
+        raspberrypi_multicore_MPCtest_B.c_A_i[(jj + a * 6) + 6];
       if (raspberrypi_multicore_MPCtest_B.smax_b != 0.0) {
         k = jA + 8;
         kBcol = jA - b_j;
         for (ijA = k; ijA <= kBcol + 12; ijA++) {
-          raspberrypi_multicore_MPCtest_B.c_A_o[ijA - 1] +=
-            raspberrypi_multicore_MPCtest_B.c_A_o[((c + ijA) - jA) - 9] *
+          raspberrypi_multicore_MPCtest_B.c_A_i[ijA - 1] +=
+            raspberrypi_multicore_MPCtest_B.c_A_i[((c + ijA) - jA) - 9] *
             -raspberrypi_multicore_MPCtest_B.smax_b;
         }
       }
@@ -2655,7 +2651,7 @@ static void raspberrypi_multicore_M_mrdiv_a(const real_T A[54], const real_T B
     for (a = 0; a <= k; a++) {
       kBcol = 9 * a - 1;
       raspberrypi_multicore_MPCtest_B.smax_b =
-        raspberrypi_multicore_MPCtest_B.c_A_o[(a + jA) + 1];
+        raspberrypi_multicore_MPCtest_B.c_A_i[(a + jA) + 1];
       if (raspberrypi_multicore_MPCtest_B.smax_b != 0.0) {
         for (c_0 = 0; c_0 < 9; c_0++) {
           c = (c_0 + jj) + 1;
@@ -2665,7 +2661,7 @@ static void raspberrypi_multicore_M_mrdiv_a(const real_T A[54], const real_T B
     }
 
     raspberrypi_multicore_MPCtest_B.smax_b = 1.0 /
-      raspberrypi_multicore_MPCtest_B.c_A_o[(b_j + jA) + 1];
+      raspberrypi_multicore_MPCtest_B.c_A_i[(b_j + jA) + 1];
     for (k = 0; k < 9; k++) {
       c = (k + jj) + 1;
       Y[c] *= raspberrypi_multicore_MPCtest_B.smax_b;
@@ -2678,7 +2674,7 @@ static void raspberrypi_multicore_M_mrdiv_a(const real_T A[54], const real_T B
     for (k = a + 2; k < 7; k++) {
       kBcol = (k - 1) * 9 - 1;
       raspberrypi_multicore_MPCtest_B.smax_b =
-        raspberrypi_multicore_MPCtest_B.c_A_o[k + jA];
+        raspberrypi_multicore_MPCtest_B.c_A_i[k + jA];
       if (raspberrypi_multicore_MPCtest_B.smax_b != 0.0) {
         for (c_0 = 0; c_0 < 9; c_0++) {
           c = (c_0 + jj) + 1;
@@ -2707,6 +2703,7 @@ static void KalmanFilter_DIY_Offrm_stepImpl(KalmanFilter_DIY_Offrm_raspbe_T *obj
   const real_T Q[81], const real_T R[36], real_T Reset, real_T updateEN, real_T
   xhat[9], real_T P[81])
 {
+  int32_T i;
   int32_T obj_tmp;
 
   /*  note Q, R must be matrixes */
@@ -2718,315 +2715,279 @@ static void KalmanFilter_DIY_Offrm_stepImpl(KalmanFilter_DIY_Offrm_raspbe_T *obj
     obj->count++;
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 9;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
-    raspberrypi_multicore_MPCtest_B.obj_o[raspberrypi_multicore_MPCtest_B.i_i] =
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 9;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
+    raspberrypi_multicore_MPCtest_B.obj_o[raspberrypi_multicore_MPCtest_B.i_d] =
       0.0;
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 9;
          raspberrypi_multicore_MPCtest_B.i3++) {
-      raspberrypi_multicore_MPCtest_B.obj_d[raspberrypi_multicore_MPCtest_B.i3 +
-        9 * raspberrypi_multicore_MPCtest_B.i_i] = 0.0;
-      raspberrypi_multicore_MPCtest_B.obj_o[raspberrypi_multicore_MPCtest_B.i_i]
+      raspberrypi_multicore_MPCtest_B.obj_h[raspberrypi_multicore_MPCtest_B.i3 +
+        9 * raspberrypi_multicore_MPCtest_B.i_d] = 0.0;
+      raspberrypi_multicore_MPCtest_B.obj_o[raspberrypi_multicore_MPCtest_B.i_d]
         += obj->A[9 * raspberrypi_multicore_MPCtest_B.i3 +
-        raspberrypi_multicore_MPCtest_B.i_i] * obj->
+        raspberrypi_multicore_MPCtest_B.i_d] * obj->
         XOld[raspberrypi_multicore_MPCtest_B.i3];
     }
 
-    raspberrypi_multicore_MPCtest_B.Xpre_o[raspberrypi_multicore_MPCtest_B.i_i] =
-      raspberrypi_multicore_MPCtest_B.obj_o[raspberrypi_multicore_MPCtest_B.i_i]
-      + (obj->B[raspberrypi_multicore_MPCtest_B.i_i + 18] * u[2] + (obj->
-          B[raspberrypi_multicore_MPCtest_B.i_i + 9] * u[1] + obj->
-          B[raspberrypi_multicore_MPCtest_B.i_i] * u[0]));
+    raspberrypi_multicore_MPCtest_B.Xpre_o[raspberrypi_multicore_MPCtest_B.i_d] =
+      raspberrypi_multicore_MPCtest_B.obj_o[raspberrypi_multicore_MPCtest_B.i_d]
+      + (obj->B[raspberrypi_multicore_MPCtest_B.i_d + 18] * u[2] + (obj->
+          B[raspberrypi_multicore_MPCtest_B.i_d + 9] * u[1] + obj->
+          B[raspberrypi_multicore_MPCtest_B.i_d] * u[0]));
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 9;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 9;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 9;
          raspberrypi_multicore_MPCtest_B.i3++) {
-      for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-           raspberrypi_multicore_MPCtest_B.i4 < 9;
-           raspberrypi_multicore_MPCtest_B.i4++) {
+      for (i = 0; i < 9; i++) {
         obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i_i;
-        raspberrypi_multicore_MPCtest_B.obj_d[obj_tmp] += obj->A[9 *
-          raspberrypi_multicore_MPCtest_B.i4 +
-          raspberrypi_multicore_MPCtest_B.i_i] * obj->POld[9 *
-          raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i4];
-      }
-
-      raspberrypi_multicore_MPCtest_B.obj_e[raspberrypi_multicore_MPCtest_B.i3 +
-        9 * raspberrypi_multicore_MPCtest_B.i_i] = 0.0;
-    }
-  }
-
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 9;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
-    for (raspberrypi_multicore_MPCtest_B.i3 = 0;
-         raspberrypi_multicore_MPCtest_B.i3 < 9;
-         raspberrypi_multicore_MPCtest_B.i3++) {
-      for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-           raspberrypi_multicore_MPCtest_B.i4 < 9;
-           raspberrypi_multicore_MPCtest_B.i4++) {
-        obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i_i;
-        raspberrypi_multicore_MPCtest_B.obj_e[obj_tmp] += obj->G[9 *
-          raspberrypi_multicore_MPCtest_B.i4 +
-          raspberrypi_multicore_MPCtest_B.i_i] * Q[9 *
-          raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i4];
+          raspberrypi_multicore_MPCtest_B.i_d;
+        raspberrypi_multicore_MPCtest_B.obj_h[obj_tmp] += obj->A[9 * i +
+          raspberrypi_multicore_MPCtest_B.i_d] * obj->POld[9 *
+          raspberrypi_multicore_MPCtest_B.i3 + i];
       }
 
       raspberrypi_multicore_MPCtest_B.obj_b[raspberrypi_multicore_MPCtest_B.i3 +
-        9 * raspberrypi_multicore_MPCtest_B.i_i] = 0.0;
+        9 * raspberrypi_multicore_MPCtest_B.i_d] = 0.0;
     }
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 9;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 9;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 9;
          raspberrypi_multicore_MPCtest_B.i3++) {
-      for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-           raspberrypi_multicore_MPCtest_B.i4 < 9;
-           raspberrypi_multicore_MPCtest_B.i4++) {
+      for (i = 0; i < 9; i++) {
         obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i_i;
-        raspberrypi_multicore_MPCtest_B.obj_b[obj_tmp] +=
-          raspberrypi_multicore_MPCtest_B.obj_d[9 *
-          raspberrypi_multicore_MPCtest_B.i4 +
-          raspberrypi_multicore_MPCtest_B.i_i] * obj->A[9 *
-          raspberrypi_multicore_MPCtest_B.i4 +
+          raspberrypi_multicore_MPCtest_B.i_d;
+        raspberrypi_multicore_MPCtest_B.obj_b[obj_tmp] += obj->G[9 * i +
+          raspberrypi_multicore_MPCtest_B.i_d] * Q[9 *
+          raspberrypi_multicore_MPCtest_B.i3 + i];
+      }
+
+      raspberrypi_multicore_MPCtest_B.obj_d[raspberrypi_multicore_MPCtest_B.i3 +
+        9 * raspberrypi_multicore_MPCtest_B.i_d] = 0.0;
+    }
+  }
+
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 9;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
+    for (raspberrypi_multicore_MPCtest_B.i3 = 0;
+         raspberrypi_multicore_MPCtest_B.i3 < 9;
+         raspberrypi_multicore_MPCtest_B.i3++) {
+      for (i = 0; i < 9; i++) {
+        obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 +
+          raspberrypi_multicore_MPCtest_B.i_d;
+        raspberrypi_multicore_MPCtest_B.obj_d[obj_tmp] +=
+          raspberrypi_multicore_MPCtest_B.obj_h[9 * i +
+          raspberrypi_multicore_MPCtest_B.i_d] * obj->A[9 * i +
           raspberrypi_multicore_MPCtest_B.i3];
       }
 
-      raspberrypi_multicore_MPCtest_B.obj_j[raspberrypi_multicore_MPCtest_B.i3 +
-        9 * raspberrypi_multicore_MPCtest_B.i_i] = 0.0;
+      raspberrypi_multicore_MPCtest_B.obj_e[raspberrypi_multicore_MPCtest_B.i3 +
+        9 * raspberrypi_multicore_MPCtest_B.i_d] = 0.0;
     }
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 9;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 9;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 9;
          raspberrypi_multicore_MPCtest_B.i3++) {
-      for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-           raspberrypi_multicore_MPCtest_B.i4 < 9;
-           raspberrypi_multicore_MPCtest_B.i4++) {
+      for (i = 0; i < 9; i++) {
         obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i_i;
-        raspberrypi_multicore_MPCtest_B.obj_j[obj_tmp] +=
-          raspberrypi_multicore_MPCtest_B.obj_e[9 *
-          raspberrypi_multicore_MPCtest_B.i4 +
-          raspberrypi_multicore_MPCtest_B.i_i] * obj->G[9 *
-          raspberrypi_multicore_MPCtest_B.i4 +
+          raspberrypi_multicore_MPCtest_B.i_d;
+        raspberrypi_multicore_MPCtest_B.obj_e[obj_tmp] +=
+          raspberrypi_multicore_MPCtest_B.obj_b[9 * i +
+          raspberrypi_multicore_MPCtest_B.i_d] * obj->G[9 * i +
           raspberrypi_multicore_MPCtest_B.i3];
       }
     }
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 81;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
-    P[raspberrypi_multicore_MPCtest_B.i_i] =
-      raspberrypi_multicore_MPCtest_B.obj_b[raspberrypi_multicore_MPCtest_B.i_i]
-      + raspberrypi_multicore_MPCtest_B.obj_j[raspberrypi_multicore_MPCtest_B.i_i];
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 81;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
+    P[raspberrypi_multicore_MPCtest_B.i_d] =
+      raspberrypi_multicore_MPCtest_B.obj_d[raspberrypi_multicore_MPCtest_B.i_d]
+      + raspberrypi_multicore_MPCtest_B.obj_e[raspberrypi_multicore_MPCtest_B.i_d];
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 6;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 6;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 9;
          raspberrypi_multicore_MPCtest_B.i3++) {
-      raspberrypi_multicore_MPCtest_B.K_o[raspberrypi_multicore_MPCtest_B.i3 + 9
-        * raspberrypi_multicore_MPCtest_B.i_i] = obj->C[6 *
-        raspberrypi_multicore_MPCtest_B.i3 + raspberrypi_multicore_MPCtest_B.i_i];
+      raspberrypi_multicore_MPCtest_B.K_j[raspberrypi_multicore_MPCtest_B.i3 + 9
+        * raspberrypi_multicore_MPCtest_B.i_d] = obj->C[6 *
+        raspberrypi_multicore_MPCtest_B.i3 + raspberrypi_multicore_MPCtest_B.i_d];
     }
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 9;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 9;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 6;
          raspberrypi_multicore_MPCtest_B.i3++) {
-      raspberrypi_multicore_MPCtest_B.obj_n[raspberrypi_multicore_MPCtest_B.i3 +
-        6 * raspberrypi_multicore_MPCtest_B.i_i] = 0.0;
+      raspberrypi_multicore_MPCtest_B.obj_j[raspberrypi_multicore_MPCtest_B.i3 +
+        6 * raspberrypi_multicore_MPCtest_B.i_d] = 0.0;
     }
   }
 
   for (raspberrypi_multicore_MPCtest_B.i3 = 0;
        raspberrypi_multicore_MPCtest_B.i3 < 6;
        raspberrypi_multicore_MPCtest_B.i3++) {
-    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-         raspberrypi_multicore_MPCtest_B.i_i < 9;
-         raspberrypi_multicore_MPCtest_B.i_i++) {
-      for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-           raspberrypi_multicore_MPCtest_B.i4 < 9;
-           raspberrypi_multicore_MPCtest_B.i4++) {
-        obj_tmp = 6 * raspberrypi_multicore_MPCtest_B.i_i +
+    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+         raspberrypi_multicore_MPCtest_B.i_d < 9;
+         raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (i = 0; i < 9; i++) {
+        obj_tmp = 6 * raspberrypi_multicore_MPCtest_B.i_d +
           raspberrypi_multicore_MPCtest_B.i3;
-        raspberrypi_multicore_MPCtest_B.obj_n[obj_tmp] += obj->C[6 *
-          raspberrypi_multicore_MPCtest_B.i4 +
+        raspberrypi_multicore_MPCtest_B.obj_j[obj_tmp] += obj->C[6 * i +
           raspberrypi_multicore_MPCtest_B.i3] * P[9 *
-          raspberrypi_multicore_MPCtest_B.i_i +
-          raspberrypi_multicore_MPCtest_B.i4];
+          raspberrypi_multicore_MPCtest_B.i_d + i];
       }
 
-      raspberrypi_multicore_MPCtest_B.P[raspberrypi_multicore_MPCtest_B.i_i + 9 *
+      raspberrypi_multicore_MPCtest_B.P[raspberrypi_multicore_MPCtest_B.i_d + 9 *
         raspberrypi_multicore_MPCtest_B.i3] = 0.0;
     }
 
-    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-         raspberrypi_multicore_MPCtest_B.i_i < 9;
-         raspberrypi_multicore_MPCtest_B.i_i++) {
-      for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-           raspberrypi_multicore_MPCtest_B.i4 < 9;
-           raspberrypi_multicore_MPCtest_B.i4++) {
-        obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i4;
+    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+         raspberrypi_multicore_MPCtest_B.i_d < 9;
+         raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (i = 0; i < 9; i++) {
+        obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 + i;
         raspberrypi_multicore_MPCtest_B.P[obj_tmp] += P[9 *
-          raspberrypi_multicore_MPCtest_B.i_i +
-          raspberrypi_multicore_MPCtest_B.i4] *
-          raspberrypi_multicore_MPCtest_B.K_o[9 *
+          raspberrypi_multicore_MPCtest_B.i_d + i] *
+          raspberrypi_multicore_MPCtest_B.K_j[9 *
           raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i_i];
+          raspberrypi_multicore_MPCtest_B.i_d];
       }
     }
 
-    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-         raspberrypi_multicore_MPCtest_B.i_i < 6;
-         raspberrypi_multicore_MPCtest_B.i_i++) {
+    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+         raspberrypi_multicore_MPCtest_B.i_d < 6;
+         raspberrypi_multicore_MPCtest_B.i_d++) {
       raspberrypi_multicore_MPCtest_B.d_p = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-           raspberrypi_multicore_MPCtest_B.i4 < 9;
-           raspberrypi_multicore_MPCtest_B.i4++) {
+      for (i = 0; i < 9; i++) {
         raspberrypi_multicore_MPCtest_B.d_p +=
-          raspberrypi_multicore_MPCtest_B.obj_n[6 *
-          raspberrypi_multicore_MPCtest_B.i4 +
+          raspberrypi_multicore_MPCtest_B.obj_j[6 * i +
           raspberrypi_multicore_MPCtest_B.i3] *
-          raspberrypi_multicore_MPCtest_B.K_o[9 *
-          raspberrypi_multicore_MPCtest_B.i_i +
-          raspberrypi_multicore_MPCtest_B.i4];
+          raspberrypi_multicore_MPCtest_B.K_j[9 *
+          raspberrypi_multicore_MPCtest_B.i_d + i];
       }
 
-      obj_tmp = 6 * raspberrypi_multicore_MPCtest_B.i_i +
+      obj_tmp = 6 * raspberrypi_multicore_MPCtest_B.i_d +
         raspberrypi_multicore_MPCtest_B.i3;
-      raspberrypi_multicore_MPCtest_B.obj_i[obj_tmp] = R[obj_tmp] +
+      raspberrypi_multicore_MPCtest_B.obj_n[obj_tmp] = R[obj_tmp] +
         raspberrypi_multicore_MPCtest_B.d_p;
     }
   }
 
   raspberrypi_multicore_M_mrdiv_a(raspberrypi_multicore_MPCtest_B.P,
-    raspberrypi_multicore_MPCtest_B.obj_i, raspberrypi_multicore_MPCtest_B.K_o);
+    raspberrypi_multicore_MPCtest_B.obj_n, raspberrypi_multicore_MPCtest_B.K_j);
   if (updateEN < 0.5) {
-    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-         raspberrypi_multicore_MPCtest_B.i_i < 54;
-         raspberrypi_multicore_MPCtest_B.i_i++) {
-      raspberrypi_multicore_MPCtest_B.K_o[raspberrypi_multicore_MPCtest_B.i_i] *=
+    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+         raspberrypi_multicore_MPCtest_B.i_d < 54;
+         raspberrypi_multicore_MPCtest_B.i_d++) {
+      raspberrypi_multicore_MPCtest_B.K_j[raspberrypi_multicore_MPCtest_B.i_d] *=
         0.0;
     }
   } else {
     memset(&raspberrypi_multicore_MPCtest_B.b_I_a[0], 0, 81U * sizeof(int8_T));
-    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-         raspberrypi_multicore_MPCtest_B.i_i < 9;
-         raspberrypi_multicore_MPCtest_B.i_i++) {
-      raspberrypi_multicore_MPCtest_B.b_I_a[raspberrypi_multicore_MPCtest_B.i_i
-        + 9 * raspberrypi_multicore_MPCtest_B.i_i] = 1;
+    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+         raspberrypi_multicore_MPCtest_B.i_d < 9;
+         raspberrypi_multicore_MPCtest_B.i_d++) {
+      raspberrypi_multicore_MPCtest_B.b_I_a[raspberrypi_multicore_MPCtest_B.i_d
+        + 9 * raspberrypi_multicore_MPCtest_B.i_d] = 1;
     }
 
-    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-         raspberrypi_multicore_MPCtest_B.i_i < 9;
-         raspberrypi_multicore_MPCtest_B.i_i++) {
+    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+         raspberrypi_multicore_MPCtest_B.i_d < 9;
+         raspberrypi_multicore_MPCtest_B.i_d++) {
       for (raspberrypi_multicore_MPCtest_B.i3 = 0;
            raspberrypi_multicore_MPCtest_B.i3 < 9;
            raspberrypi_multicore_MPCtest_B.i3++) {
         raspberrypi_multicore_MPCtest_B.d_p = 0.0;
-        for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-             raspberrypi_multicore_MPCtest_B.i4 < 6;
-             raspberrypi_multicore_MPCtest_B.i4++) {
+        for (i = 0; i < 6; i++) {
           raspberrypi_multicore_MPCtest_B.d_p +=
-            raspberrypi_multicore_MPCtest_B.K_o[9 *
-            raspberrypi_multicore_MPCtest_B.i4 +
-            raspberrypi_multicore_MPCtest_B.i_i] * obj->C[6 *
-            raspberrypi_multicore_MPCtest_B.i3 +
-            raspberrypi_multicore_MPCtest_B.i4];
+            raspberrypi_multicore_MPCtest_B.K_j[9 * i +
+            raspberrypi_multicore_MPCtest_B.i_d] * obj->C[6 *
+            raspberrypi_multicore_MPCtest_B.i3 + i];
         }
 
         obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i3 +
-          raspberrypi_multicore_MPCtest_B.i_i;
-        raspberrypi_multicore_MPCtest_B.obj_b[obj_tmp] = (real_T)
+          raspberrypi_multicore_MPCtest_B.i_d;
+        raspberrypi_multicore_MPCtest_B.obj_d[obj_tmp] = (real_T)
           raspberrypi_multicore_MPCtest_B.b_I_a[obj_tmp] -
           raspberrypi_multicore_MPCtest_B.d_p;
-        raspberrypi_multicore_MPCtest_B.obj_j[raspberrypi_multicore_MPCtest_B.i3
-          + 9 * raspberrypi_multicore_MPCtest_B.i_i] = 0.0;
+        raspberrypi_multicore_MPCtest_B.obj_e[raspberrypi_multicore_MPCtest_B.i3
+          + 9 * raspberrypi_multicore_MPCtest_B.i_d] = 0.0;
       }
     }
 
-    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-         raspberrypi_multicore_MPCtest_B.i_i < 9;
-         raspberrypi_multicore_MPCtest_B.i_i++) {
+    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+         raspberrypi_multicore_MPCtest_B.i_d < 9;
+         raspberrypi_multicore_MPCtest_B.i_d++) {
       for (raspberrypi_multicore_MPCtest_B.i3 = 0;
            raspberrypi_multicore_MPCtest_B.i3 < 9;
            raspberrypi_multicore_MPCtest_B.i3++) {
-        for (raspberrypi_multicore_MPCtest_B.i4 = 0;
-             raspberrypi_multicore_MPCtest_B.i4 < 9;
-             raspberrypi_multicore_MPCtest_B.i4++) {
-          obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i_i +
-            raspberrypi_multicore_MPCtest_B.i4;
-          raspberrypi_multicore_MPCtest_B.obj_j[obj_tmp] +=
-            raspberrypi_multicore_MPCtest_B.obj_b[9 *
-            raspberrypi_multicore_MPCtest_B.i3 +
-            raspberrypi_multicore_MPCtest_B.i4] * P[9 *
-            raspberrypi_multicore_MPCtest_B.i_i +
+        for (i = 0; i < 9; i++) {
+          obj_tmp = 9 * raspberrypi_multicore_MPCtest_B.i_d + i;
+          raspberrypi_multicore_MPCtest_B.obj_e[obj_tmp] +=
+            raspberrypi_multicore_MPCtest_B.obj_d[9 *
+            raspberrypi_multicore_MPCtest_B.i3 + i] * P[9 *
+            raspberrypi_multicore_MPCtest_B.i_d +
             raspberrypi_multicore_MPCtest_B.i3];
         }
       }
     }
 
-    memcpy(&P[0], &raspberrypi_multicore_MPCtest_B.obj_j[0], 81U * sizeof(real_T));
+    memcpy(&P[0], &raspberrypi_multicore_MPCtest_B.obj_e[0], 81U * sizeof(real_T));
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 6;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 6;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
     raspberrypi_multicore_MPCtest_B.d_p = 0.0;
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 9;
          raspberrypi_multicore_MPCtest_B.i3++) {
       raspberrypi_multicore_MPCtest_B.d_p += obj->C[6 *
-        raspberrypi_multicore_MPCtest_B.i3 + raspberrypi_multicore_MPCtest_B.i_i]
+        raspberrypi_multicore_MPCtest_B.i3 + raspberrypi_multicore_MPCtest_B.i_d]
         * raspberrypi_multicore_MPCtest_B.Xpre_o[raspberrypi_multicore_MPCtest_B.i3];
     }
 
-    raspberrypi_multicore_MPCtest_B.y_c[raspberrypi_multicore_MPCtest_B.i_i] =
-      y[raspberrypi_multicore_MPCtest_B.i_i] -
+    raspberrypi_multicore_MPCtest_B.y_c[raspberrypi_multicore_MPCtest_B.i_d] =
+      y[raspberrypi_multicore_MPCtest_B.i_d] -
       raspberrypi_multicore_MPCtest_B.d_p;
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_i = 0;
-       raspberrypi_multicore_MPCtest_B.i_i < 9;
-       raspberrypi_multicore_MPCtest_B.i_i++) {
+  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
+       raspberrypi_multicore_MPCtest_B.i_d < 9;
+       raspberrypi_multicore_MPCtest_B.i_d++) {
     raspberrypi_multicore_MPCtest_B.d_p = 0.0;
     for (raspberrypi_multicore_MPCtest_B.i3 = 0;
          raspberrypi_multicore_MPCtest_B.i3 < 6;
          raspberrypi_multicore_MPCtest_B.i3++) {
       raspberrypi_multicore_MPCtest_B.d_p +=
-        raspberrypi_multicore_MPCtest_B.K_o[9 *
-        raspberrypi_multicore_MPCtest_B.i3 + raspberrypi_multicore_MPCtest_B.i_i]
+        raspberrypi_multicore_MPCtest_B.K_j[9 *
+        raspberrypi_multicore_MPCtest_B.i3 + raspberrypi_multicore_MPCtest_B.i_d]
         * raspberrypi_multicore_MPCtest_B.y_c[raspberrypi_multicore_MPCtest_B.i3];
     }
 
-    xhat[raspberrypi_multicore_MPCtest_B.i_i] =
-      raspberrypi_multicore_MPCtest_B.Xpre_o[raspberrypi_multicore_MPCtest_B.i_i]
+    xhat[raspberrypi_multicore_MPCtest_B.i_d] =
+      raspberrypi_multicore_MPCtest_B.Xpre_o[raspberrypi_multicore_MPCtest_B.i_d]
       + raspberrypi_multicore_MPCtest_B.d_p;
   }
 
@@ -3628,31 +3589,31 @@ static void raspberrypi_multicore_MP_xgetrf(const real_T A[169], real_T b_A[169]
   }
 }
 
-static void raspberrypi_multicore_MPC_mrdiv(const real_T A[247], const real_T B
-  [169], real_T Y[247])
+static void raspberrypi_multicore_MPC_mrdiv(const real_T A[325], const real_T B
+  [169], real_T Y[325])
 {
   int32_T b_i;
   int32_T b_k;
-  raspberrypi_multicore_MP_xgetrf(B, raspberrypi_multicore_MPCtest_B.c_A_d,
+  raspberrypi_multicore_MP_xgetrf(B, raspberrypi_multicore_MPCtest_B.c_A_l,
     raspberrypi_multicore_MPCtest_B.ipiv,
     &raspberrypi_multicore_MPCtest_B.b_info);
-  memcpy(&Y[0], &A[0], 247U * sizeof(real_T));
-  for (raspberrypi_multicore_MPCtest_B.b_j_l = 0;
-       raspberrypi_multicore_MPCtest_B.b_j_l < 13;
-       raspberrypi_multicore_MPCtest_B.b_j_l++) {
-    raspberrypi_multicore_MPCtest_B.jBcol = 19 *
-      raspberrypi_multicore_MPCtest_B.b_j_l - 1;
+  memcpy(&Y[0], &A[0], 325U * sizeof(real_T));
+  for (raspberrypi_multicore_MPCtest_B.b_j = 0;
+       raspberrypi_multicore_MPCtest_B.b_j < 13;
+       raspberrypi_multicore_MPCtest_B.b_j++) {
+    raspberrypi_multicore_MPCtest_B.jBcol = 25 *
+      raspberrypi_multicore_MPCtest_B.b_j - 1;
     raspberrypi_multicore_MPCtest_B.jAcol = 13 *
-      raspberrypi_multicore_MPCtest_B.b_j_l - 1;
-    raspberrypi_multicore_MPCtest_B.b_kg = raspberrypi_multicore_MPCtest_B.b_j_l
-      - 1;
-    for (b_k = 0; b_k <= raspberrypi_multicore_MPCtest_B.b_kg; b_k++) {
-      raspberrypi_multicore_MPCtest_B.kBcol = 19 * b_k - 1;
+      raspberrypi_multicore_MPCtest_B.b_j - 1;
+    raspberrypi_multicore_MPCtest_B.b_f = raspberrypi_multicore_MPCtest_B.b_j -
+      1;
+    for (b_k = 0; b_k <= raspberrypi_multicore_MPCtest_B.b_f; b_k++) {
+      raspberrypi_multicore_MPCtest_B.kBcol = 25 * b_k - 1;
       raspberrypi_multicore_MPCtest_B.temp_a =
-        raspberrypi_multicore_MPCtest_B.c_A_d[(b_k +
+        raspberrypi_multicore_MPCtest_B.c_A_l[(b_k +
         raspberrypi_multicore_MPCtest_B.jAcol) + 1];
       if (raspberrypi_multicore_MPCtest_B.temp_a != 0.0) {
-        for (b_i = 0; b_i < 19; b_i++) {
+        for (b_i = 0; b_i < 25; b_i++) {
           raspberrypi_multicore_MPCtest_B.b_info = (b_i +
             raspberrypi_multicore_MPCtest_B.jBcol) + 1;
           Y[raspberrypi_multicore_MPCtest_B.b_info] -=
@@ -3663,10 +3624,9 @@ static void raspberrypi_multicore_MPC_mrdiv(const real_T A[247], const real_T B
     }
 
     raspberrypi_multicore_MPCtest_B.temp_a = 1.0 /
-      raspberrypi_multicore_MPCtest_B.c_A_d
-      [(raspberrypi_multicore_MPCtest_B.b_j_l +
-        raspberrypi_multicore_MPCtest_B.jAcol) + 1];
-    for (b_i = 0; b_i < 19; b_i++) {
+      raspberrypi_multicore_MPCtest_B.c_A_l[(raspberrypi_multicore_MPCtest_B.b_j
+      + raspberrypi_multicore_MPCtest_B.jAcol) + 1];
+    for (b_i = 0; b_i < 25; b_i++) {
       raspberrypi_multicore_MPCtest_B.b_info = (b_i +
         raspberrypi_multicore_MPCtest_B.jBcol) + 1;
       Y[raspberrypi_multicore_MPCtest_B.b_info] *=
@@ -3674,24 +3634,24 @@ static void raspberrypi_multicore_MPC_mrdiv(const real_T A[247], const real_T B
     }
   }
 
-  for (raspberrypi_multicore_MPCtest_B.b_j_l = 12;
-       raspberrypi_multicore_MPCtest_B.b_j_l >= 0;
-       raspberrypi_multicore_MPCtest_B.b_j_l--) {
-    raspberrypi_multicore_MPCtest_B.jBcol = 19 *
-      raspberrypi_multicore_MPCtest_B.b_j_l - 1;
+  for (raspberrypi_multicore_MPCtest_B.b_j = 12;
+       raspberrypi_multicore_MPCtest_B.b_j >= 0;
+       raspberrypi_multicore_MPCtest_B.b_j--) {
+    raspberrypi_multicore_MPCtest_B.jBcol = 25 *
+      raspberrypi_multicore_MPCtest_B.b_j - 1;
     raspberrypi_multicore_MPCtest_B.jAcol = 13 *
-      raspberrypi_multicore_MPCtest_B.b_j_l - 1;
-    for (raspberrypi_multicore_MPCtest_B.b_kg =
-         raspberrypi_multicore_MPCtest_B.b_j_l + 2;
-         raspberrypi_multicore_MPCtest_B.b_kg < 14;
-         raspberrypi_multicore_MPCtest_B.b_kg++) {
+      raspberrypi_multicore_MPCtest_B.b_j - 1;
+    for (raspberrypi_multicore_MPCtest_B.b_f =
+         raspberrypi_multicore_MPCtest_B.b_j + 2;
+         raspberrypi_multicore_MPCtest_B.b_f < 14;
+         raspberrypi_multicore_MPCtest_B.b_f++) {
       raspberrypi_multicore_MPCtest_B.kBcol =
-        (raspberrypi_multicore_MPCtest_B.b_kg - 1) * 19 - 1;
+        (raspberrypi_multicore_MPCtest_B.b_f - 1) * 25 - 1;
       raspberrypi_multicore_MPCtest_B.temp_a =
-        raspberrypi_multicore_MPCtest_B.c_A_d[raspberrypi_multicore_MPCtest_B.b_kg
+        raspberrypi_multicore_MPCtest_B.c_A_l[raspberrypi_multicore_MPCtest_B.b_f
         + raspberrypi_multicore_MPCtest_B.jAcol];
       if (raspberrypi_multicore_MPCtest_B.temp_a != 0.0) {
-        for (b_i = 0; b_i < 19; b_i++) {
+        for (b_i = 0; b_i < 25; b_i++) {
           raspberrypi_multicore_MPCtest_B.b_info = (b_i +
             raspberrypi_multicore_MPCtest_B.jBcol) + 1;
           Y[raspberrypi_multicore_MPCtest_B.b_info] -= Y[(b_i +
@@ -3702,19 +3662,19 @@ static void raspberrypi_multicore_MPC_mrdiv(const real_T A[247], const real_T B
     }
   }
 
-  for (raspberrypi_multicore_MPCtest_B.b_j_l = 11;
-       raspberrypi_multicore_MPCtest_B.b_j_l >= 0;
-       raspberrypi_multicore_MPCtest_B.b_j_l--) {
+  for (raspberrypi_multicore_MPCtest_B.b_j = 11;
+       raspberrypi_multicore_MPCtest_B.b_j >= 0;
+       raspberrypi_multicore_MPCtest_B.b_j--) {
     raspberrypi_multicore_MPCtest_B.jBcol =
-      raspberrypi_multicore_MPCtest_B.ipiv[raspberrypi_multicore_MPCtest_B.b_j_l];
-    if (raspberrypi_multicore_MPCtest_B.b_j_l + 1 !=
+      raspberrypi_multicore_MPCtest_B.ipiv[raspberrypi_multicore_MPCtest_B.b_j];
+    if (raspberrypi_multicore_MPCtest_B.b_j + 1 !=
         raspberrypi_multicore_MPCtest_B.jBcol) {
-      for (b_i = 0; b_i < 19; b_i++) {
-        raspberrypi_multicore_MPCtest_B.jAcol = 19 *
-          raspberrypi_multicore_MPCtest_B.b_j_l + b_i;
+      for (b_i = 0; b_i < 25; b_i++) {
+        raspberrypi_multicore_MPCtest_B.jAcol = 25 *
+          raspberrypi_multicore_MPCtest_B.b_j + b_i;
         raspberrypi_multicore_MPCtest_B.temp_a =
           Y[raspberrypi_multicore_MPCtest_B.jAcol];
-        raspberrypi_multicore_MPCtest_B.b_info = 19 *
+        raspberrypi_multicore_MPCtest_B.b_info = 25 *
           (raspberrypi_multicore_MPCtest_B.jBcol - 1) + b_i;
         Y[raspberrypi_multicore_MPCtest_B.jAcol] =
           Y[raspberrypi_multicore_MPCtest_B.b_info];
@@ -3727,25 +3687,40 @@ static void raspberrypi_multicore_MPC_mrdiv(const real_T A[247], const real_T B
 
 static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj,
   const real_T U_MPC[12], const real_T xFB[13], const real_T pW[12], const
-  real_T Q[361], const real_T R[169], real_T Reset, real_T estXbar[19], real_T
-  P[361])
+  real_T Q[625], const real_T R[169], real_T Reset, real_T estXbar[25], real_T
+  P[625])
 {
-  static const int8_T tmp[36] = { 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0,
-    0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1 };
+  static const int8_T tmp[156] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 };
 
-  static const int8_T tmp_0[114] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  static const int8_T tmp_0[300] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-    0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1 };
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
 
-  static const int8_T tmp_1[247] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+  static const int8_T tmp_1[325] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -3968,71 +3943,48 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
     raspberrypi_multicore_MPCtest_B.Inow, raspberrypi_multicore_MPCtest_B.pW,
     raspberrypi_multicore_MPCtest_B.pW_f, raspberrypi_multicore_MPCtest_B.pW_p,
     raspberrypi_multicore_MPCtest_B.pW_e, raspberrypi_multicore_MPCtest_B.A,
-    raspberrypi_multicore_MPCtest_B.B_o);
+    raspberrypi_multicore_MPCtest_B.B_l);
 
   /* Bdis=zeros(13,6); */
   /* Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)]; */
-  for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 6;
-       raspberrypi_multicore_MPCtest_B.p1++) {
-    for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 6;
-         raspberrypi_multicore_MPCtest_B.p2++) {
-      raspberrypi_multicore_MPCtest_B.p3 = tmp[6 *
-        raspberrypi_multicore_MPCtest_B.p1 + raspberrypi_multicore_MPCtest_B.p2];
-      raspberrypi_multicore_MPCtest_B.itmp = raspberrypi_multicore_MPCtest_B.p2
-        + 13 * raspberrypi_multicore_MPCtest_B.p1;
-      raspberrypi_multicore_MPCtest_B.Bdis[raspberrypi_multicore_MPCtest_B.itmp]
-        = obj->Ts * (real_T)raspberrypi_multicore_MPCtest_B.p3;
-      raspberrypi_multicore_MPCtest_B.Bdis[raspberrypi_multicore_MPCtest_B.itmp
-        + 6] = raspberrypi_multicore_MPCtest_B.p3;
-    }
-
-    raspberrypi_multicore_MPCtest_B.Bdis[13 * raspberrypi_multicore_MPCtest_B.p1
-      + 12] = 0.0;
-  }
-
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
        raspberrypi_multicore_MPCtest_B.p1 < 13;
        raspberrypi_multicore_MPCtest_B.p1++) {
     memcpy
       (&raspberrypi_multicore_MPCtest_B.Anew[raspberrypi_multicore_MPCtest_B.p1 *
-       19],
+       25],
        &raspberrypi_multicore_MPCtest_B.A[raspberrypi_multicore_MPCtest_B.p1 *
        13], 13U * sizeof(real_T));
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 6;
+       raspberrypi_multicore_MPCtest_B.p1 < 12;
        raspberrypi_multicore_MPCtest_B.p1++) {
-    memcpy
-      (&raspberrypi_multicore_MPCtest_B.Anew[raspberrypi_multicore_MPCtest_B.p1 *
-       19 + 247],
-       &raspberrypi_multicore_MPCtest_B.Bdis[raspberrypi_multicore_MPCtest_B.p1 *
-       13], 13U * sizeof(real_T));
+    for (raspberrypi_multicore_MPCtest_B.p2 = 0;
+         raspberrypi_multicore_MPCtest_B.p2 < 13;
+         raspberrypi_multicore_MPCtest_B.p2++) {
+      raspberrypi_multicore_MPCtest_B.Anew[raspberrypi_multicore_MPCtest_B.p2 +
+        25 * (raspberrypi_multicore_MPCtest_B.p1 + 13)] = tmp[13 *
+        raspberrypi_multicore_MPCtest_B.p1 + raspberrypi_multicore_MPCtest_B.p2];
+    }
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 6;
+         raspberrypi_multicore_MPCtest_B.p2 < 12;
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.Anew[(raspberrypi_multicore_MPCtest_B.p2 +
-        19 * raspberrypi_multicore_MPCtest_B.p1) + 13] = tmp_0[6 *
+        25 * raspberrypi_multicore_MPCtest_B.p1) + 13] = tmp_0[12 *
         raspberrypi_multicore_MPCtest_B.p1 + raspberrypi_multicore_MPCtest_B.p2];
     }
   }
 
   if (obj->count < 0.5) {
     memcpy(&obj->XOld[0], &xFB[0], 13U * sizeof(real_T));
-    for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-         raspberrypi_multicore_MPCtest_B.p1 < 6;
-         raspberrypi_multicore_MPCtest_B.p1++) {
-      obj->XOld[raspberrypi_multicore_MPCtest_B.p1 + 13] = 0.0;
-    }
-
-    memcpy(&obj->POld[0], &obj->P0[0], 361U * sizeof(real_T));
+    memset(&obj->XOld[13], 0, 12U * sizeof(real_T));
+    memcpy(&obj->POld[0], &obj->P0[0], 625U * sizeof(real_T));
     obj->count++;
   }
 
@@ -4040,32 +3992,28 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
        raspberrypi_multicore_MPCtest_B.p1 < 12;
        raspberrypi_multicore_MPCtest_B.p1++) {
     memcpy(&raspberrypi_multicore_MPCtest_B.B[raspberrypi_multicore_MPCtest_B.p1
-           * 19],
-           &raspberrypi_multicore_MPCtest_B.B_o[raspberrypi_multicore_MPCtest_B.p1
+           * 25],
+           &raspberrypi_multicore_MPCtest_B.B_l[raspberrypi_multicore_MPCtest_B.p1
            * 13], 13U * sizeof(real_T));
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
        raspberrypi_multicore_MPCtest_B.p1 < 12;
        raspberrypi_multicore_MPCtest_B.p1++) {
-    for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 6;
-         raspberrypi_multicore_MPCtest_B.p2++) {
-      raspberrypi_multicore_MPCtest_B.B[(raspberrypi_multicore_MPCtest_B.p2 + 19
-        * raspberrypi_multicore_MPCtest_B.p1) + 13] = 0.0;
-    }
+    memset(&raspberrypi_multicore_MPCtest_B.B[raspberrypi_multicore_MPCtest_B.p1
+           * 25 + 13], 0, 12U * sizeof(real_T));
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     raspberrypi_multicore_MPCtest_B.Anew_md[raspberrypi_multicore_MPCtest_B.p1] =
       0.0;
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.Anew_md[raspberrypi_multicore_MPCtest_B.p1]
-        += raspberrypi_multicore_MPCtest_B.Anew[19 *
+        += raspberrypi_multicore_MPCtest_B.Anew[25 *
         raspberrypi_multicore_MPCtest_B.p2 + raspberrypi_multicore_MPCtest_B.p1]
         * obj->XOld[raspberrypi_multicore_MPCtest_B.p2];
     }
@@ -4078,117 +4026,117 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
        raspberrypi_multicore_MPCtest_B.p1 < 12;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.B_m[raspberrypi_multicore_MPCtest_B.p2] +=
-        raspberrypi_multicore_MPCtest_B.B[19 *
+        raspberrypi_multicore_MPCtest_B.B[25 *
         raspberrypi_multicore_MPCtest_B.p1 + raspberrypi_multicore_MPCtest_B.p2]
         * U_MPC[raspberrypi_multicore_MPCtest_B.p1];
     }
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     raspberrypi_multicore_MPCtest_B.Xpre[raspberrypi_multicore_MPCtest_B.p1] =
       raspberrypi_multicore_MPCtest_B.Anew_md[raspberrypi_multicore_MPCtest_B.p1]
       + raspberrypi_multicore_MPCtest_B.B_m[raspberrypi_multicore_MPCtest_B.p1];
     memset
-      (&raspberrypi_multicore_MPCtest_B.Anew_m[raspberrypi_multicore_MPCtest_B.p1
-       * 19], 0, 19U * sizeof(real_T));
+      (&raspberrypi_multicore_MPCtest_B.Anew_g[raspberrypi_multicore_MPCtest_B.p1
+       * 25], 0, 25U * sizeof(real_T));
   }
 
   for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-       raspberrypi_multicore_MPCtest_B.p2 < 19;
+       raspberrypi_multicore_MPCtest_B.p2 < 25;
        raspberrypi_multicore_MPCtest_B.p2++) {
     for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-         raspberrypi_multicore_MPCtest_B.p1 < 19;
+         raspberrypi_multicore_MPCtest_B.p1 < 25;
          raspberrypi_multicore_MPCtest_B.p1++) {
       for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-           raspberrypi_multicore_MPCtest_B.p3 < 19;
+           raspberrypi_multicore_MPCtest_B.p3 < 25;
            raspberrypi_multicore_MPCtest_B.p3++) {
-        raspberrypi_multicore_MPCtest_B.itmp = 19 *
+        raspberrypi_multicore_MPCtest_B.itmp = 25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p2;
-        raspberrypi_multicore_MPCtest_B.Anew_m[raspberrypi_multicore_MPCtest_B.itmp]
-          += raspberrypi_multicore_MPCtest_B.Anew[19 *
+        raspberrypi_multicore_MPCtest_B.Anew_g[raspberrypi_multicore_MPCtest_B.itmp]
+          += raspberrypi_multicore_MPCtest_B.Anew[25 *
           raspberrypi_multicore_MPCtest_B.p3 +
-          raspberrypi_multicore_MPCtest_B.p2] * obj->POld[19 *
+          raspberrypi_multicore_MPCtest_B.p2] * obj->POld[25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p3];
       }
 
       raspberrypi_multicore_MPCtest_B.Ppre[raspberrypi_multicore_MPCtest_B.p1 +
-        19 * raspberrypi_multicore_MPCtest_B.p2] = 0.0;
+        25 * raspberrypi_multicore_MPCtest_B.p2] = 0.0;
     }
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-           raspberrypi_multicore_MPCtest_B.p3 < 19;
+           raspberrypi_multicore_MPCtest_B.p3 < 25;
            raspberrypi_multicore_MPCtest_B.p3++) {
-        raspberrypi_multicore_MPCtest_B.itmp = 19 *
+        raspberrypi_multicore_MPCtest_B.itmp = 25 *
           raspberrypi_multicore_MPCtest_B.p2 +
           raspberrypi_multicore_MPCtest_B.p1;
         raspberrypi_multicore_MPCtest_B.Ppre[raspberrypi_multicore_MPCtest_B.itmp]
-          += obj->G[19 * raspberrypi_multicore_MPCtest_B.p3 +
-          raspberrypi_multicore_MPCtest_B.p1] * Q[19 *
+          += obj->G[25 * raspberrypi_multicore_MPCtest_B.p3 +
+          raspberrypi_multicore_MPCtest_B.p1] * Q[25 *
           raspberrypi_multicore_MPCtest_B.p2 +
           raspberrypi_multicore_MPCtest_B.p3];
       }
 
-      raspberrypi_multicore_MPCtest_B.Anew_n[raspberrypi_multicore_MPCtest_B.p2
-        + 19 * raspberrypi_multicore_MPCtest_B.p1] = 0.0;
+      raspberrypi_multicore_MPCtest_B.Anew_m[raspberrypi_multicore_MPCtest_B.p2
+        + 25 * raspberrypi_multicore_MPCtest_B.p1] = 0.0;
     }
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-           raspberrypi_multicore_MPCtest_B.p3 < 19;
+           raspberrypi_multicore_MPCtest_B.p3 < 25;
            raspberrypi_multicore_MPCtest_B.p3++) {
-        raspberrypi_multicore_MPCtest_B.itmp = 19 *
+        raspberrypi_multicore_MPCtest_B.itmp = 25 *
           raspberrypi_multicore_MPCtest_B.p2 +
           raspberrypi_multicore_MPCtest_B.p3;
-        raspberrypi_multicore_MPCtest_B.Anew_n[raspberrypi_multicore_MPCtest_B.itmp]
-          += raspberrypi_multicore_MPCtest_B.Anew_m[19 *
+        raspberrypi_multicore_MPCtest_B.Anew_m[raspberrypi_multicore_MPCtest_B.itmp]
+          += raspberrypi_multicore_MPCtest_B.Anew_g[25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p3] *
-          raspberrypi_multicore_MPCtest_B.Anew[19 *
+          raspberrypi_multicore_MPCtest_B.Anew[25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p2];
       }
 
       raspberrypi_multicore_MPCtest_B.obj[raspberrypi_multicore_MPCtest_B.p2 +
-        19 * raspberrypi_multicore_MPCtest_B.p1] = 0.0;
+        25 * raspberrypi_multicore_MPCtest_B.p1] = 0.0;
     }
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-           raspberrypi_multicore_MPCtest_B.p3 < 19;
+           raspberrypi_multicore_MPCtest_B.p3 < 25;
            raspberrypi_multicore_MPCtest_B.p3++) {
-        raspberrypi_multicore_MPCtest_B.itmp = 19 *
+        raspberrypi_multicore_MPCtest_B.itmp = 25 *
           raspberrypi_multicore_MPCtest_B.p2 +
           raspberrypi_multicore_MPCtest_B.p1;
         raspberrypi_multicore_MPCtest_B.obj[raspberrypi_multicore_MPCtest_B.itmp]
-          += raspberrypi_multicore_MPCtest_B.Ppre[19 *
+          += raspberrypi_multicore_MPCtest_B.Ppre[25 *
           raspberrypi_multicore_MPCtest_B.p3 +
-          raspberrypi_multicore_MPCtest_B.p1] * obj->G[19 *
+          raspberrypi_multicore_MPCtest_B.p1] * obj->G[25 *
           raspberrypi_multicore_MPCtest_B.p3 +
           raspberrypi_multicore_MPCtest_B.p2];
       }
@@ -4196,10 +4144,10 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 361;
+       raspberrypi_multicore_MPCtest_B.p1 < 625;
        raspberrypi_multicore_MPCtest_B.p1++) {
     raspberrypi_multicore_MPCtest_B.Ppre[raspberrypi_multicore_MPCtest_B.p1] =
-      raspberrypi_multicore_MPCtest_B.Anew_n[raspberrypi_multicore_MPCtest_B.p1]
+      raspberrypi_multicore_MPCtest_B.Anew_m[raspberrypi_multicore_MPCtest_B.p1]
       + raspberrypi_multicore_MPCtest_B.obj[raspberrypi_multicore_MPCtest_B.p1];
   }
 
@@ -4207,22 +4155,22 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
        raspberrypi_multicore_MPCtest_B.p1 < 13;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
-      raspberrypi_multicore_MPCtest_B.K[raspberrypi_multicore_MPCtest_B.p2 + 19 *
+      raspberrypi_multicore_MPCtest_B.K[raspberrypi_multicore_MPCtest_B.p2 + 25 *
         raspberrypi_multicore_MPCtest_B.p1] = tmp_1[13 *
         raspberrypi_multicore_MPCtest_B.p2 + raspberrypi_multicore_MPCtest_B.p1];
     }
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     memset
-      (&raspberrypi_multicore_MPCtest_B.dv8[raspberrypi_multicore_MPCtest_B.p1 *
+      (&raspberrypi_multicore_MPCtest_B.dv9[raspberrypi_multicore_MPCtest_B.p1 *
        13], 0, 13U * sizeof(real_T));
     for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-         raspberrypi_multicore_MPCtest_B.p3 < 19;
+         raspberrypi_multicore_MPCtest_B.p3 < 25;
          raspberrypi_multicore_MPCtest_B.p3++) {
       for (raspberrypi_multicore_MPCtest_B.p2 = 0;
            raspberrypi_multicore_MPCtest_B.p2 < 13;
@@ -4230,10 +4178,10 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
         raspberrypi_multicore_MPCtest_B.itmp = 13 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p2;
-        raspberrypi_multicore_MPCtest_B.dv8[raspberrypi_multicore_MPCtest_B.itmp]
+        raspberrypi_multicore_MPCtest_B.dv9[raspberrypi_multicore_MPCtest_B.itmp]
           += (real_T)tmp_1[13 * raspberrypi_multicore_MPCtest_B.p3 +
           raspberrypi_multicore_MPCtest_B.p2] *
-          raspberrypi_multicore_MPCtest_B.Ppre[19 *
+          raspberrypi_multicore_MPCtest_B.Ppre[25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p3];
       }
@@ -4244,22 +4192,22 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
        raspberrypi_multicore_MPCtest_B.p1 < 13;
        raspberrypi_multicore_MPCtest_B.p1++) {
     memset
-      (&raspberrypi_multicore_MPCtest_B.Ppre_j[raspberrypi_multicore_MPCtest_B.p1
-       * 19], 0, 19U * sizeof(real_T));
+      (&raspberrypi_multicore_MPCtest_B.Ppre_p[raspberrypi_multicore_MPCtest_B.p1
+       * 25], 0, 25U * sizeof(real_T));
     for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-         raspberrypi_multicore_MPCtest_B.p3 < 19;
+         raspberrypi_multicore_MPCtest_B.p3 < 25;
          raspberrypi_multicore_MPCtest_B.p3++) {
       for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-           raspberrypi_multicore_MPCtest_B.p2 < 19;
+           raspberrypi_multicore_MPCtest_B.p2 < 25;
            raspberrypi_multicore_MPCtest_B.p2++) {
-        raspberrypi_multicore_MPCtest_B.itmp = 19 *
+        raspberrypi_multicore_MPCtest_B.itmp = 25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p2;
-        raspberrypi_multicore_MPCtest_B.Ppre_j[raspberrypi_multicore_MPCtest_B.itmp]
-          += raspberrypi_multicore_MPCtest_B.Ppre[19 *
+        raspberrypi_multicore_MPCtest_B.Ppre_p[raspberrypi_multicore_MPCtest_B.itmp]
+          += raspberrypi_multicore_MPCtest_B.Ppre[25 *
           raspberrypi_multicore_MPCtest_B.p3 +
           raspberrypi_multicore_MPCtest_B.p2] *
-          raspberrypi_multicore_MPCtest_B.K[19 *
+          raspberrypi_multicore_MPCtest_B.K[25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p3];
       }
@@ -4270,13 +4218,13 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.absx11 = 0.0;
       for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-           raspberrypi_multicore_MPCtest_B.p3 < 19;
+           raspberrypi_multicore_MPCtest_B.p3 < 25;
            raspberrypi_multicore_MPCtest_B.p3++) {
         raspberrypi_multicore_MPCtest_B.absx11 +=
-          raspberrypi_multicore_MPCtest_B.dv8[13 *
+          raspberrypi_multicore_MPCtest_B.dv9[13 *
           raspberrypi_multicore_MPCtest_B.p3 +
           raspberrypi_multicore_MPCtest_B.p1] *
-          raspberrypi_multicore_MPCtest_B.K[19 *
+          raspberrypi_multicore_MPCtest_B.K[25 *
           raspberrypi_multicore_MPCtest_B.p2 +
           raspberrypi_multicore_MPCtest_B.p3];
       }
@@ -4289,64 +4237,64 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
     }
   }
 
-  raspberrypi_multicore_MPC_mrdiv(raspberrypi_multicore_MPCtest_B.Ppre_j,
+  raspberrypi_multicore_MPC_mrdiv(raspberrypi_multicore_MPCtest_B.Ppre_p,
     raspberrypi_multicore_MPCtest_B.A, raspberrypi_multicore_MPCtest_B.K);
 
   /* P=Ppre; */
-  memset(&raspberrypi_multicore_MPCtest_B.Anew[0], 0, 361U * sizeof(real_T));
+  memset(&raspberrypi_multicore_MPCtest_B.Anew[0], 0, 625U * sizeof(real_T));
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
-    raspberrypi_multicore_MPCtest_B.Anew[raspberrypi_multicore_MPCtest_B.p1 + 19
+    raspberrypi_multicore_MPCtest_B.Anew[raspberrypi_multicore_MPCtest_B.p1 + 25
       * raspberrypi_multicore_MPCtest_B.p1] = 1.0;
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.absx11 = 0.0;
       for (raspberrypi_multicore_MPCtest_B.p3 = 0;
            raspberrypi_multicore_MPCtest_B.p3 < 13;
            raspberrypi_multicore_MPCtest_B.p3++) {
         raspberrypi_multicore_MPCtest_B.absx11 +=
-          raspberrypi_multicore_MPCtest_B.K[19 *
+          raspberrypi_multicore_MPCtest_B.K[25 *
           raspberrypi_multicore_MPCtest_B.p3 +
           raspberrypi_multicore_MPCtest_B.p1] * (real_T)tmp_1[13 *
           raspberrypi_multicore_MPCtest_B.p2 +
           raspberrypi_multicore_MPCtest_B.p3];
       }
 
-      raspberrypi_multicore_MPCtest_B.itmp = 19 *
+      raspberrypi_multicore_MPCtest_B.itmp = 25 *
         raspberrypi_multicore_MPCtest_B.p2 + raspberrypi_multicore_MPCtest_B.p1;
-      raspberrypi_multicore_MPCtest_B.Anew_m[raspberrypi_multicore_MPCtest_B.itmp]
+      raspberrypi_multicore_MPCtest_B.Anew_g[raspberrypi_multicore_MPCtest_B.itmp]
         =
         raspberrypi_multicore_MPCtest_B.Anew[raspberrypi_multicore_MPCtest_B.itmp]
         - raspberrypi_multicore_MPCtest_B.absx11;
-      P[raspberrypi_multicore_MPCtest_B.p2 + 19 *
+      P[raspberrypi_multicore_MPCtest_B.p2 + 25 *
         raspberrypi_multicore_MPCtest_B.p1] = 0.0;
     }
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       for (raspberrypi_multicore_MPCtest_B.p3 = 0;
-           raspberrypi_multicore_MPCtest_B.p3 < 19;
+           raspberrypi_multicore_MPCtest_B.p3 < 25;
            raspberrypi_multicore_MPCtest_B.p3++) {
-        raspberrypi_multicore_MPCtest_B.itmp = 19 *
+        raspberrypi_multicore_MPCtest_B.itmp = 25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p3;
         P[raspberrypi_multicore_MPCtest_B.itmp] +=
-          raspberrypi_multicore_MPCtest_B.Anew_m[19 *
+          raspberrypi_multicore_MPCtest_B.Anew_g[25 *
           raspberrypi_multicore_MPCtest_B.p2 +
           raspberrypi_multicore_MPCtest_B.p3] *
-          raspberrypi_multicore_MPCtest_B.Ppre[19 *
+          raspberrypi_multicore_MPCtest_B.Ppre[25 *
           raspberrypi_multicore_MPCtest_B.p1 +
           raspberrypi_multicore_MPCtest_B.p2];
       }
@@ -4363,7 +4311,7 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
        raspberrypi_multicore_MPCtest_B.p1++) {
     raspberrypi_multicore_MPCtest_B.absx11 = 0.0;
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 19;
+         raspberrypi_multicore_MPCtest_B.p2 < 25;
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.absx11 += (real_T)tmp_1[13 *
         raspberrypi_multicore_MPCtest_B.p2 + raspberrypi_multicore_MPCtest_B.p1]
@@ -4376,14 +4324,14 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
   }
 
   for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 19;
+       raspberrypi_multicore_MPCtest_B.p1 < 25;
        raspberrypi_multicore_MPCtest_B.p1++) {
     raspberrypi_multicore_MPCtest_B.absx11 = 0.0;
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
          raspberrypi_multicore_MPCtest_B.p2 < 13;
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.absx11 +=
-        raspberrypi_multicore_MPCtest_B.K[19 *
+        raspberrypi_multicore_MPCtest_B.K[25 *
         raspberrypi_multicore_MPCtest_B.p2 + raspberrypi_multicore_MPCtest_B.p1]
         * raspberrypi_multicore_MPCtest_B.tmp[raspberrypi_multicore_MPCtest_B.p2];
     }
@@ -4399,459 +4347,52 @@ static void KalmanFilter_DIY_MPCDis_stepImp(KalmanFilter_DIY_MPCDis_raspb_T *obj
     raspberrypi_multicore_MPCtest_B.tmp[raspberrypi_multicore_MPCtest_B.p1] =
       0.0;
     for (raspberrypi_multicore_MPCtest_B.p2 = 0;
-         raspberrypi_multicore_MPCtest_B.p2 < 6;
+         raspberrypi_multicore_MPCtest_B.p2 < 12;
          raspberrypi_multicore_MPCtest_B.p2++) {
       raspberrypi_multicore_MPCtest_B.tmp[raspberrypi_multicore_MPCtest_B.p1] +=
-        raspberrypi_multicore_MPCtest_B.Bdis[13 *
-        raspberrypi_multicore_MPCtest_B.p2 + raspberrypi_multicore_MPCtest_B.p1]
-        * obj->XOld[raspberrypi_multicore_MPCtest_B.p2 + 13];
+        (real_T)tmp[13 * raspberrypi_multicore_MPCtest_B.p2 +
+        raspberrypi_multicore_MPCtest_B.p1] * obj->
+        XOld[raspberrypi_multicore_MPCtest_B.p2 + 13];
     }
   }
 
   if (Reset > 0.5) {
     memcpy(&obj->XOld[0], &xFB[0], 13U * sizeof(real_T));
-    for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-         raspberrypi_multicore_MPCtest_B.p1 < 6;
-         raspberrypi_multicore_MPCtest_B.p1++) {
-      obj->XOld[raspberrypi_multicore_MPCtest_B.p1 + 13] = 0.0;
-    }
-
-    memcpy(&P[0], &obj->P0[0], 361U * sizeof(real_T));
+    memset(&obj->XOld[13], 0, 12U * sizeof(real_T));
+    memcpy(&P[0], &obj->P0[0], 625U * sizeof(real_T));
   }
 
   memcpy(&estXbar[0], &obj->XOld[0], 13U * sizeof(real_T));
-  for (raspberrypi_multicore_MPCtest_B.p1 = 0;
-       raspberrypi_multicore_MPCtest_B.p1 < 6;
-       raspberrypi_multicore_MPCtest_B.p1++) {
-    estXbar[raspberrypi_multicore_MPCtest_B.p1 + 13] =
-      raspberrypi_multicore_MPCtest_B.tmp[raspberrypi_multicore_MPCtest_B.p1];
-  }
-
-  memcpy(&obj->POld[0], &P[0], 361U * sizeof(real_T));
+  memcpy(&estXbar[13], &raspberrypi_multicore_MPCtest_B.tmp[0], 12U * sizeof
+         (real_T));
+  memcpy(&obj->POld[0], &P[0], 625U * sizeof(real_T));
 }
 
 static void raspberrypi_mul_SystemCore_step(KalmanFilter_DIY_MPCDis_raspb_T *obj,
   const real_T varargin_1[12], const real_T varargin_2[13], const real_T
-  varargin_3[12], const real_T varargin_4[361], const real_T varargin_5[169],
-  real_T varargin_6, real_T varargout_1[19], real_T varargout_2[361])
+  varargin_3[12], const real_T varargin_4[625], const real_T varargin_5[169],
+  real_T varargin_6, real_T varargout_1[25], real_T varargout_2[625])
 {
   KalmanFilter_DIY_MPCDis_stepImp(obj, varargin_1, varargin_2, varargin_3,
     varargin_4, varargin_5, varargin_6, varargout_1, varargout_2);
 }
 
-static real_T raspberrypi_multicore__norm_amt(const real_T x[3])
-{
-  real_T absxk;
-  real_T scale;
-  real_T t;
-  real_T y;
-  scale = 3.3121686421112381E-170;
-  absxk = fabs(x[0]);
-  if (absxk > 3.3121686421112381E-170) {
-    y = 1.0;
-    scale = absxk;
-  } else {
-    t = absxk / 3.3121686421112381E-170;
-    y = t * t;
-  }
-
-  absxk = fabs(x[1]);
-  if (absxk > scale) {
-    t = scale / absxk;
-    y = y * t * t + 1.0;
-    scale = absxk;
-  } else {
-    t = absxk / scale;
-    y += t * t;
-  }
-
-  absxk = fabs(x[2]);
-  if (absxk > scale) {
-    t = scale / absxk;
-    y = y * t * t + 1.0;
-    scale = absxk;
-  } else {
-    t = absxk / scale;
-    y += t * t;
-  }
-
-  return scale * sqrt(y);
-}
-
-static void raspberrypi__SystemCore_step_am(refTrajectory_v4_raspberrypi__T *obj,
-  real_T varargin_1, real_T varargin_2, real_T varargin_3, const real_T
-  varargin_4[3], const real_T varargin_5[3], const real_T varargin_6[13], real_T
-  varargin_7, real_T varargout_1[78], real_T varargout_2[13], real_T
-  varargout_3[78], real_T varargout_4[3], real_T varargout_5[3])
-{
-  real_T headX_tmp;
-  real_T headX_tmp_0;
-  real_T varargout_4_0;
-  int32_T b_i;
-  int32_T headX_tmp_tmp;
-  int32_T i;
-  static const int8_T tmp[3] = { 1, 0, 0 };
-
-  /*  refSeqOut: ref sequence including sitaErr compensation */
-  /*  refSeq: ref sequence excluding sitaErr compensation */
-  /*  refP: last element of the refSeq */
-  /*  disable: sitaErr will not be accumulated, ref will not be updated */
-  memcpy(&raspberrypi_multicore_MPCtest_B.ref[0], &varargin_6[0], 13U * sizeof
-         (real_T));
-  raspberrypi_multicore_MPCtest_B.ref[12] = 9.8;
-  memset(&varargout_3[0], 0, 78U * sizeof(real_T));
-  for (i = 0; i < 13; i++) {
-    varargout_3[6 * i] = raspberrypi_multicore_MPCtest_B.ref[i];
-  }
-
-  raspberrypi_multicore_MPCtest_B.desH = obj->desHeight;
-  varargout_4[0] = obj->refSeqOld[19] - varargin_6[3];
-  varargout_4[1] = obj->refSeqOld[25] - varargin_6[4];
-  varargout_4[2] = obj->refSeqOld[31] - varargin_6[5];
-
-  /*  deadzone */
-  if ((varargout_4[0] > 0.0087266462599716477) || (varargout_4[0] <
-       -0.0087266462599716477)) {
-    if (varargout_4[0] < 0.0) {
-      varargout_4_0 = -1.0;
-    } else if (varargout_4[0] > 0.0) {
-      varargout_4_0 = 1.0;
-    } else {
-      varargout_4_0 = 0.0;
-    }
-
-    varargout_4[0] -= varargout_4_0 * 0.0087266462599716477;
-  } else {
-    varargout_4[0] = 0.0;
-  }
-
-  if ((varargout_4[1] > 0.0087266462599716477) || (varargout_4[1] <
-       -0.0087266462599716477)) {
-    if (varargout_4[1] < 0.0) {
-      varargout_4_0 = -1.0;
-    } else if (varargout_4[1] > 0.0) {
-      varargout_4_0 = 1.0;
-    } else {
-      varargout_4_0 = 0.0;
-    }
-
-    varargout_4[1] -= varargout_4_0 * 0.0087266462599716477;
-  } else {
-    varargout_4[1] = 0.0;
-  }
-
-  if ((varargout_4[2] > 0.017453292519943295) || (varargout_4[2] <
-       -0.017453292519943295)) {
-    if (varargout_4[2] < 0.0) {
-      varargout_4_0 = -1.0;
-    } else if (varargout_4[2] > 0.0) {
-      varargout_4_0 = 1.0;
-    } else {
-      varargout_4_0 = 0.0;
-    }
-
-    varargout_4[2] -= varargout_4_0 * 0.017453292519943295;
-  } else {
-    varargout_4[2] = 0.0;
-  }
-
-  if (varargin_7 < 0.5) {
-    memset(&raspberrypi_multicore_MPCtest_B.Rsur[0], 0, 9U * sizeof(real_T));
-    raspberrypi_multicore_MPCtest_B.Rsur[0] = obj->sitaErr_K[0];
-    raspberrypi_multicore_MPCtest_B.Rsur[4] = obj->sitaErr_K[1];
-    raspberrypi_multicore_MPCtest_B.Rsur[8] = obj->sitaErr_K[2];
-    for (i = 0; i < 3; i++) {
-      obj->sitaErrOld[i] += (raspberrypi_multicore_MPCtest_B.Rsur[i + 3] *
-        varargout_4[1] + raspberrypi_multicore_MPCtest_B.Rsur[i] * varargout_4[0])
-        + raspberrypi_multicore_MPCtest_B.Rsur[i + 6] * varargout_4[2];
-    }
-  }
-
-  /*              surVN=[0;0;1]; */
-  /*              sura=[0;0;0]; */
-  obj->sitaZOld += varargin_3 * obj->dt;
-
-  /* Rbody=Rz(X_FB(6))*Ry(X_FB(5))*Rx(X_FB(4)); */
-  /*  3D rotation matrix, vb=M*v: */
-  /*  rotate a vector in one frame, */
-  /*  or change the vector 'v' in rotated frame to 'vb' in world frame */
-  /*  subfunction */
-  /*  3D rotation matrix, vb=M*v: */
-  /*  rotate a vector in one frame, */
-  /*  or change the vector 'v' in rotated frame to 'vb' in world frame */
-  /*  3D rotation matrix, vb=M*v: */
-  /*  rotate a vector in one frame, */
-  /*  or change the vector 'v' in rotated frame to 'vb' in world frame */
-  varargout_4_0 = sin(obj->sitaZOld);
-  raspberrypi_multicore_MPCtest_B.sy = cos(obj->sitaZOld);
-  raspberrypi_multicore_MPCtest_B.headX_tmp_j = sin(varargin_6[4]);
-  raspberrypi_multicore_MPCtest_B.headX_tmp_k = cos(varargin_6[4]);
-  headX_tmp = sin(varargin_6[3]);
-  headX_tmp_0 = cos(varargin_6[3]);
-  raspberrypi_multicore_MPCtest_B.Rsur[0] =
-    raspberrypi_multicore_MPCtest_B.headX_tmp_k;
-  raspberrypi_multicore_MPCtest_B.Rsur[3] = 0.0;
-  raspberrypi_multicore_MPCtest_B.Rsur[6] =
-    raspberrypi_multicore_MPCtest_B.headX_tmp_j;
-  raspberrypi_multicore_MPCtest_B.Rsur[2] =
-    -raspberrypi_multicore_MPCtest_B.headX_tmp_j;
-  raspberrypi_multicore_MPCtest_B.Rsur[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.Rsur[8] =
-    raspberrypi_multicore_MPCtest_B.headX_tmp_k;
-  raspberrypi_multicore_MPCtest_B.dv25[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.dv25[4] = headX_tmp_0;
-  raspberrypi_multicore_MPCtest_B.dv25[7] = -headX_tmp;
-  raspberrypi_multicore_MPCtest_B.dv25[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.dv25[5] = headX_tmp;
-  raspberrypi_multicore_MPCtest_B.dv25[8] = headX_tmp_0;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[0] =
-    raspberrypi_multicore_MPCtest_B.sy;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[3] = -varargout_4_0;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[6] = 0.0;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[1] = varargout_4_0;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[4] =
-    raspberrypi_multicore_MPCtest_B.sy;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.Rsur[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.dv25[0] = 1.0;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.Rsur[4] = 1.0;
-  raspberrypi_multicore_MPCtest_B.dv25[3] = 0.0;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.Rsur[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.dv25[6] = 0.0;
-  raspberrypi_multicore_MPCtest_B.headX_tmp[8] = 1.0;
-  for (i = 0; i < 3; i++) {
-    for (b_i = 0; b_i < 3; b_i++) {
-      headX_tmp_tmp = b_i + 3 * i;
-      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] = 0.0;
-      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] +=
-        raspberrypi_multicore_MPCtest_B.dv25[3 * i] *
-        raspberrypi_multicore_MPCtest_B.Rsur[b_i];
-      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] +=
-        raspberrypi_multicore_MPCtest_B.dv25[3 * i + 1] *
-        raspberrypi_multicore_MPCtest_B.Rsur[b_i + 3];
-      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] +=
-        raspberrypi_multicore_MPCtest_B.dv25[3 * i + 2] *
-        raspberrypi_multicore_MPCtest_B.Rsur[b_i + 6];
-    }
-  }
-
-  raspberrypi_multicore_MPCtest_B.sy = raspberrypi_multicore__norm_amt
-    (varargin_4);
-  varargout_4_0 = 0.0;
-  for (i = 0; i < 3; i++) {
-    raspberrypi_multicore_MPCtest_B.headX[i] = 0.0;
-    for (b_i = 0; b_i < 3; b_i++) {
-      headX_tmp_tmp = i + 3 * b_i;
-      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] = 0.0;
-      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] +=
-        raspberrypi_multicore_MPCtest_B.headX_tmp_f[3 * b_i] *
-        raspberrypi_multicore_MPCtest_B.headX_tmp[i];
-      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] +=
-        raspberrypi_multicore_MPCtest_B.headX_tmp_f[3 * b_i + 1] *
-        raspberrypi_multicore_MPCtest_B.headX_tmp[i + 3];
-      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] +=
-        raspberrypi_multicore_MPCtest_B.headX_tmp_f[3 * b_i + 2] *
-        raspberrypi_multicore_MPCtest_B.headX_tmp[i + 6];
-      raspberrypi_multicore_MPCtest_B.headX[i] +=
-        raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] * (real_T)tmp[b_i];
-    }
-
-    raspberrypi_multicore_MPCtest_B.headX_tmp_j = varargin_4[i] /
-      raspberrypi_multicore_MPCtest_B.sy;
-    varargout_4_0 += raspberrypi_multicore_MPCtest_B.headX_tmp_j *
-      raspberrypi_multicore_MPCtest_B.headX[i];
-    raspberrypi_multicore_MPCtest_B.surVN[i] =
-      raspberrypi_multicore_MPCtest_B.headX_tmp_j;
-  }
-
-  raspberrypi_multicore_MPCtest_B.headX[0] -= varargout_4_0 *
-    raspberrypi_multicore_MPCtest_B.surVN[0];
-  raspberrypi_multicore_MPCtest_B.headX[1] -= varargout_4_0 *
-    raspberrypi_multicore_MPCtest_B.surVN[1];
-  raspberrypi_multicore_MPCtest_B.headX[2] -= varargout_4_0 *
-    raspberrypi_multicore_MPCtest_B.surVN[2];
-  raspberrypi_multicore_MPCtest_B.sy = raspberrypi_multicore__norm_amt
-    (raspberrypi_multicore_MPCtest_B.headX);
-  varargout_4_0 = raspberrypi_multicore_MPCtest_B.headX[0] /
-    raspberrypi_multicore_MPCtest_B.sy;
-  raspberrypi_multicore_MPCtest_B.Rsur[0] = varargout_4_0;
-  raspberrypi_multicore_MPCtest_B.Rsur[6] =
-    raspberrypi_multicore_MPCtest_B.surVN[0];
-  raspberrypi_multicore_MPCtest_B.headX[0] = varargout_4_0;
-  varargout_4_0 = raspberrypi_multicore_MPCtest_B.headX[1] /
-    raspberrypi_multicore_MPCtest_B.sy;
-  raspberrypi_multicore_MPCtest_B.Rsur[1] = varargout_4_0;
-  raspberrypi_multicore_MPCtest_B.Rsur[7] =
-    raspberrypi_multicore_MPCtest_B.surVN[1];
-  raspberrypi_multicore_MPCtest_B.headX[1] = varargout_4_0;
-  varargout_4_0 = raspberrypi_multicore_MPCtest_B.headX[2] /
-    raspberrypi_multicore_MPCtest_B.sy;
-  raspberrypi_multicore_MPCtest_B.Rsur[2] = varargout_4_0;
-  raspberrypi_multicore_MPCtest_B.Rsur[8] =
-    raspberrypi_multicore_MPCtest_B.surVN[2];
-  raspberrypi_multicore_MPCtest_B.Rsur[3] =
-    raspberrypi_multicore_MPCtest_B.surVN[1] * varargout_4_0 -
-    raspberrypi_multicore_MPCtest_B.headX[1] *
-    raspberrypi_multicore_MPCtest_B.surVN[2];
-  raspberrypi_multicore_MPCtest_B.Rsur[4] =
-    raspberrypi_multicore_MPCtest_B.headX[0] *
-    raspberrypi_multicore_MPCtest_B.surVN[2] -
-    raspberrypi_multicore_MPCtest_B.surVN[0] * varargout_4_0;
-  raspberrypi_multicore_MPCtest_B.Rsur[5] =
-    raspberrypi_multicore_MPCtest_B.surVN[0] *
-    raspberrypi_multicore_MPCtest_B.headX[1] -
-    raspberrypi_multicore_MPCtest_B.headX[0] *
-    raspberrypi_multicore_MPCtest_B.surVN[1];
-
-  /* %% leave the first step ref to the current state */
-  /*              for i=2:1:obj.numP */
-  /*                  desTheta=Rot2Eul(Rsur); */
-  /*                  if i<2.5 */
-  /*                      desr=Rsur*[vxL;vyL;0]*obj.dt+obj.refSeqOld(3,1:3)'; */
-  /*                  else */
-  /*                      desr=Rsur*[vxL;vyL;0]*obj.dt+refSeq(i-1,1:3)'; */
-  /*                  end */
-  /*                  desdr=Rsur*[vxL;vyL;0]; */
-  /*                  desdtheta=Rsur*[0;0;omegaZ]; */
-  /*                  pSur=[0;0;sura(1)]; % get the point on the surface whose x and y coordinates are zero */
-  /*                  h=(desr-pSur)'*surVN; */
-  /*                  desr=desr+(desH-h)*surVN; % guarantee that the distance between the height and the robot are the desired height */
-  /*                   */
-  /*                  refSeq(i,1:3)=desr; */
-  /*                  refSeq(i,4:6)=desTheta; */
-  /*                  refSeq(i,7:9)=desdr; */
-  /*                  refSeq(i,10:12)=desdtheta; */
-  /*                  refSeq(i,13)=9.8; */
-  /*              end */
-  /* %% override the first step ref to the desired ref */
-  raspberrypi_multicore_MPCtest_B.sy = sqrt
-    (raspberrypi_multicore_MPCtest_B.Rsur[0] *
-     raspberrypi_multicore_MPCtest_B.Rsur[0] +
-     raspberrypi_multicore_MPCtest_B.Rsur[1] *
-     raspberrypi_multicore_MPCtest_B.Rsur[1]);
-  for (b_i = 0; b_i < 6; b_i++) {
-    /*  Rotation matrix to euler angles, ZYX intrinsic order */
-    raspberrypi_multicore_MPCtest_B.headX[2] = 0.0;
-    if (raspberrypi_multicore_MPCtest_B.sy < 1.0E-6) {
-      raspberrypi_multicore_MPCtest_B.headX[0] = rt_atan2d_snf
-        (-raspberrypi_multicore_MPCtest_B.Rsur[7],
-         raspberrypi_multicore_MPCtest_B.Rsur[4]);
-      raspberrypi_multicore_MPCtest_B.headX[1] = rt_atan2d_snf(-varargout_4_0,
-        raspberrypi_multicore_MPCtest_B.sy);
-    } else {
-      raspberrypi_multicore_MPCtest_B.headX[0] = rt_atan2d_snf
-        (raspberrypi_multicore_MPCtest_B.Rsur[5],
-         raspberrypi_multicore_MPCtest_B.Rsur[8]);
-      raspberrypi_multicore_MPCtest_B.headX[1] = rt_atan2d_snf(-varargout_4_0,
-        raspberrypi_multicore_MPCtest_B.sy);
-      raspberrypi_multicore_MPCtest_B.headX[2] = rt_atan2d_snf
-        (raspberrypi_multicore_MPCtest_B.Rsur[1],
-         raspberrypi_multicore_MPCtest_B.Rsur[0]);
-    }
-
-    if ((real_T)b_i + 1.0 < 1.5) {
-      for (i = 0; i < 3; i++) {
-        raspberrypi_multicore_MPCtest_B.desr[i] = obj->refSeqOld[6 * i + 1] +
-          (raspberrypi_multicore_MPCtest_B.Rsur[i + 6] * 0.0 +
-           (raspberrypi_multicore_MPCtest_B.Rsur[i + 3] * varargin_2 +
-            raspberrypi_multicore_MPCtest_B.Rsur[i] * varargin_1)) * obj->dt;
-      }
-    } else {
-      for (i = 0; i < 3; i++) {
-        raspberrypi_multicore_MPCtest_B.desr[i] = varargout_3[(6 * i + b_i) - 1]
-          + (raspberrypi_multicore_MPCtest_B.Rsur[i + 6] * 0.0 +
-             (raspberrypi_multicore_MPCtest_B.Rsur[i + 3] * varargin_2 +
-              raspberrypi_multicore_MPCtest_B.Rsur[i] * varargin_1)) * obj->dt;
-      }
-    }
-
-    /*  get the point on the surface whose x and y coordinates are zero */
-    raspberrypi_multicore_MPCtest_B.headX_tmp_j =
-      raspberrypi_multicore_MPCtest_B.desH -
-      ((raspberrypi_multicore_MPCtest_B.desr[0] *
-        raspberrypi_multicore_MPCtest_B.surVN[0] +
-        raspberrypi_multicore_MPCtest_B.desr[1] *
-        raspberrypi_multicore_MPCtest_B.surVN[1]) +
-       (raspberrypi_multicore_MPCtest_B.desr[2] - varargin_5[0]) *
-       raspberrypi_multicore_MPCtest_B.surVN[2]);
-
-    /*  guarantee that the distance between the height and the robot are the desired height */
-    for (i = 0; i < 3; i++) {
-      varargout_3[b_i + 6 * i] = raspberrypi_multicore_MPCtest_B.headX_tmp_j *
-        raspberrypi_multicore_MPCtest_B.surVN[i] +
-        raspberrypi_multicore_MPCtest_B.desr[i];
-      varargout_3[b_i + 6 * ((i + 4) - 1)] =
-        raspberrypi_multicore_MPCtest_B.headX[i];
-      raspberrypi_multicore_MPCtest_B.headX_tmp_k =
-        raspberrypi_multicore_MPCtest_B.Rsur[i];
-      headX_tmp = raspberrypi_multicore_MPCtest_B.headX_tmp_k * varargin_1;
-      headX_tmp_0 = raspberrypi_multicore_MPCtest_B.headX_tmp_k * 0.0;
-      raspberrypi_multicore_MPCtest_B.headX_tmp_k =
-        raspberrypi_multicore_MPCtest_B.Rsur[i + 3];
-      headX_tmp += raspberrypi_multicore_MPCtest_B.headX_tmp_k * varargin_2;
-      headX_tmp_0 += raspberrypi_multicore_MPCtest_B.headX_tmp_k * 0.0;
-      raspberrypi_multicore_MPCtest_B.headX_tmp_k =
-        raspberrypi_multicore_MPCtest_B.Rsur[i + 6];
-      varargout_3[b_i + 6 * ((i + 7) - 1)] =
-        raspberrypi_multicore_MPCtest_B.headX_tmp_k * 0.0 + headX_tmp;
-      varargout_3[b_i + 6 * ((i + 10) - 1)] =
-        raspberrypi_multicore_MPCtest_B.headX_tmp_k * varargin_3 + headX_tmp_0;
-    }
-
-    varargout_3[b_i + 72] = 9.8;
-  }
-
-  if (varargin_7 > 0.5) {
-    memcpy(&varargout_3[0], &obj->refSeqOld[0], 78U * sizeof(real_T));
-  }
-
-  memcpy(&varargout_1[0], &varargout_3[0], 78U * sizeof(real_T));
-  for (b_i = 0; b_i < 5; b_i++) {
-    raspberrypi_multicore_MPCtest_B.ref[0] = 0.0;
-    raspberrypi_multicore_MPCtest_B.ref[3] = obj->sitaErrOld[0];
-    raspberrypi_multicore_MPCtest_B.ref[1] = 0.0;
-    raspberrypi_multicore_MPCtest_B.ref[4] = obj->sitaErrOld[1];
-    raspberrypi_multicore_MPCtest_B.ref[2] = 0.0;
-    raspberrypi_multicore_MPCtest_B.ref[5] = obj->sitaErrOld[2];
-    for (i = 0; i < 7; i++) {
-      raspberrypi_multicore_MPCtest_B.ref[i + 6] = 0.0;
-    }
-
-    for (i = 0; i < 13; i++) {
-      headX_tmp_tmp = (6 * i + b_i) + 1;
-      varargout_1[headX_tmp_tmp] += raspberrypi_multicore_MPCtest_B.ref[i];
-    }
-  }
-
-  if (varargin_7 > 0.5) {
-    memcpy(&varargout_1[0], &varargout_3[0], 78U * sizeof(real_T));
-  }
-
-  memcpy(&obj->refSeqOld[0], &varargout_3[0], 78U * sizeof(real_T));
-  for (i = 0; i < 13; i++) {
-    varargout_2[i] = varargout_3[6 * i + 1];
-  }
-
-  varargout_5[0] = obj->sitaErrOld[0];
-  varargout_5[1] = obj->sitaErrOld[1];
-  varargout_5[2] = obj->sitaErrOld[2];
-}
-
 static void ra_ssModelgen_estDis_stepImpl_a(const
   ssModelgen_estDis_raspberrypi_T *obj, const real_T PendAll[12], const real_T
-  xFB[13], const real_T SPLeg[4], real_T Anew[169], real_T Bnew[234], real_T U
-  [18], real_T Y[13], real_T DX[13], real_T Inow[9])
+  xFB[13], const real_T SPLeg[4], real_T Anew[169], real_T Bnew[312], real_T U
+  [24], real_T Y[13], real_T DX[13], real_T Inow[9])
 {
   int32_T itmp;
   int32_T p1;
   int32_T p2;
   int32_T p3;
-  static const int8_T tmp[78] = { 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-    0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-    1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
-    0, 0, 1, 0, 0, 0, 0, 0, 1, 0 };
+  static const int8_T tmp[156] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 };
 
   static const int8_T tmp_0[169] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -5061,9 +4602,9 @@ static void ra_ssModelgen_estDis_stepImpl_a(const
     raspberrypi_multicore_MPCtest_B.PendAll_o,
     raspberrypi_multicore_MPCtest_B.PendAll_h,
     raspberrypi_multicore_MPCtest_B.PendAll_l, Anew,
-    raspberrypi_multicore_MPCtest_B.B_n);
-  memcpy(&Bnew[0], &raspberrypi_multicore_MPCtest_B.B_n[0], 156U * sizeof(real_T));
-  for (p1 = 0; p1 < 78; p1++) {
+    raspberrypi_multicore_MPCtest_B.B_b);
+  for (p1 = 0; p1 < 156; p1++) {
+    Bnew[p1] = raspberrypi_multicore_MPCtest_B.B_b[p1];
     Bnew[p1 + 156] = tmp[p1];
   }
 
@@ -5092,31 +4633,26 @@ static void ra_ssModelgen_estDis_stepImpl_a(const
   for (p1 = 0; p1 < 12; p1++) {
     U[p1] = (real_T)raspberrypi_multicore_MPCtest_B.Unow[p1] * obj->m * 9.8 /
       raspberrypi_multicore_MPCtest_B.absx11_n;
-  }
-
-  for (p1 = 0; p1 < 6; p1++) {
     U[p1 + 12] = 0.0;
   }
 
   for (p1 = 0; p1 < 13; p1++) {
-    raspberrypi_multicore_MPCtest_B.dv19[p1] = 0.0;
+    raspberrypi_multicore_MPCtest_B.Anew_p[p1] = 0.0;
     for (p2 = 0; p2 < 13; p2++) {
-      raspberrypi_multicore_MPCtest_B.dv19[p1] += (real_T)tmp_0[13 * p2 + p1] *
+      raspberrypi_multicore_MPCtest_B.Anew_p[p1] += (real_T)tmp_0[13 * p2 + p1] *
         xFB[p2];
     }
 
-    raspberrypi_multicore_MPCtest_B.dv20[p1] = 0.0;
-  }
-
-  for (p1 = 0; p1 < 18; p1++) {
-    for (p2 = 0; p2 < 13; p2++) {
-      raspberrypi_multicore_MPCtest_B.dv20[p2] += 0.0 * U[p1];
+    raspberrypi_multicore_MPCtest_B.Bnew[p1] = 0.0;
+    for (p2 = 0; p2 < 24; p2++) {
+      raspberrypi_multicore_MPCtest_B.Bnew[p1] += 0.0 * U[p2];
     }
+
+    Y[p1] = raspberrypi_multicore_MPCtest_B.Anew_p[p1] +
+      raspberrypi_multicore_MPCtest_B.Bnew[p1];
   }
 
   for (p1 = 0; p1 < 13; p1++) {
-    Y[p1] = raspberrypi_multicore_MPCtest_B.dv19[p1] +
-      raspberrypi_multicore_MPCtest_B.dv20[p1];
     raspberrypi_multicore_MPCtest_B.Anew_p[p1] = 0.0;
     for (p2 = 0; p2 < 13; p2++) {
       raspberrypi_multicore_MPCtest_B.Anew_p[p1] += Anew[13 * p2 + p1] * xFB[p2];
@@ -5125,7 +4661,7 @@ static void ra_ssModelgen_estDis_stepImpl_a(const
     raspberrypi_multicore_MPCtest_B.Bnew[p1] = 0.0;
   }
 
-  for (p1 = 0; p1 < 18; p1++) {
+  for (p1 = 0; p1 < 24; p1++) {
     for (p2 = 0; p2 < 13; p2++) {
       raspberrypi_multicore_MPCtest_B.Bnew[p2] += Bnew[13 * p1 + p2] * U[p1];
     }
@@ -5140,7 +4676,7 @@ static void ra_ssModelgen_estDis_stepImpl_a(const
 static void raspberrypi_m_SystemCore_step_a(const
   ssModelgen_estDis_raspberrypi_T *obj, const real_T varargin_1[12], const
   real_T varargin_2[13], const real_T varargin_3[4], real_T varargout_1[169],
-  real_T varargout_2[234], real_T varargout_5[13], real_T varargout_6[18],
+  real_T varargout_2[312], real_T varargout_5[13], real_T varargout_6[24],
   real_T varargout_7[13], real_T varargout_8[13], real_T varargout_9[9])
 {
   memcpy(&varargout_5[0], &varargin_2[0], 13U * sizeof(real_T));
@@ -5148,21 +4684,421 @@ static void raspberrypi_m_SystemCore_step_a(const
     varargout_1, varargout_2, varargout_6, varargout_7, varargout_8, varargout_9);
 }
 
+static real_T raspberrypi_multicore__norm_amt(const real_T x[3])
+{
+  real_T absxk;
+  real_T scale;
+  real_T t;
+  real_T y;
+  scale = 3.3121686421112381E-170;
+  absxk = fabs(x[0]);
+  if (absxk > 3.3121686421112381E-170) {
+    y = 1.0;
+    scale = absxk;
+  } else {
+    t = absxk / 3.3121686421112381E-170;
+    y = t * t;
+  }
+
+  absxk = fabs(x[1]);
+  if (absxk > scale) {
+    t = scale / absxk;
+    y = y * t * t + 1.0;
+    scale = absxk;
+  } else {
+    t = absxk / scale;
+    y += t * t;
+  }
+
+  absxk = fabs(x[2]);
+  if (absxk > scale) {
+    t = scale / absxk;
+    y = y * t * t + 1.0;
+    scale = absxk;
+  } else {
+    t = absxk / scale;
+    y += t * t;
+  }
+
+  return scale * sqrt(y);
+}
+
+static void raspberrypi__SystemCore_step_am(refTrajectory_v4_raspberrypi__T *obj,
+  real_T varargin_1, real_T varargin_2, real_T varargin_3, const real_T
+  varargin_4[3], const real_T varargin_5[3], const real_T varargin_6[13], real_T
+  varargin_7, real_T varargout_1[78], real_T varargout_2[13], real_T
+  varargout_3[78], real_T varargout_4[3], real_T varargout_5[3])
+{
+  real_T headX_tmp;
+  real_T headX_tmp_0;
+  real_T varargout_4_0;
+  int32_T b_i;
+  int32_T headX_tmp_tmp;
+  int32_T i;
+  static const int8_T tmp[3] = { 1, 0, 0 };
+
+  /*  refSeqOut: ref sequence including sitaErr compensation */
+  /*  refSeq: ref sequence excluding sitaErr compensation */
+  /*  refP: last element of the refSeq */
+  /*  disable: sitaErr will not be accumulated, ref will not be updated */
+  memcpy(&raspberrypi_multicore_MPCtest_B.ref[0], &varargin_6[0], 13U * sizeof
+         (real_T));
+  raspberrypi_multicore_MPCtest_B.ref[12] = 9.8;
+  memset(&varargout_3[0], 0, 78U * sizeof(real_T));
+  for (i = 0; i < 13; i++) {
+    varargout_3[6 * i] = raspberrypi_multicore_MPCtest_B.ref[i];
+  }
+
+  raspberrypi_multicore_MPCtest_B.desH = obj->desHeight;
+  varargout_4[0] = obj->refSeqOld[19] - varargin_6[3];
+  varargout_4[1] = obj->refSeqOld[25] - varargin_6[4];
+  varargout_4[2] = obj->refSeqOld[31] - varargin_6[5];
+
+  /*  deadzone */
+  if ((varargout_4[0] > 0.0087266462599716477) || (varargout_4[0] <
+       -0.0087266462599716477)) {
+    if (varargout_4[0] < 0.0) {
+      varargout_4_0 = -1.0;
+    } else if (varargout_4[0] > 0.0) {
+      varargout_4_0 = 1.0;
+    } else {
+      varargout_4_0 = 0.0;
+    }
+
+    varargout_4[0] -= varargout_4_0 * 0.0087266462599716477;
+  } else {
+    varargout_4[0] = 0.0;
+  }
+
+  if ((varargout_4[1] > 0.0087266462599716477) || (varargout_4[1] <
+       -0.0087266462599716477)) {
+    if (varargout_4[1] < 0.0) {
+      varargout_4_0 = -1.0;
+    } else if (varargout_4[1] > 0.0) {
+      varargout_4_0 = 1.0;
+    } else {
+      varargout_4_0 = 0.0;
+    }
+
+    varargout_4[1] -= varargout_4_0 * 0.0087266462599716477;
+  } else {
+    varargout_4[1] = 0.0;
+  }
+
+  if ((varargout_4[2] > 0.017453292519943295) || (varargout_4[2] <
+       -0.017453292519943295)) {
+    if (varargout_4[2] < 0.0) {
+      varargout_4_0 = -1.0;
+    } else if (varargout_4[2] > 0.0) {
+      varargout_4_0 = 1.0;
+    } else {
+      varargout_4_0 = 0.0;
+    }
+
+    varargout_4[2] -= varargout_4_0 * 0.017453292519943295;
+  } else {
+    varargout_4[2] = 0.0;
+  }
+
+  if (varargin_7 < 0.5) {
+    memset(&raspberrypi_multicore_MPCtest_B.Rsur[0], 0, 9U * sizeof(real_T));
+    raspberrypi_multicore_MPCtest_B.Rsur[0] = obj->sitaErr_K[0];
+    raspberrypi_multicore_MPCtest_B.Rsur[4] = obj->sitaErr_K[1];
+    raspberrypi_multicore_MPCtest_B.Rsur[8] = obj->sitaErr_K[2];
+    for (i = 0; i < 3; i++) {
+      obj->sitaErrOld[i] += (raspberrypi_multicore_MPCtest_B.Rsur[i + 3] *
+        varargout_4[1] + raspberrypi_multicore_MPCtest_B.Rsur[i] * varargout_4[0])
+        + raspberrypi_multicore_MPCtest_B.Rsur[i + 6] * varargout_4[2];
+    }
+  }
+
+  /*              surVN=[0;0;1]; */
+  /*              sura=[0;0;0]; */
+  obj->sitaZOld += varargin_3 * obj->dt;
+
+  /* Rbody=Rz(X_FB(6))*Ry(X_FB(5))*Rx(X_FB(4)); */
+  /*  3D rotation matrix, vb=M*v: */
+  /*  rotate a vector in one frame, */
+  /*  or change the vector 'v' in rotated frame to 'vb' in world frame */
+  /*  subfunction */
+  /*  3D rotation matrix, vb=M*v: */
+  /*  rotate a vector in one frame, */
+  /*  or change the vector 'v' in rotated frame to 'vb' in world frame */
+  /*  3D rotation matrix, vb=M*v: */
+  /*  rotate a vector in one frame, */
+  /*  or change the vector 'v' in rotated frame to 'vb' in world frame */
+  varargout_4_0 = sin(obj->sitaZOld);
+  raspberrypi_multicore_MPCtest_B.sy = cos(obj->sitaZOld);
+  raspberrypi_multicore_MPCtest_B.headX_tmp_j = sin(varargin_6[4]);
+  raspberrypi_multicore_MPCtest_B.headX_tmp_k = cos(varargin_6[4]);
+  headX_tmp = sin(varargin_6[3]);
+  headX_tmp_0 = cos(varargin_6[3]);
+  raspberrypi_multicore_MPCtest_B.Rsur[0] =
+    raspberrypi_multicore_MPCtest_B.headX_tmp_k;
+  raspberrypi_multicore_MPCtest_B.Rsur[3] = 0.0;
+  raspberrypi_multicore_MPCtest_B.Rsur[6] =
+    raspberrypi_multicore_MPCtest_B.headX_tmp_j;
+  raspberrypi_multicore_MPCtest_B.Rsur[2] =
+    -raspberrypi_multicore_MPCtest_B.headX_tmp_j;
+  raspberrypi_multicore_MPCtest_B.Rsur[5] = 0.0;
+  raspberrypi_multicore_MPCtest_B.Rsur[8] =
+    raspberrypi_multicore_MPCtest_B.headX_tmp_k;
+  raspberrypi_multicore_MPCtest_B.dv23[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.dv23[4] = headX_tmp_0;
+  raspberrypi_multicore_MPCtest_B.dv23[7] = -headX_tmp;
+  raspberrypi_multicore_MPCtest_B.dv23[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.dv23[5] = headX_tmp;
+  raspberrypi_multicore_MPCtest_B.dv23[8] = headX_tmp_0;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[0] =
+    raspberrypi_multicore_MPCtest_B.sy;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[3] = -varargout_4_0;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[6] = 0.0;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[1] = varargout_4_0;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[4] =
+    raspberrypi_multicore_MPCtest_B.sy;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[7] = 0.0;
+  raspberrypi_multicore_MPCtest_B.Rsur[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.dv23[0] = 1.0;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.Rsur[4] = 1.0;
+  raspberrypi_multicore_MPCtest_B.dv23[3] = 0.0;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[5] = 0.0;
+  raspberrypi_multicore_MPCtest_B.Rsur[7] = 0.0;
+  raspberrypi_multicore_MPCtest_B.dv23[6] = 0.0;
+  raspberrypi_multicore_MPCtest_B.headX_tmp[8] = 1.0;
+  for (i = 0; i < 3; i++) {
+    for (b_i = 0; b_i < 3; b_i++) {
+      headX_tmp_tmp = b_i + 3 * i;
+      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] = 0.0;
+      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] +=
+        raspberrypi_multicore_MPCtest_B.dv23[3 * i] *
+        raspberrypi_multicore_MPCtest_B.Rsur[b_i];
+      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] +=
+        raspberrypi_multicore_MPCtest_B.dv23[3 * i + 1] *
+        raspberrypi_multicore_MPCtest_B.Rsur[b_i + 3];
+      raspberrypi_multicore_MPCtest_B.headX_tmp_f[headX_tmp_tmp] +=
+        raspberrypi_multicore_MPCtest_B.dv23[3 * i + 2] *
+        raspberrypi_multicore_MPCtest_B.Rsur[b_i + 6];
+    }
+  }
+
+  raspberrypi_multicore_MPCtest_B.sy = raspberrypi_multicore__norm_amt
+    (varargin_4);
+  varargout_4_0 = 0.0;
+  for (i = 0; i < 3; i++) {
+    raspberrypi_multicore_MPCtest_B.headX[i] = 0.0;
+    for (b_i = 0; b_i < 3; b_i++) {
+      headX_tmp_tmp = i + 3 * b_i;
+      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] = 0.0;
+      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] +=
+        raspberrypi_multicore_MPCtest_B.headX_tmp_f[3 * b_i] *
+        raspberrypi_multicore_MPCtest_B.headX_tmp[i];
+      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] +=
+        raspberrypi_multicore_MPCtest_B.headX_tmp_f[3 * b_i + 1] *
+        raspberrypi_multicore_MPCtest_B.headX_tmp[i + 3];
+      raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] +=
+        raspberrypi_multicore_MPCtest_B.headX_tmp_f[3 * b_i + 2] *
+        raspberrypi_multicore_MPCtest_B.headX_tmp[i + 6];
+      raspberrypi_multicore_MPCtest_B.headX[i] +=
+        raspberrypi_multicore_MPCtest_B.Rsur[headX_tmp_tmp] * (real_T)tmp[b_i];
+    }
+
+    raspberrypi_multicore_MPCtest_B.headX_tmp_j = varargin_4[i] /
+      raspberrypi_multicore_MPCtest_B.sy;
+    varargout_4_0 += raspberrypi_multicore_MPCtest_B.headX_tmp_j *
+      raspberrypi_multicore_MPCtest_B.headX[i];
+    raspberrypi_multicore_MPCtest_B.surVN[i] =
+      raspberrypi_multicore_MPCtest_B.headX_tmp_j;
+  }
+
+  raspberrypi_multicore_MPCtest_B.headX[0] -= varargout_4_0 *
+    raspberrypi_multicore_MPCtest_B.surVN[0];
+  raspberrypi_multicore_MPCtest_B.headX[1] -= varargout_4_0 *
+    raspberrypi_multicore_MPCtest_B.surVN[1];
+  raspberrypi_multicore_MPCtest_B.headX[2] -= varargout_4_0 *
+    raspberrypi_multicore_MPCtest_B.surVN[2];
+  raspberrypi_multicore_MPCtest_B.sy = raspberrypi_multicore__norm_amt
+    (raspberrypi_multicore_MPCtest_B.headX);
+  varargout_4_0 = raspberrypi_multicore_MPCtest_B.headX[0] /
+    raspberrypi_multicore_MPCtest_B.sy;
+  raspberrypi_multicore_MPCtest_B.Rsur[0] = varargout_4_0;
+  raspberrypi_multicore_MPCtest_B.Rsur[6] =
+    raspberrypi_multicore_MPCtest_B.surVN[0];
+  raspberrypi_multicore_MPCtest_B.headX[0] = varargout_4_0;
+  varargout_4_0 = raspberrypi_multicore_MPCtest_B.headX[1] /
+    raspberrypi_multicore_MPCtest_B.sy;
+  raspberrypi_multicore_MPCtest_B.Rsur[1] = varargout_4_0;
+  raspberrypi_multicore_MPCtest_B.Rsur[7] =
+    raspberrypi_multicore_MPCtest_B.surVN[1];
+  raspberrypi_multicore_MPCtest_B.headX[1] = varargout_4_0;
+  varargout_4_0 = raspberrypi_multicore_MPCtest_B.headX[2] /
+    raspberrypi_multicore_MPCtest_B.sy;
+  raspberrypi_multicore_MPCtest_B.Rsur[2] = varargout_4_0;
+  raspberrypi_multicore_MPCtest_B.Rsur[8] =
+    raspberrypi_multicore_MPCtest_B.surVN[2];
+  raspberrypi_multicore_MPCtest_B.Rsur[3] =
+    raspberrypi_multicore_MPCtest_B.surVN[1] * varargout_4_0 -
+    raspberrypi_multicore_MPCtest_B.headX[1] *
+    raspberrypi_multicore_MPCtest_B.surVN[2];
+  raspberrypi_multicore_MPCtest_B.Rsur[4] =
+    raspberrypi_multicore_MPCtest_B.headX[0] *
+    raspberrypi_multicore_MPCtest_B.surVN[2] -
+    raspberrypi_multicore_MPCtest_B.surVN[0] * varargout_4_0;
+  raspberrypi_multicore_MPCtest_B.Rsur[5] =
+    raspberrypi_multicore_MPCtest_B.surVN[0] *
+    raspberrypi_multicore_MPCtest_B.headX[1] -
+    raspberrypi_multicore_MPCtest_B.headX[0] *
+    raspberrypi_multicore_MPCtest_B.surVN[1];
+
+  /* %% leave the first step ref to the current state */
+  /*              for i=2:1:obj.numP */
+  /*                  desTheta=Rot2Eul(Rsur); */
+  /*                  if i<2.5 */
+  /*                      desr=Rsur*[vxL;vyL;0]*obj.dt+obj.refSeqOld(3,1:3)'; */
+  /*                  else */
+  /*                      desr=Rsur*[vxL;vyL;0]*obj.dt+refSeq(i-1,1:3)'; */
+  /*                  end */
+  /*                  desdr=Rsur*[vxL;vyL;0]; */
+  /*                  desdtheta=Rsur*[0;0;omegaZ]; */
+  /*                  pSur=[0;0;sura(1)]; % get the point on the surface whose x and y coordinates are zero */
+  /*                  h=(desr-pSur)'*surVN; */
+  /*                  desr=desr+(desH-h)*surVN; % guarantee that the distance between the height and the robot are the desired height */
+  /*                   */
+  /*                  refSeq(i,1:3)=desr; */
+  /*                  refSeq(i,4:6)=desTheta; */
+  /*                  refSeq(i,7:9)=desdr; */
+  /*                  refSeq(i,10:12)=desdtheta; */
+  /*                  refSeq(i,13)=9.8; */
+  /*              end */
+  /* %% override the first step ref to the desired ref */
+  raspberrypi_multicore_MPCtest_B.sy = sqrt
+    (raspberrypi_multicore_MPCtest_B.Rsur[0] *
+     raspberrypi_multicore_MPCtest_B.Rsur[0] +
+     raspberrypi_multicore_MPCtest_B.Rsur[1] *
+     raspberrypi_multicore_MPCtest_B.Rsur[1]);
+  for (b_i = 0; b_i < 6; b_i++) {
+    /*  Rotation matrix to euler angles, ZYX intrinsic order */
+    raspberrypi_multicore_MPCtest_B.headX[2] = 0.0;
+    if (raspberrypi_multicore_MPCtest_B.sy < 1.0E-6) {
+      raspberrypi_multicore_MPCtest_B.headX[0] = rt_atan2d_snf
+        (-raspberrypi_multicore_MPCtest_B.Rsur[7],
+         raspberrypi_multicore_MPCtest_B.Rsur[4]);
+      raspberrypi_multicore_MPCtest_B.headX[1] = rt_atan2d_snf(-varargout_4_0,
+        raspberrypi_multicore_MPCtest_B.sy);
+    } else {
+      raspberrypi_multicore_MPCtest_B.headX[0] = rt_atan2d_snf
+        (raspberrypi_multicore_MPCtest_B.Rsur[5],
+         raspberrypi_multicore_MPCtest_B.Rsur[8]);
+      raspberrypi_multicore_MPCtest_B.headX[1] = rt_atan2d_snf(-varargout_4_0,
+        raspberrypi_multicore_MPCtest_B.sy);
+      raspberrypi_multicore_MPCtest_B.headX[2] = rt_atan2d_snf
+        (raspberrypi_multicore_MPCtest_B.Rsur[1],
+         raspberrypi_multicore_MPCtest_B.Rsur[0]);
+    }
+
+    if ((real_T)b_i + 1.0 < 1.5) {
+      for (i = 0; i < 3; i++) {
+        raspberrypi_multicore_MPCtest_B.desr[i] = obj->refSeqOld[6 * i + 1] +
+          (raspberrypi_multicore_MPCtest_B.Rsur[i + 6] * 0.0 +
+           (raspberrypi_multicore_MPCtest_B.Rsur[i + 3] * varargin_2 +
+            raspberrypi_multicore_MPCtest_B.Rsur[i] * varargin_1)) * obj->dt;
+      }
+    } else {
+      for (i = 0; i < 3; i++) {
+        raspberrypi_multicore_MPCtest_B.desr[i] = varargout_3[(6 * i + b_i) - 1]
+          + (raspberrypi_multicore_MPCtest_B.Rsur[i + 6] * 0.0 +
+             (raspberrypi_multicore_MPCtest_B.Rsur[i + 3] * varargin_2 +
+              raspberrypi_multicore_MPCtest_B.Rsur[i] * varargin_1)) * obj->dt;
+      }
+    }
+
+    /*  get the point on the surface whose x and y coordinates are zero */
+    raspberrypi_multicore_MPCtest_B.headX_tmp_j =
+      raspberrypi_multicore_MPCtest_B.desH -
+      ((raspberrypi_multicore_MPCtest_B.desr[0] *
+        raspberrypi_multicore_MPCtest_B.surVN[0] +
+        raspberrypi_multicore_MPCtest_B.desr[1] *
+        raspberrypi_multicore_MPCtest_B.surVN[1]) +
+       (raspberrypi_multicore_MPCtest_B.desr[2] - varargin_5[0]) *
+       raspberrypi_multicore_MPCtest_B.surVN[2]);
+
+    /*  guarantee that the distance between the height and the robot are the desired height */
+    for (i = 0; i < 3; i++) {
+      varargout_3[b_i + 6 * i] = raspberrypi_multicore_MPCtest_B.headX_tmp_j *
+        raspberrypi_multicore_MPCtest_B.surVN[i] +
+        raspberrypi_multicore_MPCtest_B.desr[i];
+      varargout_3[b_i + 6 * ((i + 4) - 1)] =
+        raspberrypi_multicore_MPCtest_B.headX[i];
+      raspberrypi_multicore_MPCtest_B.headX_tmp_k =
+        raspberrypi_multicore_MPCtest_B.Rsur[i];
+      headX_tmp = raspberrypi_multicore_MPCtest_B.headX_tmp_k * varargin_1;
+      headX_tmp_0 = raspberrypi_multicore_MPCtest_B.headX_tmp_k * 0.0;
+      raspberrypi_multicore_MPCtest_B.headX_tmp_k =
+        raspberrypi_multicore_MPCtest_B.Rsur[i + 3];
+      headX_tmp += raspberrypi_multicore_MPCtest_B.headX_tmp_k * varargin_2;
+      headX_tmp_0 += raspberrypi_multicore_MPCtest_B.headX_tmp_k * 0.0;
+      raspberrypi_multicore_MPCtest_B.headX_tmp_k =
+        raspberrypi_multicore_MPCtest_B.Rsur[i + 6];
+      varargout_3[b_i + 6 * ((i + 7) - 1)] =
+        raspberrypi_multicore_MPCtest_B.headX_tmp_k * 0.0 + headX_tmp;
+      varargout_3[b_i + 6 * ((i + 10) - 1)] =
+        raspberrypi_multicore_MPCtest_B.headX_tmp_k * varargin_3 + headX_tmp_0;
+    }
+
+    varargout_3[b_i + 72] = 9.8;
+  }
+
+  if (varargin_7 > 0.5) {
+    memcpy(&varargout_3[0], &obj->refSeqOld[0], 78U * sizeof(real_T));
+  }
+
+  memcpy(&varargout_1[0], &varargout_3[0], 78U * sizeof(real_T));
+  for (b_i = 0; b_i < 5; b_i++) {
+    raspberrypi_multicore_MPCtest_B.ref[0] = 0.0;
+    raspberrypi_multicore_MPCtest_B.ref[3] = obj->sitaErrOld[0];
+    raspberrypi_multicore_MPCtest_B.ref[1] = 0.0;
+    raspberrypi_multicore_MPCtest_B.ref[4] = obj->sitaErrOld[1];
+    raspberrypi_multicore_MPCtest_B.ref[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.ref[5] = obj->sitaErrOld[2];
+    for (i = 0; i < 7; i++) {
+      raspberrypi_multicore_MPCtest_B.ref[i + 6] = 0.0;
+    }
+
+    for (i = 0; i < 13; i++) {
+      headX_tmp_tmp = (6 * i + b_i) + 1;
+      varargout_1[headX_tmp_tmp] += raspberrypi_multicore_MPCtest_B.ref[i];
+    }
+  }
+
+  if (varargin_7 > 0.5) {
+    memcpy(&varargout_1[0], &varargout_3[0], 78U * sizeof(real_T));
+  }
+
+  memcpy(&obj->refSeqOld[0], &varargout_3[0], 78U * sizeof(real_T));
+  for (i = 0; i < 13; i++) {
+    varargout_2[i] = varargout_3[6 * i + 1];
+  }
+
+  varargout_5[0] = obj->sitaErrOld[0];
+  varargout_5[1] = obj->sitaErrOld[1];
+  varargout_5[2] = obj->sitaErrOld[2];
+}
+
 /* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
-static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[234],
-  real_T c[169], real_T d[234], real_T b_A[169], real_T b_B[416], real_T b_C[169],
-  real_T b_D[416], const real_T b_mvindex[12], const real_T b_mdindex[6], const
-  real_T b_myindex[13], const real_T b_Uscale[18], const real_T b_Yscale[13],
-  real_T Bu[156], real_T Bv[91], real_T Cm[169], real_T Dv[91], real_T Dvm[91],
+static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[312],
+  real_T c[169], real_T d[312], real_T b_A[169], real_T b_B[494], real_T b_C[169],
+  real_T b_D[494], const real_T b_mvindex[12], const real_T b_mdindex[12], const
+  real_T b_myindex[13], const real_T b_Uscale[24], const real_T b_Yscale[13],
+  real_T Bu[156], real_T Bv[169], real_T Cm[169], real_T Dv[169], real_T Dvm[169],
   real_T QQ[169], real_T RR[169], real_T NN[169])
 {
   real_T b_mdindex_0;
+  int32_T Bv_tmp;
   int32_T b_B_tmp;
   int32_T b_tmp;
   int32_T i;
   int32_T i_0;
-  int8_T UnknownIn[31];
-  for (i_0 = 0; i_0 < 18; i_0++) {
+  for (i_0 = 0; i_0 < 24; i_0++) {
     for (i = 0; i < 13; i++) {
       b_tmp = 13 * i_0 + i;
       b[b_tmp] *= b_Uscale[i_0];
@@ -5176,7 +5112,7 @@ static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[234],
     }
   }
 
-  for (i_0 = 0; i_0 < 18; i_0++) {
+  for (i_0 = 0; i_0 < 24; i_0++) {
     for (i = 0; i < 13; i++) {
       b_tmp = 13 * i_0 + i;
       d[b_tmp] = d[b_tmp] / b_Yscale[i] * b_Uscale[i_0];
@@ -5191,54 +5127,45 @@ static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[234],
   }
 
   memcpy(&b_C[0], &c[0], 169U * sizeof(real_T));
-  for (i_0 = 0; i_0 < 6; i_0++) {
+  for (i_0 = 0; i_0 < 12; i_0++) {
     b_mdindex_0 = b_mdindex[i_0];
     for (i = 0; i < 13; i++) {
       b_tmp = ((int32_T)b_mdindex_0 - 1) * 13 + i;
       b_B_tmp = i + 13 * (i_0 + 12);
       b_B[b_B_tmp] = b[b_tmp];
       b_D[b_B_tmp] = d[b_tmp];
+      Bu[i + 13 * i_0] = b_B[13 * i_0 + i];
     }
-  }
-
-  for (i_0 = 0; i_0 < 12; i_0++) {
-    memcpy(&Bu[i_0 * 13], &b_B[i_0 * 13], 13U * sizeof(real_T));
-  }
-
-  for (i_0 = 0; i_0 < 7; i_0++) {
-    memcpy(&Bv[i_0 * 13], &b_B[i_0 * 13 + 156], 13U * sizeof(real_T));
   }
 
   for (i_0 = 0; i_0 < 13; i_0++) {
     for (i = 0; i < 13; i++) {
-      Cm[i + 13 * i_0] = c[(13 * i_0 + (int32_T)b_myindex[i]) - 1];
+      b_mdindex_0 = b_myindex[i];
+      b_tmp = i + 13 * i_0;
+      b_B_tmp = (i_0 + 12) * 13;
+      Bv_tmp = b_B_tmp + i;
+      Bv[b_tmp] = b_B[Bv_tmp];
+      Cm[b_tmp] = c[(13 * i_0 + (int32_T)b_mdindex_0) - 1];
+      Dv[b_tmp] = b_D[Bv_tmp];
+      Dvm[b_tmp] = b_D[(b_B_tmp + (int32_T)b_mdindex_0) - 1];
     }
   }
 
-  for (i_0 = 0; i_0 < 7; i_0++) {
-    for (i = 0; i < 13; i++) {
-      b_tmp = (i_0 + 12) * 13;
-      b_B_tmp = i + 13 * i_0;
-      Dv[b_B_tmp] = b_D[b_tmp + i];
-      Dvm[b_B_tmp] = b_D[(b_tmp + (int32_T)b_myindex[i]) - 1];
-    }
+  for (i_0 = 0; i_0 < 37; i_0++) {
+    raspberrypi_multicore_MPCtest_B.UnknownIn[i_0] = 0;
   }
 
-  for (i_0 = 0; i_0 < 31; i_0++) {
-    UnknownIn[i_0] = 0;
-  }
-
-  for (i_0 = 0; i_0 < 18; i_0++) {
-    UnknownIn[i_0] = (int8_T)(i_0 + 1);
+  for (i_0 = 0; i_0 < 24; i_0++) {
+    raspberrypi_multicore_MPCtest_B.UnknownIn[i_0] = (int8_T)(i_0 + 1);
   }
 
   for (i_0 = 0; i_0 < 13; i_0++) {
-    UnknownIn[i_0 + 18] = (int8_T)(i_0 + 20);
+    raspberrypi_multicore_MPCtest_B.UnknownIn[i_0 + 24] = (int8_T)(i_0 + 26);
   }
 
-  for (i_0 = 0; i_0 < 31; i_0++) {
+  for (i_0 = 0; i_0 < 37; i_0++) {
     for (i = 0; i < 13; i++) {
-      b_tmp = (UnknownIn[i_0] - 1) * 13;
+      b_tmp = (raspberrypi_multicore_MPCtest_B.UnknownIn[i_0] - 1) * 13;
       b_B_tmp = i + 26 * i_0;
       raspberrypi_multicore_MPCtest_B.b_B[b_B_tmp] = b_B[b_tmp + i];
       raspberrypi_multicore_MPCtest_B.b_B[b_B_tmp + 13] = b_D[(b_tmp + (int32_T)
@@ -5247,10 +5174,10 @@ static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[234],
   }
 
   for (i_0 = 0; i_0 < 13; i_0++) {
-    for (i = 0; i < 31; i++) {
-      b_tmp = (UnknownIn[i] - 1) * 13;
-      raspberrypi_multicore_MPCtest_B.b_B_f[i + 31 * i_0] = b_B[b_tmp + i_0];
-      raspberrypi_multicore_MPCtest_B.b_B_f[i + 31 * (i_0 + 13)] = b_D[(b_tmp +
+    for (i = 0; i < 37; i++) {
+      b_tmp = (raspberrypi_multicore_MPCtest_B.UnknownIn[i] - 1) * 13;
+      raspberrypi_multicore_MPCtest_B.b_B_f[i + 37 * i_0] = b_B[b_tmp + i_0];
+      raspberrypi_multicore_MPCtest_B.b_B_f[i + 37 * (i_0 + 13)] = b_D[(b_tmp +
         (int32_T)b_myindex[i_0]) - 1];
     }
   }
@@ -5258,12 +5185,12 @@ static void raspberrypi_mul_mpc_plantupdate(const real_T a[169], real_T b[234],
   for (i_0 = 0; i_0 < 26; i_0++) {
     memset(&raspberrypi_multicore_MPCtest_B.CovMat[i_0 * 26], 0, 26U * sizeof
            (real_T));
-    for (b_tmp = 0; b_tmp < 31; b_tmp++) {
+    for (b_tmp = 0; b_tmp < 37; b_tmp++) {
       for (i = 0; i < 26; i++) {
         b_B_tmp = 26 * i_0 + i;
         raspberrypi_multicore_MPCtest_B.CovMat[b_B_tmp] +=
           raspberrypi_multicore_MPCtest_B.b_B[26 * b_tmp + i] *
-          raspberrypi_multicore_MPCtest_B.b_B_f[31 * i_0 + b_tmp];
+          raspberrypi_multicore_MPCtest_B.b_B_f[37 * i_0 + b_tmp];
       }
     }
   }
@@ -5320,19 +5247,19 @@ static real_T raspberrypi_multicore_MPCte_mod(real_T x)
 
 /* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
 static void raspberry_mpc_updateFromNominal(real_T b_Mlim[252], const real_T
-  b_Mrows[28], const real_T U0[18], const real_T b_Uscale[18], const real_T
-  old_mvoff[12], const real_T b_mvindex[12], const real_T b_mdindex[6], real_T
+  b_Mrows[28], const real_T U0[24], const real_T b_Uscale[24], const real_T
+  old_mvoff[12], const real_T b_mvindex[12], const real_T b_mdindex[12], real_T
   b_utarget[72], const real_T Y0[13], const real_T b_Yscale[13], const real_T
   old_yoff[13], const real_T b_myindex[13], const real_T X0[13], real_T b_xoff
-  [13], const real_T DX0[13], real_T Bv[637], real_T new_mvoff[12], real_T
-  new_mdoff[6], real_T new_yoff[13], real_T new_myoff[13])
+  [13], const real_T DX0[13], real_T Bv[1183], real_T new_mvoff[12], real_T
+  new_mdoff[12], real_T new_yoff[13], real_T new_myoff[13])
 {
   real_T U;
   real_T k;
   int32_T b_utarget_tmp;
   int32_T i;
   int32_T i_0;
-  for (i = 0; i < 18; i++) {
+  for (i = 0; i < 24; i++) {
     raspberrypi_multicore_MPCtest_B.U_h[i] = U0[i] / b_Uscale[i];
   }
 
@@ -5342,9 +5269,6 @@ static void raspberry_mpc_updateFromNominal(real_T b_Mlim[252], const real_T
 
   for (i = 0; i < 12; i++) {
     new_mvoff[i] = raspberrypi_multicore_MPCtest_B.U_h[(int32_T)b_mvindex[i] - 1];
-  }
-
-  for (i = 0; i < 6; i++) {
     new_mdoff[i] = raspberrypi_multicore_MPCtest_B.U_h[(int32_T)b_mdindex[i] - 1];
   }
 
@@ -5383,14 +5307,14 @@ static void raspberry_mpc_updateFromNominal(real_T b_Mlim[252], const real_T
   }
 
   memcpy(&b_xoff[0], &X0[0], 13U * sizeof(real_T));
-  memcpy(&Bv[78], &DX0[0], 13U * sizeof(real_T));
+  memcpy(&Bv[156], &DX0[0], 13U * sizeof(real_T));
 }
 
 /* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
 static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
-  Bu[156], const real_T Bv[91], const real_T b_C[169], const real_T Dv[91],
+  Bu[156], const real_T Bv[169], const real_T b_C[169], const real_T Dv[169],
   const real_T b_Jm[1728], real_T b_SuJm[1872], real_T b_Sx[1014], real_T b_Su1
-  [936], real_T b_Hv[3822])
+  [936], real_T b_Hv[7098])
 {
   real_T Sum;
   int32_T CA_tmp;
@@ -5413,40 +5337,40 @@ static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
   }
 
   for (i_1 = 0; i_1 < 12; i_1++) {
-    memset(&raspberrypi_multicore_MPCtest_B.Sum_b[i_1 * 13], 0, 13U * sizeof
+    memset(&raspberrypi_multicore_MPCtest_B.Sum_o[i_1 * 13], 0, 13U * sizeof
            (real_T));
     for (b_Hv_tmp = 0; b_Hv_tmp < 13; b_Hv_tmp++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
         CA_tmp = 13 * i_1 + i_0;
-        raspberrypi_multicore_MPCtest_B.Sum_b[CA_tmp] += b_C[13 * b_Hv_tmp + i_0]
+        raspberrypi_multicore_MPCtest_B.Sum_o[CA_tmp] += b_C[13 * b_Hv_tmp + i_0]
           * Bu[13 * i_1 + b_Hv_tmp];
       }
     }
   }
 
-  for (i_1 = 0; i_1 < 7; i_1++) {
-    memset(&raspberrypi_multicore_MPCtest_B.b_C_h[i_1 * 13], 0, 13U * sizeof
+  for (i_1 = 0; i_1 < 13; i_1++) {
+    memset(&raspberrypi_multicore_MPCtest_B.b_C_d[i_1 * 13], 0, 13U * sizeof
            (real_T));
     for (b_Hv_tmp = 0; b_Hv_tmp < 13; b_Hv_tmp++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
         b_C_tmp = 13 * i_1 + i_0;
-        raspberrypi_multicore_MPCtest_B.b_C_h[b_C_tmp] += b_C[13 * b_Hv_tmp +
+        raspberrypi_multicore_MPCtest_B.b_C_d[b_C_tmp] += b_C[13 * b_Hv_tmp +
           i_0] * Bv[13 * i_1 + b_Hv_tmp];
       }
     }
 
     for (i_0 = 0; i_0 < 13; i_0++) {
       b_Hv_tmp = 13 * i_1 + i_0;
-      b_Hv[i_0 + 78 * i_1] = raspberrypi_multicore_MPCtest_B.b_C_h[b_Hv_tmp];
-      b_Hv[i_0 + 78 * (i_1 + 7)] = Dv[b_Hv_tmp];
+      b_Hv[i_0 + 78 * i_1] = raspberrypi_multicore_MPCtest_B.b_C_d[b_Hv_tmp];
+      b_Hv[i_0 + 78 * (i_1 + 13)] = Dv[b_Hv_tmp];
     }
   }
 
-  for (i_1 = 0; i_1 < 35; i_1++) {
-    memset(&b_Hv[i_1 * 78 + 1092], 0, 13U * sizeof(real_T));
+  for (i_1 = 0; i_1 < 65; i_1++) {
+    memset(&b_Hv[i_1 * 78 + 2028], 0, 13U * sizeof(real_T));
   }
 
-  for (i_1 = 0; i_1 < 49; i_1++) {
+  for (i_1 = 0; i_1 < 91; i_1++) {
     memset(&b_Hv[i_1 * 78 + 13], 0, 65U * sizeof(real_T));
   }
 
@@ -5457,11 +5381,11 @@ static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
   }
 
   for (i_1 = 0; i_1 < 12; i_1++) {
-    memcpy(&b_Su1[i_1 * 78], &raspberrypi_multicore_MPCtest_B.Sum_b[i_1 * 13],
+    memcpy(&b_Su1[i_1 * 78], &raspberrypi_multicore_MPCtest_B.Sum_o[i_1 * 13],
            13U * sizeof(real_T));
     memset(&b_Su1[i_1 * 78 + 13], 0, 65U * sizeof(real_T));
     memcpy(&raspberrypi_multicore_MPCtest_B.Su[i_1 * 78],
-           &raspberrypi_multicore_MPCtest_B.Sum_b[i_1 * 13], 13U * sizeof(real_T));
+           &raspberrypi_multicore_MPCtest_B.Sum_o[i_1 * 13], 13U * sizeof(real_T));
   }
 
   for (i_1 = 0; i_1 < 60; i_1++) {
@@ -5486,14 +5410,14 @@ static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
         }
 
         CA_tmp = 13 * i_0 + i_1;
-        raspberrypi_multicore_MPCtest_B.Sum_b[CA_tmp] += Sum;
+        raspberrypi_multicore_MPCtest_B.Sum_o[CA_tmp] += Sum;
       }
     }
 
     for (i_1 = 0; i_1 < 12; i_1++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
         CA_tmp = 13 * i_1 + i_0;
-        Sum = raspberrypi_multicore_MPCtest_B.Sum_b[CA_tmp];
+        Sum = raspberrypi_multicore_MPCtest_B.Sum_o[CA_tmp];
         b_Su1[(rows[i_0] + 78 * i_1) - 1] = Sum;
         raspberrypi_multicore_MPCtest_B.Sum[CA_tmp] = Sum;
       }
@@ -5514,31 +5438,31 @@ static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
     }
 
     for (i_1 = 0; i_1 < 13; i_1++) {
-      for (i_0 = 0; i_0 < 7; i_0++) {
+      for (i_0 = 0; i_0 < 13; i_0++) {
         CA_tmp = i_1 + 13 * i_0;
-        raspberrypi_multicore_MPCtest_B.b_C_h[CA_tmp] = 0.0;
+        raspberrypi_multicore_MPCtest_B.b_C_d[CA_tmp] = 0.0;
         for (b_Hv_tmp = 0; b_Hv_tmp < 13; b_Hv_tmp++) {
-          raspberrypi_multicore_MPCtest_B.b_C_h[CA_tmp] +=
+          raspberrypi_multicore_MPCtest_B.b_C_d[CA_tmp] +=
             raspberrypi_multicore_MPCtest_B.CA_d[13 * b_Hv_tmp + i_1] * Bv[13 *
             i_0 + b_Hv_tmp];
         }
       }
     }
 
-    for (i_1 = 0; i_1 < 7; i_1++) {
+    for (i_1 = 0; i_1 < 13; i_1++) {
       memcpy(&raspberrypi_multicore_MPCtest_B.CA[i_1 * 13],
-             &raspberrypi_multicore_MPCtest_B.b_C_h[i_1 * 13], 13U * sizeof
+             &raspberrypi_multicore_MPCtest_B.b_C_d[i_1 * 13], 13U * sizeof
              (real_T));
     }
 
-    for (i_1 = 0; i_1 < 42; i_1++) {
+    for (i_1 = 0; i_1 < 78; i_1++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
-        raspberrypi_multicore_MPCtest_B.CA[i_0 + 13 * (i_1 + 7)] = b_Hv[(78 *
+        raspberrypi_multicore_MPCtest_B.CA[i_0 + 13 * (i_1 + 13)] = b_Hv[(78 *
           i_1 + rows[i_0]) - 14];
       }
     }
 
-    for (i_1 = 0; i_1 < 49; i_1++) {
+    for (i_1 = 0; i_1 < 91; i_1++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
         b_Hv[(rows[i_0] + 78 * i_1) - 1] = raspberrypi_multicore_MPCtest_B.CA[13
           * i_1 + i_0];
@@ -5548,9 +5472,9 @@ static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
     for (i_1 = 0; i_1 < 13; i_1++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
         CA_tmp = i_1 + 13 * i_0;
-        raspberrypi_multicore_MPCtest_B.CA_l[CA_tmp] = 0.0;
+        raspberrypi_multicore_MPCtest_B.b_C_d[CA_tmp] = 0.0;
         for (b_Hv_tmp = 0; b_Hv_tmp < 13; b_Hv_tmp++) {
-          raspberrypi_multicore_MPCtest_B.CA_l[CA_tmp] +=
+          raspberrypi_multicore_MPCtest_B.b_C_d[CA_tmp] +=
             raspberrypi_multicore_MPCtest_B.CA_d[13 * b_Hv_tmp + i_1] * b_A[13 *
             i_0 + b_Hv_tmp];
         }
@@ -5558,7 +5482,7 @@ static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
     }
 
     memcpy(&raspberrypi_multicore_MPCtest_B.CA_d[0],
-           &raspberrypi_multicore_MPCtest_B.CA_l[0], 169U * sizeof(real_T));
+           &raspberrypi_multicore_MPCtest_B.b_C_d[0], 169U * sizeof(real_T));
     for (i_1 = 0; i_1 < 13; i_1++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
         b_Sx[(rows[i_0] + 78 * i_1) - 1] = raspberrypi_multicore_MPCtest_B.CA_d
@@ -5580,12 +5504,35 @@ static void raspberrypi__mpc_constraintcoef(const real_T b_A[169], const real_T
 }
 
 /* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
+static void raspberrypi_multicore_MP_kron_i(const real_T b_A[49], const real_T
+  b_B[416], real_T K[20384])
+{
+  int32_T b_j1;
+  int32_T i1;
+  int32_T i2;
+  int32_T j2;
+  int32_T kidx;
+  kidx = -1;
+  for (b_j1 = 0; b_j1 < 7; b_j1++) {
+    for (j2 = 0; j2 < 13; j2++) {
+      for (i1 = 0; i1 < 7; i1++) {
+        for (i2 = 0; i2 < 32; i2++) {
+          K[(kidx + i2) + 1] = b_A[7 * b_j1 + i1] * b_B[(j2 << 5) + i2];
+        }
+
+        kidx += 32;
+      }
+    }
+  }
+}
+
+/* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
 static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
-  real_T b_Sx[1014], const real_T b_Su1[936], const real_T b_Hv[3822], const
-  real_T b_C[169], const real_T Dv[637], const real_T b_Jm[1728], const real_T
-  E[384], const real_T F[416], const real_T S[192], const real_T G[32], const
-  real_T mvoff[12], const real_T mdoff[6], const real_T b_yoff[13], real_T Mu
-  [5376], real_T b_Mv[10976], real_T b_Mu1[2688], real_T b_Mx[2912], real_T
+  real_T b_Sx[1014], const real_T b_Su1[936], const real_T b_Hv[7098], const
+  real_T b_C[169], const real_T Dv[1183], const real_T b_Jm[1728], const real_T
+  E[384], const real_T F[416], const real_T S[384], const real_T G[32], const
+  real_T mvoff[12], const real_T mdoff[12], const real_T b_yoff[13], real_T Mu
+  [5376], real_T b_Mv[20384], real_T b_Mu1[2688], real_T b_Mx[2912], real_T
   b_Mlim[224])
 {
   real_T tmp;
@@ -5598,26 +5545,26 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
     1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
     0, 0, 0, 0, 0, 0, 1 };
 
-  memset(&raspberrypi_multicore_MPCtest_B.b_I_j[0], 0, 144U * sizeof(int8_T));
+  memset(&raspberrypi_multicore_MPCtest_B.b_I_c[0], 0, 144U * sizeof(int8_T));
   for (kidx = 0; kidx < 12; kidx++) {
-    raspberrypi_multicore_MPCtest_B.b_I_j[kidx + 12 * kidx] = 1;
+    raspberrypi_multicore_MPCtest_B.b_I_c[kidx + 12 * kidx] = 1;
   }
 
   kidx = -1;
   for (j2 = 0; j2 < 12; j2++) {
     for (i1 = 0; i1 < 7; i1++) {
       for (i2 = 0; i2 < 12; i2++) {
-        raspberrypi_multicore_MPCtest_B.b_I1_b[(kidx + i2) + 1] =
-          raspberrypi_multicore_MPCtest_B.b_I_j[12 * j2 + i2];
+        raspberrypi_multicore_MPCtest_B.b_I1_n[(kidx + i2) + 1] =
+          raspberrypi_multicore_MPCtest_B.b_I_c[12 * j2 + i2];
       }
 
       kidx += 12;
     }
   }
 
-  memset(&raspberrypi_multicore_MPCtest_B.b_I_j[0], 0, 144U * sizeof(int8_T));
+  memset(&raspberrypi_multicore_MPCtest_B.b_I_c[0], 0, 144U * sizeof(int8_T));
   for (kidx = 0; kidx < 12; kidx++) {
-    raspberrypi_multicore_MPCtest_B.b_I_j[kidx + 12 * kidx] = 1;
+    raspberrypi_multicore_MPCtest_B.b_I_c[kidx + 12 * kidx] = 1;
   }
 
   kidx = -1;
@@ -5625,8 +5572,8 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
     for (i1 = 0; i1 < 12; i1++) {
       for (i2 = 0; i2 < 7; i2++) {
         for (b_i2 = 0; b_i2 < 12; b_i2++) {
-          raspberrypi_multicore_MPCtest_B.I2_c[(kidx + b_i2) + 1] = (int8_T)
-            (b_A[7 * j2 + i2] * raspberrypi_multicore_MPCtest_B.b_I_j[12 * i1 +
+          raspberrypi_multicore_MPCtest_B.I2_g[(kidx + b_i2) + 1] = (int8_T)
+            (b_A[7 * j2 + i2] * raspberrypi_multicore_MPCtest_B.b_I_c[12 * i1 +
              b_i2]);
         }
 
@@ -5635,12 +5582,9 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
     }
   }
 
-  for (kidx = 0; kidx < 49; kidx++) {
-    raspberrypi_multicore_MPCtest_B.c_I_g[kidx] = 0;
-  }
-
+  memset(&raspberrypi_multicore_MPCtest_B.c_I_o[0], 0, 49U * sizeof(real_T));
   for (kidx = 0; kidx < 7; kidx++) {
-    raspberrypi_multicore_MPCtest_B.c_I_g[kidx + 7 * kidx] = 1;
+    raspberrypi_multicore_MPCtest_B.c_I_o[kidx + 7 * kidx] = 1.0;
   }
 
   kidx = -1;
@@ -5648,8 +5592,8 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
     for (i1 = 0; i1 < 12; i1++) {
       for (i2 = 0; i2 < 7; i2++) {
         for (b_i2 = 0; b_i2 < 32; b_i2++) {
-          raspberrypi_multicore_MPCtest_B.Ep1[(kidx + b_i2) + 1] = (real_T)
-            raspberrypi_multicore_MPCtest_B.c_I_g[7 * j2 + i2] * E[(i1 << 5) +
+          raspberrypi_multicore_MPCtest_B.Ep1[(kidx + b_i2) + 1] =
+            raspberrypi_multicore_MPCtest_B.c_I_o[7 * j2 + i2] * E[(i1 << 5) +
             b_i2];
         }
 
@@ -5658,52 +5602,16 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
     }
   }
 
-  for (kidx = 0; kidx < 49; kidx++) {
-    raspberrypi_multicore_MPCtest_B.c_I_g[kidx] = 0;
-  }
-
+  memset(&raspberrypi_multicore_MPCtest_B.c_I_o[0], 0, 49U * sizeof(real_T));
   for (kidx = 0; kidx < 7; kidx++) {
-    raspberrypi_multicore_MPCtest_B.c_I_g[kidx + 7 * kidx] = 1;
+    raspberrypi_multicore_MPCtest_B.c_I_o[kidx + 7 * kidx] = 1.0;
   }
 
-  kidx = -1;
-  for (j2 = 0; j2 < 7; j2++) {
-    for (i1 = 0; i1 < 13; i1++) {
-      for (i2 = 0; i2 < 7; i2++) {
-        for (b_i2 = 0; b_i2 < 32; b_i2++) {
-          raspberrypi_multicore_MPCtest_B.Fp1[(kidx + b_i2) + 1] = (real_T)
-            raspberrypi_multicore_MPCtest_B.c_I_g[7 * j2 + i2] * F[(i1 << 5) +
-            b_i2];
-        }
-
-        kidx += 32;
-      }
-    }
-  }
-
-  for (kidx = 0; kidx < 49; kidx++) {
-    raspberrypi_multicore_MPCtest_B.c_I_g[kidx] = 0;
-  }
-
+  raspberrypi_multicore_MP_kron_i(raspberrypi_multicore_MPCtest_B.c_I_o, F,
+    raspberrypi_multicore_MPCtest_B.Fp1);
+  memset(&raspberrypi_multicore_MPCtest_B.c_I_o[0], 0, 49U * sizeof(real_T));
   for (kidx = 0; kidx < 7; kidx++) {
-    raspberrypi_multicore_MPCtest_B.c_I_g[kidx + 7 * kidx] = 1;
-  }
-
-  memcpy(&raspberrypi_multicore_MPCtest_B.b_B_g[0], &S[0], 192U * sizeof(real_T));
-  memset(&raspberrypi_multicore_MPCtest_B.b_B_g[192], 0, sizeof(real_T) << 5U);
-  kidx = -1;
-  for (j2 = 0; j2 < 7; j2++) {
-    for (i1 = 0; i1 < 7; i1++) {
-      for (i2 = 0; i2 < 7; i2++) {
-        for (b_i2 = 0; b_i2 < 32; b_i2++) {
-          raspberrypi_multicore_MPCtest_B.Sp1[(kidx + b_i2) + 1] = (real_T)
-            raspberrypi_multicore_MPCtest_B.c_I_g[7 * j2 + i2] *
-            raspberrypi_multicore_MPCtest_B.b_B_g[(i1 << 5) + b_i2];
-        }
-
-        kidx += 32;
-      }
-    }
+    raspberrypi_multicore_MPCtest_B.c_I_o[kidx + 7 * kidx] = 1.0;
   }
 
   for (kidx = 0; kidx < 24; kidx++) {
@@ -5717,14 +5625,14 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
       for (j2 = 0; j2 < 84; j2++) {
         i2 = 84 * kidx + j2;
         raspberrypi_multicore_MPCtest_B.I2[i2] += (real_T)
-          raspberrypi_multicore_MPCtest_B.I2_c[84 * i1 + j2] *
+          raspberrypi_multicore_MPCtest_B.I2_g[84 * i1 + j2] *
           raspberrypi_multicore_MPCtest_B.b_Jm[84 * kidx + i1];
       }
     }
 
-    memset(&raspberrypi_multicore_MPCtest_B.dv1[kidx * 91], 0, 13U * sizeof
+    memset(&raspberrypi_multicore_MPCtest_B.dv2[kidx * 91], 0, 13U * sizeof
            (real_T));
-    memcpy(&raspberrypi_multicore_MPCtest_B.dv1[kidx * 91 + 13], &b_SuJm[kidx *
+    memcpy(&raspberrypi_multicore_MPCtest_B.dv2[kidx * 91 + 13], &b_SuJm[kidx *
            78], 78U * sizeof(real_T));
     memset(&raspberrypi_multicore_MPCtest_B.Ep1_k[kidx * 224], 0, 224U * sizeof
            (real_T));
@@ -5744,7 +5652,7 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
         i2 = 224 * kidx + j2;
         raspberrypi_multicore_MPCtest_B.Fp1_c[i2] +=
           raspberrypi_multicore_MPCtest_B.Fp1[224 * i1 + j2] *
-          raspberrypi_multicore_MPCtest_B.dv1[91 * kidx + i1];
+          raspberrypi_multicore_MPCtest_B.dv2[91 * kidx + i1];
       }
     }
   }
@@ -5754,28 +5662,32 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
       raspberrypi_multicore_MPCtest_B.Fp1_c[kidx];
   }
 
+  memcpy(&raspberrypi_multicore_MPCtest_B.S[0], &S[0], 384U * sizeof(real_T));
+  memset(&raspberrypi_multicore_MPCtest_B.S[384], 0, sizeof(real_T) << 5U);
+  raspberrypi_multicore_MP_kron_i(raspberrypi_multicore_MPCtest_B.c_I_o,
+    raspberrypi_multicore_MPCtest_B.S, raspberrypi_multicore_MPCtest_B.dv);
   for (kidx = 0; kidx < 20384; kidx++) {
     raspberrypi_multicore_MPCtest_B.Fp1_m[kidx] =
       -raspberrypi_multicore_MPCtest_B.Fp1[kidx];
   }
 
-  for (kidx = 0; kidx < 7; kidx++) {
+  for (kidx = 0; kidx < 13; kidx++) {
     memcpy(&raspberrypi_multicore_MPCtest_B.Dv[kidx * 91], &Dv[kidx * 13], 13U *
            sizeof(real_T));
   }
 
-  for (kidx = 0; kidx < 42; kidx++) {
-    memset(&raspberrypi_multicore_MPCtest_B.Dv[kidx * 91 + 637], 0, 13U * sizeof
-           (real_T));
+  for (kidx = 0; kidx < 78; kidx++) {
+    memset(&raspberrypi_multicore_MPCtest_B.Dv[kidx * 91 + 1183], 0, 13U *
+           sizeof(real_T));
   }
 
-  for (kidx = 0; kidx < 49; kidx++) {
+  for (kidx = 0; kidx < 91; kidx++) {
     memcpy(&raspberrypi_multicore_MPCtest_B.Dv[kidx * 91 + 13], &b_Hv[kidx * 78],
            78U * sizeof(real_T));
   }
 
   for (kidx = 0; kidx < 224; kidx++) {
-    for (j2 = 0; j2 < 49; j2++) {
+    for (j2 = 0; j2 < 91; j2++) {
       tmp = 0.0;
       for (i1 = 0; i1 < 91; i1++) {
         tmp += raspberrypi_multicore_MPCtest_B.Fp1_m[224 * i1 + kidx] *
@@ -5783,7 +5695,7 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
       }
 
       i1 = 224 * j2 + kidx;
-      b_Mv[i1] = tmp - raspberrypi_multicore_MPCtest_B.Sp1[i1];
+      b_Mv[i1] = tmp - raspberrypi_multicore_MPCtest_B.dv[i1];
     }
   }
 
@@ -5813,9 +5725,9 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
   }
 
   for (kidx = 0; kidx < 12; kidx++) {
-    memset(&raspberrypi_multicore_MPCtest_B.dv5[kidx * 91], 0, 13U * sizeof
+    memset(&raspberrypi_multicore_MPCtest_B.dv6[kidx * 91], 0, 13U * sizeof
            (real_T));
-    memcpy(&raspberrypi_multicore_MPCtest_B.dv5[kidx * 91 + 13], &b_Su1[kidx *
+    memcpy(&raspberrypi_multicore_MPCtest_B.dv6[kidx * 91 + 13], &b_Su1[kidx *
            78], 78U * sizeof(real_T));
     memset(&raspberrypi_multicore_MPCtest_B.Ep1_b[kidx * 224], 0, 224U * sizeof
            (real_T));
@@ -5824,7 +5736,7 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
         i2 = 224 * kidx + j2;
         raspberrypi_multicore_MPCtest_B.Ep1_b[i2] +=
           raspberrypi_multicore_MPCtest_B.Ep1_c[224 * i1 + j2] * (real_T)
-          raspberrypi_multicore_MPCtest_B.b_I1_b[84 * kidx + i1];
+          raspberrypi_multicore_MPCtest_B.b_I1_n[84 * kidx + i1];
       }
     }
 
@@ -5835,7 +5747,7 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
         i2 = 224 * kidx + j2;
         raspberrypi_multicore_MPCtest_B.Fp1_p[i2] +=
           raspberrypi_multicore_MPCtest_B.Fp1[224 * i1 + j2] *
-          raspberrypi_multicore_MPCtest_B.dv5[91 * kidx + i1];
+          raspberrypi_multicore_MPCtest_B.dv6[91 * kidx + i1];
       }
     }
   }
@@ -5845,10 +5757,11 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
       raspberrypi_multicore_MPCtest_B.Fp1_p[kidx];
   }
 
-  memset(&raspberrypi_multicore_MPCtest_B.E[0], 0, sizeof(real_T) << 5U);
+  memset(&raspberrypi_multicore_MPCtest_B.E_o[0], 0, sizeof(real_T) << 5U);
   for (j2 = 0; j2 < 12; j2++) {
     for (kidx = 0; kidx < 32; kidx++) {
-      raspberrypi_multicore_MPCtest_B.E[kidx] += E[(j2 << 5) + kidx] * mvoff[j2];
+      raspberrypi_multicore_MPCtest_B.E_o[kidx] += E[(j2 << 5) + kidx] *
+        mvoff[j2];
     }
   }
 
@@ -5861,22 +5774,22 @@ static void raspbe_mpc_customconstraintcoef(const real_T b_SuJm[1872], const
 
   for (kidx = 0; kidx < 32; kidx++) {
     tmp = 0.0;
-    for (j2 = 0; j2 < 6; j2++) {
+    for (j2 = 0; j2 < 12; j2++) {
       tmp += S[(j2 << 5) + kidx] * mdoff[j2];
     }
 
     raspberrypi_multicore_MPCtest_B.E_n[kidx] =
-      ((raspberrypi_multicore_MPCtest_B.E[kidx] +
+      ((raspberrypi_multicore_MPCtest_B.E_o[kidx] +
         raspberrypi_multicore_MPCtest_B.F[kidx]) - G[kidx]) + tmp;
   }
 
   for (kidx = 0; kidx < 7; kidx++) {
-    memcpy(&raspberrypi_multicore_MPCtest_B.b_B_g[kidx << 5],
+    memcpy(&raspberrypi_multicore_MPCtest_B.E[kidx << 5],
            &raspberrypi_multicore_MPCtest_B.E_n[0], sizeof(real_T) << 5U);
   }
 
   for (kidx = 0; kidx < 224; kidx++) {
-    b_Mlim[kidx] = -raspberrypi_multicore_MPCtest_B.b_B_g[kidx];
+    b_Mlim[kidx] = -raspberrypi_multicore_MPCtest_B.E[kidx];
   }
 }
 
@@ -5962,9 +5875,9 @@ static void raspberrypi_multicore_MP_WtMult(const real_T W[12], const real_T M
 static void raspberryp_mpc_calculatehessian(const real_T b_Wy[78], const real_T
   b_Wu[12], const real_T b_Wdu[12], const real_T b_SuJm[1872], const real_T
   I2Jm[1728], const real_T b_Jm[1728], const real_T b_I1[864], const real_T
-  b_Su1[936], const real_T b_Sx[1014], const real_T b_Hv[3822], real_T nmv,
+  b_Su1[936], const real_T b_Sx[1014], const real_T b_Hv[7098], real_T nmv,
   real_T b_ny, real_T b_H[576], real_T b_Ku1[288], real_T b_Kut[1728], real_T
-  b_Kx[312], real_T b_Kv[1176], real_T b_Kr[1872])
+  b_Kx[312], real_T b_Kv[2184], real_T b_Kr[1872])
 {
   real_T b_Wy_0;
   int32_T b_Kr_tmp;
@@ -6019,7 +5932,7 @@ static void raspberryp_mpc_calculatehessian(const real_T b_Wy[78], const real_T
 
   raspberrypi_multicore_MP_WtMult(b_Wu, I2Jm, nmv, b_Kut);
   raspberrypi_multicore_MP_WtMult(b_Wdu, b_Jm, nmv,
-    raspberrypi_multicore_MPCtest_B.dv3);
+    raspberrypi_multicore_MPCtest_B.dv4);
   for (i_0 = 0; i_0 < 24; i_0++) {
     for (i = 0; i < 24; i++) {
       b_SuJm_tmp = i + 24 * i_0;
@@ -6029,10 +5942,10 @@ static void raspberryp_mpc_calculatehessian(const real_T b_Wy[78], const real_T
           b_Kr_tmp] * b_Kr[78 * i_0 + b_Kr_tmp];
       }
 
-      raspberrypi_multicore_MPCtest_B.b_Jm_g[b_SuJm_tmp] = 0.0;
+      raspberrypi_multicore_MPCtest_B.b_Jm_n[b_SuJm_tmp] = 0.0;
       for (b_Kr_tmp = 0; b_Kr_tmp < 72; b_Kr_tmp++) {
-        raspberrypi_multicore_MPCtest_B.b_Jm_g[b_SuJm_tmp] += b_Jm[72 * i +
-          b_Kr_tmp] * raspberrypi_multicore_MPCtest_B.dv3[72 * i_0 + b_Kr_tmp];
+        raspberrypi_multicore_MPCtest_B.b_Jm_n[b_SuJm_tmp] += b_Jm[72 * i +
+          b_Kr_tmp] * raspberrypi_multicore_MPCtest_B.dv4[72 * i_0 + b_Kr_tmp];
       }
     }
   }
@@ -6046,7 +5959,7 @@ static void raspberryp_mpc_calculatehessian(const real_T b_Wy[78], const real_T
 
       b_Kr_tmp = 24 * i + i_0;
       b_H[b_Kr_tmp] = (raspberrypi_multicore_MPCtest_B.b_SuJm[b_Kr_tmp] +
-                       raspberrypi_multicore_MPCtest_B.b_Jm_g[b_Kr_tmp]) +
+                       raspberrypi_multicore_MPCtest_B.b_Jm_n[b_Kr_tmp]) +
         b_Wy_0;
     }
 
@@ -6084,8 +5997,8 @@ static void raspberryp_mpc_calculatehessian(const real_T b_Wy[78], const real_T
       }
     }
 
-    for (i = 0; i < 49; i++) {
-      b_SuJm_tmp = i + 49 * i_0;
+    for (i = 0; i < 91; i++) {
+      b_SuJm_tmp = i + 91 * i_0;
       b_Kv[b_SuJm_tmp] = 0.0;
       for (b_Kr_tmp = 0; b_Kr_tmp < 78; b_Kr_tmp++) {
         b_Kv[b_SuJm_tmp] += b_Hv[78 * i + b_Kr_tmp] * b_Kr[78 * i_0 + b_Kr_tmp];
@@ -6267,15 +6180,15 @@ static void raspberrypi_mu_mpc_checkhessian(real_T b_H[625], real_T L[625],
       while ((!exitg1) && (Tries <= 4)) {
         raspberrypi_multicore_MPCtest_B.normH = rt_powd_snf(10.0, (real_T)Tries)
           * 1.4901161193847656E-7;
-        memset(&raspberrypi_multicore_MPCtest_B.b_f[0], 0, 625U * sizeof(int8_T));
+        memset(&raspberrypi_multicore_MPCtest_B.b_b[0], 0, 625U * sizeof(int8_T));
         for (j = 0; j < 25; j++) {
-          raspberrypi_multicore_MPCtest_B.b_f[j + 25 * j] = 1;
+          raspberrypi_multicore_MPCtest_B.b_b[j + 25 * j] = 1;
         }
 
         for (j = 0; j < 625; j++) {
           raspberrypi_multicore_MPCtest_B.s_cj =
             raspberrypi_multicore_MPCtest_B.normH * (real_T)
-            raspberrypi_multicore_MPCtest_B.b_f[j] + b_H[j];
+            raspberrypi_multicore_MPCtest_B.b_b[j] + b_H[j];
           L[j] = raspberrypi_multicore_MPCtest_B.s_cj;
           b_H[j] = raspberrypi_multicore_MPCtest_B.s_cj;
         }
@@ -6626,16 +6539,16 @@ static void raspberrypi_multicore_MPCte_qrf(real_T b_A[625], int32_T ia0,
   int32_T b_m, int32_T n, int32_T nfxd, real_T tau[25])
 {
   memset(&raspberrypi_multicore_MPCtest_B.work[0], 0, 25U * sizeof(real_T));
-  raspberrypi_multicore_MPCtest_B.i_hc = 0;
-  while (raspberrypi_multicore_MPCtest_B.i_hc <= nfxd - 1) {
-    raspberrypi_multicore_MPCtest_B.ii = ((raspberrypi_multicore_MPCtest_B.i_hc *
-      25 + ia0) + raspberrypi_multicore_MPCtest_B.i_hc) - 1;
+  raspberrypi_multicore_MPCtest_B.i_ku = 0;
+  while (raspberrypi_multicore_MPCtest_B.i_ku <= nfxd - 1) {
+    raspberrypi_multicore_MPCtest_B.ii = ((raspberrypi_multicore_MPCtest_B.i_ku *
+      25 + ia0) + raspberrypi_multicore_MPCtest_B.i_ku) - 1;
     raspberrypi_multicore_MPCtest_B.mmi_tmp = b_m -
-      raspberrypi_multicore_MPCtest_B.i_hc;
-    if (raspberrypi_multicore_MPCtest_B.i_hc + 1 < b_m) {
+      raspberrypi_multicore_MPCtest_B.i_ku;
+    if (raspberrypi_multicore_MPCtest_B.i_ku + 1 < b_m) {
       raspberrypi_multicore_MPCtest_B.b_atmp =
         b_A[raspberrypi_multicore_MPCtest_B.ii];
-      tau[raspberrypi_multicore_MPCtest_B.i_hc] = 0.0;
+      tau[raspberrypi_multicore_MPCtest_B.i_ku] = 0.0;
       if (raspberrypi_multicore_MPCtest_B.mmi_tmp > 0) {
         raspberrypi_multicore_MPCtest_B.beta1 = raspberrypi_multicore_MPC_xnrm2
           (raspberrypi_multicore_MPCtest_B.mmi_tmp - 1, b_A,
@@ -6652,18 +6565,18 @@ static void raspberrypi_multicore_MPCte_qrf(real_T b_A[625], int32_T ia0,
           if (fabs(raspberrypi_multicore_MPCtest_B.beta1) <
               1.0020841800044864E-292) {
             raspberrypi_multicore_MPCtest_B.knt = -1;
-            raspberrypi_multicore_MPCtest_B.c_k_j =
+            raspberrypi_multicore_MPCtest_B.c_k_m =
               raspberrypi_multicore_MPCtest_B.ii +
               raspberrypi_multicore_MPCtest_B.mmi_tmp;
             do {
               raspberrypi_multicore_MPCtest_B.knt++;
-              raspberrypi_multicore_MPCtest_B.b_k_ku =
+              raspberrypi_multicore_MPCtest_B.b_k_nq =
                 raspberrypi_multicore_MPCtest_B.ii + 1;
-              while (raspberrypi_multicore_MPCtest_B.b_k_ku + 1 <=
-                     raspberrypi_multicore_MPCtest_B.c_k_j) {
-                b_A[raspberrypi_multicore_MPCtest_B.b_k_ku] *=
+              while (raspberrypi_multicore_MPCtest_B.b_k_nq + 1 <=
+                     raspberrypi_multicore_MPCtest_B.c_k_m) {
+                b_A[raspberrypi_multicore_MPCtest_B.b_k_nq] *=
                   9.9792015476736E+291;
-                raspberrypi_multicore_MPCtest_B.b_k_ku++;
+                raspberrypi_multicore_MPCtest_B.b_k_nq++;
               }
 
               raspberrypi_multicore_MPCtest_B.beta1 *= 9.9792015476736E+291;
@@ -6681,33 +6594,33 @@ static void raspberrypi_multicore_MPCte_qrf(real_T b_A[625], int32_T ia0,
                 -raspberrypi_multicore_MPCtest_B.beta1;
             }
 
-            tau[raspberrypi_multicore_MPCtest_B.i_hc] =
+            tau[raspberrypi_multicore_MPCtest_B.i_ku] =
               (raspberrypi_multicore_MPCtest_B.beta1 -
                raspberrypi_multicore_MPCtest_B.b_atmp) /
               raspberrypi_multicore_MPCtest_B.beta1;
             raspberrypi_multicore_MPCtest_B.b_atmp = 1.0 /
               (raspberrypi_multicore_MPCtest_B.b_atmp -
                raspberrypi_multicore_MPCtest_B.beta1);
-            raspberrypi_multicore_MPCtest_B.b_k_ku =
+            raspberrypi_multicore_MPCtest_B.b_k_nq =
               raspberrypi_multicore_MPCtest_B.ii + 1;
-            while (raspberrypi_multicore_MPCtest_B.b_k_ku + 1 <=
-                   raspberrypi_multicore_MPCtest_B.c_k_j) {
-              b_A[raspberrypi_multicore_MPCtest_B.b_k_ku] *=
+            while (raspberrypi_multicore_MPCtest_B.b_k_nq + 1 <=
+                   raspberrypi_multicore_MPCtest_B.c_k_m) {
+              b_A[raspberrypi_multicore_MPCtest_B.b_k_nq] *=
                 raspberrypi_multicore_MPCtest_B.b_atmp;
-              raspberrypi_multicore_MPCtest_B.b_k_ku++;
+              raspberrypi_multicore_MPCtest_B.b_k_nq++;
             }
 
-            raspberrypi_multicore_MPCtest_B.c_k_j = 0;
-            while (raspberrypi_multicore_MPCtest_B.c_k_j <=
+            raspberrypi_multicore_MPCtest_B.c_k_m = 0;
+            while (raspberrypi_multicore_MPCtest_B.c_k_m <=
                    raspberrypi_multicore_MPCtest_B.knt) {
               raspberrypi_multicore_MPCtest_B.beta1 *= 1.0020841800044864E-292;
-              raspberrypi_multicore_MPCtest_B.c_k_j++;
+              raspberrypi_multicore_MPCtest_B.c_k_m++;
             }
 
             raspberrypi_multicore_MPCtest_B.b_atmp =
               raspberrypi_multicore_MPCtest_B.beta1;
           } else {
-            tau[raspberrypi_multicore_MPCtest_B.i_hc] =
+            tau[raspberrypi_multicore_MPCtest_B.i_ku] =
               (raspberrypi_multicore_MPCtest_B.beta1 -
                b_A[raspberrypi_multicore_MPCtest_B.ii]) /
               raspberrypi_multicore_MPCtest_B.beta1;
@@ -6717,13 +6630,13 @@ static void raspberrypi_multicore_MPCte_qrf(real_T b_A[625], int32_T ia0,
             raspberrypi_multicore_MPCtest_B.knt =
               raspberrypi_multicore_MPCtest_B.ii +
               raspberrypi_multicore_MPCtest_B.mmi_tmp;
-            raspberrypi_multicore_MPCtest_B.c_k_j =
+            raspberrypi_multicore_MPCtest_B.c_k_m =
               raspberrypi_multicore_MPCtest_B.ii + 1;
-            while (raspberrypi_multicore_MPCtest_B.c_k_j + 1 <=
+            while (raspberrypi_multicore_MPCtest_B.c_k_m + 1 <=
                    raspberrypi_multicore_MPCtest_B.knt) {
-              b_A[raspberrypi_multicore_MPCtest_B.c_k_j] *=
+              b_A[raspberrypi_multicore_MPCtest_B.c_k_m] *=
                 raspberrypi_multicore_MPCtest_B.b_atmp;
-              raspberrypi_multicore_MPCtest_B.c_k_j++;
+              raspberrypi_multicore_MPCtest_B.c_k_m++;
             }
 
             raspberrypi_multicore_MPCtest_B.b_atmp =
@@ -6735,24 +6648,24 @@ static void raspberrypi_multicore_MPCte_qrf(real_T b_A[625], int32_T ia0,
       b_A[raspberrypi_multicore_MPCtest_B.ii] =
         raspberrypi_multicore_MPCtest_B.b_atmp;
     } else {
-      tau[raspberrypi_multicore_MPCtest_B.i_hc] = 0.0;
+      tau[raspberrypi_multicore_MPCtest_B.i_ku] = 0.0;
     }
 
-    if (raspberrypi_multicore_MPCtest_B.i_hc + 1 < n) {
+    if (raspberrypi_multicore_MPCtest_B.i_ku + 1 < n) {
       raspberrypi_multicore_MPCtest_B.b_atmp =
         b_A[raspberrypi_multicore_MPCtest_B.ii];
       b_A[raspberrypi_multicore_MPCtest_B.ii] = 1.0;
       raspberrypi_multicore_MP_xzlarf(raspberrypi_multicore_MPCtest_B.mmi_tmp,
-        (n - raspberrypi_multicore_MPCtest_B.i_hc) - 1,
+        (n - raspberrypi_multicore_MPCtest_B.i_ku) - 1,
         raspberrypi_multicore_MPCtest_B.ii + 1,
-        tau[raspberrypi_multicore_MPCtest_B.i_hc], b_A,
+        tau[raspberrypi_multicore_MPCtest_B.i_ku], b_A,
         raspberrypi_multicore_MPCtest_B.ii + 26,
         raspberrypi_multicore_MPCtest_B.work);
       b_A[raspberrypi_multicore_MPCtest_B.ii] =
         raspberrypi_multicore_MPCtest_B.b_atmp;
     }
 
-    raspberrypi_multicore_MPCtest_B.i_hc++;
+    raspberrypi_multicore_MPCtest_B.i_ku++;
   }
 }
 
@@ -6768,10 +6681,10 @@ static void raspberrypi_multicore_MP_xorgqr(int32_T b_m, int32_T n, int32_T k,
   real_T b_A[625], int32_T ia0, const real_T tau[25], int32_T itau0)
 {
   if (n >= 1) {
-    raspberrypi_multicore_MPCtest_B.i_g = k;
-    while (raspberrypi_multicore_MPCtest_B.i_g <= n - 1) {
+    raspberrypi_multicore_MPCtest_B.i_ic = k;
+    while (raspberrypi_multicore_MPCtest_B.i_ic <= n - 1) {
       raspberrypi_multicore_MPCtest_B.itau =
-        (raspberrypi_multicore_MPCtest_B.i_g * 25 + ia0) - 1;
+        (raspberrypi_multicore_MPCtest_B.i_ic * 25 + ia0) - 1;
       raspberrypi_multicore_MPCtest_B.iaii = 0;
       while (raspberrypi_multicore_MPCtest_B.iaii <= b_m - 1) {
         b_A[raspberrypi_multicore_MPCtest_B.itau +
@@ -6780,54 +6693,54 @@ static void raspberrypi_multicore_MP_xorgqr(int32_T b_m, int32_T n, int32_T k,
       }
 
       b_A[raspberrypi_multicore_MPCtest_B.itau +
-        raspberrypi_multicore_MPCtest_B.i_g] = 1.0;
-      raspberrypi_multicore_MPCtest_B.i_g++;
+        raspberrypi_multicore_MPCtest_B.i_ic] = 1.0;
+      raspberrypi_multicore_MPCtest_B.i_ic++;
     }
 
     raspberrypi_multicore_MPCtest_B.itau = (itau0 + k) - 2;
-    memset(&raspberrypi_multicore_MPCtest_B.work_m[0], 0, 25U * sizeof(real_T));
-    raspberrypi_multicore_MPCtest_B.i_g = k;
-    while (raspberrypi_multicore_MPCtest_B.i_g >= 1) {
+    memset(&raspberrypi_multicore_MPCtest_B.work_j[0], 0, 25U * sizeof(real_T));
+    raspberrypi_multicore_MPCtest_B.i_ic = k;
+    while (raspberrypi_multicore_MPCtest_B.i_ic >= 1) {
       raspberrypi_multicore_MPCtest_B.iaii =
-        (((raspberrypi_multicore_MPCtest_B.i_g - 1) * 25 + ia0) +
-         raspberrypi_multicore_MPCtest_B.i_g) - 1;
-      if (raspberrypi_multicore_MPCtest_B.i_g < n) {
+        (((raspberrypi_multicore_MPCtest_B.i_ic - 1) * 25 + ia0) +
+         raspberrypi_multicore_MPCtest_B.i_ic) - 1;
+      if (raspberrypi_multicore_MPCtest_B.i_ic < n) {
         b_A[raspberrypi_multicore_MPCtest_B.iaii - 1] = 1.0;
         raspberrypi_multicore_MP_xzlarf((b_m -
-          raspberrypi_multicore_MPCtest_B.i_g) + 1, n -
-          raspberrypi_multicore_MPCtest_B.i_g,
+          raspberrypi_multicore_MPCtest_B.i_ic) + 1, n -
+          raspberrypi_multicore_MPCtest_B.i_ic,
           raspberrypi_multicore_MPCtest_B.iaii,
           tau[raspberrypi_multicore_MPCtest_B.itau], b_A,
           raspberrypi_multicore_MPCtest_B.iaii + 25,
-          raspberrypi_multicore_MPCtest_B.work_m);
+          raspberrypi_multicore_MPCtest_B.work_j);
       }
 
-      if (raspberrypi_multicore_MPCtest_B.i_g < b_m) {
-        raspberrypi_multicore_MPCtest_B.b_h =
+      if (raspberrypi_multicore_MPCtest_B.i_ic < b_m) {
+        raspberrypi_multicore_MPCtest_B.b_l =
           (raspberrypi_multicore_MPCtest_B.iaii + b_m) -
-          raspberrypi_multicore_MPCtest_B.i_g;
-        raspberrypi_multicore_MPCtest_B.b_k_m =
+          raspberrypi_multicore_MPCtest_B.i_ic;
+        raspberrypi_multicore_MPCtest_B.b_k_k =
           raspberrypi_multicore_MPCtest_B.iaii;
-        while (raspberrypi_multicore_MPCtest_B.b_k_m + 1 <=
-               raspberrypi_multicore_MPCtest_B.b_h) {
-          b_A[raspberrypi_multicore_MPCtest_B.b_k_m] *=
+        while (raspberrypi_multicore_MPCtest_B.b_k_k + 1 <=
+               raspberrypi_multicore_MPCtest_B.b_l) {
+          b_A[raspberrypi_multicore_MPCtest_B.b_k_k] *=
             -tau[raspberrypi_multicore_MPCtest_B.itau];
-          raspberrypi_multicore_MPCtest_B.b_k_m++;
+          raspberrypi_multicore_MPCtest_B.b_k_k++;
         }
       }
 
       b_A[raspberrypi_multicore_MPCtest_B.iaii - 1] = 1.0 -
         tau[raspberrypi_multicore_MPCtest_B.itau];
-      raspberrypi_multicore_MPCtest_B.b_h = 0;
-      while (raspberrypi_multicore_MPCtest_B.b_h <=
-             raspberrypi_multicore_MPCtest_B.i_g - 2) {
+      raspberrypi_multicore_MPCtest_B.b_l = 0;
+      while (raspberrypi_multicore_MPCtest_B.b_l <=
+             raspberrypi_multicore_MPCtest_B.i_ic - 2) {
         b_A[(raspberrypi_multicore_MPCtest_B.iaii -
-             raspberrypi_multicore_MPCtest_B.b_h) - 2] = 0.0;
-        raspberrypi_multicore_MPCtest_B.b_h++;
+             raspberrypi_multicore_MPCtest_B.b_l) - 2] = 0.0;
+        raspberrypi_multicore_MPCtest_B.b_l++;
       }
 
       raspberrypi_multicore_MPCtest_B.itau--;
-      raspberrypi_multicore_MPCtest_B.i_g--;
+      raspberrypi_multicore_MPCtest_B.i_ic--;
     }
   }
 }
@@ -6841,21 +6754,21 @@ static void raspberrypi_multicore_MPCtes_qr(const real_T b_A[625], real_T Q[625]
     raspberrypi_multicore_MPCtest_B.tau);
   for (raspberrypi_multicore_MPCtest_B.j = 0; raspberrypi_multicore_MPCtest_B.j <
        25; raspberrypi_multicore_MPCtest_B.j++) {
-    raspberrypi_multicore_MPCtest_B.i_m = 0;
-    while (raspberrypi_multicore_MPCtest_B.i_m <=
+    raspberrypi_multicore_MPCtest_B.i_o = 0;
+    while (raspberrypi_multicore_MPCtest_B.i_o <=
            raspberrypi_multicore_MPCtest_B.j) {
-      R[raspberrypi_multicore_MPCtest_B.i_m + 25 *
+      R[raspberrypi_multicore_MPCtest_B.i_o + 25 *
         raspberrypi_multicore_MPCtest_B.j] =
         raspberrypi_multicore_MPCtest_B.c_A[25 *
-        raspberrypi_multicore_MPCtest_B.j + raspberrypi_multicore_MPCtest_B.i_m];
-      raspberrypi_multicore_MPCtest_B.i_m++;
+        raspberrypi_multicore_MPCtest_B.j + raspberrypi_multicore_MPCtest_B.i_o];
+      raspberrypi_multicore_MPCtest_B.i_o++;
     }
 
-    raspberrypi_multicore_MPCtest_B.i_m = raspberrypi_multicore_MPCtest_B.j + 1;
-    while (raspberrypi_multicore_MPCtest_B.i_m + 1 < 26) {
-      R[raspberrypi_multicore_MPCtest_B.i_m + 25 *
+    raspberrypi_multicore_MPCtest_B.i_o = raspberrypi_multicore_MPCtest_B.j + 1;
+    while (raspberrypi_multicore_MPCtest_B.i_o + 1 < 26) {
+      R[raspberrypi_multicore_MPCtest_B.i_o + 25 *
         raspberrypi_multicore_MPCtest_B.j] = 0.0;
-      raspberrypi_multicore_MPCtest_B.i_m++;
+      raspberrypi_multicore_MPCtest_B.i_o++;
     }
   }
 
@@ -6881,28 +6794,28 @@ static real_T raspberrypi_multicor_KWIKfactor(const real_T b_Ac[6300], const
   int16_T c_k;
   Status = 1.0;
   memset(&RLinv[0], 0, 625U * sizeof(real_T));
-  raspberrypi_multicore_MPCtest_B.i_b = 1;
-  while (raspberrypi_multicore_MPCtest_B.i_b - 1 <= nA - 1) {
-    raspberrypi_multicore_MPCtest_B.iC_n = iC[(int16_T)
-      raspberrypi_multicore_MPCtest_B.i_b - 1];
+  raspberrypi_multicore_MPCtest_B.i_k = 1;
+  while (raspberrypi_multicore_MPCtest_B.i_k - 1 <= nA - 1) {
+    raspberrypi_multicore_MPCtest_B.iC_b = iC[(int16_T)
+      raspberrypi_multicore_MPCtest_B.i_k - 1];
     for (raspberrypi_multicore_MPCtest_B.b_i = 0;
          raspberrypi_multicore_MPCtest_B.b_i < 25;
          raspberrypi_multicore_MPCtest_B.b_i++) {
       raspberrypi_multicore_MPCtest_B.c_i = raspberrypi_multicore_MPCtest_B.b_i
-        + 25 * ((int16_T)raspberrypi_multicore_MPCtest_B.i_b - 1);
+        + 25 * ((int16_T)raspberrypi_multicore_MPCtest_B.i_k - 1);
       RLinv[raspberrypi_multicore_MPCtest_B.c_i] = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.e_i_o = 0;
-           raspberrypi_multicore_MPCtest_B.e_i_o < 25;
-           raspberrypi_multicore_MPCtest_B.e_i_o++) {
+      for (raspberrypi_multicore_MPCtest_B.e_i_h = 0;
+           raspberrypi_multicore_MPCtest_B.e_i_h < 25;
+           raspberrypi_multicore_MPCtest_B.e_i_h++) {
         RLinv[raspberrypi_multicore_MPCtest_B.c_i] += b_Ac[(252 *
-          raspberrypi_multicore_MPCtest_B.e_i_o +
-          raspberrypi_multicore_MPCtest_B.iC_n) - 1] * b_Linv[25 *
-          raspberrypi_multicore_MPCtest_B.e_i_o +
+          raspberrypi_multicore_MPCtest_B.e_i_h +
+          raspberrypi_multicore_MPCtest_B.iC_b) - 1] * b_Linv[25 *
+          raspberrypi_multicore_MPCtest_B.e_i_h +
           raspberrypi_multicore_MPCtest_B.b_i];
       }
     }
 
-    raspberrypi_multicore_MPCtest_B.i_b++;
+    raspberrypi_multicore_MPCtest_B.i_k++;
   }
 
   raspberrypi_multicore_MPCtes_qr(RLinv, raspberrypi_multicore_MPCtest_B.QQ,
@@ -6922,8 +6835,8 @@ static real_T raspberrypi_multicor_KWIKfactor(const real_T b_Ac[6300], const
     } else {
       raspberrypi_multicore_MPCtest_B.c_i = 1;
       while (raspberrypi_multicore_MPCtest_B.c_i - 1 <= n - 1) {
-        raspberrypi_multicore_MPCtest_B.e_i_o = 1;
-        while (raspberrypi_multicore_MPCtest_B.e_i_o - 1 <= n - 1) {
+        raspberrypi_multicore_MPCtest_B.e_i_h = 1;
+        while (raspberrypi_multicore_MPCtest_B.e_i_h - 1 <= n - 1) {
           raspberrypi_multicore_MPCtest_B.b_Linv = 0.0;
           for (raspberrypi_multicore_MPCtest_B.b_i = 0;
                raspberrypi_multicore_MPCtest_B.b_i < 25;
@@ -6932,15 +6845,15 @@ static real_T raspberrypi_multicor_KWIKfactor(const real_T b_Ac[6300], const
               raspberrypi_multicore_MPCtest_B.c_i - 1) * 25 +
               raspberrypi_multicore_MPCtest_B.b_i] *
               raspberrypi_multicore_MPCtest_B.QQ[((int16_T)
-              raspberrypi_multicore_MPCtest_B.e_i_o - 1) * 25 +
+              raspberrypi_multicore_MPCtest_B.e_i_h - 1) * 25 +
               raspberrypi_multicore_MPCtest_B.b_i];
           }
 
           raspberrypi_multicore_MPCtest_B.TL[((int16_T)
             raspberrypi_multicore_MPCtest_B.c_i + 25 * ((int16_T)
-            raspberrypi_multicore_MPCtest_B.e_i_o - 1)) - 1] =
+            raspberrypi_multicore_MPCtest_B.e_i_h - 1)) - 1] =
             raspberrypi_multicore_MPCtest_B.b_Linv;
-          raspberrypi_multicore_MPCtest_B.e_i_o++;
+          raspberrypi_multicore_MPCtest_B.e_i_h++;
         }
 
         raspberrypi_multicore_MPCtest_B.c_i++;
@@ -6953,37 +6866,37 @@ static real_T raspberrypi_multicor_KWIKfactor(const real_T b_Ac[6300], const
           raspberrypi_multicore_MPCtest_B.b_i) - 1;
         RLinv[raspberrypi_multicore_MPCtest_B.c_i] = 1.0;
         for (c_k = b_j; c_k <= nA; c_k++) {
-          raspberrypi_multicore_MPCtest_B.e_i_o = ((c_k - 1) * 25 + b_j) - 1;
-          RLinv[raspberrypi_multicore_MPCtest_B.e_i_o] /=
+          raspberrypi_multicore_MPCtest_B.e_i_h = ((c_k - 1) * 25 + b_j) - 1;
+          RLinv[raspberrypi_multicore_MPCtest_B.e_i_h] /=
             raspberrypi_multicore_MPCtest_B.RR[raspberrypi_multicore_MPCtest_B.c_i];
         }
 
         if (b_j > 1) {
-          raspberrypi_multicore_MPCtest_B.i_b = 1;
-          while (raspberrypi_multicore_MPCtest_B.i_b - 1 <= b_j - 2) {
+          raspberrypi_multicore_MPCtest_B.i_k = 1;
+          while (raspberrypi_multicore_MPCtest_B.i_k - 1 <= b_j - 2) {
             for (c_k = b_j; c_k <= nA; c_k++) {
               raspberrypi_multicore_MPCtest_B.c_i = (c_k - 1) * 25;
-              raspberrypi_multicore_MPCtest_B.e_i_o =
+              raspberrypi_multicore_MPCtest_B.e_i_h =
                 (raspberrypi_multicore_MPCtest_B.c_i + (int16_T)
-                 raspberrypi_multicore_MPCtest_B.i_b) - 1;
-              RLinv[raspberrypi_multicore_MPCtest_B.e_i_o] -=
+                 raspberrypi_multicore_MPCtest_B.i_k) - 1;
+              RLinv[raspberrypi_multicore_MPCtest_B.e_i_h] -=
                 raspberrypi_multicore_MPCtest_B.RR
                 [(raspberrypi_multicore_MPCtest_B.b_i + (int16_T)
-                  raspberrypi_multicore_MPCtest_B.i_b) - 1] * RLinv
+                  raspberrypi_multicore_MPCtest_B.i_k) - 1] * RLinv
                 [(raspberrypi_multicore_MPCtest_B.c_i + b_j) - 1];
             }
 
-            raspberrypi_multicore_MPCtest_B.i_b++;
+            raspberrypi_multicore_MPCtest_B.i_k++;
           }
         }
       }
 
-      raspberrypi_multicore_MPCtest_B.e_i_o = 1;
-      while (raspberrypi_multicore_MPCtest_B.e_i_o - 1 <= n - 1) {
-        for (b_j = (int16_T)raspberrypi_multicore_MPCtest_B.e_i_o; b_j <= n; b_j
+      raspberrypi_multicore_MPCtest_B.e_i_h = 1;
+      while (raspberrypi_multicore_MPCtest_B.e_i_h - 1 <= n - 1) {
+        for (b_j = (int16_T)raspberrypi_multicore_MPCtest_B.e_i_h; b_j <= n; b_j
              ++) {
           raspberrypi_multicore_MPCtest_B.b_i = ((int16_T)
-            raspberrypi_multicore_MPCtest_B.e_i_o + 25 * (b_j - 1)) - 1;
+            raspberrypi_multicore_MPCtest_B.e_i_h + 25 * (b_j - 1)) - 1;
           b_H[raspberrypi_multicore_MPCtest_B.b_i] = 0.0;
           raspberrypi_multicore_MPCtest_B.c_i = nA + 1;
           if (nA + 1 > 32767) {
@@ -6996,41 +6909,41 @@ static real_T raspberrypi_multicor_KWIKfactor(const real_T b_Ac[6300], const
             b_H[raspberrypi_multicore_MPCtest_B.b_i] -=
               raspberrypi_multicore_MPCtest_B.TL
               [(raspberrypi_multicore_MPCtest_B.c_i + (int16_T)
-                raspberrypi_multicore_MPCtest_B.e_i_o) - 1] *
+                raspberrypi_multicore_MPCtest_B.e_i_h) - 1] *
               raspberrypi_multicore_MPCtest_B.TL
               [(raspberrypi_multicore_MPCtest_B.c_i + b_j) - 1];
           }
 
-          b_H[(b_j + 25 * ((int16_T)raspberrypi_multicore_MPCtest_B.e_i_o - 1))
+          b_H[(b_j + 25 * ((int16_T)raspberrypi_multicore_MPCtest_B.e_i_h - 1))
             - 1] = b_H[raspberrypi_multicore_MPCtest_B.b_i];
         }
 
-        raspberrypi_multicore_MPCtest_B.e_i_o++;
+        raspberrypi_multicore_MPCtest_B.e_i_h++;
       }
 
-      raspberrypi_multicore_MPCtest_B.e_i_o = 1;
-      while (raspberrypi_multicore_MPCtest_B.e_i_o - 1 <= nA - 1) {
-        raspberrypi_multicore_MPCtest_B.i_b = 1;
-        while (raspberrypi_multicore_MPCtest_B.i_b - 1 <= n - 1) {
+      raspberrypi_multicore_MPCtest_B.e_i_h = 1;
+      while (raspberrypi_multicore_MPCtest_B.e_i_h - 1 <= nA - 1) {
+        raspberrypi_multicore_MPCtest_B.i_k = 1;
+        while (raspberrypi_multicore_MPCtest_B.i_k - 1 <= n - 1) {
           raspberrypi_multicore_MPCtest_B.b_i = ((int16_T)
-            raspberrypi_multicore_MPCtest_B.i_b + 25 * ((int16_T)
-            raspberrypi_multicore_MPCtest_B.e_i_o - 1)) - 1;
+            raspberrypi_multicore_MPCtest_B.i_k + 25 * ((int16_T)
+            raspberrypi_multicore_MPCtest_B.e_i_h - 1)) - 1;
           b_D[raspberrypi_multicore_MPCtest_B.b_i] = 0.0;
-          for (b_j = (int16_T)raspberrypi_multicore_MPCtest_B.e_i_o; b_j <= nA;
+          for (b_j = (int16_T)raspberrypi_multicore_MPCtest_B.e_i_h; b_j <= nA;
                b_j++) {
             raspberrypi_multicore_MPCtest_B.c_i = (b_j - 1) * 25;
             b_D[raspberrypi_multicore_MPCtest_B.b_i] +=
               raspberrypi_multicore_MPCtest_B.TL
               [(raspberrypi_multicore_MPCtest_B.c_i + (int16_T)
-                raspberrypi_multicore_MPCtest_B.i_b) - 1] * RLinv
+                raspberrypi_multicore_MPCtest_B.i_k) - 1] * RLinv
               [(raspberrypi_multicore_MPCtest_B.c_i + (int16_T)
-                raspberrypi_multicore_MPCtest_B.e_i_o) - 1];
+                raspberrypi_multicore_MPCtest_B.e_i_h) - 1];
           }
 
-          raspberrypi_multicore_MPCtest_B.i_b++;
+          raspberrypi_multicore_MPCtest_B.i_k++;
         }
 
-        raspberrypi_multicore_MPCtest_B.e_i_o++;
+        raspberrypi_multicore_MPCtest_B.e_i_h++;
       }
 
       exitg1 = 1;
@@ -7109,19 +7022,19 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
   memset(&raspberrypi_multicore_MPCtest_B.r[0], 0, 25U * sizeof(real_T));
   raspberrypi_multicore_MPCtest_B.rMin = 0.0;
   cTolComputed = false;
-  for (raspberrypi_multicore_MPCtest_B.i_hz = 0;
-       raspberrypi_multicore_MPCtest_B.i_hz < 252;
-       raspberrypi_multicore_MPCtest_B.i_hz++) {
-    raspberrypi_multicore_MPCtest_B.cTol[raspberrypi_multicore_MPCtest_B.i_hz] =
+  for (raspberrypi_multicore_MPCtest_B.i_h = 0;
+       raspberrypi_multicore_MPCtest_B.i_h < 252;
+       raspberrypi_multicore_MPCtest_B.i_h++) {
+    raspberrypi_multicore_MPCtest_B.cTol[raspberrypi_multicore_MPCtest_B.i_h] =
       1.0;
-    raspberrypi_multicore_MPCtest_B.iC[raspberrypi_multicore_MPCtest_B.i_hz] = 0;
+    raspberrypi_multicore_MPCtest_B.iC[raspberrypi_multicore_MPCtest_B.i_h] = 0;
   }
 
   nA = 0;
-  for (raspberrypi_multicore_MPCtest_B.i_hz = 0;
-       raspberrypi_multicore_MPCtest_B.i_hz < 252;
-       raspberrypi_multicore_MPCtest_B.i_hz++) {
-    if (iA[raspberrypi_multicore_MPCtest_B.i_hz] == 1) {
+  for (raspberrypi_multicore_MPCtest_B.i_h = 0;
+       raspberrypi_multicore_MPCtest_B.i_h < 252;
+       raspberrypi_multicore_MPCtest_B.i_h++) {
+    if (iA[raspberrypi_multicore_MPCtest_B.i_h] == 1) {
       raspberrypi_multicore_MPCtest_B.ct = nA + 1;
       if (nA + 1 > 32767) {
         raspberrypi_multicore_MPCtest_B.ct = 32767;
@@ -7130,19 +7043,19 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
       nA = (int16_T)raspberrypi_multicore_MPCtest_B.ct;
       raspberrypi_multicore_MPCtest_B.iC[(int16_T)
         raspberrypi_multicore_MPCtest_B.ct - 1] = (int16_T)
-        (raspberrypi_multicore_MPCtest_B.i_hz + 1);
+        (raspberrypi_multicore_MPCtest_B.i_h + 1);
     }
   }
 
   guard1 = false;
   if (nA > 0) {
     memset(&raspberrypi_multicore_MPCtest_B.Opt[0], 0, 50U * sizeof(real_T));
-    for (raspberrypi_multicore_MPCtest_B.i_hz = 0;
-         raspberrypi_multicore_MPCtest_B.i_hz < 25;
-         raspberrypi_multicore_MPCtest_B.i_hz++) {
-      raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.i_hz] =
-        f[raspberrypi_multicore_MPCtest_B.i_hz];
-      raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.i_hz +
+    for (raspberrypi_multicore_MPCtest_B.i_h = 0;
+         raspberrypi_multicore_MPCtest_B.i_h < 25;
+         raspberrypi_multicore_MPCtest_B.i_h++) {
+      raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.i_h] =
+        f[raspberrypi_multicore_MPCtest_B.i_h];
+      raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.i_h +
         25] = 0.0;
     }
 
@@ -7185,93 +7098,93 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
             ColdReset = true;
           }
         } else {
-          raspberrypi_multicore_MPCtest_B.i_hz = 1;
-          while (raspberrypi_multicore_MPCtest_B.i_hz - 1 <= nA - 1) {
+          raspberrypi_multicore_MPCtest_B.i_h = 1;
+          while (raspberrypi_multicore_MPCtest_B.i_h - 1 <= nA - 1) {
             raspberrypi_multicore_MPCtest_B.ct = (int16_T)
-              raspberrypi_multicore_MPCtest_B.i_hz + 25;
-            if ((int16_T)raspberrypi_multicore_MPCtest_B.i_hz + 25 > 32767) {
+              raspberrypi_multicore_MPCtest_B.i_h + 25;
+            if ((int16_T)raspberrypi_multicore_MPCtest_B.i_h + 25 > 32767) {
               raspberrypi_multicore_MPCtest_B.ct = 32767;
             }
 
             raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.ct
               - 1] = b[raspberrypi_multicore_MPCtest_B.iC[(int16_T)
-              raspberrypi_multicore_MPCtest_B.i_hz - 1] - 1];
-            for (kNext = (int16_T)raspberrypi_multicore_MPCtest_B.i_hz; kNext <=
+              raspberrypi_multicore_MPCtest_B.i_h - 1] - 1];
+            for (kNext = (int16_T)raspberrypi_multicore_MPCtest_B.i_h; kNext <=
                  nA; kNext++) {
               raspberrypi_multicore_MPCtest_B.ct = (kNext + 25 * ((int16_T)
-                raspberrypi_multicore_MPCtest_B.i_hz - 1)) - 1;
+                raspberrypi_multicore_MPCtest_B.i_h - 1)) - 1;
               raspberrypi_multicore_MPCtest_B.U[raspberrypi_multicore_MPCtest_B.ct]
                 = 0.0;
-              raspberrypi_multicore_MPCtest_B.b_k_k = 1;
-              while (raspberrypi_multicore_MPCtest_B.b_k_k - 1 <= nA - 1) {
+              raspberrypi_multicore_MPCtest_B.b_k_n = 1;
+              while (raspberrypi_multicore_MPCtest_B.b_k_n - 1 <= nA - 1) {
                 raspberrypi_multicore_MPCtest_B.c_k = ((int16_T)
-                  raspberrypi_multicore_MPCtest_B.b_k_k - 1) * 25;
+                  raspberrypi_multicore_MPCtest_B.b_k_n - 1) * 25;
                 raspberrypi_multicore_MPCtest_B.U[raspberrypi_multicore_MPCtest_B.ct]
                   += raspberrypi_multicore_MPCtest_B.RLinv
                   [(raspberrypi_multicore_MPCtest_B.c_k + kNext) - 1] *
                   raspberrypi_multicore_MPCtest_B.RLinv
                   [(raspberrypi_multicore_MPCtest_B.c_k + (int16_T)
-                    raspberrypi_multicore_MPCtest_B.i_hz) - 1];
-                raspberrypi_multicore_MPCtest_B.b_k_k++;
+                    raspberrypi_multicore_MPCtest_B.i_h) - 1];
+                raspberrypi_multicore_MPCtest_B.b_k_n++;
               }
 
               raspberrypi_multicore_MPCtest_B.U[((int16_T)
-                raspberrypi_multicore_MPCtest_B.i_hz + 25 * (kNext - 1)) - 1] =
+                raspberrypi_multicore_MPCtest_B.i_h + 25 * (kNext - 1)) - 1] =
                 raspberrypi_multicore_MPCtest_B.U[raspberrypi_multicore_MPCtest_B.ct];
             }
 
-            raspberrypi_multicore_MPCtest_B.i_hz++;
+            raspberrypi_multicore_MPCtest_B.i_h++;
           }
 
-          for (raspberrypi_multicore_MPCtest_B.i_hz = 0;
-               raspberrypi_multicore_MPCtest_B.i_hz < 25;
-               raspberrypi_multicore_MPCtest_B.i_hz++) {
+          for (raspberrypi_multicore_MPCtest_B.i_h = 0;
+               raspberrypi_multicore_MPCtest_B.i_h < 25;
+               raspberrypi_multicore_MPCtest_B.i_h++) {
             raspberrypi_multicore_MPCtest_B.Xnorm0 = 0.0;
             for (raspberrypi_multicore_MPCtest_B.ct = 0;
                  raspberrypi_multicore_MPCtest_B.ct < 25;
                  raspberrypi_multicore_MPCtest_B.ct++) {
               raspberrypi_multicore_MPCtest_B.Xnorm0 +=
-                raspberrypi_multicore_MPCtest_B.b_H[raspberrypi_multicore_MPCtest_B.i_hz
+                raspberrypi_multicore_MPCtest_B.b_H[raspberrypi_multicore_MPCtest_B.i_h
                 + 25 * raspberrypi_multicore_MPCtest_B.ct] *
                 raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.ct];
             }
 
-            raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.i_hz]
+            raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.i_h]
               = raspberrypi_multicore_MPCtest_B.Xnorm0;
-            raspberrypi_multicore_MPCtest_B.b_k_k = 1;
-            while (raspberrypi_multicore_MPCtest_B.b_k_k - 1 <= nA - 1) {
+            raspberrypi_multicore_MPCtest_B.b_k_n = 1;
+            while (raspberrypi_multicore_MPCtest_B.b_k_n - 1 <= nA - 1) {
               raspberrypi_multicore_MPCtest_B.ct = (int16_T)
-                raspberrypi_multicore_MPCtest_B.b_k_k + 25;
-              if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_k + 25 > 32767) {
+                raspberrypi_multicore_MPCtest_B.b_k_n + 25;
+              if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_n + 25 > 32767) {
                 raspberrypi_multicore_MPCtest_B.ct = 32767;
               }
 
-              raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.i_hz]
+              raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.i_h]
                 += raspberrypi_multicore_MPCtest_B.b_D[((int16_T)
-                raspberrypi_multicore_MPCtest_B.b_k_k - 1) * 25 +
-                raspberrypi_multicore_MPCtest_B.i_hz] *
+                raspberrypi_multicore_MPCtest_B.b_k_n - 1) * 25 +
+                raspberrypi_multicore_MPCtest_B.i_h] *
                 raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.ct
                 - 1];
-              raspberrypi_multicore_MPCtest_B.b_k_k++;
+              raspberrypi_multicore_MPCtest_B.b_k_n++;
             }
           }
 
-          raspberrypi_multicore_MPCtest_B.b_k_k = 1;
-          while (raspberrypi_multicore_MPCtest_B.b_k_k - 1 <= nA - 1) {
+          raspberrypi_multicore_MPCtest_B.b_k_n = 1;
+          while (raspberrypi_multicore_MPCtest_B.b_k_n - 1 <= nA - 1) {
             raspberrypi_multicore_MPCtest_B.Xnorm0 = 0.0;
             for (raspberrypi_multicore_MPCtest_B.ct = 0;
                  raspberrypi_multicore_MPCtest_B.ct < 25;
                  raspberrypi_multicore_MPCtest_B.ct++) {
               raspberrypi_multicore_MPCtest_B.Xnorm0 +=
                 raspberrypi_multicore_MPCtest_B.b_D[((int16_T)
-                raspberrypi_multicore_MPCtest_B.b_k_k - 1) * 25 +
+                raspberrypi_multicore_MPCtest_B.b_k_n - 1) * 25 +
                 raspberrypi_multicore_MPCtest_B.ct] *
                 raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.ct];
             }
 
             raspberrypi_multicore_MPCtest_B.ct = (int16_T)
-              raspberrypi_multicore_MPCtest_B.b_k_k + 25;
-            if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_k + 25 > 32767) {
+              raspberrypi_multicore_MPCtest_B.b_k_n + 25;
+            if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_n + 25 > 32767) {
               raspberrypi_multicore_MPCtest_B.ct = 32767;
             }
 
@@ -7280,15 +7193,15 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
             raspberrypi_multicore_MPCtest_B.c_k = 1;
             while (raspberrypi_multicore_MPCtest_B.c_k - 1 <= nA - 1) {
               raspberrypi_multicore_MPCtest_B.ct = (int16_T)
-                raspberrypi_multicore_MPCtest_B.b_k_k + 25;
-              if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_k + 25 > 32767) {
+                raspberrypi_multicore_MPCtest_B.b_k_n + 25;
+              if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_n + 25 > 32767) {
                 raspberrypi_multicore_MPCtest_B.ct = 32767;
               }
 
-              raspberrypi_multicore_MPCtest_B.i_hz = (int16_T)
-                raspberrypi_multicore_MPCtest_B.b_k_k + 25;
-              if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_k + 25 > 32767) {
-                raspberrypi_multicore_MPCtest_B.i_hz = 32767;
+              raspberrypi_multicore_MPCtest_B.i_h = (int16_T)
+                raspberrypi_multicore_MPCtest_B.b_k_n + 25;
+              if ((int16_T)raspberrypi_multicore_MPCtest_B.b_k_n + 25 > 32767) {
+                raspberrypi_multicore_MPCtest_B.i_h = 32767;
               }
 
               raspberrypi_multicore_MPCtest_B.i2 = (int16_T)
@@ -7300,44 +7213,44 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
               raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.ct
                 - 1] = raspberrypi_multicore_MPCtest_B.U[(((int16_T)
                 raspberrypi_multicore_MPCtest_B.c_k - 1) * 25 + (int16_T)
-                raspberrypi_multicore_MPCtest_B.b_k_k) - 1] *
+                raspberrypi_multicore_MPCtest_B.b_k_n) - 1] *
                 raspberrypi_multicore_MPCtest_B.Rhs[raspberrypi_multicore_MPCtest_B.i2
                 - 1] +
-                raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.i_hz
+                raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.i_h
                 - 1];
               raspberrypi_multicore_MPCtest_B.c_k++;
             }
 
-            raspberrypi_multicore_MPCtest_B.b_k_k++;
+            raspberrypi_multicore_MPCtest_B.b_k_n++;
           }
 
           raspberrypi_multicore_MPCtest_B.Xnorm0 = -1.0E-12;
           kDrop = 0;
-          raspberrypi_multicore_MPCtest_B.i_hz = 1;
-          while (raspberrypi_multicore_MPCtest_B.i_hz - 1 <= nA - 1) {
+          raspberrypi_multicore_MPCtest_B.i_h = 1;
+          while (raspberrypi_multicore_MPCtest_B.i_h - 1 <= nA - 1) {
             raspberrypi_multicore_MPCtest_B.ct = (int16_T)
-              raspberrypi_multicore_MPCtest_B.i_hz + 25;
-            if ((int16_T)raspberrypi_multicore_MPCtest_B.i_hz + 25 > 32767) {
+              raspberrypi_multicore_MPCtest_B.i_h + 25;
+            if ((int16_T)raspberrypi_multicore_MPCtest_B.i_h + 25 > 32767) {
               raspberrypi_multicore_MPCtest_B.ct = 32767;
             }
 
             lambda[raspberrypi_multicore_MPCtest_B.iC[(int16_T)
-              raspberrypi_multicore_MPCtest_B.i_hz - 1] - 1] =
+              raspberrypi_multicore_MPCtest_B.i_h - 1] - 1] =
               raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.ct
               - 1];
             raspberrypi_multicore_MPCtest_B.ct = (int16_T)
-              raspberrypi_multicore_MPCtest_B.i_hz + 25;
-            if ((int16_T)raspberrypi_multicore_MPCtest_B.i_hz + 25 > 32767) {
+              raspberrypi_multicore_MPCtest_B.i_h + 25;
+            if ((int16_T)raspberrypi_multicore_MPCtest_B.i_h + 25 > 32767) {
               raspberrypi_multicore_MPCtest_B.ct = 32767;
             }
 
             if ((raspberrypi_multicore_MPCtest_B.Opt[raspberrypi_multicore_MPCtest_B.ct
                  - 1] < raspberrypi_multicore_MPCtest_B.Xnorm0) && ((int16_T)
-                 raspberrypi_multicore_MPCtest_B.i_hz <= nA)) {
-              kDrop = (int16_T)raspberrypi_multicore_MPCtest_B.i_hz;
+                 raspberrypi_multicore_MPCtest_B.i_h <= nA)) {
+              kDrop = (int16_T)raspberrypi_multicore_MPCtest_B.i_h;
               raspberrypi_multicore_MPCtest_B.ct = (int16_T)
-                raspberrypi_multicore_MPCtest_B.i_hz + 25;
-              if ((int16_T)raspberrypi_multicore_MPCtest_B.i_hz + 25 > 32767) {
+                raspberrypi_multicore_MPCtest_B.i_h + 25;
+              if ((int16_T)raspberrypi_multicore_MPCtest_B.i_h + 25 > 32767) {
                 raspberrypi_multicore_MPCtest_B.ct = 32767;
               }
 
@@ -7346,7 +7259,7 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
                 - 1];
             }
 
-            raspberrypi_multicore_MPCtest_B.i_hz++;
+            raspberrypi_multicore_MPCtest_B.i_h++;
           }
 
           if (kDrop <= 0) {
@@ -7392,17 +7305,17 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
     while ((!exitg2) && ((int32_T)*status <= maxiter)) {
       raspberrypi_multicore_MPCtest_B.cMin = -FeasTol;
       kNext = 0;
-      for (raspberrypi_multicore_MPCtest_B.i_hz = 0;
-           raspberrypi_multicore_MPCtest_B.i_hz < 252;
-           raspberrypi_multicore_MPCtest_B.i_hz++) {
+      for (raspberrypi_multicore_MPCtest_B.i_h = 0;
+           raspberrypi_multicore_MPCtest_B.i_h < 252;
+           raspberrypi_multicore_MPCtest_B.i_h++) {
         raspberrypi_multicore_MPCtest_B.zTa =
-          raspberrypi_multicore_MPCtest_B.cTol[raspberrypi_multicore_MPCtest_B.i_hz];
+          raspberrypi_multicore_MPCtest_B.cTol[raspberrypi_multicore_MPCtest_B.i_h];
         if (!cTolComputed) {
           for (raspberrypi_multicore_MPCtest_B.ct = 0;
                raspberrypi_multicore_MPCtest_B.ct < 25;
                raspberrypi_multicore_MPCtest_B.ct++) {
             raspberrypi_multicore_MPCtest_B.b_Ac[raspberrypi_multicore_MPCtest_B.ct]
-              = b_Ac[raspberrypi_multicore_MPCtest_B.i_hz + 252 *
+              = b_Ac[raspberrypi_multicore_MPCtest_B.i_h + 252 *
               raspberrypi_multicore_MPCtest_B.ct] *
               x[raspberrypi_multicore_MPCtest_B.ct];
           }
@@ -7419,30 +7332,30 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
           }
         }
 
-        if (iA[raspberrypi_multicore_MPCtest_B.i_hz] == 0) {
+        if (iA[raspberrypi_multicore_MPCtest_B.i_h] == 0) {
           raspberrypi_multicore_MPCtest_B.cVal = 0.0;
           for (raspberrypi_multicore_MPCtest_B.ct = 0;
                raspberrypi_multicore_MPCtest_B.ct < 25;
                raspberrypi_multicore_MPCtest_B.ct++) {
             raspberrypi_multicore_MPCtest_B.cVal +=
-              b_Ac[raspberrypi_multicore_MPCtest_B.i_hz + 252 *
+              b_Ac[raspberrypi_multicore_MPCtest_B.i_h + 252 *
               raspberrypi_multicore_MPCtest_B.ct] *
               x[raspberrypi_multicore_MPCtest_B.ct];
           }
 
           raspberrypi_multicore_MPCtest_B.cVal =
             (raspberrypi_multicore_MPCtest_B.cVal -
-             b[raspberrypi_multicore_MPCtest_B.i_hz]) /
+             b[raspberrypi_multicore_MPCtest_B.i_h]) /
             raspberrypi_multicore_MPCtest_B.zTa;
           if (raspberrypi_multicore_MPCtest_B.cVal <
               raspberrypi_multicore_MPCtest_B.cMin) {
             raspberrypi_multicore_MPCtest_B.cMin =
               raspberrypi_multicore_MPCtest_B.cVal;
-            kNext = (int16_T)(raspberrypi_multicore_MPCtest_B.i_hz + 1);
+            kNext = (int16_T)(raspberrypi_multicore_MPCtest_B.i_h + 1);
           }
         }
 
-        raspberrypi_multicore_MPCtest_B.cTol[raspberrypi_multicore_MPCtest_B.i_hz]
+        raspberrypi_multicore_MPCtest_B.cTol[raspberrypi_multicore_MPCtest_B.i_h]
           = raspberrypi_multicore_MPCtest_B.zTa;
       }
 
@@ -7463,12 +7376,12 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
                    raspberrypi_multicore_MPCtest_B.ct++) {
                 raspberrypi_multicore_MPCtest_B.z[raspberrypi_multicore_MPCtest_B.ct]
                   = 0.0;
-                for (raspberrypi_multicore_MPCtest_B.i_hz = 0;
-                     raspberrypi_multicore_MPCtest_B.i_hz < 25;
-                     raspberrypi_multicore_MPCtest_B.i_hz++) {
+                for (raspberrypi_multicore_MPCtest_B.i_h = 0;
+                     raspberrypi_multicore_MPCtest_B.i_h < 25;
+                     raspberrypi_multicore_MPCtest_B.i_h++) {
                   raspberrypi_multicore_MPCtest_B.z[raspberrypi_multicore_MPCtest_B.ct]
-                    += b_Ac[(252 * raspberrypi_multicore_MPCtest_B.i_hz + kNext)
-                    - 1] * b_Hinv[25 * raspberrypi_multicore_MPCtest_B.i_hz +
+                    += b_Ac[(252 * raspberrypi_multicore_MPCtest_B.i_h + kNext)
+                    - 1] * b_Hinv[25 * raspberrypi_multicore_MPCtest_B.i_h +
                     raspberrypi_multicore_MPCtest_B.ct];
                 }
               }
@@ -7498,19 +7411,19 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
                      raspberrypi_multicore_MPCtest_B.ct++) {
                   raspberrypi_multicore_MPCtest_B.z[raspberrypi_multicore_MPCtest_B.ct]
                     = 0.0;
-                  for (raspberrypi_multicore_MPCtest_B.i_hz = 0;
-                       raspberrypi_multicore_MPCtest_B.i_hz < 25;
-                       raspberrypi_multicore_MPCtest_B.i_hz++) {
+                  for (raspberrypi_multicore_MPCtest_B.i_h = 0;
+                       raspberrypi_multicore_MPCtest_B.i_h < 25;
+                       raspberrypi_multicore_MPCtest_B.i_h++) {
                     raspberrypi_multicore_MPCtest_B.z[raspberrypi_multicore_MPCtest_B.ct]
-                      += b_Ac[(252 * raspberrypi_multicore_MPCtest_B.i_hz +
-                               kNext) - 1] * raspberrypi_multicore_MPCtest_B.U
-                      [25 * raspberrypi_multicore_MPCtest_B.i_hz +
+                      += b_Ac[(252 * raspberrypi_multicore_MPCtest_B.i_h + kNext)
+                      - 1] * raspberrypi_multicore_MPCtest_B.U[25 *
+                      raspberrypi_multicore_MPCtest_B.i_h +
                       raspberrypi_multicore_MPCtest_B.ct];
                   }
                 }
 
-                raspberrypi_multicore_MPCtest_B.i_hz = 1;
-                while (raspberrypi_multicore_MPCtest_B.i_hz - 1 <= nA - 1) {
+                raspberrypi_multicore_MPCtest_B.i_h = 1;
+                while (raspberrypi_multicore_MPCtest_B.i_h - 1 <= nA - 1) {
                   raspberrypi_multicore_MPCtest_B.cVal = 0.0;
                   for (raspberrypi_multicore_MPCtest_B.ct = 0;
                        raspberrypi_multicore_MPCtest_B.ct < 25;
@@ -7518,14 +7431,14 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
                     raspberrypi_multicore_MPCtest_B.cVal += b_Ac[(252 *
                       raspberrypi_multicore_MPCtest_B.ct + kNext) - 1] *
                       raspberrypi_multicore_MPCtest_B.b_D[((int16_T)
-                      raspberrypi_multicore_MPCtest_B.i_hz - 1) * 25 +
+                      raspberrypi_multicore_MPCtest_B.i_h - 1) * 25 +
                       raspberrypi_multicore_MPCtest_B.ct];
                   }
 
                   raspberrypi_multicore_MPCtest_B.r[(int16_T)
-                    raspberrypi_multicore_MPCtest_B.i_hz - 1] =
+                    raspberrypi_multicore_MPCtest_B.i_h - 1] =
                     raspberrypi_multicore_MPCtest_B.cVal;
-                  raspberrypi_multicore_MPCtest_B.i_hz++;
+                  raspberrypi_multicore_MPCtest_B.i_h++;
                 }
 
                 guard2 = true;
@@ -7634,17 +7547,16 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
 
                 raspberrypi_multicore_MPCtest_B.ct = 1;
                 while (raspberrypi_multicore_MPCtest_B.ct - 1 <= nA - 1) {
-                  raspberrypi_multicore_MPCtest_B.i_hz =
+                  raspberrypi_multicore_MPCtest_B.i_h =
                     raspberrypi_multicore_MPCtest_B.iC[(int16_T)
                     raspberrypi_multicore_MPCtest_B.ct - 1];
-                  lambda[raspberrypi_multicore_MPCtest_B.i_hz - 1] -=
+                  lambda[raspberrypi_multicore_MPCtest_B.i_h - 1] -=
                     raspberrypi_multicore_MPCtest_B.r[(int16_T)
                     raspberrypi_multicore_MPCtest_B.ct - 1] *
                     raspberrypi_multicore_MPCtest_B.cVal;
-                  if ((raspberrypi_multicore_MPCtest_B.i_hz <= 252) &&
-                      (lambda[raspberrypi_multicore_MPCtest_B.i_hz - 1] < 0.0))
-                  {
-                    lambda[raspberrypi_multicore_MPCtest_B.i_hz - 1] = 0.0;
+                  if ((raspberrypi_multicore_MPCtest_B.i_h <= 252) &&
+                      (lambda[raspberrypi_multicore_MPCtest_B.i_h - 1] < 0.0)) {
+                    lambda[raspberrypi_multicore_MPCtest_B.i_h - 1] = 0.0;
                   }
 
                   raspberrypi_multicore_MPCtest_B.ct++;
@@ -7714,9 +7626,9 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
               raspberrypi_multicore_MPCtest_B.Xnorm0 =
                 raspberrypi_multicore_MPCtest_B.cMin;
               raspberrypi_multicore_MPC_abs_d(b,
-                raspberrypi_multicore_MPCtest_B.dv7);
+                raspberrypi_multicore_MPCtest_B.dv11);
               raspberrypi_multicore__maximum2
-                (raspberrypi_multicore_MPCtest_B.dv7, 1.0,
+                (raspberrypi_multicore_MPCtest_B.dv11, 1.0,
                  raspberrypi_multicore_MPCtest_B.cTol);
               cTolComputed = false;
             }
@@ -7736,21 +7648,21 @@ static void raspberrypi_multicore_MP_qpkwik(const real_T b_Linv[625], const
 /* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
 static void raspberrypi_multico_mpc_solveQP(const real_T xQP[13], const real_T
   b_Kx[312], const real_T b_Kr[1872], const real_T rseq[78], const real_T b_Ku1
-  [288], const real_T old_u[12], const real_T b_Kv[1176], const real_T vseq[49],
+  [288], const real_T old_u[12], const real_T b_Kv[2184], const real_T vseq[91],
   const real_T b_Kut[1728], const real_T b_utarget[72], const real_T b_Linv[625],
   const real_T b_Hinv[625], const real_T b_Ac[6300], const real_T Bc[252],
   boolean_T iA[252], real_T zopt[25], real_T f[25], real_T *status)
 {
   memset(&f[0], 0, 25U * sizeof(real_T));
-  for (raspberrypi_multicore_MPCtest_B.i_h = 0;
-       raspberrypi_multicore_MPCtest_B.i_h < 24;
-       raspberrypi_multicore_MPCtest_B.i_h++) {
+  for (raspberrypi_multicore_MPCtest_B.i_c = 0;
+       raspberrypi_multicore_MPCtest_B.i_c < 24;
+       raspberrypi_multicore_MPCtest_B.i_c++) {
     raspberrypi_multicore_MPCtest_B.b_Kx = 0.0;
     for (raspberrypi_multicore_MPCtest_B.i1 = 0;
          raspberrypi_multicore_MPCtest_B.i1 < 13;
          raspberrypi_multicore_MPCtest_B.i1++) {
       raspberrypi_multicore_MPCtest_B.b_Kx += b_Kx[13 *
-        raspberrypi_multicore_MPCtest_B.i_h + raspberrypi_multicore_MPCtest_B.i1]
+        raspberrypi_multicore_MPCtest_B.i_c + raspberrypi_multicore_MPCtest_B.i1]
         * xQP[raspberrypi_multicore_MPCtest_B.i1];
     }
 
@@ -7759,7 +7671,7 @@ static void raspberrypi_multico_mpc_solveQP(const real_T xQP[13], const real_T
          raspberrypi_multicore_MPCtest_B.i1 < 78;
          raspberrypi_multicore_MPCtest_B.i1++) {
       raspberrypi_multicore_MPCtest_B.b_Kr += b_Kr[78 *
-        raspberrypi_multicore_MPCtest_B.i_h + raspberrypi_multicore_MPCtest_B.i1]
+        raspberrypi_multicore_MPCtest_B.i_c + raspberrypi_multicore_MPCtest_B.i1]
         * rseq[raspberrypi_multicore_MPCtest_B.i1];
     }
 
@@ -7768,16 +7680,16 @@ static void raspberrypi_multico_mpc_solveQP(const real_T xQP[13], const real_T
          raspberrypi_multicore_MPCtest_B.i1 < 12;
          raspberrypi_multicore_MPCtest_B.i1++) {
       raspberrypi_multicore_MPCtest_B.b_Ku1 += b_Ku1[12 *
-        raspberrypi_multicore_MPCtest_B.i_h + raspberrypi_multicore_MPCtest_B.i1]
+        raspberrypi_multicore_MPCtest_B.i_c + raspberrypi_multicore_MPCtest_B.i1]
         * old_u[raspberrypi_multicore_MPCtest_B.i1];
     }
 
     raspberrypi_multicore_MPCtest_B.b_Kv = 0.0;
     for (raspberrypi_multicore_MPCtest_B.i1 = 0;
-         raspberrypi_multicore_MPCtest_B.i1 < 49;
+         raspberrypi_multicore_MPCtest_B.i1 < 91;
          raspberrypi_multicore_MPCtest_B.i1++) {
-      raspberrypi_multicore_MPCtest_B.b_Kv += b_Kv[49 *
-        raspberrypi_multicore_MPCtest_B.i_h + raspberrypi_multicore_MPCtest_B.i1]
+      raspberrypi_multicore_MPCtest_B.b_Kv += b_Kv[91 *
+        raspberrypi_multicore_MPCtest_B.i_c + raspberrypi_multicore_MPCtest_B.i1]
         * vseq[raspberrypi_multicore_MPCtest_B.i1];
     }
 
@@ -7786,11 +7698,11 @@ static void raspberrypi_multico_mpc_solveQP(const real_T xQP[13], const real_T
          raspberrypi_multicore_MPCtest_B.i1 < 72;
          raspberrypi_multicore_MPCtest_B.i1++) {
       raspberrypi_multicore_MPCtest_B.b_Kut += b_Kut[72 *
-        raspberrypi_multicore_MPCtest_B.i_h + raspberrypi_multicore_MPCtest_B.i1]
+        raspberrypi_multicore_MPCtest_B.i_c + raspberrypi_multicore_MPCtest_B.i1]
         * b_utarget[raspberrypi_multicore_MPCtest_B.i1];
     }
 
-    f[raspberrypi_multicore_MPCtest_B.i_h] =
+    f[raspberrypi_multicore_MPCtest_B.i_c] =
       (((raspberrypi_multicore_MPCtest_B.b_Kx +
          raspberrypi_multicore_MPCtest_B.b_Kr) +
         raspberrypi_multicore_MPCtest_B.b_Ku1) +
@@ -7798,21 +7710,21 @@ static void raspberrypi_multico_mpc_solveQP(const real_T xQP[13], const real_T
       raspberrypi_multicore_MPCtest_B.b_Kut;
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_h = 0;
-       raspberrypi_multicore_MPCtest_B.i_h < 252;
-       raspberrypi_multicore_MPCtest_B.i_h++) {
-    raspberrypi_multicore_MPCtest_B.iAnew[raspberrypi_multicore_MPCtest_B.i_h] =
-      iA[raspberrypi_multicore_MPCtest_B.i_h];
+  for (raspberrypi_multicore_MPCtest_B.i_c = 0;
+       raspberrypi_multicore_MPCtest_B.i_c < 252;
+       raspberrypi_multicore_MPCtest_B.i_c++) {
+    raspberrypi_multicore_MPCtest_B.iAnew[raspberrypi_multicore_MPCtest_B.i_c] =
+      iA[raspberrypi_multicore_MPCtest_B.i_c];
   }
 
   raspberrypi_multicore_MP_qpkwik(b_Linv, b_Hinv, f, b_Ac, Bc,
-    raspberrypi_multicore_MPCtest_B.iAnew, 30, 1.0E-6, zopt,
+    raspberrypi_multicore_MPCtest_B.iAnew, 20, 1.0E-6, zopt,
     raspberrypi_multicore_MPCtest_B.a__1, status);
-  for (raspberrypi_multicore_MPCtest_B.i_h = 0;
-       raspberrypi_multicore_MPCtest_B.i_h < 252;
-       raspberrypi_multicore_MPCtest_B.i_h++) {
-    iA[raspberrypi_multicore_MPCtest_B.i_h] =
-      (raspberrypi_multicore_MPCtest_B.iAnew[raspberrypi_multicore_MPCtest_B.i_h]
+  for (raspberrypi_multicore_MPCtest_B.i_c = 0;
+       raspberrypi_multicore_MPCtest_B.i_c < 252;
+       raspberrypi_multicore_MPCtest_B.i_c++) {
+    iA[raspberrypi_multicore_MPCtest_B.i_c] =
+      (raspberrypi_multicore_MPCtest_B.iAnew[raspberrypi_multicore_MPCtest_B.i_c]
        != 0);
   }
 
@@ -7899,16 +7811,16 @@ static void raspberrypi_multic_mpc_clipping(const real_T uk[12], const real_T
 
 /* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
 static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
-  vseq[49], real_T switch_in, const real_T x[13], const real_T old_u[12], const
+  vseq[91], real_T switch_in, const real_T x[13], const real_T old_u[12], const
   boolean_T iA[252], real_T b_Mlim[252], real_T b_Mx[3276], real_T b_Mu1[3024],
-  real_T b_Mv[12348], const real_T b_utarget[72], const real_T b_uoff[12], const
-  real_T b_voff[6], const real_T b_yoff[13], real_T b_enable_value, real_T b_H
+  real_T b_Mv[22932], const real_T b_utarget[72], const real_T b_uoff[12], const
+  real_T b_voff[12], const real_T b_yoff[13], real_T b_enable_value, real_T b_H
   [625], real_T b_Ac[6300], const real_T b_Wy[78], const real_T b_Wdu[12], const
   real_T b_Jm[1728], const real_T b_Wu[12], const real_T b_I1[864], const real_T
-  b_A[169], const real_T Bu[1092], const real_T Bv[637], const real_T b_C[169],
-  const real_T Dv[637], const real_T b_Mrows[28], const real_T b_Ecc[384], const
-  real_T b_Fcc[416], const real_T b_Scc[192], const real_T b_Gcc[32], real_T u
-  [12], real_T useq[84], real_T *status, boolean_T iAout[252])
+  b_A[169], const real_T Bu[1092], const real_T Bv[1183], const real_T b_C[169],
+  const real_T Dv[1183], const real_T b_Mrows[28], const real_T b_Ecc[384],
+  const real_T b_Fcc[416], const real_T b_Scc[384], const real_T b_Gcc[32],
+  real_T u[12], real_T useq[84], real_T *status, boolean_T iAout[252])
 {
   static const real_T c[36] = { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0,
     1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0,
@@ -7918,18 +7830,18 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
   *status = 1.0;
   memset(&iAout[0], 0, 252U * sizeof(boolean_T));
   if (switch_in != b_enable_value) {
-    for (raspberrypi_multicore_MPCtest_B.i_c = 0;
-         raspberrypi_multicore_MPCtest_B.i_c < 12;
-         raspberrypi_multicore_MPCtest_B.i_c++) {
-      u[raspberrypi_multicore_MPCtest_B.i_c] =
-        old_u[raspberrypi_multicore_MPCtest_B.i_c] +
-        b_uoff[raspberrypi_multicore_MPCtest_B.i_c];
+    for (raspberrypi_multicore_MPCtest_B.i_i = 0;
+         raspberrypi_multicore_MPCtest_B.i_i < 12;
+         raspberrypi_multicore_MPCtest_B.i_i++) {
+      u[raspberrypi_multicore_MPCtest_B.i_i] =
+        old_u[raspberrypi_multicore_MPCtest_B.i_i] +
+        b_uoff[raspberrypi_multicore_MPCtest_B.i_i];
       for (raspberrypi_multicore_MPCtest_B.k = 0;
            raspberrypi_multicore_MPCtest_B.k < 7;
            raspberrypi_multicore_MPCtest_B.k++) {
         useq[raspberrypi_multicore_MPCtest_B.k + 7 *
-          raspberrypi_multicore_MPCtest_B.i_c] =
-          u[raspberrypi_multicore_MPCtest_B.i_c];
+          raspberrypi_multicore_MPCtest_B.i_i] =
+          u[raspberrypi_multicore_MPCtest_B.i_i];
       }
     }
   } else {
@@ -7939,16 +7851,16 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
       raspberrypi_multicore_MPCtest_B.c_Su1,
       raspberrypi_multicore_MPCtest_B.c_Hv);
     if (b_Mrows[0] > 0.0) {
-      raspberrypi_multicore_MPCtest_B.i_c = 0;
+      raspberrypi_multicore_MPCtest_B.i_i = 0;
       exitg1 = false;
-      while ((!exitg1) && (raspberrypi_multicore_MPCtest_B.i_c < 28)) {
-        if (b_Mrows[raspberrypi_multicore_MPCtest_B.i_c] <= 78.0) {
+      while ((!exitg1) && (raspberrypi_multicore_MPCtest_B.i_i < 28)) {
+        if (b_Mrows[raspberrypi_multicore_MPCtest_B.i_i] <= 78.0) {
           raspberrypi_multicore_MPCtest_B.e_i = (int32_T)
-            b_Mrows[raspberrypi_multicore_MPCtest_B.i_c];
+            b_Mrows[raspberrypi_multicore_MPCtest_B.i_i];
           for (raspberrypi_multicore_MPCtest_B.k = 0;
                raspberrypi_multicore_MPCtest_B.k < 24;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Ac[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Ac[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               -raspberrypi_multicore_MPCtest_B.c_SuJm[(78 *
               raspberrypi_multicore_MPCtest_B.k +
@@ -7958,7 +7870,7 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
           for (raspberrypi_multicore_MPCtest_B.k = 0;
                raspberrypi_multicore_MPCtest_B.k < 13;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Mx[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Mx[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               -raspberrypi_multicore_MPCtest_B.c_Sx[(78 *
               raspberrypi_multicore_MPCtest_B.k +
@@ -7968,7 +7880,7 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
           for (raspberrypi_multicore_MPCtest_B.k = 0;
                raspberrypi_multicore_MPCtest_B.k < 12;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Mu1[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Mu1[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               -raspberrypi_multicore_MPCtest_B.c_Su1[(78 *
               raspberrypi_multicore_MPCtest_B.k +
@@ -7976,23 +7888,23 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
           }
 
           for (raspberrypi_multicore_MPCtest_B.k = 0;
-               raspberrypi_multicore_MPCtest_B.k < 49;
+               raspberrypi_multicore_MPCtest_B.k < 91;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Mv[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Mv[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               -raspberrypi_multicore_MPCtest_B.c_Hv[(78 *
               raspberrypi_multicore_MPCtest_B.k +
               raspberrypi_multicore_MPCtest_B.e_i) - 1];
           }
 
-          raspberrypi_multicore_MPCtest_B.i_c++;
-        } else if (b_Mrows[raspberrypi_multicore_MPCtest_B.i_c] <= 156.0) {
+          raspberrypi_multicore_MPCtest_B.i_i++;
+        } else if (b_Mrows[raspberrypi_multicore_MPCtest_B.i_i] <= 156.0) {
           raspberrypi_multicore_MPCtest_B.e_i = (int32_T)
-            (b_Mrows[raspberrypi_multicore_MPCtest_B.i_c] - 78.0);
+            (b_Mrows[raspberrypi_multicore_MPCtest_B.i_i] - 78.0);
           for (raspberrypi_multicore_MPCtest_B.k = 0;
                raspberrypi_multicore_MPCtest_B.k < 24;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Ac[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Ac[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               raspberrypi_multicore_MPCtest_B.c_SuJm[(78 *
               raspberrypi_multicore_MPCtest_B.k +
@@ -8002,7 +7914,7 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
           for (raspberrypi_multicore_MPCtest_B.k = 0;
                raspberrypi_multicore_MPCtest_B.k < 13;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Mx[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Mx[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               raspberrypi_multicore_MPCtest_B.c_Sx[(78 *
               raspberrypi_multicore_MPCtest_B.k +
@@ -8012,7 +7924,7 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
           for (raspberrypi_multicore_MPCtest_B.k = 0;
                raspberrypi_multicore_MPCtest_B.k < 12;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Mu1[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Mu1[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               raspberrypi_multicore_MPCtest_B.c_Su1[(78 *
               raspberrypi_multicore_MPCtest_B.k +
@@ -8020,16 +7932,16 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
           }
 
           for (raspberrypi_multicore_MPCtest_B.k = 0;
-               raspberrypi_multicore_MPCtest_B.k < 49;
+               raspberrypi_multicore_MPCtest_B.k < 91;
                raspberrypi_multicore_MPCtest_B.k++) {
-            b_Mv[raspberrypi_multicore_MPCtest_B.i_c + 252 *
+            b_Mv[raspberrypi_multicore_MPCtest_B.i_i + 252 *
               raspberrypi_multicore_MPCtest_B.k] =
               raspberrypi_multicore_MPCtest_B.c_Hv[(78 *
               raspberrypi_multicore_MPCtest_B.k +
               raspberrypi_multicore_MPCtest_B.e_i) - 1];
           }
 
-          raspberrypi_multicore_MPCtest_B.i_c++;
+          raspberrypi_multicore_MPCtest_B.i_i++;
         } else {
           exitg1 = true;
         }
@@ -8075,7 +7987,7 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
     }
 
     for (raspberrypi_multicore_MPCtest_B.k = 0;
-         raspberrypi_multicore_MPCtest_B.k < 49;
+         raspberrypi_multicore_MPCtest_B.k < 91;
          raspberrypi_multicore_MPCtest_B.k++) {
       memcpy(&b_Mv[raspberrypi_multicore_MPCtest_B.k * 252 + 28],
              &raspberrypi_multicore_MPCtest_B.MvCC[raspberrypi_multicore_MPCtest_B.k
@@ -8091,35 +8003,35 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
     }
 
     raspberrypi_multicore_MPCt_kron(c, raspberrypi_multicore_MPCtest_B.b_I,
-      raspberrypi_multicore_MPCtest_B.dv);
+      raspberrypi_multicore_MPCtest_B.dv1);
     for (raspberrypi_multicore_MPCtest_B.k = 0;
          raspberrypi_multicore_MPCtest_B.k < 24;
          raspberrypi_multicore_MPCtest_B.k++) {
       memset
-        (&raspberrypi_multicore_MPCtest_B.dv2[raspberrypi_multicore_MPCtest_B.k *
+        (&raspberrypi_multicore_MPCtest_B.dv3[raspberrypi_multicore_MPCtest_B.k *
          72], 0, 72U * sizeof(real_T));
-      for (raspberrypi_multicore_MPCtest_B.i_n = 0;
-           raspberrypi_multicore_MPCtest_B.i_n < 72;
-           raspberrypi_multicore_MPCtest_B.i_n++) {
+      for (raspberrypi_multicore_MPCtest_B.i_f = 0;
+           raspberrypi_multicore_MPCtest_B.i_f < 72;
+           raspberrypi_multicore_MPCtest_B.i_f++) {
         for (raspberrypi_multicore_MPCtest_B.e_i = 0;
              raspberrypi_multicore_MPCtest_B.e_i < 72;
              raspberrypi_multicore_MPCtest_B.e_i++) {
-          raspberrypi_multicore_MPCtest_B.i_c = 72 *
+          raspberrypi_multicore_MPCtest_B.i_i = 72 *
             raspberrypi_multicore_MPCtest_B.k +
             raspberrypi_multicore_MPCtest_B.e_i;
-          raspberrypi_multicore_MPCtest_B.dv2[raspberrypi_multicore_MPCtest_B.i_c]
-            += raspberrypi_multicore_MPCtest_B.dv[72 *
-            raspberrypi_multicore_MPCtest_B.i_n +
+          raspberrypi_multicore_MPCtest_B.dv3[raspberrypi_multicore_MPCtest_B.i_i]
+            += raspberrypi_multicore_MPCtest_B.dv1[72 *
+            raspberrypi_multicore_MPCtest_B.i_f +
             raspberrypi_multicore_MPCtest_B.e_i] * b_Jm[72 *
             raspberrypi_multicore_MPCtest_B.k +
-            raspberrypi_multicore_MPCtest_B.i_n];
+            raspberrypi_multicore_MPCtest_B.i_f];
         }
       }
     }
 
     raspberryp_mpc_calculatehessian(b_Wy, b_Wu, b_Wdu,
       raspberrypi_multicore_MPCtest_B.c_SuJm,
-      raspberrypi_multicore_MPCtest_B.dv2, b_Jm, b_I1,
+      raspberrypi_multicore_MPCtest_B.dv3, b_Jm, b_I1,
       raspberrypi_multicore_MPCtest_B.c_Su1,
       raspberrypi_multicore_MPCtest_B.c_Sx, raspberrypi_multicore_MPCtest_B.c_Hv,
       raspberrypi_multicore_MPCtes_nu, raspberrypi_multicore_MPCtes_ny,
@@ -8141,18 +8053,18 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
       raspberrypi_multicore_MPCtest_B.d_Linv,
       &raspberrypi_multicore_MPCtest_B.BadH);
     if (raspberrypi_multicore_MPCtest_B.BadH > 1.0) {
-      for (raspberrypi_multicore_MPCtest_B.i_c = 0;
-           raspberrypi_multicore_MPCtest_B.i_c < 12;
-           raspberrypi_multicore_MPCtest_B.i_c++) {
-        u[raspberrypi_multicore_MPCtest_B.i_c] =
-          old_u[raspberrypi_multicore_MPCtest_B.i_c] +
-          b_uoff[raspberrypi_multicore_MPCtest_B.i_c];
+      for (raspberrypi_multicore_MPCtest_B.i_i = 0;
+           raspberrypi_multicore_MPCtest_B.i_i < 12;
+           raspberrypi_multicore_MPCtest_B.i_i++) {
+        u[raspberrypi_multicore_MPCtest_B.i_i] =
+          old_u[raspberrypi_multicore_MPCtest_B.i_i] +
+          b_uoff[raspberrypi_multicore_MPCtest_B.i_i];
         for (raspberrypi_multicore_MPCtest_B.k = 0;
              raspberrypi_multicore_MPCtest_B.k < 7;
              raspberrypi_multicore_MPCtest_B.k++) {
           useq[raspberrypi_multicore_MPCtest_B.k + 7 *
-            raspberrypi_multicore_MPCtest_B.i_c] =
-            u[raspberrypi_multicore_MPCtest_B.i_c];
+            raspberrypi_multicore_MPCtest_B.i_i] =
+            u[raspberrypi_multicore_MPCtest_B.i_i];
         }
       }
 
@@ -8172,36 +8084,36 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
         for (raspberrypi_multicore_MPCtest_B.e_i = 0;
              raspberrypi_multicore_MPCtest_B.e_i < 25;
              raspberrypi_multicore_MPCtest_B.e_i++) {
-          raspberrypi_multicore_MPCtest_B.i_c = 25 *
+          raspberrypi_multicore_MPCtest_B.i_i = 25 *
             raspberrypi_multicore_MPCtest_B.k +
             raspberrypi_multicore_MPCtest_B.e_i;
-          raspberrypi_multicore_MPCtest_B.c_Linv[raspberrypi_multicore_MPCtest_B.i_c]
+          raspberrypi_multicore_MPCtest_B.c_Linv[raspberrypi_multicore_MPCtest_B.i_i]
             =
-            raspberrypi_multicore_MPCtest_B.c_I[raspberrypi_multicore_MPCtest_B.i_c];
+            raspberrypi_multicore_MPCtest_B.c_I[raspberrypi_multicore_MPCtest_B.i_i];
         }
       }
 
       raspberrypi_multicore__trisolve(raspberrypi_multicore_MPCtest_B.d_Linv,
         raspberrypi_multicore_MPCtest_B.c_Linv);
-      for (raspberrypi_multicore_MPCtest_B.i_c = 0;
-           raspberrypi_multicore_MPCtest_B.i_c < 252;
-           raspberrypi_multicore_MPCtest_B.i_c++) {
-        iAout[raspberrypi_multicore_MPCtest_B.i_c] =
-          iA[raspberrypi_multicore_MPCtest_B.i_c];
+      for (raspberrypi_multicore_MPCtest_B.i_i = 0;
+           raspberrypi_multicore_MPCtest_B.i_i < 252;
+           raspberrypi_multicore_MPCtest_B.i_i++) {
+        iAout[raspberrypi_multicore_MPCtest_B.i_i] =
+          iA[raspberrypi_multicore_MPCtest_B.i_i];
         raspberrypi_multicore_MPCtest_B.BadH = 0.0;
         for (raspberrypi_multicore_MPCtest_B.k = 0;
              raspberrypi_multicore_MPCtest_B.k < 13;
              raspberrypi_multicore_MPCtest_B.k++) {
           raspberrypi_multicore_MPCtest_B.BadH += b_Mx[252 *
             raspberrypi_multicore_MPCtest_B.k +
-            raspberrypi_multicore_MPCtest_B.i_c] *
+            raspberrypi_multicore_MPCtest_B.i_i] *
             x[raspberrypi_multicore_MPCtest_B.k];
         }
 
-        raspberrypi_multicore_MPCtest_B.b_Mlim_p[raspberrypi_multicore_MPCtest_B.i_c]
-          = b_Mlim[raspberrypi_multicore_MPCtest_B.i_c] +
+        raspberrypi_multicore_MPCtest_B.b_Mlim_j[raspberrypi_multicore_MPCtest_B.i_i]
+          = b_Mlim[raspberrypi_multicore_MPCtest_B.i_i] +
           raspberrypi_multicore_MPCtest_B.BadH;
-        raspberrypi_multicore_MPCtest_B.b_Mu1[raspberrypi_multicore_MPCtest_B.i_c]
+        raspberrypi_multicore_MPCtest_B.b_Mu1[raspberrypi_multicore_MPCtest_B.i_i]
           = 0.0;
       }
 
@@ -8224,21 +8136,21 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
         for (raspberrypi_multicore_MPCtest_B.e_i = 0;
              raspberrypi_multicore_MPCtest_B.e_i < 25;
              raspberrypi_multicore_MPCtest_B.e_i++) {
-          raspberrypi_multicore_MPCtest_B.i_c =
+          raspberrypi_multicore_MPCtest_B.i_i =
             raspberrypi_multicore_MPCtest_B.e_i + 25 *
             raspberrypi_multicore_MPCtest_B.k;
-          raspberrypi_multicore_MPCtest_B.d_Linv[raspberrypi_multicore_MPCtest_B.i_c]
+          raspberrypi_multicore_MPCtest_B.d_Linv[raspberrypi_multicore_MPCtest_B.i_i]
             = 0.0;
-          for (raspberrypi_multicore_MPCtest_B.i_n = 0;
-               raspberrypi_multicore_MPCtest_B.i_n < 25;
-               raspberrypi_multicore_MPCtest_B.i_n++) {
-            raspberrypi_multicore_MPCtest_B.d_Linv[raspberrypi_multicore_MPCtest_B.i_c]
+          for (raspberrypi_multicore_MPCtest_B.i_f = 0;
+               raspberrypi_multicore_MPCtest_B.i_f < 25;
+               raspberrypi_multicore_MPCtest_B.i_f++) {
+            raspberrypi_multicore_MPCtest_B.d_Linv[raspberrypi_multicore_MPCtest_B.i_i]
               += raspberrypi_multicore_MPCtest_B.c_Linv[25 *
               raspberrypi_multicore_MPCtest_B.e_i +
-              raspberrypi_multicore_MPCtest_B.i_n] *
+              raspberrypi_multicore_MPCtest_B.i_f] *
               raspberrypi_multicore_MPCtest_B.c_Linv[25 *
               raspberrypi_multicore_MPCtest_B.k +
-              raspberrypi_multicore_MPCtest_B.i_n];
+              raspberrypi_multicore_MPCtest_B.i_f];
           }
         }
       }
@@ -8248,7 +8160,7 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
            raspberrypi_multicore_MPCtest_B.k++) {
         raspberrypi_multicore_MPCtest_B.BadH = 0.0;
         for (raspberrypi_multicore_MPCtest_B.e_i = 0;
-             raspberrypi_multicore_MPCtest_B.e_i < 49;
+             raspberrypi_multicore_MPCtest_B.e_i < 91;
              raspberrypi_multicore_MPCtest_B.e_i++) {
           raspberrypi_multicore_MPCtest_B.BadH += b_Mv[252 *
             raspberrypi_multicore_MPCtest_B.e_i +
@@ -8256,9 +8168,9 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
             vseq[raspberrypi_multicore_MPCtest_B.e_i];
         }
 
-        raspberrypi_multicore_MPCtest_B.b_Mlim_l[raspberrypi_multicore_MPCtest_B.k]
+        raspberrypi_multicore_MPCtest_B.b_Mlim_d[raspberrypi_multicore_MPCtest_B.k]
           =
-          -((raspberrypi_multicore_MPCtest_B.b_Mlim_p[raspberrypi_multicore_MPCtest_B.k]
+          -((raspberrypi_multicore_MPCtest_B.b_Mlim_j[raspberrypi_multicore_MPCtest_B.k]
              + raspberrypi_multicore_MPCtest_B.b_Mu1[raspberrypi_multicore_MPCtest_B.k])
             + raspberrypi_multicore_MPCtest_B.BadH);
       }
@@ -8270,9 +8182,9 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
         raspberrypi_multicore_MPCtest_B.c_Kut, b_utarget,
         raspberrypi_multicore_MPCtest_B.c_Linv,
         raspberrypi_multicore_MPCtest_B.d_Linv, b_Ac,
-        raspberrypi_multicore_MPCtest_B.b_Mlim_l, iAout,
-        raspberrypi_multicore_MPCtest_B.zopt, raspberrypi_multicore_MPCtest_B.f,
-        status);
+        raspberrypi_multicore_MPCtest_B.b_Mlim_d, iAout,
+        raspberrypi_multicore_MPCtest_B.zopt,
+        raspberrypi_multicore_MPCtest_B.f_m, status);
       for (raspberrypi_multicore_MPCtest_B.k = 0;
            raspberrypi_multicore_MPCtest_B.k < 12;
            raspberrypi_multicore_MPCtest_B.k++) {
@@ -8307,28 +8219,28 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
       }
 
       raspberrypi_multicore_MPCt_kron(c, raspberrypi_multicore_MPCtest_B.b_I,
-        raspberrypi_multicore_MPCtest_B.dv);
+        raspberrypi_multicore_MPCtest_B.dv1);
       for (raspberrypi_multicore_MPCtest_B.k = 0;
            raspberrypi_multicore_MPCtest_B.k < 24;
            raspberrypi_multicore_MPCtest_B.k++) {
         memset
-          (&raspberrypi_multicore_MPCtest_B.dv2[raspberrypi_multicore_MPCtest_B.k
+          (&raspberrypi_multicore_MPCtest_B.dv3[raspberrypi_multicore_MPCtest_B.k
            * 72], 0, 72U * sizeof(real_T));
-        for (raspberrypi_multicore_MPCtest_B.i_n = 0;
-             raspberrypi_multicore_MPCtest_B.i_n < 72;
-             raspberrypi_multicore_MPCtest_B.i_n++) {
+        for (raspberrypi_multicore_MPCtest_B.i_f = 0;
+             raspberrypi_multicore_MPCtest_B.i_f < 72;
+             raspberrypi_multicore_MPCtest_B.i_f++) {
           for (raspberrypi_multicore_MPCtest_B.e_i = 0;
                raspberrypi_multicore_MPCtest_B.e_i < 72;
                raspberrypi_multicore_MPCtest_B.e_i++) {
-            raspberrypi_multicore_MPCtest_B.i_c = 72 *
+            raspberrypi_multicore_MPCtest_B.i_i = 72 *
               raspberrypi_multicore_MPCtest_B.k +
               raspberrypi_multicore_MPCtest_B.e_i;
-            raspberrypi_multicore_MPCtest_B.dv2[raspberrypi_multicore_MPCtest_B.i_c]
-              += raspberrypi_multicore_MPCtest_B.dv[72 *
-              raspberrypi_multicore_MPCtest_B.i_n +
+            raspberrypi_multicore_MPCtest_B.dv3[raspberrypi_multicore_MPCtest_B.i_i]
+              += raspberrypi_multicore_MPCtest_B.dv1[72 *
+              raspberrypi_multicore_MPCtest_B.i_f +
               raspberrypi_multicore_MPCtest_B.e_i] * b_Jm[72 *
               raspberrypi_multicore_MPCtest_B.k +
-              raspberrypi_multicore_MPCtest_B.i_n];
+              raspberrypi_multicore_MPCtest_B.i_f];
           }
         }
       }
@@ -8341,29 +8253,29 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
           b_uoff[raspberrypi_multicore_MPCtest_B.k];
       }
 
-      memset(&raspberrypi_multicore_MPCtest_B.dv13[0], 0, 72U * sizeof(real_T));
+      memset(&raspberrypi_multicore_MPCtest_B.dv14[0], 0, 72U * sizeof(real_T));
       for (raspberrypi_multicore_MPCtest_B.e_i = 0;
            raspberrypi_multicore_MPCtest_B.e_i < 24;
            raspberrypi_multicore_MPCtest_B.e_i++) {
         for (raspberrypi_multicore_MPCtest_B.k = 0;
              raspberrypi_multicore_MPCtest_B.k < 72;
              raspberrypi_multicore_MPCtest_B.k++) {
-          raspberrypi_multicore_MPCtest_B.dv13[raspberrypi_multicore_MPCtest_B.k]
-            += raspberrypi_multicore_MPCtest_B.dv2[72 *
+          raspberrypi_multicore_MPCtest_B.dv14[raspberrypi_multicore_MPCtest_B.k]
+            += raspberrypi_multicore_MPCtest_B.dv3[72 *
             raspberrypi_multicore_MPCtest_B.e_i +
             raspberrypi_multicore_MPCtest_B.k] *
             raspberrypi_multicore_MPCtest_B.zopt[raspberrypi_multicore_MPCtest_B.e_i];
         }
       }
 
-      memset(&raspberrypi_multicore_MPCtest_B.b_I1_j[0], 0, 72U * sizeof(real_T));
+      memset(&raspberrypi_multicore_MPCtest_B.b_I1_f[0], 0, 72U * sizeof(real_T));
       for (raspberrypi_multicore_MPCtest_B.e_i = 0;
            raspberrypi_multicore_MPCtest_B.e_i < 12;
            raspberrypi_multicore_MPCtest_B.e_i++) {
         for (raspberrypi_multicore_MPCtest_B.k = 0;
              raspberrypi_multicore_MPCtest_B.k < 72;
              raspberrypi_multicore_MPCtest_B.k++) {
-          raspberrypi_multicore_MPCtest_B.b_I1_j[raspberrypi_multicore_MPCtest_B.k]
+          raspberrypi_multicore_MPCtest_B.b_I1_f[raspberrypi_multicore_MPCtest_B.k]
             += b_I1[72 * raspberrypi_multicore_MPCtest_B.e_i +
             raspberrypi_multicore_MPCtest_B.k] *
             raspberrypi_multicore_MPCtest_B.old_u[raspberrypi_multicore_MPCtest_B.e_i];
@@ -8373,9 +8285,9 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
       for (raspberrypi_multicore_MPCtest_B.k = 0;
            raspberrypi_multicore_MPCtest_B.k < 72;
            raspberrypi_multicore_MPCtest_B.k++) {
-        raspberrypi_multicore_MPCtest_B.dv14[raspberrypi_multicore_MPCtest_B.k] =
-          raspberrypi_multicore_MPCtest_B.dv13[raspberrypi_multicore_MPCtest_B.k]
-          + raspberrypi_multicore_MPCtest_B.b_I1_j[raspberrypi_multicore_MPCtest_B.k];
+        raspberrypi_multicore_MPCtest_B.dv15[raspberrypi_multicore_MPCtest_B.k] =
+          raspberrypi_multicore_MPCtest_B.dv14[raspberrypi_multicore_MPCtest_B.k]
+          + raspberrypi_multicore_MPCtest_B.b_I1_f[raspberrypi_multicore_MPCtest_B.k];
       }
 
       for (raspberrypi_multicore_MPCtest_B.k = 0;
@@ -8386,7 +8298,7 @@ static void raspberrypi__mpcblock_optimizer(const real_T rseq[78], const real_T
              raspberrypi_multicore_MPCtest_B.e_i++) {
           useq[raspberrypi_multicore_MPCtest_B.k + 7 *
             raspberrypi_multicore_MPCtest_B.e_i] =
-            raspberrypi_multicore_MPCtest_B.dv14[12 *
+            raspberrypi_multicore_MPCtest_B.dv15[12 *
             raspberrypi_multicore_MPCtest_B.k +
             raspberrypi_multicore_MPCtest_B.e_i];
         }
@@ -8413,9 +8325,9 @@ static void raspberrypi_multicore_MP_repmat(const real_T a[13], real_T b[91])
 
 /* Function for MATLAB Function: '<S46>/FixedHorizonOptimizer' */
 static void raspberrypi_mpc_computeSequence(const real_T x[13], const real_T
-  uopt[84], const real_T v[49], const real_T mvoff[12], const real_T b_yoff[13],
+  uopt[84], const real_T v[91], const real_T mvoff[12], const real_T b_yoff[13],
   const real_T b_xoff[13], const real_T b_A[169], const real_T Bu[1092], const
-  real_T Bv[637], const real_T b_C[169], const real_T Dv[637], real_T yopt[91],
+  real_T Bv[1183], const real_T b_C[169], const real_T Dv[1183], real_T yopt[91],
   real_T xopt[91])
 {
   real_T tmp;
@@ -8426,79 +8338,75 @@ static void raspberrypi_mpc_computeSequence(const real_T x[13], const real_T
   for (i = 0; i < 6; i++) {
     ibmat = i * 12;
     for (b_k = 0; b_k < 12; b_k++) {
-      raspberrypi_multicore_MPCtest_B.b_j[ibmat + b_k] = mvoff[b_k];
+      raspberrypi_multicore_MPCtest_B.b_a[ibmat + b_k] = mvoff[b_k];
       raspberrypi_multicore_MPCtest_B.uopt_dim[i + 6 * b_k] = uopt[7 * b_k + i]
-        - raspberrypi_multicore_MPCtest_B.b_j[12 * i + b_k];
+        - raspberrypi_multicore_MPCtest_B.b_a[12 * i + b_k];
     }
   }
 
   memset(&yopt[0], 0, 91U * sizeof(real_T));
   memset(&xopt[0], 0, 91U * sizeof(real_T));
-  raspberrypi_multicore_MP_repmat(b_yoff, raspberrypi_multicore_MPCtest_B.dv12);
+  raspberrypi_multicore_MP_repmat(b_yoff, raspberrypi_multicore_MPCtest_B.dv13);
   for (ibmat = 0; ibmat < 7; ibmat++) {
-    for (i = 0; i < 13; i++) {
-      xopt[ibmat + 7 * i] = raspberrypi_multicore_MPCtest_B.xQP[i];
-    }
-
-    for (i = 0; i < 7; i++) {
-      raspberrypi_multicore_MPCtest_B.vk[i] = v[ibmat * 7 + i];
-    }
-
-    for (i = 0; i < 13; i++) {
-      raspberrypi_multicore_MPCtest_B.b_C_p[i] = 0.0;
-      for (b_k = 0; b_k < 13; b_k++) {
-        raspberrypi_multicore_MPCtest_B.b_C_p[i] += b_C[13 * b_k + i] *
-          raspberrypi_multicore_MPCtest_B.xQP[b_k];
+    for (b_k = 0; b_k < 13; b_k++) {
+      xopt[ibmat + 7 * b_k] = raspberrypi_multicore_MPCtest_B.xQP[b_k];
+      raspberrypi_multicore_MPCtest_B.vk[b_k] = v[ibmat * 13 + b_k];
+      raspberrypi_multicore_MPCtest_B.b_C_a[b_k] = 0.0;
+      for (i = 0; i < 13; i++) {
+        raspberrypi_multicore_MPCtest_B.b_C_a[b_k] += b_C[13 * i + b_k] *
+          raspberrypi_multicore_MPCtest_B.xQP[i];
       }
+    }
 
-      raspberrypi_multicore_MPCtest_B.Dv_a[i] = 0.0;
-      for (b_k = 0; b_k < 7; b_k++) {
-        raspberrypi_multicore_MPCtest_B.Dv_a[i] += Dv[13 * b_k + i] *
+    for (i = 0; i < 13; i++) {
+      raspberrypi_multicore_MPCtest_B.Dv_e[i] = 0.0;
+      for (b_k = 0; b_k < 13; b_k++) {
+        raspberrypi_multicore_MPCtest_B.Dv_e[i] += Dv[13 * b_k + i] *
           raspberrypi_multicore_MPCtest_B.vk[b_k];
       }
 
-      yopt[ibmat + 7 * i] = raspberrypi_multicore_MPCtest_B.b_C_p[i] +
-        raspberrypi_multicore_MPCtest_B.Dv_a[i];
+      yopt[ibmat + 7 * i] = raspberrypi_multicore_MPCtest_B.b_C_a[i] +
+        raspberrypi_multicore_MPCtest_B.Dv_e[i];
     }
 
     if (ibmat < 6) {
       for (i = 0; i < 13; i++) {
-        raspberrypi_multicore_MPCtest_B.b_C_p[i] = 0.0;
+        raspberrypi_multicore_MPCtest_B.b_C_a[i] = 0.0;
         for (b_k = 0; b_k < 13; b_k++) {
-          raspberrypi_multicore_MPCtest_B.b_C_p[i] += b_A[13 * b_k + i] *
+          raspberrypi_multicore_MPCtest_B.b_C_a[i] += b_A[13 * b_k + i] *
             raspberrypi_multicore_MPCtest_B.xQP[b_k];
         }
 
-        raspberrypi_multicore_MPCtest_B.Dv_a[i] = 0.0;
+        raspberrypi_multicore_MPCtest_B.Dv_e[i] = 0.0;
         for (b_k = 0; b_k < 12; b_k++) {
-          raspberrypi_multicore_MPCtest_B.Dv_a[i] += Bu[13 * b_k + i] *
+          raspberrypi_multicore_MPCtest_B.Dv_e[i] += Bu[13 * b_k + i] *
             raspberrypi_multicore_MPCtest_B.uopt_dim[6 * b_k + ibmat];
         }
       }
 
       for (i = 0; i < 13; i++) {
         tmp = 0.0;
-        for (b_k = 0; b_k < 7; b_k++) {
+        for (b_k = 0; b_k < 13; b_k++) {
           tmp += Bv[13 * b_k + i] * raspberrypi_multicore_MPCtest_B.vk[b_k];
         }
 
         raspberrypi_multicore_MPCtest_B.xQP[i] =
-          (raspberrypi_multicore_MPCtest_B.b_C_p[i] +
-           raspberrypi_multicore_MPCtest_B.Dv_a[i]) + tmp;
+          (raspberrypi_multicore_MPCtest_B.b_C_a[i] +
+           raspberrypi_multicore_MPCtest_B.Dv_e[i]) + tmp;
       }
     }
 
     for (i = 0; i < 13; i++) {
       b_k = 7 * i + ibmat;
-      yopt[b_k] += raspberrypi_multicore_MPCtest_B.dv12[13 * ibmat + i];
+      yopt[b_k] += raspberrypi_multicore_MPCtest_B.dv13[13 * ibmat + i];
     }
   }
 
-  raspberrypi_multicore_MP_repmat(b_xoff, raspberrypi_multicore_MPCtest_B.dv12);
+  raspberrypi_multicore_MP_repmat(b_xoff, raspberrypi_multicore_MPCtest_B.dv13);
   for (i = 0; i < 7; i++) {
     for (b_k = 0; b_k < 13; b_k++) {
       ibmat = 7 * b_k + i;
-      xopt[ibmat] += raspberrypi_multicore_MPCtest_B.dv12[13 * i + b_k];
+      xopt[ibmat] += raspberrypi_multicore_MPCtest_B.dv13[13 * i + b_k];
     }
   }
 }
@@ -8515,8 +8423,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   boolean_T rEQ0;
   boolean_T rtb_DigitalRead_0;
   boolean_T rtb_DigitalRead_k_0;
-  boolean_T rtb_DigitalRead_p_0;
-  boolean_T rtb_DigitalRead_pz_0;
   static const int8_T d[3] = { 1, 0, 0 };
 
   static const real_T tmp[12] = { 0.0, 0.0, 9.8, 0.0, 0.0, 9.8, 0.0, 0.0, 9.8,
@@ -8558,7 +8464,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   /*  Call C-function implementing device output */
   /* y = coder.ceval('source_output'); */
   eventRead();
-  temp = returnJSInfo(&raspberrypi_multicore_MPCtest_B.b_varargout_2_c[0],
+  temp = returnJSInfo(&raspberrypi_multicore_MPCtest_B.b_varargout_2_p[0],
                       &raspberrypi_multicore_MPCtest_B.b_varargout_3_c[0]);
   returnButtonState();
   returnAxisState();
@@ -8596,17 +8502,17 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       raspberrypi_multicore_MPCtest_B.ar = 32767;
     }
 
-    raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.ar - 1;
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d <=
-         raspberrypi_multicore_MPCtest_B.c_f;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
+    raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.ar - 1;
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc <=
+         raspberrypi_multicore_MPCtest_B.c_j;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
       switch (raspberrypi_multicore_MPCtest_B.b_varargout_3_c[(int16_T)
-              (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1]) {
+              (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1]) {
        case 0:
         raspberrypi_multicore_MPCtest_B.ar =
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1];
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1];
         if (raspberrypi_multicore_MPCtest_B.ar == 1) {
           raspberrypi_multicore_MPCtest_B.absx = 1.0;
         } else if (raspberrypi_multicore_MPCtest_B.ar == 0) {
@@ -8614,14 +8520,14 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         }
 
         raspberrypi_multicore_MPCtest_B.b_varargout_9_idx_1 = (real_T)
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1] / 32767.0;
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1] / 32767.0;
         break;
 
        case 1:
         raspberrypi_multicore_MPCtest_B.ar =
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1];
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1];
         if (raspberrypi_multicore_MPCtest_B.ar == 1) {
           raspberrypi_multicore_MPCtest_B.b_varargout_4_j = 1.0;
         } else if (raspberrypi_multicore_MPCtest_B.ar == 0) {
@@ -8629,20 +8535,20 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         }
 
         raspberrypi_multicore_MPCtest_B.b_varargout_9_idx_0 = -(real_T)
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1] / 32767.0;
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1] / 32767.0;
         break;
 
        case 2:
         raspberrypi_multicore_MPCtest_B.b_varargout_10_idx_1 = (real_T)
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1] / 32767.0;
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1] / 32767.0;
         break;
 
        case 3:
         raspberrypi_multicore_MPCtest_B.ar =
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1];
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1];
         if (raspberrypi_multicore_MPCtest_B.ar == 1) {
           raspberrypi_multicore_MPCtest_B.MATLABSystem3_o1 = 1.0;
         } else if (raspberrypi_multicore_MPCtest_B.ar == 0) {
@@ -8650,14 +8556,14 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         }
 
         raspberrypi_multicore_MPCtest_B.b_varargout_10_idx_0 = -(real_T)
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1] / 32767.0;
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1] / 32767.0;
         break;
 
        case 4:
         raspberrypi_multicore_MPCtest_B.ar =
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1];
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1];
         if (raspberrypi_multicore_MPCtest_B.ar == 1) {
           raspberrypi_multicore_MPCtest_B.MATLABSystem3_o2_f = 1.0;
         } else if (raspberrypi_multicore_MPCtest_B.ar == 0) {
@@ -8673,8 +8579,8 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
        case 5:
         raspberrypi_multicore_MPCtest_B.ar =
-          raspberrypi_multicore_MPCtest_B.b_varargout_2_c[(int16_T)
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) - 1];
+          raspberrypi_multicore_MPCtest_B.b_varargout_2_p[(int16_T)
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) - 1];
         if (raspberrypi_multicore_MPCtest_B.ar == 32767) {
           raspberrypi_multicore_MPCtest_B.v2_idx_1 = 1.0;
         } else if (raspberrypi_multicore_MPCtest_B.ar == -32767) {
@@ -8804,12 +8710,12 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     (raspberrypi_multicore_MPCtes_DW.RateTransition_d0_SEMAPHORE);
   raspberrypi_multicore_MPCtest_B.ar =
     raspberrypi_multicore_MPCtes_DW.RateTransition_RDBuf * 67;
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 67;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    raspberrypi_multicore_MPCtest_B.RateTransition[raspberrypi_multicore_MPCtest_B.i_d]
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 67;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    raspberrypi_multicore_MPCtest_B.RateTransition[raspberrypi_multicore_MPCtest_B.i_hc]
       =
-      raspberrypi_multicore_MPCtes_DW.RateTransition_Buf[raspberrypi_multicore_MPCtest_B.i_d
+      raspberrypi_multicore_MPCtes_DW.RateTransition_Buf[raspberrypi_multicore_MPCtest_B.i_hc
       + raspberrypi_multicore_MPCtest_B.ar];
   }
 
@@ -9039,14 +8945,14 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ar + 4] =
       raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[3 *
       raspberrypi_multicore_MPCtest_B.ar];
-    raspberrypi_multicore_MPCtest_B.i_d = 3 * raspberrypi_multicore_MPCtest_B.ar
-      + 1;
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
+      raspberrypi_multicore_MPCtest_B.ar + 1;
     raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ar + 8] =
-      raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[raspberrypi_multicore_MPCtest_B.i_hc];
     raspberrypi_multicore_MPCtest_B.pArray_L_Adm[3 *
       raspberrypi_multicore_MPCtest_B.ar] =
       raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ar];
-    raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_d]
+    raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_hc]
       = raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ar + 4];
     raspberrypi_multicore_MPCtest_B.pArray_L_Adm[3 *
       raspberrypi_multicore_MPCtest_B.ar + 2] =
@@ -9056,29 +8962,29 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.i_d
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.i_hc
         + 3 * raspberrypi_multicore_MPCtest_B.ar;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] =
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] =
         0.0;
       raspberrypi_multicore_MPCtest_B.ia = raspberrypi_multicore_MPCtest_B.ar <<
         2;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
         raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ia] *
-        raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_d];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
+        raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_hc];
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
         raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ia + 1]
-        * raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_d
+        * raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_hc
         + 3];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
         raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ia + 2]
-        * raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_d
+        * raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_hc
         + 6];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
         raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.ia + 3]
-        * raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_d
+        * raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_hc
         + 9];
     }
   }
@@ -9107,7 +9013,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     }
   } else {
     raspberrypi_multicore_MPCte_svd(raspberrypi_multicore_MPCtest_B.R,
-      raspberrypi_multicore_MPCtest_B.U_a, raspberrypi_multicore_MPCtest_B.a,
+      raspberrypi_multicore_MPCtest_B.U_i, raspberrypi_multicore_MPCtest_B.a,
       raspberrypi_multicore_MPCtest_B.V);
     raspberrypi_multicore_MPCtest_B.absx = fabs
       (raspberrypi_multicore_MPCtest_B.a[0]);
@@ -9126,22 +9032,22 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     }
 
     raspberrypi_multicore_MPCtest_B.absx *= 3.0;
-    raspberrypi_multicore_MPCtest_B.i_d = -1;
+    raspberrypi_multicore_MPCtest_B.i_hc = -1;
     raspberrypi_multicore_MPCtest_B.ar = 0;
     while ((raspberrypi_multicore_MPCtest_B.ar < 3) &&
            (raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.ar]
             > raspberrypi_multicore_MPCtest_B.absx)) {
-      raspberrypi_multicore_MPCtest_B.i_d++;
+      raspberrypi_multicore_MPCtest_B.i_hc++;
       raspberrypi_multicore_MPCtest_B.ar++;
     }
 
-    if (raspberrypi_multicore_MPCtest_B.i_d + 1 > 0) {
+    if (raspberrypi_multicore_MPCtest_B.i_hc + 1 > 0) {
       raspberrypi_multicore_MPCtest_B.vcol = 0;
-      raspberrypi_multicore_MPCtest_B.c_f = 0;
-      while (raspberrypi_multicore_MPCtest_B.c_f <=
-             raspberrypi_multicore_MPCtest_B.i_d) {
+      raspberrypi_multicore_MPCtest_B.c_j = 0;
+      while (raspberrypi_multicore_MPCtest_B.c_j <=
+             raspberrypi_multicore_MPCtest_B.i_hc) {
         raspberrypi_multicore_MPCtest_B.absx = 1.0 /
-          raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.c_f];
+          raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.c_j];
         raspberrypi_multicore_MPCtest_B.ar =
           raspberrypi_multicore_MPCtest_B.vcol;
         while (raspberrypi_multicore_MPCtest_B.ar + 1 <=
@@ -9152,7 +9058,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         }
 
         raspberrypi_multicore_MPCtest_B.vcol += 3;
-        raspberrypi_multicore_MPCtest_B.c_f++;
+        raspberrypi_multicore_MPCtest_B.c_j++;
       }
 
       raspberrypi_multicore_MPCtest_B.ar = 0;
@@ -9177,18 +9083,18 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       }
 
       raspberrypi_multicore_MPCtest_B.ar = -1;
-      raspberrypi_multicore_MPCtest_B.c_f = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+      raspberrypi_multicore_MPCtest_B.c_j = 3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtest_B.vcol = 1;
       while (raspberrypi_multicore_MPCtest_B.vcol <=
-             raspberrypi_multicore_MPCtest_B.c_f) {
+             raspberrypi_multicore_MPCtest_B.c_j) {
         raspberrypi_multicore_MPCtest_B.ia = raspberrypi_multicore_MPCtest_B.ar;
         raspberrypi_multicore_MPCtest_B.b_ic = 0;
         while (raspberrypi_multicore_MPCtest_B.b_ic + 1 <= 3) {
           raspberrypi_multicore_MPCtest_B.ia++;
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.b_ic]
             +=
-            raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol
+            raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.vcol
             - 1] *
             raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ia];
           raspberrypi_multicore_MPCtest_B.b_ic++;
@@ -9199,18 +9105,18 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       }
 
       raspberrypi_multicore_MPCtest_B.ar = -1;
-      raspberrypi_multicore_MPCtest_B.c_f = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+      raspberrypi_multicore_MPCtest_B.c_j = 3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtest_B.vcol = 2;
       while (raspberrypi_multicore_MPCtest_B.vcol <=
-             raspberrypi_multicore_MPCtest_B.c_f) {
+             raspberrypi_multicore_MPCtest_B.c_j) {
         raspberrypi_multicore_MPCtest_B.ia = raspberrypi_multicore_MPCtest_B.ar;
         raspberrypi_multicore_MPCtest_B.b_ic = 3;
         while (raspberrypi_multicore_MPCtest_B.b_ic + 1 <= 6) {
           raspberrypi_multicore_MPCtest_B.ia++;
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.b_ic]
             +=
-            raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol
+            raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.vcol
             - 1] *
             raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ia];
           raspberrypi_multicore_MPCtest_B.b_ic++;
@@ -9221,18 +9127,18 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       }
 
       raspberrypi_multicore_MPCtest_B.ar = -1;
-      raspberrypi_multicore_MPCtest_B.c_f = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 3;
+      raspberrypi_multicore_MPCtest_B.c_j = 3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 3;
       raspberrypi_multicore_MPCtest_B.vcol = 3;
       while (raspberrypi_multicore_MPCtest_B.vcol <=
-             raspberrypi_multicore_MPCtest_B.c_f) {
+             raspberrypi_multicore_MPCtest_B.c_j) {
         raspberrypi_multicore_MPCtest_B.ia = raspberrypi_multicore_MPCtest_B.ar;
         raspberrypi_multicore_MPCtest_B.b_ic = 6;
         while (raspberrypi_multicore_MPCtest_B.b_ic + 1 <= 9) {
           raspberrypi_multicore_MPCtest_B.ia++;
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.b_ic]
             +=
-            raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol
+            raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.vcol
             - 1] *
             raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ia];
           raspberrypi_multicore_MPCtest_B.b_ic++;
@@ -9244,39 +9150,41 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     }
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 3;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.i_d] = 0.0;
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 3;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.i_hc] =
+      0.0;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 4;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.i_d
-        + 3 * raspberrypi_multicore_MPCtest_B.ar;
+      raspberrypi_multicore_MPCtest_B.vcol =
+        raspberrypi_multicore_MPCtest_B.i_hc + 3 *
+        raspberrypi_multicore_MPCtest_B.ar;
       raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.vcol] =
         0.0;
       raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.pArray_L_Adm[3 *
         raspberrypi_multicore_MPCtest_B.ar] *
-        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.pArray_L_Adm[3 *
         raspberrypi_multicore_MPCtest_B.ar + 1] *
-        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.i_hc
         + 3];
-      raspberrypi_multicore_MPCtest_B.c_f = 3 *
+      raspberrypi_multicore_MPCtest_B.c_j = 3 *
         raspberrypi_multicore_MPCtest_B.ar + 2;
       raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.c_f]
-        * raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.c_j]
+        * raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.i_hc
         + 6];
-      raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.i_d] +=
+      raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.i_hc] +=
         raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.vcol] *
-        raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[raspberrypi_multicore_MPCtest_B.c_f];
+        raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[raspberrypi_multicore_MPCtest_B.c_j];
     }
 
-    raspberrypi_multicore_MPCtest_B.surP[raspberrypi_multicore_MPCtest_B.i_d] =
-      raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.i_d];
+    raspberrypi_multicore_MPCtest_B.surP[raspberrypi_multicore_MPCtest_B.i_hc] =
+      raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.i_hc];
   }
 
   if (raspberrypi_multicore_MPCtest_P.Constant8_Value > 0.5) {
@@ -9413,74 +9321,74 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.R[1] = raspberrypi_multicore_MPCtest_B.s;
   raspberrypi_multicore_MPCtest_B.R[4] = raspberrypi_multicore_MPCtest_B.s_i;
   raspberrypi_multicore_MPCtest_B.R[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.V[0] = raspberrypi_multicore_MPCtest_B.t7;
-  raspberrypi_multicore_MPCtest_B.V[3] = 0.0;
-  raspberrypi_multicore_MPCtest_B.V[6] = raspberrypi_multicore_MPCtest_B.t6;
+  raspberrypi_multicore_MPCtest_B.R_tmp[0] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.R_tmp[3] = 0.0;
+  raspberrypi_multicore_MPCtest_B.R_tmp[6] = raspberrypi_multicore_MPCtest_B.t6;
   raspberrypi_multicore_MPCtest_B.R[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.V[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.R_tmp[1] = 0.0;
   raspberrypi_multicore_MPCtest_B.R[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.V[4] = 1.0;
+  raspberrypi_multicore_MPCtest_B.R_tmp[4] = 1.0;
   raspberrypi_multicore_MPCtest_B.R[8] = 1.0;
-  raspberrypi_multicore_MPCtest_B.V[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.V[2] = -raspberrypi_multicore_MPCtest_B.t6;
-  raspberrypi_multicore_MPCtest_B.V[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.V[8] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.R_tmp[7] = 0.0;
+  raspberrypi_multicore_MPCtest_B.R_tmp[2] = -raspberrypi_multicore_MPCtest_B.t6;
+  raspberrypi_multicore_MPCtest_B.R_tmp[5] = 0.0;
+  raspberrypi_multicore_MPCtest_B.R_tmp[8] = raspberrypi_multicore_MPCtest_B.t7;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.ar +
-        3 * raspberrypi_multicore_MPCtest_B.i_d;
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_f] =
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.ar +
+        3 * raspberrypi_multicore_MPCtest_B.i_hc;
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_j] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.V[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.V[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar + 3];
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.V[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar + 6];
     }
 
-    raspberrypi_multicore_MPCtest_B.U_a[3 * raspberrypi_multicore_MPCtest_B.ar] =
+    raspberrypi_multicore_MPCtest_B.U_i[3 * raspberrypi_multicore_MPCtest_B.ar] =
       d[raspberrypi_multicore_MPCtest_B.ar];
   }
 
-  raspberrypi_multicore_MPCtest_B.U_a[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[4] = raspberrypi_multicore_MPCtest_B.t9;
-  raspberrypi_multicore_MPCtest_B.U_a[7] = -raspberrypi_multicore_MPCtest_B.t8;
-  raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[5] = raspberrypi_multicore_MPCtest_B.t8;
-  raspberrypi_multicore_MPCtest_B.U_a[8] = raspberrypi_multicore_MPCtest_B.t9;
+  raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[4] = raspberrypi_multicore_MPCtest_B.t9;
+  raspberrypi_multicore_MPCtest_B.U_i[7] = -raspberrypi_multicore_MPCtest_B.t8;
+  raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[5] = raspberrypi_multicore_MPCtest_B.t8;
+  raspberrypi_multicore_MPCtest_B.U_i[8] = raspberrypi_multicore_MPCtest_B.t9;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.i_d
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.i_hc
         + 3 * raspberrypi_multicore_MPCtest_B.ar;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] =
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
         3];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
         6];
     }
@@ -9492,38 +9400,39 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.W[3 * raspberrypi_multicore_MPCtest_B.ar] =
       rtb_MATLABSystem10_o5_0[3 * raspberrypi_multicore_MPCtest_B.ar] -
       raspberrypi_multicore_MPCtes_DW.obj_cy.X_mpc_Old[0];
-    raspberrypi_multicore_MPCtest_B.i_d = 3 * raspberrypi_multicore_MPCtest_B.ar
-      + 1;
-    raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.i_d] =
-      rtb_MATLABSystem10_o5_0[raspberrypi_multicore_MPCtest_B.i_d] -
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
+      raspberrypi_multicore_MPCtest_B.ar + 1;
+    raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.i_hc] =
+      rtb_MATLABSystem10_o5_0[raspberrypi_multicore_MPCtest_B.i_hc] -
       raspberrypi_multicore_MPCtes_DW.obj_cy.X_mpc_Old[1];
-    raspberrypi_multicore_MPCtest_B.i_d = 3 * raspberrypi_multicore_MPCtest_B.ar
-      + 2;
-    raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.i_d] =
-      rtb_MATLABSystem10_o5_0[raspberrypi_multicore_MPCtest_B.i_d] -
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
+      raspberrypi_multicore_MPCtest_B.ar + 2;
+    raspberrypi_multicore_MPCtest_B.W[raspberrypi_multicore_MPCtest_B.i_hc] =
+      rtb_MATLABSystem10_o5_0[raspberrypi_multicore_MPCtest_B.i_hc] -
       raspberrypi_multicore_MPCtes_DW.obj_cy.X_mpc_Old[2];
   }
 
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 4;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + raspberrypi_multicore_MPCtest_B.ar;
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_f] =
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 4;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = 3 *
+        raspberrypi_multicore_MPCtest_B.i_hc +
+        raspberrypi_multicore_MPCtest_B.ar;
+      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_j] =
         ((raspberrypi_multicore_MPCtest_B.W[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar +
           3] + raspberrypi_multicore_MPCtest_B.W[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar])
          + raspberrypi_multicore_MPCtest_B.W[3 *
-         raspberrypi_multicore_MPCtest_B.i_d + 2] *
+         raspberrypi_multicore_MPCtest_B.i_hc + 2] *
          raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar +
          6]) -
-        raspberrypi_multicore_MPCtes_DW.obj_f.PendAllnorm[raspberrypi_multicore_MPCtest_B.c_f];
+        raspberrypi_multicore_MPCtes_DW.obj_f.PendAllnorm[raspberrypi_multicore_MPCtest_B.c_j];
     }
   }
 
@@ -9555,11 +9464,11 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.W[5] = raspberrypi_multicore_MPCtest_B.s;
     raspberrypi_multicore_MPCtest_B.W[8] = raspberrypi_multicore_MPCtest_B.s;
     raspberrypi_multicore_MPCtest_B.W[11] = raspberrypi_multicore_MPCtest_B.s;
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 12;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_d]
-        = tmp[raspberrypi_multicore_MPCtest_B.i_d] *
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 12;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_hc]
+        = tmp[raspberrypi_multicore_MPCtest_B.i_hc] *
         raspberrypi_multicore_MPCtes_DW.obj_f.m / 4.0;
     }
   }
@@ -9693,24 +9602,24 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.Angle3new_f =
       raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t7;
-    raspberrypi_multicore_MPCtest_B.U_a[0] =
+    raspberrypi_multicore_MPCtest_B.U_i[0] =
       raspberrypi_multicore_MPCtest_B.Angle3new_f;
-    raspberrypi_multicore_MPCtest_B.U_a[3] =
+    raspberrypi_multicore_MPCtest_B.U_i[3] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t4 * raspberrypi_multicore_MPCtest_B.t9;
-    raspberrypi_multicore_MPCtest_B.U_a[6] =
+    raspberrypi_multicore_MPCtest_B.U_i[6] =
       raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t4 * raspberrypi_multicore_MPCtest_B.t6;
-    raspberrypi_multicore_MPCtest_B.U_a[1] =
+    raspberrypi_multicore_MPCtest_B.U_i[1] =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP * sin
       (raspberrypi_multicore_MPCtest_B.t10);
-    raspberrypi_multicore_MPCtest_B.U_a[4] =
+    raspberrypi_multicore_MPCtest_B.U_i[4] =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t9 * raspberrypi_multicore_MPCtest_B.t11;
-    raspberrypi_multicore_MPCtest_B.U_a[7] =
+    raspberrypi_multicore_MPCtest_B.U_i[7] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t6 * raspberrypi_multicore_MPCtest_B.t11;
-    raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
     raspberrypi_multicore_MPCtest_B.t10 =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.s_i;
@@ -9719,7 +9628,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.t11 =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.s;
-    raspberrypi_multicore_MPCtest_B.U_a[5] =
+    raspberrypi_multicore_MPCtest_B.U_i[5] =
       ((-raspberrypi_multicore_MPCtes_DW.obj_f.OR *
         raspberrypi_multicore_MPCtest_B.t9 -
         raspberrypi_multicore_MPCtes_DW.obj_f.BC *
@@ -9727,7 +9636,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
        + raspberrypi_multicore_MPCtest_B.t4 * raspberrypi_multicore_MPCtest_B.t6)
       + raspberrypi_multicore_MPCtest_B.t11 * raspberrypi_multicore_MPCtest_B.t6
       * raspberrypi_multicore_MPCtest_B.t8;
-    raspberrypi_multicore_MPCtest_B.U_a[8] =
+    raspberrypi_multicore_MPCtest_B.U_i[8] =
       ((raspberrypi_multicore_MPCtes_DW.obj_f.OR *
         raspberrypi_multicore_MPCtest_B.t6 -
         raspberrypi_multicore_MPCtest_B.Angle3new_f *
@@ -9744,57 +9653,57 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
+          raspberrypi_multicore_MPCtest_B.i_hc;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           3];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           6];
       }
 
       raspberrypi_multicore_MPCtest_B.v1[raspberrypi_multicore_MPCtest_B.ar] =
         0.0;
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+          raspberrypi_multicore_MPCtest_B.i_hc;
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 3];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 6];
         raspberrypi_multicore_MPCtest_B.v1[raspberrypi_multicore_MPCtest_B.ar] +=
-          raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
-          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
+          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_hc];
       }
     }
 
@@ -9816,29 +9725,29 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.Angle3new_f =
       raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t7_b;
-    raspberrypi_multicore_MPCtest_B.U_a[0] =
+    raspberrypi_multicore_MPCtest_B.U_i[0] =
       raspberrypi_multicore_MPCtest_B.Angle3new_f;
-    raspberrypi_multicore_MPCtest_B.U_a[3] =
+    raspberrypi_multicore_MPCtest_B.U_i[3] =
       raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t4_e *
       raspberrypi_multicore_MPCtest_B.t9_g;
-    raspberrypi_multicore_MPCtest_B.U_a[6] =
+    raspberrypi_multicore_MPCtest_B.U_i[6] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t4_e *
       raspberrypi_multicore_MPCtest_B.t6_o;
-    raspberrypi_multicore_MPCtest_B.U_a[1] =
+    raspberrypi_multicore_MPCtest_B.U_i[1] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.DP * sin
       (raspberrypi_multicore_MPCtest_B.t11_e);
-    raspberrypi_multicore_MPCtest_B.U_a[4] =
+    raspberrypi_multicore_MPCtest_B.U_i[4] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t9_g * raspberrypi_multicore_MPCtest_B.t12;
-    raspberrypi_multicore_MPCtest_B.U_a[7] =
+    raspberrypi_multicore_MPCtest_B.U_i[7] =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t6_o * raspberrypi_multicore_MPCtest_B.t12;
-    raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
     raspberrypi_multicore_MPCtest_B.t4 = raspberrypi_multicore_MPCtest_B.t10 *
       cos(raspberrypi_multicore_MPCtest_B.Angle2new[1]);
-    raspberrypi_multicore_MPCtest_B.U_a[5] =
+    raspberrypi_multicore_MPCtest_B.U_i[5] =
       ((raspberrypi_multicore_MPCtes_DW.obj_f.BC *
         raspberrypi_multicore_MPCtest_B.t6_o *
         raspberrypi_multicore_MPCtest_B.t7_b +
@@ -9848,7 +9757,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       - raspberrypi_multicore_MPCtest_B.t11 *
       raspberrypi_multicore_MPCtest_B.t6_o *
       raspberrypi_multicore_MPCtest_B.t8_a;
-    raspberrypi_multicore_MPCtest_B.U_a[8] =
+    raspberrypi_multicore_MPCtest_B.U_i[8] =
       ((raspberrypi_multicore_MPCtest_B.Angle3new_f *
         raspberrypi_multicore_MPCtest_B.t9_g +
         -raspberrypi_multicore_MPCtes_DW.obj_f.OR *
@@ -9866,58 +9775,58 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
+          raspberrypi_multicore_MPCtest_B.i_hc;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           3];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           6];
       }
 
       raspberrypi_multicore_MPCtest_B.deltaP2[raspberrypi_multicore_MPCtest_B.ar]
         = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+          raspberrypi_multicore_MPCtest_B.i_hc;
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 3];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 6];
         raspberrypi_multicore_MPCtest_B.deltaP2[raspberrypi_multicore_MPCtest_B.ar]
           +=
-          raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
-          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
+          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_hc];
       }
     }
 
@@ -9939,30 +9848,30 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.Angle3new_f =
       raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t7_h;
-    raspberrypi_multicore_MPCtest_B.U_a[0] =
+    raspberrypi_multicore_MPCtest_B.U_i[0] =
       raspberrypi_multicore_MPCtest_B.Angle3new_f;
     raspberrypi_multicore_MPCtest_B.t4 =
       raspberrypi_multicore_MPCtes_DW.obj_f.BC * cos
       (raspberrypi_multicore_MPCtest_B.Angle3new[0]);
-    raspberrypi_multicore_MPCtest_B.U_a[3] = raspberrypi_multicore_MPCtest_B.t4 *
+    raspberrypi_multicore_MPCtest_B.U_i[3] = raspberrypi_multicore_MPCtest_B.t4 *
       raspberrypi_multicore_MPCtest_B.t9_c;
-    raspberrypi_multicore_MPCtest_B.U_a[6] = raspberrypi_multicore_MPCtest_B.t4 *
+    raspberrypi_multicore_MPCtest_B.U_i[6] = raspberrypi_multicore_MPCtest_B.t4 *
       raspberrypi_multicore_MPCtest_B.t6_f;
-    raspberrypi_multicore_MPCtest_B.U_a[1] =
+    raspberrypi_multicore_MPCtest_B.U_i[1] =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP * sin
       (raspberrypi_multicore_MPCtest_B.t10_a);
-    raspberrypi_multicore_MPCtest_B.U_a[4] =
+    raspberrypi_multicore_MPCtest_B.U_i[4] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t9_c *
       raspberrypi_multicore_MPCtest_B.t11_d;
-    raspberrypi_multicore_MPCtest_B.U_a[7] =
+    raspberrypi_multicore_MPCtest_B.U_i[7] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t6_f *
       raspberrypi_multicore_MPCtest_B.t11_d;
-    raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
     raspberrypi_multicore_MPCtest_B.t4 = raspberrypi_multicore_MPCtest_B.t10 *
       cos(raspberrypi_multicore_MPCtest_B.Angle3new[1]);
-    raspberrypi_multicore_MPCtest_B.U_a[5] =
+    raspberrypi_multicore_MPCtest_B.U_i[5] =
       ((raspberrypi_multicore_MPCtes_DW.obj_f.BC *
         raspberrypi_multicore_MPCtest_B.t6_f *
         raspberrypi_multicore_MPCtest_B.t7_h +
@@ -9972,7 +9881,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       - raspberrypi_multicore_MPCtest_B.t11 *
       raspberrypi_multicore_MPCtest_B.t6_f *
       raspberrypi_multicore_MPCtest_B.t8_e;
-    raspberrypi_multicore_MPCtest_B.U_a[8] =
+    raspberrypi_multicore_MPCtest_B.U_i[8] =
       ((-raspberrypi_multicore_MPCtes_DW.obj_f.OR *
         raspberrypi_multicore_MPCtest_B.t6_f -
         raspberrypi_multicore_MPCtest_B.Angle3new_f *
@@ -9990,58 +9899,58 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
+          raspberrypi_multicore_MPCtest_B.i_hc;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           3];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           6];
       }
 
       raspberrypi_multicore_MPCtest_B.deltaP3[raspberrypi_multicore_MPCtest_B.ar]
         = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+          raspberrypi_multicore_MPCtest_B.i_hc;
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 3];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 6];
         raspberrypi_multicore_MPCtest_B.deltaP3[raspberrypi_multicore_MPCtest_B.ar]
           +=
-          raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
-          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
+          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_hc];
       }
     }
 
@@ -10063,30 +9972,30 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.Angle3new_f =
       raspberrypi_multicore_MPCtes_DW.obj_f.BC *
       raspberrypi_multicore_MPCtest_B.t7_p;
-    raspberrypi_multicore_MPCtest_B.U_a[0] =
+    raspberrypi_multicore_MPCtest_B.U_i[0] =
       raspberrypi_multicore_MPCtest_B.Angle3new_f;
     raspberrypi_multicore_MPCtest_B.t4 =
       -raspberrypi_multicore_MPCtes_DW.obj_f.BC * cos
       (raspberrypi_multicore_MPCtest_B.Angle4new[0]);
-    raspberrypi_multicore_MPCtest_B.U_a[3] = raspberrypi_multicore_MPCtest_B.t4 *
+    raspberrypi_multicore_MPCtest_B.U_i[3] = raspberrypi_multicore_MPCtest_B.t4 *
       raspberrypi_multicore_MPCtest_B.t9_o;
-    raspberrypi_multicore_MPCtest_B.U_a[6] = raspberrypi_multicore_MPCtest_B.t4 *
+    raspberrypi_multicore_MPCtest_B.U_i[6] = raspberrypi_multicore_MPCtest_B.t4 *
       raspberrypi_multicore_MPCtest_B.t6_a;
-    raspberrypi_multicore_MPCtest_B.U_a[1] =
+    raspberrypi_multicore_MPCtest_B.U_i[1] =
       -raspberrypi_multicore_MPCtes_DW.obj_f.DP * sin
       (raspberrypi_multicore_MPCtest_B.t11_n);
-    raspberrypi_multicore_MPCtest_B.U_a[4] =
+    raspberrypi_multicore_MPCtest_B.U_i[4] =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t9_o *
       raspberrypi_multicore_MPCtest_B.t12_l;
-    raspberrypi_multicore_MPCtest_B.U_a[7] =
+    raspberrypi_multicore_MPCtest_B.U_i[7] =
       raspberrypi_multicore_MPCtes_DW.obj_f.DP *
       raspberrypi_multicore_MPCtest_B.t6_a *
       raspberrypi_multicore_MPCtest_B.t12_l;
-    raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
     raspberrypi_multicore_MPCtest_B.t10 *= cos
       (raspberrypi_multicore_MPCtest_B.Angle4new[1]);
-    raspberrypi_multicore_MPCtest_B.U_a[5] =
+    raspberrypi_multicore_MPCtest_B.U_i[5] =
       ((raspberrypi_multicore_MPCtes_DW.obj_f.OR *
         raspberrypi_multicore_MPCtest_B.t9_o -
         raspberrypi_multicore_MPCtes_DW.obj_f.BC *
@@ -10096,7 +10005,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
        raspberrypi_multicore_MPCtest_B.t6_a) +
       raspberrypi_multicore_MPCtest_B.t11 * raspberrypi_multicore_MPCtest_B.t6_a
       * raspberrypi_multicore_MPCtest_B.t8_m;
-    raspberrypi_multicore_MPCtest_B.U_a[8] =
+    raspberrypi_multicore_MPCtest_B.U_i[8] =
       ((raspberrypi_multicore_MPCtest_B.Angle3new_f *
         raspberrypi_multicore_MPCtest_B.t9_o +
         raspberrypi_multicore_MPCtes_DW.obj_f.OR *
@@ -10114,58 +10023,58 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
+          raspberrypi_multicore_MPCtest_B.i_hc;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           3];
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.U_a[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          += raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           6];
       }
 
       raspberrypi_multicore_MPCtest_B.deltaP4[raspberrypi_multicore_MPCtest_B.ar]
         = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+          raspberrypi_multicore_MPCtest_B.i_hc;
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 3];
-        raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           += raspberrypi_multicore_MPCtest_B.R[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 6];
         raspberrypi_multicore_MPCtest_B.deltaP4[raspberrypi_multicore_MPCtest_B.ar]
           +=
-          raspberrypi_multicore_MPCtest_B.MRz_i[raspberrypi_multicore_MPCtest_B.vcol]
-          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.vcol]
+          * raspberrypi_multicore_MPCtest_B.rtb_pArray_L_Adm_m[raspberrypi_multicore_MPCtest_B.i_hc];
       }
     }
   }
@@ -10669,54 +10578,54 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   /*  3D rotation matrix, vb=M*v: */
   /*  rotate a vector in one frame, */
   /*  or change the vector 'v' in rotated frame to 'vb' in world frame */
-  raspberrypi_multicore_MPCtest_B.U_a[0] =
+  raspberrypi_multicore_MPCtest_B.U_i[0] =
     raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-  raspberrypi_multicore_MPCtest_B.U_a[1] =
+  raspberrypi_multicore_MPCtest_B.U_i[1] =
     -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-  raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[3] =
+  raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[3] =
     raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-  raspberrypi_multicore_MPCtest_B.U_a[4] =
+  raspberrypi_multicore_MPCtest_B.U_i[4] =
     raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-  raspberrypi_multicore_MPCtest_B.U_a[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[6] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[8] = 1.0;
-  raspberrypi_multicore_MPCtest_B.t8 =
+  raspberrypi_multicore_MPCtest_B.U_i[5] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[6] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[7] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[8] = 1.0;
+  raspberrypi_multicore_MPCtest_B.t7 =
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[6];
-  raspberrypi_multicore_MPCtest_B.t9 =
+  raspberrypi_multicore_MPCtest_B.t8 =
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[7];
 
   /*  Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!! */
   /* %% next step foot-placement in the leg coordinate */
   /*  dead zone for vNowL */
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 3;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    raspberrypi_multicore_MPCtest_B.t6 =
-      raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.i_d +
-      3] * raspberrypi_multicore_MPCtest_B.t9 +
-      raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.i_d] *
-      raspberrypi_multicore_MPCtest_B.t8;
-    if (fabs(raspberrypi_multicore_MPCtest_B.t6) >= 0.02) {
-      if (raspberrypi_multicore_MPCtest_B.t6 < 0.0) {
-        raspberrypi_multicore_MPCtest_B.t7 = -1.0;
-      } else if (raspberrypi_multicore_MPCtest_B.t6 > 0.0) {
-        raspberrypi_multicore_MPCtest_B.t7 = 1.0;
-      } else if (raspberrypi_multicore_MPCtest_B.t6 == 0.0) {
-        raspberrypi_multicore_MPCtest_B.t7 = 0.0;
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 3;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    raspberrypi_multicore_MPCtest_B.t9 =
+      raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.i_hc +
+      3] * raspberrypi_multicore_MPCtest_B.t8 +
+      raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.i_hc] *
+      raspberrypi_multicore_MPCtest_B.t7;
+    if (fabs(raspberrypi_multicore_MPCtest_B.t9) >= 0.02) {
+      if (raspberrypi_multicore_MPCtest_B.t9 < 0.0) {
+        raspberrypi_multicore_MPCtest_B.t6 = -1.0;
+      } else if (raspberrypi_multicore_MPCtest_B.t9 > 0.0) {
+        raspberrypi_multicore_MPCtest_B.t6 = 1.0;
+      } else if (raspberrypi_multicore_MPCtest_B.t9 == 0.0) {
+        raspberrypi_multicore_MPCtest_B.t6 = 0.0;
       } else {
-        raspberrypi_multicore_MPCtest_B.t7 = (rtNaN);
+        raspberrypi_multicore_MPCtest_B.t6 = (rtNaN);
       }
 
-      raspberrypi_multicore_MPCtest_B.t6 -= raspberrypi_multicore_MPCtest_B.t7 *
+      raspberrypi_multicore_MPCtest_B.t9 -= raspberrypi_multicore_MPCtest_B.t6 *
         0.02;
     } else {
-      raspberrypi_multicore_MPCtest_B.t6 = 0.0;
+      raspberrypi_multicore_MPCtest_B.t9 = 0.0;
     }
 
-    raspberrypi_multicore_MPCtest_B.deltaP2[raspberrypi_multicore_MPCtest_B.i_d]
-      = raspberrypi_multicore_MPCtest_B.t6;
+    raspberrypi_multicore_MPCtest_B.deltaP2[raspberrypi_multicore_MPCtest_B.i_hc]
+      = raspberrypi_multicore_MPCtest_B.t9;
   }
 
   /* v=vNow+[-obj.kx*(vDesL(1)-vNowL(1)); ... */
@@ -10724,18 +10633,18 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 19;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    raspberrypi_multicore_MPCtest_B.i_d = ((raspberrypi_multicore_MPCtest_B.ar +
-      2) - 1) * 3;
+    raspberrypi_multicore_MPCtest_B.i_hc = ((raspberrypi_multicore_MPCtest_B.ar
+      + 2) - 1) * 3;
     raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[3 *
       raspberrypi_multicore_MPCtest_B.ar] =
-      raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[raspberrypi_multicore_MPCtest_B.i_hc];
     raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[3 *
       raspberrypi_multicore_MPCtest_B.ar + 1] =
-      raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[raspberrypi_multicore_MPCtest_B.i_d
+      raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[raspberrypi_multicore_MPCtest_B.i_hc
       + 1];
     raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[3 *
       raspberrypi_multicore_MPCtest_B.ar + 2] =
-      raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[raspberrypi_multicore_MPCtest_B.i_d
+      raspberrypi_multicore_MPCtes_DW.obj_l.vNowN[raspberrypi_multicore_MPCtest_B.i_hc
       + 2];
   }
 
@@ -10784,10 +10693,10 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   /*              end */
   /* %% next step foot-end position planning in the leg coordinate */
   memset(&raspberrypi_multicore_MPCtest_B.pL_sw[0], 0, 12U * sizeof(real_T));
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 4;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    if (raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_d]
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 4;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    if (raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_hc]
         < 0.5) {
       raspberrypi_multicore_MPCtest_B.s_i *= 1.2;
 
@@ -10803,7 +10712,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
         /*  a is the control point vector, s is the time vector */
         raspberrypi_multicore_MPCtest_B.ar = 3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2;
+          raspberrypi_multicore_MPCtest_B.i_hc + 2;
         raspberrypi_multicore_MPCtest_B.t7 =
           raspberrypi_multicore_MPCtes_DW.obj_l.pL_LS[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.t8 =
@@ -10848,7 +10757,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         raspberrypi_multicore_MPCtest_B.t7 = raspberrypi_multicore_factorial(3.0);
         raspberrypi_multicore_MPCtest_B.t8 =
           (raspberrypi_multicore_MPCtes_DW.obj_l.pL_LS[3 *
-           raspberrypi_multicore_MPCtest_B.i_d + 2] + -0.196) / 2.0 +
+           raspberrypi_multicore_MPCtest_B.i_hc + 2] + -0.196) / 2.0 +
           raspberrypi_multicore_MPCtes_DW.obj_l.StepH;
         raspberrypi_multicore_MPCtest_B.t9 = raspberrypi_multicore_factorial(2.0);
         raspberrypi_multicore_MPCtest_B.t6_o = raspberrypi_multicore_factorial
@@ -10882,10 +10791,10 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
       raspberrypi_multicore_MPCtest_B.t7 =
         raspberrypi_multicore_MPCtes_DW.obj_l.pL_LS[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.t8 =
         raspberrypi_multicore_MPCtest_B.desAllL[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.t9 = raspberrypi_multicore_factorial(3.0) /
         raspberrypi_multicore_factorial(0.0) / raspberrypi_multicore_factorial
         (3.0) * rt_powd_snf(raspberrypi_multicore_MPCtest_B.s_i, 0.0) *
@@ -10903,7 +10812,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         (0.0) * rt_powd_snf(raspberrypi_multicore_MPCtest_B.s_i, 3.0) *
         rt_powd_snf(1.0 - raspberrypi_multicore_MPCtest_B.s_i, 0.0);
       raspberrypi_multicore_MPCtest_B.pL_sw[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] =
+        raspberrypi_multicore_MPCtest_B.i_hc] =
         ((raspberrypi_multicore_MPCtest_B.t9 *
           raspberrypi_multicore_MPCtest_B.t7 +
           raspberrypi_multicore_MPCtest_B.t6_o *
@@ -10913,7 +10822,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         raspberrypi_multicore_MPCtest_B.t8_a *
         raspberrypi_multicore_MPCtest_B.t8;
       raspberrypi_multicore_MPCtest_B.ar = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtest_B.t7 =
         raspberrypi_multicore_MPCtes_DW.obj_l.pL_LS[raspberrypi_multicore_MPCtest_B.ar];
       raspberrypi_multicore_MPCtest_B.t8 =
@@ -10928,7 +10837,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         raspberrypi_multicore_MPCtest_B.t8_a *
         raspberrypi_multicore_MPCtest_B.t8;
       raspberrypi_multicore_MPCtest_B.pL_sw[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] =
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] =
         raspberrypi_multicore_MPCtest_B.t6;
 
       /*                      if touchInd(i)>0.5 */
@@ -10952,14 +10861,14 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       raspberrypi_multicore_MPCtes_DW.obj_l.interpol_Count) / 4.0;
     raspberrypi_multicore_MPCtest_B.t6 =
       raspberrypi_multicore_MPCtes_DW.obj_l.interpol_Count / 4.0;
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 12;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_d]
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 12;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_hc]
         = raspberrypi_multicore_MPCtest_B.s_i *
-        raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[raspberrypi_multicore_MPCtest_B.i_d]
+        raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[raspberrypi_multicore_MPCtest_B.i_hc]
         + raspberrypi_multicore_MPCtest_B.t6 *
-        raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Now[raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Now[raspberrypi_multicore_MPCtest_B.i_hc];
     }
 
     raspberrypi_multicore_MPCtes_DW.obj_l.interpol_Count++;
@@ -10967,37 +10876,37 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     memcpy(&raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[0],
            &raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Now[0], 12U *
            sizeof(real_T));
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 4;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      if ((raspberrypi_multicore_MPCtes_DW.obj_l.MPC_legStateOld[raspberrypi_multicore_MPCtest_B.i_d]
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 4;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      if ((raspberrypi_multicore_MPCtes_DW.obj_l.MPC_legStateOld[raspberrypi_multicore_MPCtest_B.i_hc]
            < 0.5) &&
-          (raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_d]
+          (raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_hc]
            > 0.5)) {
         raspberrypi_multicore_MPCtest_B.ar =
-          (raspberrypi_multicore_MPCtest_B.i_d + 1) * 3;
+          (raspberrypi_multicore_MPCtest_B.i_hc + 1) * 3;
         raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[raspberrypi_multicore_MPCtest_B.ar
           - 3] = raspberrypi_multicore_MPCtes_DW.obj_l.PendAllLocalOld[3 *
-          raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.i_hc];
         raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[raspberrypi_multicore_MPCtest_B.ar
           - 2] = raspberrypi_multicore_MPCtes_DW.obj_l.PendAllLocalOld[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1];
+          raspberrypi_multicore_MPCtest_B.i_hc + 1];
         raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[raspberrypi_multicore_MPCtest_B.ar
           - 1] = raspberrypi_multicore_MPCtes_DW.obj_l.PendAllLocalOld[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2];
+          raspberrypi_multicore_MPCtest_B.i_hc + 2];
       }
     }
 
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 12;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Now[raspberrypi_multicore_MPCtest_B.i_d]
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 12;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Now[raspberrypi_multicore_MPCtest_B.i_hc]
         =
-        raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_d]
+        raspberrypi_multicore_MPCtest_B.pArray_L_Adm[raspberrypi_multicore_MPCtest_B.i_hc]
         / 1000.0;
-      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_d]
+      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_hc]
         =
-        raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtes_DW.obj_l.pArray_L_Adm_Old[raspberrypi_multicore_MPCtest_B.i_hc];
     }
 
     raspberrypi_multicore_MPCtes_DW.obj_l.interpol_Count = 1.0;
@@ -11005,55 +10914,55 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
   /*  update of pL_LS */
   /* %% data update */
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 4;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 4;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
     raspberrypi_multicore_MPCtest_B.s_i =
-      raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_hc];
     raspberrypi_multicore_MPCtest_B.ar = (int32_T)
-      raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_hc];
     if (raspberrypi_multicore_MPCtest_B.ar < 0.5) {
       raspberrypi_multicore_MPCtest_B.desAllL[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] =
+        raspberrypi_multicore_MPCtest_B.i_hc] =
         raspberrypi_multicore_MPCtest_B.pL_sw[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.vcol];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.vcol];
     } else if (raspberrypi_multicore_MPCtest_B.s_i > 0.5) {
       raspberrypi_multicore_MPCtest_B.desAllL[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] =
+        raspberrypi_multicore_MPCtest_B.i_hc] =
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol];
     } else {
       raspberrypi_multicore_MPCtest_B.desAllL[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] =
+        raspberrypi_multicore_MPCtest_B.i_hc] =
         raspberrypi_multicore_MPCtes_DW.obj_l.PendAllLocalOld[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtes_DW.obj_l.PendAllLocalOld[raspberrypi_multicore_MPCtest_B.vcol];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtes_DW.obj_l.PendAllLocalOld[raspberrypi_multicore_MPCtest_B.vcol];
@@ -11061,22 +10970,22 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
     if (raspberrypi_multicore_MPCtest_B.ar > 0.5) {
       raspberrypi_multicore_MPCtes_DW.obj_l.pL_LS[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] =
+        raspberrypi_multicore_MPCtest_B.i_hc] =
         raspberrypi_multicore_MPCtest_B.desAllL[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.ar = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtes_DW.obj_l.pL_LS[raspberrypi_multicore_MPCtest_B.ar]
         =
         raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.ar];
       raspberrypi_multicore_MPCtest_B.ar = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtes_DW.obj_l.pL_LS[raspberrypi_multicore_MPCtest_B.ar]
         =
         raspberrypi_multicore_MPCtest_B.desAllL[raspberrypi_multicore_MPCtest_B.ar];
     }
 
-    raspberrypi_multicore_MPCtes_DW.obj_l.MPC_legStateOld[raspberrypi_multicore_MPCtest_B.i_d]
+    raspberrypi_multicore_MPCtes_DW.obj_l.MPC_legStateOld[raspberrypi_multicore_MPCtest_B.i_hc]
       = raspberrypi_multicore_MPCtest_B.s_i;
   }
 
@@ -11271,16 +11180,16 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       raspberrypi_multicore_MPCtest_B.Switch1;
   }
 
-  raspberrypi_multicore_MPCtest_B.i_d = 0;
+  raspberrypi_multicore_MPCtest_B.i_hc = 0;
   raspberrypi_multicore_MPCtest_B.ar = 1;
   exitg1 = false;
   while ((!exitg1) && (raspberrypi_multicore_MPCtest_B.ar - 1 < 12)) {
     if (raspberrypi_multicore_MPCtest_B.x_h[raspberrypi_multicore_MPCtest_B.ar -
         1]) {
-      raspberrypi_multicore_MPCtest_B.i_d++;
-      raspberrypi_multicore_MPCtest_B.ii_data[raspberrypi_multicore_MPCtest_B.i_d
+      raspberrypi_multicore_MPCtest_B.i_hc++;
+      raspberrypi_multicore_MPCtest_B.ii_data[raspberrypi_multicore_MPCtest_B.i_hc
         - 1] = raspberrypi_multicore_MPCtest_B.ar;
-      if (raspberrypi_multicore_MPCtest_B.i_d >= 12) {
+      if (raspberrypi_multicore_MPCtest_B.i_hc >= 12) {
         exitg1 = true;
       } else {
         raspberrypi_multicore_MPCtest_B.ar++;
@@ -11290,21 +11199,21 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     }
   }
 
-  if (1 > raspberrypi_multicore_MPCtest_B.i_d) {
-    raspberrypi_multicore_MPCtest_B.i_d = 0;
+  if (1 > raspberrypi_multicore_MPCtest_B.i_hc) {
+    raspberrypi_multicore_MPCtest_B.i_hc = 0;
   }
 
-  if (0 <= raspberrypi_multicore_MPCtest_B.i_d - 1) {
+  if (0 <= raspberrypi_multicore_MPCtest_B.i_hc - 1) {
     memcpy(&raspberrypi_multicore_MPCtest_B.b_index_data[0],
            &raspberrypi_multicore_MPCtest_B.ii_data[0],
-           raspberrypi_multicore_MPCtest_B.i_d * sizeof(int32_T));
+           raspberrypi_multicore_MPCtest_B.i_hc * sizeof(int32_T));
   }
 
-  if (raspberrypi_multicore_MPCtest_B.i_d != 0) {
+  if (raspberrypi_multicore_MPCtest_B.i_hc != 0) {
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar <
-         raspberrypi_multicore_MPCtest_B.i_d; raspberrypi_multicore_MPCtest_B.ar
-         ++) {
+         raspberrypi_multicore_MPCtest_B.i_hc;
+         raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtest_B.vcol =
         raspberrypi_multicore_MPCtest_B.b_index_data[raspberrypi_multicore_MPCtest_B.ar];
       raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.vcol
@@ -11315,11 +11224,11 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   }
 
   /*  pArray must be row vector */
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 4;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    if ((raspberrypi_multicore_MPCtest_B.i_d + 1 == 2) ||
-        (raspberrypi_multicore_MPCtest_B.i_d + 1 == 4)) {
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 4;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    if ((raspberrypi_multicore_MPCtest_B.i_hc + 1 == 2) ||
+        (raspberrypi_multicore_MPCtest_B.i_hc + 1 == 4)) {
       raspberrypi_multicore_MPCtest_B.pL_sw_c[1] =
         -raspberrypi_multicore_MPCtes_DW.obj_k.PyLim[0];
       raspberrypi_multicore_MPCtest_B.pL_sw_c[2] =
@@ -11333,17 +11242,17 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
     raspberrypi_multicore_MPCtest_B.v1[0] =
       raspberrypi_multicore_MPCtest_B.pL_sw[3 *
-      raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtest_B.i_hc];
     raspberrypi_multicore_MPCtest_B.v1[1] =
       raspberrypi_multicore_MPCtes_DW.obj_k.PxLim[0];
     raspberrypi_multicore_MPCtest_B.v1[2] =
       raspberrypi_multicore_MPCtes_DW.obj_k.PxLim[1];
-    raspberrypi_multicore_MPCtest_B.ar = 3 * raspberrypi_multicore_MPCtest_B.i_d
-      + 1;
+    raspberrypi_multicore_MPCtest_B.ar = 3 *
+      raspberrypi_multicore_MPCtest_B.i_hc + 1;
     raspberrypi_multicore_MPCtest_B.pL_sw_c[0] =
       raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.ar];
     raspberrypi_multicore_MPCtest_B.vcol = 3 *
-      raspberrypi_multicore_MPCtest_B.i_d + 2;
+      raspberrypi_multicore_MPCtest_B.i_hc + 2;
     raspberrypi_multicore_MPCtest_B.deltaP2[0] =
       raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.vcol];
     raspberrypi_multicore_MPCtest_B.deltaP2[1] =
@@ -11351,7 +11260,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.deltaP2[2] =
       raspberrypi_multicore_MPCtes_DW.obj_k.PzLim[1];
     raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3 *
-      raspberrypi_multicore_MPCtest_B.i_d] = raspberrypi_multicore_MP_median
+      raspberrypi_multicore_MPCtest_B.i_hc] = raspberrypi_multicore_MP_median
       (raspberrypi_multicore_MPCtest_B.v1);
     raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.ar]
       = raspberrypi_multicore_MP_median(raspberrypi_multicore_MPCtest_B.pL_sw_c);
@@ -11454,12 +11363,12 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.vcol = 0;
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 12;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 12;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
     raspberrypi_multicore_MPCtest_B.t9 =
-      raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.i_d]
-      - raspberrypi_multicore_MPCtes_DW.obj_p.PosDesOld[raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.i_hc]
+      - raspberrypi_multicore_MPCtes_DW.obj_p.PosDesOld[raspberrypi_multicore_MPCtest_B.i_hc];
     if (fabs(raspberrypi_multicore_MPCtest_B.t9 /
              raspberrypi_multicore_MPCtes_DW.obj_p.dt) >= fabs
         (raspberrypi_multicore_MPCtes_DW.obj_p.cons_Vel)) {
@@ -11478,7 +11387,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
         raspberrypi_multicore_MPCtes_DW.obj_p.dt;
     }
 
-    raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_d]
+    raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_hc]
       = raspberrypi_multicore_MPCtest_B.t9;
   }
 
@@ -11572,10 +11481,10 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
    *  Constant: '<S14>/Constant11'
    *  MATLABSystem: '<Root>/MATLAB System16'
    */
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 60;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_d] =
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 60;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_hc] =
       0U;
   }
 
@@ -11631,26 +11540,26 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
   raspberrypi_multicore_MPCtest_B.cmd[2] = (uint8_T)
     raspberrypi_multicore_MPCtest_B.ar;
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 12;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 12;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
     raspberrypi_multicore_MPCtest_B.Angle3new_f = rt_roundd_snf
-      (raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.i_d]);
+      (raspberrypi_multicore_MPCtest_B.pL_sw[raspberrypi_multicore_MPCtest_B.i_hc]);
     if (raspberrypi_multicore_MPCtest_B.Angle3new_f < 256.0) {
       if (raspberrypi_multicore_MPCtest_B.Angle3new_f >= 0.0) {
-        raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_hc
           + 3] = (uint8_T)raspberrypi_multicore_MPCtest_B.Angle3new_f;
       } else {
-        raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_hc
           + 3] = 0U;
       }
     } else {
-      raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_d +
+      raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.i_hc +
         3] = MAX_uint8_T;
     }
 
     raspberrypi_multicore_MPCtest_B.Angle3new_f = rt_roundd_snf
-      (raspberrypi_multicore_MPCtes_DW.obj_p.PosDesOld[raspberrypi_multicore_MPCtest_B.i_d]
+      (raspberrypi_multicore_MPCtes_DW.obj_p.PosDesOld[raspberrypi_multicore_MPCtest_B.i_hc]
        * 10.0);
     if (raspberrypi_multicore_MPCtest_B.Angle3new_f < 32768.0) {
       if (raspberrypi_multicore_MPCtest_B.Angle3new_f >= -32768.0) {
@@ -11664,7 +11573,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
     memcpy((void *)&resAngle[0], (void *)&temp, (uint32_T)((size_t)2 * sizeof
             (uint8_T)));
-    raspberrypi_multicore_MPCtest_B.ar = (raspberrypi_multicore_MPCtest_B.i_d +
+    raspberrypi_multicore_MPCtest_B.ar = (raspberrypi_multicore_MPCtest_B.i_hc +
       1) << 1;
     raspberrypi_multicore_MPCtest_B.cmd[raspberrypi_multicore_MPCtest_B.ar + 13]
       = resAngle[0];
@@ -11753,13 +11662,13 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.vcol = 1;
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 12;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 12;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
     memcpy((void *)&temp, (void *)&raspberrypi_multicore_MPCtest_B.cmd
-           [((raspberrypi_multicore_MPCtest_B.i_d + 1) << 1) + 12], (uint32_T)
+           [((raspberrypi_multicore_MPCtest_B.i_hc + 1) << 1) + 12], (uint32_T)
            ((size_t)1 * sizeof(int16_T)));
-    raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE[raspberrypi_multicore_MPCtest_B.i_d]
+    raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE[raspberrypi_multicore_MPCtest_B.i_hc]
       = (real_T)temp / 10.0;
   }
 
@@ -11845,64 +11754,64 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
       raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.ar
-        + 3 * raspberrypi_multicore_MPCtest_B.i_d;
+        + 3 * raspberrypi_multicore_MPCtest_B.i_hc;
       raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] =
         0.0;
       raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.R[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
       raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.R[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
         3];
       raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.R[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
         6];
     }
 
-    raspberrypi_multicore_MPCtest_B.U_a[3 * raspberrypi_multicore_MPCtest_B.ar] =
+    raspberrypi_multicore_MPCtest_B.U_i[3 * raspberrypi_multicore_MPCtest_B.ar] =
       d[raspberrypi_multicore_MPCtest_B.ar];
   }
 
-  raspberrypi_multicore_MPCtest_B.U_a[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[4] = raspberrypi_multicore_MPCtest_B.s_i;
-  raspberrypi_multicore_MPCtest_B.U_a[7] =
+  raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[4] = raspberrypi_multicore_MPCtest_B.s_i;
+  raspberrypi_multicore_MPCtest_B.U_i[7] =
     -raspberrypi_multicore_MPCtest_B.Switch1;
-  raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[5] =
+  raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[5] =
     raspberrypi_multicore_MPCtest_B.Switch1;
-  raspberrypi_multicore_MPCtest_B.U_a[8] = raspberrypi_multicore_MPCtest_B.s_i;
+  raspberrypi_multicore_MPCtest_B.U_i[8] = raspberrypi_multicore_MPCtest_B.s_i;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.i_d
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.i_hc
         + 3 * raspberrypi_multicore_MPCtest_B.ar;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] =
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
         raspberrypi_multicore_MPCtest_B.ar] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_d];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
+        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_hc];
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
         raspberrypi_multicore_MPCtest_B.ar + 1] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_d +
+        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_hc +
         3];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
         raspberrypi_multicore_MPCtest_B.ar + 2] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_d +
+        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_hc +
         6];
     }
   }
@@ -11923,75 +11832,76 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      raspberrypi_multicore_MPCtes_DW.obj.Roff[3 *
+      raspberrypi_multicore_MPCtes_DW.obj_c.Roff[3 *
         raspberrypi_multicore_MPCtest_B.ar] =
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtes_DW.obj.Roff[3 *
+      raspberrypi_multicore_MPCtes_DW.obj_c.Roff[3 *
         raspberrypi_multicore_MPCtest_B.ar + 1] =
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
         3];
-      raspberrypi_multicore_MPCtes_DW.obj.Roff[3 *
+      raspberrypi_multicore_MPCtes_DW.obj_c.Roff[3 *
         raspberrypi_multicore_MPCtest_B.ar + 2] =
         raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
         6];
     }
 
     raspberrypi_multicore_MPCtest_B.Switch1 =
-      raspberrypi_multicore_MPCtes_DW.obj.accStore[0];
+      raspberrypi_multicore_MPCtes_DW.obj_c.accStore[0];
     raspberrypi_multicore_MPCtest_B.s_i =
-      raspberrypi_multicore_MPCtes_DW.obj.accStore[1];
+      raspberrypi_multicore_MPCtes_DW.obj_c.accStore[1];
     raspberrypi_multicore_MPCtest_B.t6 =
-      raspberrypi_multicore_MPCtes_DW.obj.accStore[2];
+      raspberrypi_multicore_MPCtes_DW.obj_c.accStore[2];
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 399;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      raspberrypi_multicore_MPCtest_B.i_d = (raspberrypi_multicore_MPCtest_B.ar
+      raspberrypi_multicore_MPCtest_B.i_hc = (raspberrypi_multicore_MPCtest_B.ar
         + 1) * 3;
       raspberrypi_multicore_MPCtest_B.Switch1 +=
-        raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.s_i +=
-        raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc
         + 1];
       raspberrypi_multicore_MPCtest_B.t6 +=
-        raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc
         + 2];
     }
 
-    raspberrypi_multicore_MPCtes_DW.obj.accOff[0] =
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[0] =
       -raspberrypi_multicore_MPCtest_B.Switch1 / 400.0;
-    raspberrypi_multicore_MPCtes_DW.obj.accOff[1] =
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[1] =
       -raspberrypi_multicore_MPCtest_B.s_i / 400.0;
-    raspberrypi_multicore_MPCtes_DW.obj.accOff[2] =
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[2] =
       -raspberrypi_multicore_MPCtest_B.t6 / 400.0;
   }
 
   /*  Rotation matrix to euler angles, ZYX intrinsic order */
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 3;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 3;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.i_d
-        + 3 * raspberrypi_multicore_MPCtest_B.ar;
+      raspberrypi_multicore_MPCtest_B.vcol =
+        raspberrypi_multicore_MPCtest_B.i_hc + 3 *
+        raspberrypi_multicore_MPCtest_B.ar;
       raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] =
         0.0;
       raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.R[3 * raspberrypi_multicore_MPCtest_B.ar]
-        * raspberrypi_multicore_MPCtes_DW.obj.Roff[raspberrypi_multicore_MPCtest_B.i_d];
+        * raspberrypi_multicore_MPCtes_DW.obj_c.Roff[raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.R[3 * raspberrypi_multicore_MPCtest_B.ar
         + 1] *
-        raspberrypi_multicore_MPCtes_DW.obj.Roff[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtes_DW.obj_c.Roff[raspberrypi_multicore_MPCtest_B.i_hc
         + 3];
       raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
         raspberrypi_multicore_MPCtest_B.R[3 * raspberrypi_multicore_MPCtest_B.ar
         + 2] *
-        raspberrypi_multicore_MPCtes_DW.obj.Roff[raspberrypi_multicore_MPCtest_B.i_d
+        raspberrypi_multicore_MPCtes_DW.obj_c.Roff[raspberrypi_multicore_MPCtest_B.i_hc
         + 6];
     }
 
-    raspberrypi_multicore_MPCtest_B.v1[raspberrypi_multicore_MPCtest_B.i_d] =
+    raspberrypi_multicore_MPCtest_B.v1[raspberrypi_multicore_MPCtest_B.i_hc] =
       0.0;
   }
 
@@ -12021,105 +11931,82 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
   /* %% expand the yaw angle into endless radian angle */
   if ((fabs((raspberrypi_multicore_MPCtest_B.v1[2] -
-             raspberrypi_multicore_MPCtes_DW.obj.sitaOld[2]) +
-            raspberrypi_multicore_MPCtes_DW.obj.yawOff) > 4.71238898038469) &&
+             raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[2]) +
+            raspberrypi_multicore_MPCtes_DW.obj_c.yawOff) > 4.71238898038469) &&
       (raspberrypi_multicore_MPCtest_B.estEN < 0.5)) {
-    raspberrypi_multicore_MPCtest_B.t7 =
-      (raspberrypi_multicore_MPCtes_DW.obj.sitaOld[2] -
+    raspberrypi_multicore_MPCtest_B.t6 =
+      (raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[2] -
        raspberrypi_multicore_MPCtest_B.v1[2]) -
-      raspberrypi_multicore_MPCtes_DW.obj.yawOff;
-    if (raspberrypi_multicore_MPCtest_B.t7 < 0.0) {
-      raspberrypi_multicore_MPCtest_B.t7 = -1.0;
-    } else if (raspberrypi_multicore_MPCtest_B.t7 > 0.0) {
-      raspberrypi_multicore_MPCtest_B.t7 = 1.0;
-    } else if (raspberrypi_multicore_MPCtest_B.t7 == 0.0) {
-      raspberrypi_multicore_MPCtest_B.t7 = 0.0;
+      raspberrypi_multicore_MPCtes_DW.obj_c.yawOff;
+    if (raspberrypi_multicore_MPCtest_B.t6 < 0.0) {
+      raspberrypi_multicore_MPCtest_B.t6 = -1.0;
+    } else if (raspberrypi_multicore_MPCtest_B.t6 > 0.0) {
+      raspberrypi_multicore_MPCtest_B.t6 = 1.0;
+    } else if (raspberrypi_multicore_MPCtest_B.t6 == 0.0) {
+      raspberrypi_multicore_MPCtest_B.t6 = 0.0;
     } else {
-      raspberrypi_multicore_MPCtest_B.t7 = (rtNaN);
+      raspberrypi_multicore_MPCtest_B.t6 = (rtNaN);
     }
 
-    raspberrypi_multicore_MPCtes_DW.obj.yawOff += 6.2831853071795862 *
-      raspberrypi_multicore_MPCtest_B.t7;
+    raspberrypi_multicore_MPCtes_DW.obj_c.yawOff += 6.2831853071795862 *
+      raspberrypi_multicore_MPCtest_B.t6;
   } else if (raspberrypi_multicore_MPCtest_B.estEN > 0.5) {
-    raspberrypi_multicore_MPCtes_DW.obj.yawOff = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj_c.yawOff = 0.0;
   }
 
   raspberrypi_multicore_MPCtest_B.v1[2] +=
-    raspberrypi_multicore_MPCtes_DW.obj.yawOff;
-  raspberrypi_multicore_MPCtes_DW.obj.sitaOld[0] =
+    raspberrypi_multicore_MPCtes_DW.obj_c.yawOff;
+  raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[0] =
     raspberrypi_multicore_MPCtest_B.v1[0];
-  raspberrypi_multicore_MPCtes_DW.obj.sitaOld[1] =
+  raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[1] =
     raspberrypi_multicore_MPCtest_B.v1[1];
-  raspberrypi_multicore_MPCtes_DW.obj.sitaOld[2] =
+  raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[2] =
     raspberrypi_multicore_MPCtest_B.v1[2];
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 399;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    raspberrypi_multicore_MPCtest_B.dv4[3 * raspberrypi_multicore_MPCtest_B.ar] =
-      raspberrypi_multicore_MPCtes_DW.obj.accStore[3 *
+    raspberrypi_multicore_MPCtest_B.dv5[3 * raspberrypi_multicore_MPCtest_B.ar] =
+      raspberrypi_multicore_MPCtes_DW.obj_c.accStore[3 *
       raspberrypi_multicore_MPCtest_B.ar];
-    raspberrypi_multicore_MPCtest_B.i_d = 3 * raspberrypi_multicore_MPCtest_B.ar
-      + 1;
-    raspberrypi_multicore_MPCtest_B.dv4[raspberrypi_multicore_MPCtest_B.i_d] =
-      raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d];
-    raspberrypi_multicore_MPCtest_B.i_d = 3 * raspberrypi_multicore_MPCtest_B.ar
-      + 2;
-    raspberrypi_multicore_MPCtest_B.dv4[raspberrypi_multicore_MPCtest_B.i_d] =
-      raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d];
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
+      raspberrypi_multicore_MPCtest_B.ar + 1;
+    raspberrypi_multicore_MPCtest_B.dv5[raspberrypi_multicore_MPCtest_B.i_hc] =
+      raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc];
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
+      raspberrypi_multicore_MPCtest_B.ar + 2;
+    raspberrypi_multicore_MPCtest_B.dv5[raspberrypi_multicore_MPCtest_B.i_hc] =
+      raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc];
   }
 
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 399;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    raspberrypi_multicore_MPCtest_B.i_d = 3 *
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
       ((raspberrypi_multicore_MPCtest_B.ar + 2) - 1);
-    raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d]
-      = raspberrypi_multicore_MPCtest_B.dv4[3 *
+    raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc]
+      = raspberrypi_multicore_MPCtest_B.dv5[3 *
       raspberrypi_multicore_MPCtest_B.ar];
-    raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d
-      + 1] = raspberrypi_multicore_MPCtest_B.dv4[3 *
+    raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc
+      + 1] = raspberrypi_multicore_MPCtest_B.dv5[3 *
       raspberrypi_multicore_MPCtest_B.ar + 1];
-    raspberrypi_multicore_MPCtes_DW.obj.accStore[raspberrypi_multicore_MPCtest_B.i_d
-      + 2] = raspberrypi_multicore_MPCtest_B.dv4[3 *
+    raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.i_hc
+      + 2] = raspberrypi_multicore_MPCtest_B.dv5[3 *
       raspberrypi_multicore_MPCtest_B.ar + 2];
   }
 
-  raspberrypi_multicore_MPCtes_DW.obj.accStore[0] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[0];
-  raspberrypi_multicore_MPCtest_B.Switch1 =
-    raspberrypi_multicore_MPCtest_B.deltaP3[0] +
-    raspberrypi_multicore_MPCtes_DW.obj.accOff[0];
-  raspberrypi_multicore_MPCtes_DW.obj.accStore[1] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[1];
-  raspberrypi_multicore_MPCtest_B.s_i = raspberrypi_multicore_MPCtest_B.deltaP3
-    [1] + raspberrypi_multicore_MPCtes_DW.obj.accOff[1];
-  raspberrypi_multicore_MPCtes_DW.obj.accStore[2] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[2];
-  raspberrypi_multicore_MPCtest_B.t7 = raspberrypi_multicore_MPCtest_B.deltaP3[2]
-    + raspberrypi_multicore_MPCtes_DW.obj.accOff[2];
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    raspberrypi_multicore_MPCtest_B.t8 =
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
-    raspberrypi_multicore_MPCtest_B.t6 = raspberrypi_multicore_MPCtest_B.t8 *
-      raspberrypi_multicore_MPCtest_B.Switch1;
-    raspberrypi_multicore_MPCtest_B.t9 = raspberrypi_multicore_MPCtest_B.t8 *
-      raspberrypi_multicore_MPCtest_B.a[0];
-    raspberrypi_multicore_MPCtest_B.t8 =
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar + 3];
-    raspberrypi_multicore_MPCtest_B.t6 += raspberrypi_multicore_MPCtest_B.t8 *
-      raspberrypi_multicore_MPCtest_B.s_i;
-    raspberrypi_multicore_MPCtest_B.t9 += raspberrypi_multicore_MPCtest_B.t8 *
-      raspberrypi_multicore_MPCtest_B.a[1];
-    raspberrypi_multicore_MPCtest_B.t8 =
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar + 6];
+    raspberrypi_multicore_MPCtes_DW.obj_c.accStore[raspberrypi_multicore_MPCtest_B.ar]
+      =
+      raspberrypi_multicore_MPCtest_B.deltaP3[raspberrypi_multicore_MPCtest_B.ar];
     raspberrypi_multicore_MPCtest_B.deltaP2[raspberrypi_multicore_MPCtest_B.ar] =
-      raspberrypi_multicore_MPCtest_B.t8 * raspberrypi_multicore_MPCtest_B.t7 +
-      raspberrypi_multicore_MPCtest_B.t6;
-    raspberrypi_multicore_MPCtest_B.deltaP3[raspberrypi_multicore_MPCtest_B.ar] =
-      raspberrypi_multicore_MPCtest_B.t8 * raspberrypi_multicore_MPCtest_B.a[2]
-      + raspberrypi_multicore_MPCtest_B.t9;
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar + 6]
+      * raspberrypi_multicore_MPCtest_B.a[2] +
+      (raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
+       3] * raspberrypi_multicore_MPCtest_B.a[1] +
+       raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar] *
+       raspberrypi_multicore_MPCtest_B.a[0]);
   }
 
   /* MATLAB Function: '<Root>/ServoAngle_to_Norminal' */
@@ -12216,7 +12103,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       raspberrypi_multicore_MPCtest_P.DigitalRead_SampleTime;
   }
 
-  EXT_GPIO_read(24U, &rtb_DigitalRead_pz_0);
+  EXT_GPIO_read(24U, &rEQ0);
 
   /* MATLABSystem: '<S53>/Digital Read' */
   if (raspberrypi_multicore_MPCtes_DW.obj_cu.SampleTime !=
@@ -12225,7 +12112,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
       raspberrypi_multicore_MPCtest_P.DigitalRead_SampleTime_f;
   }
 
-  EXT_GPIO_read(23U, &rtb_DigitalRead_p_0);
+  EXT_GPIO_read(23U, &p);
 
   /* MATLABSystem: '<S54>/Digital Read' */
   if (raspberrypi_multicore_MPCtes_DW.obj_i.SampleTime !=
@@ -12251,8 +12138,8 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
    *  MATLABSystem: '<S54>/Digital Read'
    *  MATLABSystem: '<S55>/Digital Read'
    */
-  raspberrypi_multicore_MPCtest_B.pyNew[0] = rtb_DigitalRead_pz_0;
-  raspberrypi_multicore_MPCtest_B.pyNew[1] = rtb_DigitalRead_p_0;
+  raspberrypi_multicore_MPCtest_B.pyNew[0] = rEQ0;
+  raspberrypi_multicore_MPCtest_B.pyNew[1] = p;
   raspberrypi_multicore_MPCtest_B.pyNew[2] = rtb_DigitalRead_k_0;
   raspberrypi_multicore_MPCtest_B.pyNew[3] = rtb_DigitalRead_0;
 
@@ -12283,75 +12170,74 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.R[5] = 0.0;
   raspberrypi_multicore_MPCtest_B.R[8] = raspberrypi_multicore_MPCtest_B.s_i;
   raspberrypi_multicore_MPCtest_B.R[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[0] = 1.0;
+  raspberrypi_multicore_MPCtest_B.U_i[0] = 1.0;
   raspberrypi_multicore_MPCtest_B.R[4] = 1.0;
-  raspberrypi_multicore_MPCtest_B.U_a[3] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[3] = 0.0;
   raspberrypi_multicore_MPCtest_B.R[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[6] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[4] = raspberrypi_multicore_MPCtest_B.t7;
-  raspberrypi_multicore_MPCtest_B.U_a[7] = -raspberrypi_multicore_MPCtest_B.t6;
-  raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[5] = raspberrypi_multicore_MPCtest_B.t6;
-  raspberrypi_multicore_MPCtest_B.U_a[8] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.U_i[6] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[4] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.U_i[7] = -raspberrypi_multicore_MPCtest_B.t6;
+  raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[5] = raspberrypi_multicore_MPCtest_B.t6;
+  raspberrypi_multicore_MPCtest_B.U_i[8] = raspberrypi_multicore_MPCtest_B.t7;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
       raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.ar
-        + 3 * raspberrypi_multicore_MPCtest_B.i_d;
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] =
+        + 3 * raspberrypi_multicore_MPCtest_B.i_hc;
+      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
+      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
+      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar + 3];
-      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
+      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar + 6];
     }
 
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 4;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 4;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
       raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.ar
-        + 3 * raspberrypi_multicore_MPCtest_B.i_d;
+        + 3 * raspberrypi_multicore_MPCtest_B.i_hc;
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
         = 0.0;
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
         += raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
-        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.i_hc] *
+        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
         += raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
-        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
-        3];
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
+        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar + 3];
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
         += raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
-        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
-        6];
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
+        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar + 6];
     }
   }
 
   if (!rtIsNaN(raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[2])) {
-    raspberrypi_multicore_MPCtest_B.i_d = 1;
+    raspberrypi_multicore_MPCtest_B.i_hc = 1;
   } else {
-    raspberrypi_multicore_MPCtest_B.i_d = 0;
+    raspberrypi_multicore_MPCtest_B.i_hc = 0;
     raspberrypi_multicore_MPCtest_B.ar = 2;
     exitg1 = false;
     while ((!exitg1) && (raspberrypi_multicore_MPCtest_B.ar < 5)) {
       if (!rtIsNaN(raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp
                    [(raspberrypi_multicore_MPCtest_B.ar - 1) * 3 + 2])) {
-        raspberrypi_multicore_MPCtest_B.i_d = raspberrypi_multicore_MPCtest_B.ar;
+        raspberrypi_multicore_MPCtest_B.i_hc =
+          raspberrypi_multicore_MPCtest_B.ar;
         exitg1 = true;
       } else {
         raspberrypi_multicore_MPCtest_B.ar++;
@@ -12359,24 +12245,24 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     }
   }
 
-  if (raspberrypi_multicore_MPCtest_B.i_d == 0) {
+  if (raspberrypi_multicore_MPCtest_B.i_hc == 0) {
     raspberrypi_multicore_MPCtest_B.t8 =
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[2];
   } else {
     raspberrypi_multicore_MPCtest_B.t8 =
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp
-      [(raspberrypi_multicore_MPCtest_B.i_d - 1) * 3 + 2];
-    while (raspberrypi_multicore_MPCtest_B.i_d + 1 < 5) {
+      [(raspberrypi_multicore_MPCtest_B.i_hc - 1) * 3 + 2];
+    while (raspberrypi_multicore_MPCtest_B.i_hc + 1 < 5) {
       raspberrypi_multicore_MPCtest_B.Angle3new_f =
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2];
+        raspberrypi_multicore_MPCtest_B.i_hc + 2];
       if (raspberrypi_multicore_MPCtest_B.t8 >
           raspberrypi_multicore_MPCtest_B.Angle3new_f) {
         raspberrypi_multicore_MPCtest_B.t8 =
           raspberrypi_multicore_MPCtest_B.Angle3new_f;
       }
 
-      raspberrypi_multicore_MPCtest_B.i_d++;
+      raspberrypi_multicore_MPCtest_B.i_hc++;
     }
   }
 
@@ -12386,14 +12272,14 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.temp[3 * raspberrypi_multicore_MPCtest_B.ar]
       = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3 *
       raspberrypi_multicore_MPCtest_B.ar];
-    raspberrypi_multicore_MPCtest_B.i_d = 3 * raspberrypi_multicore_MPCtest_B.ar
-      + 1;
-    raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.i_d] =
-      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_d];
-    raspberrypi_multicore_MPCtest_B.i_d = 3 * raspberrypi_multicore_MPCtest_B.ar
-      + 2;
-    raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.i_d] =
-      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_d]
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
+      raspberrypi_multicore_MPCtest_B.ar + 1;
+    raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.i_hc] =
+      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_hc];
+    raspberrypi_multicore_MPCtest_B.i_hc = 3 *
+      raspberrypi_multicore_MPCtest_B.ar + 2;
+    raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.i_hc] =
+      raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_hc]
       + -raspberrypi_multicore_MPCtest_B.t8;
   }
 
@@ -12435,41 +12321,41 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.obj_lj.count++;
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 4;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    if (raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_d]
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 4;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    if (raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_hc]
         > 0.5) {
-      raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_d]
+      raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_hc]
         = 1.0;
-      if (raspberrypi_multicore_MPCtes_DW.obj_lj.SWOld[raspberrypi_multicore_MPCtest_B.i_d]
+      if (raspberrypi_multicore_MPCtes_DW.obj_lj.SWOld[raspberrypi_multicore_MPCtest_B.i_hc]
           > 0.5) {
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] =
+          raspberrypi_multicore_MPCtest_B.i_hc] =
           raspberrypi_multicore_MPCtes_DW.obj_lj.SPOld[3 *
-          raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.i_hc];
         raspberrypi_multicore_MPCtest_B.vcol = 3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1;
+          raspberrypi_multicore_MPCtest_B.i_hc + 1;
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           =
           raspberrypi_multicore_MPCtes_DW.obj_lj.SPOld[raspberrypi_multicore_MPCtest_B.vcol];
         raspberrypi_multicore_MPCtest_B.vcol = 3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2;
+          raspberrypi_multicore_MPCtest_B.i_hc + 2;
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           =
           raspberrypi_multicore_MPCtes_DW.obj_lj.SPOld[raspberrypi_multicore_MPCtest_B.vcol];
       } else {
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] =
+          raspberrypi_multicore_MPCtest_B.i_hc] =
           raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE_l[3 *
-          raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.i_hc];
         raspberrypi_multicore_MPCtest_B.vcol = 3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1;
+          raspberrypi_multicore_MPCtest_B.i_hc + 1;
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           =
           raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE_l[raspberrypi_multicore_MPCtest_B.vcol];
         raspberrypi_multicore_MPCtest_B.vcol = 3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2;
+          raspberrypi_multicore_MPCtest_B.i_hc + 2;
         raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
           =
           raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE_l[raspberrypi_multicore_MPCtest_B.vcol];
@@ -12477,19 +12363,19 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
 
       /*                      SP(:,i)=pArray_W(:,i); */
     } else {
-      raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_d]
+      raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_hc]
         = 0.0;
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] =
+        raspberrypi_multicore_MPCtest_B.i_hc] =
         raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE_l[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE_l[raspberrypi_multicore_MPCtest_B.vcol];
       raspberrypi_multicore_MPCtest_B.vcol = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.vcol]
         =
         raspberrypi_multicore_MPCtes_DW.UnitDelay_DSTATE_l[raspberrypi_multicore_MPCtest_B.vcol];
@@ -12530,10 +12416,8 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
      */
     raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.ar] =
       raspberrypi_multicore_MPCtest_B.t9;
-    raspberrypi_multicore_MPCtest_B.b_pArray_B[raspberrypi_multicore_MPCtest_B.ar]
-      =
-      raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar]
-      / 1000.0;
+    raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar]
+      /= 1000.0;
   }
 
   /* MATLABSystem: '<S15>/MATLAB System' incorporates:
@@ -12557,79 +12441,78 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.R[1] = raspberrypi_multicore_MPCtest_B.t9;
   raspberrypi_multicore_MPCtest_B.R[4] = raspberrypi_multicore_MPCtest_B.t6_o;
   raspberrypi_multicore_MPCtest_B.R[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[0] = raspberrypi_multicore_MPCtest_B.s_i;
-  raspberrypi_multicore_MPCtest_B.U_a[3] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[6] =
+  raspberrypi_multicore_MPCtest_B.U_i[0] = raspberrypi_multicore_MPCtest_B.s_i;
+  raspberrypi_multicore_MPCtest_B.U_i[3] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[6] =
     raspberrypi_multicore_MPCtest_B.Switch1;
   raspberrypi_multicore_MPCtest_B.R[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
   raspberrypi_multicore_MPCtest_B.R[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[4] = 1.0;
+  raspberrypi_multicore_MPCtest_B.U_i[4] = 1.0;
   raspberrypi_multicore_MPCtest_B.R[8] = 1.0;
-  raspberrypi_multicore_MPCtest_B.U_a[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[2] = -sin
+  raspberrypi_multicore_MPCtest_B.U_i[7] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[2] = -sin
     (raspberrypi_multicore_MPCtest_B.v1[1]);
-  raspberrypi_multicore_MPCtest_B.U_a[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[8] = raspberrypi_multicore_MPCtest_B.s_i;
+  raspberrypi_multicore_MPCtest_B.U_i[5] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[8] = raspberrypi_multicore_MPCtest_B.s_i;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.ar +
-        3 * raspberrypi_multicore_MPCtest_B.i_d;
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.c_f] =
-        0.0;
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.ar +
+        3 * raspberrypi_multicore_MPCtest_B.i_hc;
+      raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.c_j]
+        = 0.0;
+      raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.c_j]
+        += raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
+      raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.c_j]
+        += raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar + 3];
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.U_a[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
+      raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.c_j]
+        += raspberrypi_multicore_MPCtest_B.U_i[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar + 6];
     }
 
-    raspberrypi_multicore_MPCtest_B.MRz[3 * raspberrypi_multicore_MPCtest_B.ar] =
+    raspberrypi_multicore_MPCtest_B.V[3 * raspberrypi_multicore_MPCtest_B.ar] =
       d[raspberrypi_multicore_MPCtest_B.ar];
   }
 
-  raspberrypi_multicore_MPCtest_B.MRz[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[4] = raspberrypi_multicore_MPCtest_B.t7;
-  raspberrypi_multicore_MPCtest_B.MRz[7] = -sin
+  raspberrypi_multicore_MPCtest_B.V[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[4] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.V[7] = -sin
     (raspberrypi_multicore_MPCtest_B.v1[0]);
-  raspberrypi_multicore_MPCtest_B.MRz[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[5] = raspberrypi_multicore_MPCtest_B.t6;
-  raspberrypi_multicore_MPCtest_B.MRz[8] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.V[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[5] = raspberrypi_multicore_MPCtest_B.t6;
+  raspberrypi_multicore_MPCtest_B.V[8] = raspberrypi_multicore_MPCtest_B.t7;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.i_d
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.i_hc
         + 3 * raspberrypi_multicore_MPCtest_B.ar;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] =
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.MRz[3 *
-        raspberrypi_multicore_MPCtest_B.ar] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_d];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.MRz[3 *
-        raspberrypi_multicore_MPCtest_B.ar + 1] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_d +
-        3];
-      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_f] +=
-        raspberrypi_multicore_MPCtest_B.MRz[3 *
-        raspberrypi_multicore_MPCtest_B.ar + 2] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.i_d +
-        6];
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.V[3 * raspberrypi_multicore_MPCtest_B.ar]
+        * raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.i_hc];
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.V[3 * raspberrypi_multicore_MPCtest_B.ar
+        + 1] *
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.i_hc
+        + 3];
+      raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.c_j] +=
+        raspberrypi_multicore_MPCtest_B.V[3 * raspberrypi_multicore_MPCtest_B.ar
+        + 2] *
+        raspberrypi_multicore_MPCtest_B.R_tmp[raspberrypi_multicore_MPCtest_B.i_hc
+        + 6];
     }
   }
 
@@ -12637,7 +12520,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
        raspberrypi_multicore_MPCtest_B.ar < 12;
        raspberrypi_multicore_MPCtest_B.ar++) {
     raspberrypi_multicore_MPCtest_B.vArray[raspberrypi_multicore_MPCtest_B.ar] =
-      (raspberrypi_multicore_MPCtest_B.b_pArray_B[raspberrypi_multicore_MPCtest_B.ar]
+      (raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar]
        - raspberrypi_multicore_MPCtes_DW.obj_b.pArrayOld[raspberrypi_multicore_MPCtest_B.ar])
       / raspberrypi_multicore_MPCtest_P.Ts_DynSim;
   }
@@ -12650,72 +12533,72 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 4;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
-      raspberrypi_multicore_MPCtest_B.c_f = raspberrypi_multicore_MPCtest_B.i_d
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
+      raspberrypi_multicore_MPCtest_B.c_j = raspberrypi_multicore_MPCtest_B.i_hc
         + 3 * raspberrypi_multicore_MPCtest_B.ar;
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_f] =
+      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_j] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_f] +=
+      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_j] +=
         raspberrypi_multicore_MPCtest_B.vArray[3 *
         raspberrypi_multicore_MPCtest_B.ar] *
-        raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.i_d];
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_f] +=
+        raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.i_hc];
+      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_j] +=
         raspberrypi_multicore_MPCtest_B.vArray[3 *
         raspberrypi_multicore_MPCtest_B.ar + 1] *
-        raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.i_d +
+        raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.i_hc +
         3];
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_f] +=
+      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_j] +=
         raspberrypi_multicore_MPCtest_B.vArray[3 *
         raspberrypi_multicore_MPCtest_B.ar + 2] *
-        raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.i_d +
+        raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.i_hc +
         6];
     }
   }
 
   memcpy(&raspberrypi_multicore_MPCtest_B.vArray[0],
          &raspberrypi_multicore_MPCtest_B.vBM[0], 12U * sizeof(real_T));
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 4;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 4;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.ar] =
-        raspberrypi_multicore_MPCtest_B.b_pArray_B[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
+        raspberrypi_multicore_MPCtest_B.pArray_B[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
         raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar + 6]
-        + (raspberrypi_multicore_MPCtest_B.b_pArray_B[3 *
-           raspberrypi_multicore_MPCtest_B.i_d + 1] *
+        + (raspberrypi_multicore_MPCtest_B.pArray_B[3 *
+           raspberrypi_multicore_MPCtest_B.i_hc + 1] *
            raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar
-           + 3] + raspberrypi_multicore_MPCtest_B.b_pArray_B[3 *
-           raspberrypi_multicore_MPCtest_B.i_d] *
+           + 3] + raspberrypi_multicore_MPCtest_B.pArray_B[3 *
+           raspberrypi_multicore_MPCtest_B.i_hc] *
            raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar]);
     }
 
-    raspberrypi_multicore_MPCtest_B.vBM[3 * raspberrypi_multicore_MPCtest_B.i_d]
+    raspberrypi_multicore_MPCtest_B.vBM[3 * raspberrypi_multicore_MPCtest_B.i_hc]
       = -raspberrypi_multicore_MPCtest_B.vArray[3 *
-      raspberrypi_multicore_MPCtest_B.i_d] -
-      (raspberrypi_multicore_MPCtest_B.deltaP3[1] *
+      raspberrypi_multicore_MPCtest_B.i_hc] -
+      (raspberrypi_multicore_MPCtest_B.deltaP2[1] *
        raspberrypi_multicore_MPCtest_B.a[2] - raspberrypi_multicore_MPCtest_B.a
-       [1] * raspberrypi_multicore_MPCtest_B.deltaP3[2]);
-    raspberrypi_multicore_MPCtest_B.ar = 3 * raspberrypi_multicore_MPCtest_B.i_d
-      + 1;
+       [1] * raspberrypi_multicore_MPCtest_B.deltaP2[2]);
+    raspberrypi_multicore_MPCtest_B.ar = 3 *
+      raspberrypi_multicore_MPCtest_B.i_hc + 1;
     raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.ar] =
       -raspberrypi_multicore_MPCtest_B.vArray[raspberrypi_multicore_MPCtest_B.ar]
       - (raspberrypi_multicore_MPCtest_B.a[0] *
-         raspberrypi_multicore_MPCtest_B.deltaP3[2] -
-         raspberrypi_multicore_MPCtest_B.deltaP3[0] *
+         raspberrypi_multicore_MPCtest_B.deltaP2[2] -
+         raspberrypi_multicore_MPCtest_B.deltaP2[0] *
          raspberrypi_multicore_MPCtest_B.a[2]);
-    raspberrypi_multicore_MPCtest_B.ar = 3 * raspberrypi_multicore_MPCtest_B.i_d
-      + 2;
+    raspberrypi_multicore_MPCtest_B.ar = 3 *
+      raspberrypi_multicore_MPCtest_B.i_hc + 2;
     raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.ar] =
       -raspberrypi_multicore_MPCtest_B.vArray[raspberrypi_multicore_MPCtest_B.ar]
-      - (raspberrypi_multicore_MPCtest_B.deltaP3[0] *
+      - (raspberrypi_multicore_MPCtest_B.deltaP2[0] *
          raspberrypi_multicore_MPCtest_B.a[1] -
          raspberrypi_multicore_MPCtest_B.a[0] *
-         raspberrypi_multicore_MPCtest_B.deltaP3[1]);
+         raspberrypi_multicore_MPCtest_B.deltaP2[1]);
   }
 
   raspberrypi_multicore_MPCtest_B.a[0] = 0.0;
@@ -12727,33 +12610,33 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.t7_b = 0.0;
 
   /*  number of supported legs */
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 4;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    if (raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_d]
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 4;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    if (raspberrypi_multicore_MPCtest_B.pxNew[raspberrypi_multicore_MPCtest_B.i_hc]
         > 0.5) {
       raspberrypi_multicore_MPCtest_B.Angle2new[0] +=
         raspberrypi_multicore_MPCtest_B.vBM[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
-      raspberrypi_multicore_MPCtest_B.c_f = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc];
+      raspberrypi_multicore_MPCtest_B.c_j = 3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtest_B.Angle2new[1] +=
-        raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_f];
+        raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.c_j];
       raspberrypi_multicore_MPCtest_B.ia = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtest_B.Angle2new[2] +=
         raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.ia];
       raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.ia] =
         (raspberrypi_multicore_MPCtest_B.temp[3 *
-         raspberrypi_multicore_MPCtest_B.i_d] *
+         raspberrypi_multicore_MPCtest_B.i_hc] *
          raspberrypi_multicore_MPCtest_P.Constant5_Value[1] +
          raspberrypi_multicore_MPCtest_P.Constant5_Value[0]) +
-        raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.c_f]
+        raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.c_j]
         * raspberrypi_multicore_MPCtest_P.Constant5_Value[2];
       for (raspberrypi_multicore_MPCtest_B.ar = 0;
            raspberrypi_multicore_MPCtest_B.ar < 9;
            raspberrypi_multicore_MPCtest_B.ar++) {
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar] =
+        raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar] =
           -raspberrypi_multicore_MPCtest_B.R[raspberrypi_multicore_MPCtest_B.ar];
       }
 
@@ -12761,15 +12644,15 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
            raspberrypi_multicore_MPCtest_B.ar < 3;
            raspberrypi_multicore_MPCtest_B.ar++) {
         raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.ar] =
-          ((raspberrypi_multicore_MPCtest_B.b_pArray_B[raspberrypi_multicore_MPCtest_B.c_f]
-            * raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
-            + 3] + raspberrypi_multicore_MPCtest_B.b_pArray_B[3 *
-            raspberrypi_multicore_MPCtest_B.i_d] *
-            raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar])
-           + raspberrypi_multicore_MPCtest_B.b_pArray_B[raspberrypi_multicore_MPCtest_B.ia]
-           * raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
+          ((raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.c_j]
+            * raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar
+            + 3] + raspberrypi_multicore_MPCtest_B.pArray_B[3 *
+            raspberrypi_multicore_MPCtest_B.i_hc] *
+            raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar])
+           + raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ia]
+           * raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar
            + 6]) + (raspberrypi_multicore_MPCtest_B.temp[3 *
-                    raspberrypi_multicore_MPCtest_B.i_d +
+                    raspberrypi_multicore_MPCtest_B.i_hc +
                     raspberrypi_multicore_MPCtest_B.ar] +
                     raspberrypi_multicore_MPCtest_B.a[raspberrypi_multicore_MPCtest_B.ar]);
       }
@@ -12809,18 +12692,18 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 20;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    raspberrypi_multicore_MPCtest_B.i_d = ((raspberrypi_multicore_MPCtest_B.ar +
-      2) - 1) * 3;
+    raspberrypi_multicore_MPCtest_B.i_hc = ((raspberrypi_multicore_MPCtest_B.ar
+      + 2) - 1) * 3;
     raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[3 *
       raspberrypi_multicore_MPCtest_B.ar] =
-      raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[raspberrypi_multicore_MPCtest_B.i_hc];
     raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[3 *
       raspberrypi_multicore_MPCtest_B.ar + 1] =
-      raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[raspberrypi_multicore_MPCtest_B.i_d
+      raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[raspberrypi_multicore_MPCtest_B.i_hc
       + 1];
     raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[3 *
       raspberrypi_multicore_MPCtest_B.ar + 2] =
-      raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[raspberrypi_multicore_MPCtest_B.i_d
+      raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[raspberrypi_multicore_MPCtest_B.i_hc
       + 2];
   }
 
@@ -12829,173 +12712,200 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   /*              ym=[pCoM;vCoMFiltered(:,end)]; */
   raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[60] =
     raspberrypi_multicore_MPCtest_B.Angle2new[0];
-  raspberrypi_multicore_MPCtest_B.estDis[0] = raspberrypi_multicore_MPCtest_B.a
-    [0];
-  raspberrypi_multicore_MPCtest_B.estDis[3] =
+  raspberrypi_multicore_MPCtest_B.b_varargout_1_g[0] =
+    raspberrypi_multicore_MPCtest_B.a[0];
+  raspberrypi_multicore_MPCtest_B.b_varargout_1_g[3] =
     raspberrypi_multicore_MPCtest_B.Angle2new[0];
   raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[61] =
     raspberrypi_multicore_MPCtest_B.Angle2new[1];
-  raspberrypi_multicore_MPCtest_B.estDis[1] = raspberrypi_multicore_MPCtest_B.a
-    [1];
-  raspberrypi_multicore_MPCtest_B.estDis[4] =
+  raspberrypi_multicore_MPCtest_B.b_varargout_1_g[1] =
+    raspberrypi_multicore_MPCtest_B.a[1];
+  raspberrypi_multicore_MPCtest_B.b_varargout_1_g[4] =
     raspberrypi_multicore_MPCtest_B.Angle2new[1];
   raspberrypi_multicore_MPCtes_DW.obj_b.vCoMRec[62] =
     raspberrypi_multicore_MPCtest_B.Angle2new[2];
-  raspberrypi_multicore_MPCtest_B.estDis[2] = raspberrypi_multicore_MPCtest_B.a
-    [2];
-  raspberrypi_multicore_MPCtest_B.estDis[5] =
+  raspberrypi_multicore_MPCtest_B.b_varargout_1_g[2] =
+    raspberrypi_multicore_MPCtest_B.a[2];
+  raspberrypi_multicore_MPCtest_B.b_varargout_1_g[5] =
     raspberrypi_multicore_MPCtest_B.Angle2new[2];
   memcpy(&raspberrypi_multicore_MPCtes_DW.obj_b.pArrayOld[0],
-         &raspberrypi_multicore_MPCtest_B.b_pArray_B[0], 12U * sizeof(real_T));
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 6;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    raspberrypi_multicore_MPCtes_DW.obj_b.ymOld[raspberrypi_multicore_MPCtest_B.i_d]
+         &raspberrypi_multicore_MPCtest_B.pArray_B[0], 12U * sizeof(real_T));
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 6;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    raspberrypi_multicore_MPCtes_DW.obj_b.ymOld[raspberrypi_multicore_MPCtest_B.i_hc]
       =
-      raspberrypi_multicore_MPCtest_B.estDis[raspberrypi_multicore_MPCtest_B.i_d];
+      raspberrypi_multicore_MPCtest_B.b_varargout_1_g[raspberrypi_multicore_MPCtest_B.i_hc];
   }
 
   /* MATLABSystem: '<S15>/MATLAB System3' */
-  if (raspberrypi_multicore_MPCtes_DW.obj_c.Ts !=
+  if (raspberrypi_multicore_MPCtes_DW.obj_ch.Ts !=
       raspberrypi_multicore_MPCtest_P.Ts_DynSim) {
-    raspberrypi_multicore_MPCtes_DW.obj_c.Ts =
+    raspberrypi_multicore_MPCtes_DW.obj_ch.Ts =
       raspberrypi_multicore_MPCtest_P.Ts_DynSim;
   }
 
+  /* MATLABSystem: '<Root>/MATLAB System1' */
+  raspberrypi_multicore_MPCtest_B.t7_b =
+    raspberrypi_multicore_MPCtest_B.deltaP3[0] +
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[0];
+  raspberrypi_multicore_MPCtest_B.t8_a =
+    raspberrypi_multicore_MPCtest_B.deltaP3[1] +
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[1];
+  raspberrypi_multicore_MPCtest_B.t9_g =
+    raspberrypi_multicore_MPCtest_B.deltaP3[2] +
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[2];
+
   /* MATLAB Function: '<S15>/MATLAB Function1' */
-  raspberrypi_multicore_MPCtest_B.U_a[0] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[2] = -raspberrypi_multicore_MPCtest_B.t8;
-  raspberrypi_multicore_MPCtest_B.U_a[3] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[6] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[4] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[8] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[0] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[2] = -raspberrypi_multicore_MPCtest_B.t8;
+  for (raspberrypi_multicore_MPCtest_B.ar = 0;
+       raspberrypi_multicore_MPCtest_B.ar < 3;
+       raspberrypi_multicore_MPCtest_B.ar++) {
+    /* MATLAB Function: '<S15>/MATLAB Function1' */
+    raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar + 3] =
+      0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar + 6] =
+      0.0;
+
+    /* MATLABSystem: '<Root>/MATLAB System1' */
+    raspberrypi_multicore_MPCtest_B.pL_sw_c[raspberrypi_multicore_MPCtest_B.ar] =
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar + 6]
+      * raspberrypi_multicore_MPCtest_B.t9_g +
+      (raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
+       3] * raspberrypi_multicore_MPCtest_B.t8_a +
+       raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar] *
+       raspberrypi_multicore_MPCtest_B.t7_b);
+  }
 
   /* MATLABSystem: '<S15>/MATLAB System3' incorporates:
    *  Constant: '<S15>/Constant1'
    *  MATLAB Function: '<S15>/MATLAB Function1'
-   *  MATLABSystem: '<Root>/MATLAB System1'
    *  MATLABSystem: '<S15>/MATLAB System'
    */
-  KalmanFilter_DIY_Offrm_stepImpl(&raspberrypi_multicore_MPCtes_DW.obj_c,
-    raspberrypi_multicore_MPCtest_B.deltaP2,
-    raspberrypi_multicore_MPCtest_B.estDis, raspberrypi_multicore_MPCtest_B.U_a,
-    tmp_1, raspberrypi_multicore_MPCtest_P.Constant1_Value, tmp_2, (real_T)
+  KalmanFilter_DIY_Offrm_stepImpl(&raspberrypi_multicore_MPCtes_DW.obj_ch,
+    raspberrypi_multicore_MPCtest_B.pL_sw_c,
+    raspberrypi_multicore_MPCtest_B.b_varargout_1_g,
+    raspberrypi_multicore_MPCtest_B.U_i, tmp_1,
+    raspberrypi_multicore_MPCtest_P.Constant1_Value, tmp_2, (real_T)
     raspberrypi_multicore_MPCtest_B.estEN, (real_T)
     raspberrypi_multicore_MPCtest_B.vcol, raspberrypi_multicore_MPCtest_B.R,
-    raspberrypi_multicore_MPCtest_B.b_varargout_2_b);
+    raspberrypi_multicore_MPCtest_B.b_varargout_2_ln);
 
   /* MATLAB Function: '<S15>/MATLAB Function' incorporates:
    *  MATLABSystem: '<Root>/MATLAB System1'
    *  MATLABSystem: '<S15>/MATLAB System3'
    */
-  raspberrypi_multicore_MPCtest_B.a[0] = raspberrypi_multicore_MPCtest_B.R[0];
-  raspberrypi_multicore_MPCtest_B.a[1] = raspberrypi_multicore_MPCtest_B.R[1];
-  raspberrypi_multicore_MPCtest_B.a[2] = raspberrypi_multicore_MPCtest_B.R[2];
-  raspberrypi_multicore_MPCtest_B.U_a[0] = raspberrypi_multicore_MPCtest_B.t6_o;
-  raspberrypi_multicore_MPCtest_B.U_a[3] = -sin
+  raspberrypi_multicore_MPCtest_B.deltaP3[0] =
+    raspberrypi_multicore_MPCtest_B.R[0];
+  raspberrypi_multicore_MPCtest_B.deltaP3[1] =
+    raspberrypi_multicore_MPCtest_B.R[1];
+  raspberrypi_multicore_MPCtest_B.deltaP3[2] =
+    raspberrypi_multicore_MPCtest_B.R[2];
+  raspberrypi_multicore_MPCtest_B.U_i[0] = raspberrypi_multicore_MPCtest_B.t6_o;
+  raspberrypi_multicore_MPCtest_B.U_i[3] = -sin
     (raspberrypi_multicore_MPCtest_B.v1[2]);
-  raspberrypi_multicore_MPCtest_B.U_a[6] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[1] = raspberrypi_multicore_MPCtest_B.t9;
-  raspberrypi_multicore_MPCtest_B.U_a[4] = raspberrypi_multicore_MPCtest_B.t6_o;
-  raspberrypi_multicore_MPCtest_B.U_a[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[0] = raspberrypi_multicore_MPCtest_B.s_i;
-  raspberrypi_multicore_MPCtest_B.MRz[3] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[6] =
-    raspberrypi_multicore_MPCtest_B.Switch1;
-  raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.U_a[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[4] = 1.0;
-  raspberrypi_multicore_MPCtest_B.U_a[8] = 1.0;
-  raspberrypi_multicore_MPCtest_B.MRz[7] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[2] = -sin
+  raspberrypi_multicore_MPCtest_B.U_i[6] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[1] = raspberrypi_multicore_MPCtest_B.t9;
+  raspberrypi_multicore_MPCtest_B.U_i[4] = raspberrypi_multicore_MPCtest_B.t6_o;
+  raspberrypi_multicore_MPCtest_B.U_i[7] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[0] = raspberrypi_multicore_MPCtest_B.s_i;
+  raspberrypi_multicore_MPCtest_B.V[3] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[6] = raspberrypi_multicore_MPCtest_B.Switch1;
+  raspberrypi_multicore_MPCtest_B.U_i[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.U_i[5] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[4] = 1.0;
+  raspberrypi_multicore_MPCtest_B.U_i[8] = 1.0;
+  raspberrypi_multicore_MPCtest_B.V[7] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[2] = -sin
     (raspberrypi_multicore_MPCtest_B.v1[1]);
-  raspberrypi_multicore_MPCtest_B.MRz[5] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz[8] = raspberrypi_multicore_MPCtest_B.s_i;
+  raspberrypi_multicore_MPCtest_B.V[5] = 0.0;
+  raspberrypi_multicore_MPCtest_B.V[8] = raspberrypi_multicore_MPCtest_B.s_i;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
       raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.ar
-        + 3 * raspberrypi_multicore_MPCtest_B.i_d;
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] =
+        + 3 * raspberrypi_multicore_MPCtest_B.i_hc;
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.MRz[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.MRz[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar +
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.V[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
+        raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar];
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.V[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
+        raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar +
         3];
-      raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.MRz[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar +
+      raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.V[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
+        raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar +
         6];
     }
 
-    raspberrypi_multicore_MPCtest_B.MRz_i[3 * raspberrypi_multicore_MPCtest_B.ar]
+    raspberrypi_multicore_MPCtest_B.R_tmp[3 * raspberrypi_multicore_MPCtest_B.ar]
       = d[raspberrypi_multicore_MPCtest_B.ar];
   }
 
-  raspberrypi_multicore_MPCtest_B.MRz_i[1] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz_i[4] = raspberrypi_multicore_MPCtest_B.t7;
-  raspberrypi_multicore_MPCtest_B.MRz_i[7] = -sin
+  raspberrypi_multicore_MPCtest_B.R_tmp[1] = 0.0;
+  raspberrypi_multicore_MPCtest_B.R_tmp[4] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.R_tmp[7] = -sin
     (raspberrypi_multicore_MPCtest_B.v1[0]);
-  raspberrypi_multicore_MPCtest_B.MRz_i[2] = 0.0;
-  raspberrypi_multicore_MPCtest_B.MRz_i[5] = raspberrypi_multicore_MPCtest_B.t6;
-  raspberrypi_multicore_MPCtest_B.MRz_i[8] = raspberrypi_multicore_MPCtest_B.t7;
+  raspberrypi_multicore_MPCtest_B.R_tmp[2] = 0.0;
+  raspberrypi_multicore_MPCtest_B.R_tmp[5] = raspberrypi_multicore_MPCtest_B.t6;
+  raspberrypi_multicore_MPCtest_B.R_tmp[8] = raspberrypi_multicore_MPCtest_B.t7;
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 3;
        raspberrypi_multicore_MPCtest_B.ar++) {
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 3;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 3;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
       raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.ar
-        + 3 * raspberrypi_multicore_MPCtest_B.i_d;
-      raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol] =
+        + 3 * raspberrypi_multicore_MPCtest_B.i_hc;
+      raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.vcol] =
         0.0;
-      raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar + 3];
-      raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
-        raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar + 6];
+      raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
+      raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
+        3];
+      raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.vcol] +=
+        raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar +
+        6];
     }
 
-    for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-         raspberrypi_multicore_MPCtest_B.i_d < 4;
-         raspberrypi_multicore_MPCtest_B.i_d++) {
+    for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+         raspberrypi_multicore_MPCtest_B.i_hc < 4;
+         raspberrypi_multicore_MPCtest_B.i_hc++) {
       raspberrypi_multicore_MPCtest_B.vcol = raspberrypi_multicore_MPCtest_B.ar
-        + 3 * raspberrypi_multicore_MPCtest_B.i_d;
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.vcol] =
-        0.0;
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] *
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar];
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1] *
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar +
+        + 3 * raspberrypi_multicore_MPCtest_B.i_hc;
+      raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.vcol]
+        = 0.0;
+      raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.vcol]
+        += raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc] *
+        raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar];
+      raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.vcol]
+        += raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 1] *
+        raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar +
         3];
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.vcol] +=
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2] *
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar +
+      raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.vcol]
+        += raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc + 2] *
+        raspberrypi_multicore_MPCtest_B.U_i[raspberrypi_multicore_MPCtest_B.ar +
         6];
     }
   }
@@ -13004,21 +12914,22 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
        raspberrypi_multicore_MPCtest_B.ar < 4;
        raspberrypi_multicore_MPCtest_B.ar++) {
     raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-      raspberrypi_multicore_MPCtest_B.ar] = raspberrypi_multicore_MPCtest_B.a[0];
+      raspberrypi_multicore_MPCtest_B.ar] =
+      raspberrypi_multicore_MPCtest_B.deltaP3[0];
     raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
       raspberrypi_multicore_MPCtest_B.ar + 1] =
-      raspberrypi_multicore_MPCtest_B.a[1];
+      raspberrypi_multicore_MPCtest_B.deltaP3[1];
     raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
       raspberrypi_multicore_MPCtest_B.ar + 2] =
-      raspberrypi_multicore_MPCtest_B.a[2];
+      raspberrypi_multicore_MPCtest_B.deltaP3[2];
   }
 
   for (raspberrypi_multicore_MPCtest_B.ar = 0;
        raspberrypi_multicore_MPCtest_B.ar < 12;
        raspberrypi_multicore_MPCtest_B.ar++) {
     raspberrypi_multicore_MPCtest_B.temp[raspberrypi_multicore_MPCtest_B.ar] =
-      raspberrypi_multicore_MPCtest_B.vBM[raspberrypi_multicore_MPCtest_B.ar] +
-      raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar];
+      raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar]
+      + raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar];
   }
 
   /* MATLAB Function: '<Root>/MATLAB Function4' */
@@ -13136,38 +13047,38 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[raspberrypi_multicore_MPCtest_B.ar]
       =
       raspberrypi_multicore_MPCtes_DW.obj_kb.pW_LS[raspberrypi_multicore_MPCtest_B.ar];
-    raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar]
+    raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar]
       = rt_roundd_snf
       (raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.ar]
        * 10000.0) / 10000.0;
   }
 
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 4;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    if ((raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_d]
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 4;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    if ((raspberrypi_multicore_MPCtest_B.pyNew[raspberrypi_multicore_MPCtest_B.i_hc]
          > 0.5) &&
-        (raspberrypi_multicore_MPCtes_DW.obj_kb.LegState_Old[raspberrypi_multicore_MPCtest_B.i_d]
+        (raspberrypi_multicore_MPCtes_DW.obj_kb.LegState_Old[raspberrypi_multicore_MPCtest_B.i_hc]
          < 0.5)) {
       raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[3 *
-        raspberrypi_multicore_MPCtest_B.i_d] =
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[3 *
-        raspberrypi_multicore_MPCtest_B.i_d];
+        raspberrypi_multicore_MPCtest_B.i_hc] =
+        raspberrypi_multicore_MPCtest_B.pArray_B[3 *
+        raspberrypi_multicore_MPCtest_B.i_hc];
       raspberrypi_multicore_MPCtest_B.ar = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 1;
+        raspberrypi_multicore_MPCtest_B.i_hc + 1;
       raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[raspberrypi_multicore_MPCtest_B.ar]
         =
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar];
       raspberrypi_multicore_MPCtest_B.ar = 3 *
-        raspberrypi_multicore_MPCtest_B.i_d + 2;
+        raspberrypi_multicore_MPCtest_B.i_hc + 2;
       raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[raspberrypi_multicore_MPCtest_B.ar]
         =
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar];
     }
   }
 
   if (raspberrypi_multicore_MPCtest_B.MATLABSystem11_o2 > 0.5) {
-    memcpy(&raspberrypi_multicore_MPCtest_B.pArray_float_tmp[0],
+    memcpy(&raspberrypi_multicore_MPCtest_B.pArray_B[0],
            &raspberrypi_multicore_MPCtes_DW.obj_kb.pWnorm[0], 12U * sizeof
            (real_T));
     memcpy(&raspberrypi_multicore_MPCtes_DW.UnitDelay5_DSTATE[0],
@@ -13188,15 +13099,15 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.pyNew[3];
 
   /* MATLABSystem: '<Root>/MATLAB System20' */
-  if (raspberrypi_multicore_MPCtes_DW.obj_n.Ts !=
+  if (raspberrypi_multicore_MPCtes_DW.obj.Ts !=
       raspberrypi_multicore_MPCtest_P.Ts_DynSim) {
-    raspberrypi_multicore_MPCtes_DW.obj_n.Ts =
+    raspberrypi_multicore_MPCtes_DW.obj.Ts =
       raspberrypi_multicore_MPCtest_P.Ts_DynSim;
   }
 
-  if (raspberrypi_multicore_MPCtes_DW.obj_n.m !=
+  if (raspberrypi_multicore_MPCtes_DW.obj.m !=
       raspberrypi_multicore_MPCtest_P.MATLABSystem20_m) {
-    raspberrypi_multicore_MPCtes_DW.obj_n.m =
+    raspberrypi_multicore_MPCtes_DW.obj.m =
       raspberrypi_multicore_MPCtest_P.MATLABSystem20_m;
   }
 
@@ -13205,7 +13116,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.ar = 0;
   exitg1 = false;
   while ((!exitg1) && (raspberrypi_multicore_MPCtest_B.ar < 9)) {
-    if (!(raspberrypi_multicore_MPCtes_DW.obj_n.Inorm[raspberrypi_multicore_MPCtest_B.ar]
+    if (!(raspberrypi_multicore_MPCtes_DW.obj.Inorm[raspberrypi_multicore_MPCtest_B.ar]
           ==
           raspberrypi_multicore_MPCtest_P.MATLABSystem20_Inorm[raspberrypi_multicore_MPCtest_B.ar]))
     {
@@ -13221,7 +13132,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   }
 
   if (!rEQ0) {
-    memcpy(&raspberrypi_multicore_MPCtes_DW.obj_n.Inorm[0],
+    memcpy(&raspberrypi_multicore_MPCtes_DW.obj.Inorm[0],
            &raspberrypi_multicore_MPCtest_P.MATLABSystem20_Inorm[0], 9U * sizeof
            (real_T));
   }
@@ -13239,7 +13150,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.b_varargout_4[6] =
     raspberrypi_multicore_MPCtest_B.R[3];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[9] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[0];
+    raspberrypi_multicore_MPCtest_B.deltaP2[0];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[1] =
     raspberrypi_multicore_MPCtest_B.R[1];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[4] =
@@ -13247,7 +13158,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.b_varargout_4[7] =
     raspberrypi_multicore_MPCtest_B.R[4];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[10] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[1];
+    raspberrypi_multicore_MPCtest_B.deltaP2[1];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[2] =
     raspberrypi_multicore_MPCtest_B.R[2];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[5] =
@@ -13255,7 +13166,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.b_varargout_4[8] =
     raspberrypi_multicore_MPCtest_B.R[5];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[11] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[2];
+    raspberrypi_multicore_MPCtest_B.deltaP2[2];
   raspberrypi_multicore_MPCtest_B.b_varargout_4[12] =
     raspberrypi_multicore_MPCtest_P.Constant_Value_n;
 
@@ -13265,47 +13176,42 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
    *  MATLABSystem: '<Root>/MATLAB System10'
    *  MATLABSystem: '<Root>/MATLAB System18'
    */
-  raspberrypi_mul_SystemCore_step(&raspberrypi_multicore_MPCtes_DW.obj_n,
+  raspberrypi_mul_SystemCore_step(&raspberrypi_multicore_MPCtes_DW.obj,
     raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1,
     raspberrypi_multicore_MPCtest_B.b_varargout_4,
-    raspberrypi_multicore_MPCtest_B.pArray_float_tmp,
+    raspberrypi_multicore_MPCtest_B.pArray_B,
     raspberrypi_multicore_MPCtest_P.Q_Value,
     raspberrypi_multicore_MPCtest_P.R_Value, (real_T)
     raspberrypi_multicore_MPCtest_B.estEN,
     raspberrypi_multicore_MPCtest_B.b_varargout_1_c,
     raspberrypi_multicore_MPCtest_B.b_varargout_2);
 
-  /* SignalConversion generated from: '<Root>/To File11' incorporates:
-   *  DataTypeConversion: '<S16>/Cast To Double'
-   *  MATLABSystem: '<S52>/Digital Read'
-   *  MATLABSystem: '<S53>/Digital Read'
-   *  MATLABSystem: '<S54>/Digital Read'
-   *  MATLABSystem: '<S55>/Digital Read'
+  /* SignalConversion generated from: '<Root>/To File6' incorporates:
+   *  MATLABSystem: '<S15>/MATLAB System6'
    */
-  memcpy(&raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[0],
-         &raspberrypi_multicore_MPCtest_B.pArray_B[0], 12U * sizeof(real_T));
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[12] =
-    raspberrypi_multicore_MPCtest_B.estEN;
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[13] =
-    rtb_DigitalRead_pz_0;
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[14] =
-    rtb_DigitalRead_p_0;
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[15] =
-    rtb_DigitalRead_k_0;
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[16] =
-    rtb_DigitalRead_0;
+  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[0] =
+    raspberrypi_multicore_MPCtest_B.pxNew[0];
+  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[1] =
+    raspberrypi_multicore_MPCtest_B.pxNew[1];
+  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[2] =
+    raspberrypi_multicore_MPCtest_B.pxNew[2];
+  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[3] =
+    raspberrypi_multicore_MPCtest_B.pxNew[3];
+  memcpy(&raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[4],
+         &raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[0], 12U * sizeof
+         (real_T));
 
-  /* ToFile: '<Root>/To File11' */
+  /* ToFile: '<Root>/To File6' */
   if (tid == 0 ) {
     {
-      if (!(++raspberrypi_multicore_MPCtes_DW.ToFile11_IWORK.Decimation % 1) &&
-          (raspberrypi_multicore_MPCtes_DW.ToFile11_IWORK.Count * (17 + 1)) + 1 <
+      if (!(++raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Decimation % 1) &&
+          (raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Count * (16 + 1)) + 1 <
           100000000 ) {
         FILE *fp = (FILE *)
-          raspberrypi_multicore_MPCtes_DW.ToFile11_PWORK.FilePtr;
+          raspberrypi_multicore_MPCtes_DW.ToFile6_PWORK.FilePtr;
         if (fp != (NULL)) {
-          real_T u[17 + 1];
-          raspberrypi_multicore_MPCtes_DW.ToFile11_IWORK.Decimation = 0;
+          real_T u[16 + 1];
+          raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Decimation = 0;
           u[0] = raspberrypi_multicore_MPCtes_M->Timing.taskTime0;
           u[1] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[0];
           u[2] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[1];
@@ -13323,69 +13229,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
           u[14] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[13];
           u[15] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[14];
           u[16] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[15];
-          u[17] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFile[16];
-          if (fwrite(u, sizeof(real_T), 17 + 1, fp) != 17 + 1) {
-            rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                              "Error writing to MAT-file multicore_dataRecEstB.mat");
-            return;
-          }
-
-          if (((++raspberrypi_multicore_MPCtes_DW.ToFile11_IWORK.Count) * (17 +
-                1))+1 >= 100000000) {
-            (void)fprintf(stdout,
-                          "*** The ToFile block will stop logging data before\n"
-                          "    the simulation has ended, because it has reached\n"
-                          "    the maximum number of elements (100000000)\n"
-                          "    allowed in MAT-file multicore_dataRecEstB.mat.\n");
-          }
-        }
-      }
-    }
-  }
-
-  /* SignalConversion generated from: '<Root>/To File6' incorporates:
-   *  MATLABSystem: '<S15>/MATLAB System6'
-   */
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[0] =
-    raspberrypi_multicore_MPCtest_B.pxNew[0];
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[1] =
-    raspberrypi_multicore_MPCtest_B.pxNew[1];
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[2] =
-    raspberrypi_multicore_MPCtest_B.pxNew[2];
-  raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[3] =
-    raspberrypi_multicore_MPCtest_B.pxNew[3];
-  memcpy(&raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[4],
-         &raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[0], 12U * sizeof
-         (real_T));
-
-  /* ToFile: '<Root>/To File6' */
-  if (tid == 0 ) {
-    {
-      if (!(++raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Decimation % 1) &&
-          (raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Count * (16 + 1)) + 1 <
-          100000000 ) {
-        FILE *fp = (FILE *)
-          raspberrypi_multicore_MPCtes_DW.ToFile6_PWORK.FilePtr;
-        if (fp != (NULL)) {
-          real_T u[16 + 1];
-          raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Decimation = 0;
-          u[0] = raspberrypi_multicore_MPCtes_M->Timing.taskTime0;
-          u[1] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[0];
-          u[2] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[1];
-          u[3] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[2];
-          u[4] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[3];
-          u[5] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[4];
-          u[6] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[5];
-          u[7] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[6];
-          u[8] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[7];
-          u[9] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[8];
-          u[10] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[9];
-          u[11] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[10];
-          u[12] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[11];
-          u[13] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[12];
-          u[14] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[13];
-          u[15] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[14];
-          u[16] = raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_f[15];
           if (fwrite(u, sizeof(real_T), 16 + 1, fp) != 16 + 1) {
             rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
                               "Error writing to MAT-file multicore_dataRec7.mat");
@@ -13409,12 +13252,56 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
    *  Constant: '<Root>/Constant9'
    *  MATLABSystem: '<Root>/MATLAB System20'
    */
-  for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-       raspberrypi_multicore_MPCtest_B.i_d < 6;
-       raspberrypi_multicore_MPCtest_B.i_d++) {
-    raspberrypi_multicore_MPCtest_B.estDis[raspberrypi_multicore_MPCtest_B.i_d] =
-      raspberrypi_multicore_MPCtest_B.b_varargout_1_c[raspberrypi_multicore_MPCtest_B.i_d
+  for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+       raspberrypi_multicore_MPCtest_B.i_hc < 12;
+       raspberrypi_multicore_MPCtest_B.i_hc++) {
+    raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.i_hc]
+      =
+      raspberrypi_multicore_MPCtest_B.b_varargout_1_c[raspberrypi_multicore_MPCtest_B.i_hc
       + 13] * raspberrypi_multicore_MPCtest_P.Constant9_Value;
+  }
+
+  /* ToFile: '<Root>/To File19' */
+  if (tid == 0 ) {
+    {
+      if (!(++raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Decimation % 1) &&
+          (raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count * (12 + 1)) + 1 <
+          100000000 ) {
+        FILE *fp = (FILE *)
+          raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr;
+        if (fp != (NULL)) {
+          real_T u[12 + 1];
+          raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Decimation = 0;
+          u[0] = raspberrypi_multicore_MPCtes_M->Timing.taskTime0;
+          u[1] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[0];
+          u[2] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[1];
+          u[3] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[2];
+          u[4] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[3];
+          u[5] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[4];
+          u[6] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[5];
+          u[7] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[6];
+          u[8] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[7];
+          u[9] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[8];
+          u[10] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[9];
+          u[11] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[10];
+          u[12] = raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[11];
+          if (fwrite(u, sizeof(real_T), 12 + 1, fp) != 12 + 1) {
+            rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
+                              "Error writing to MAT-file multicore_dataRec17.mat");
+            return;
+          }
+
+          if (((++raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count) * (12 +
+                1))+1 >= 100000000) {
+            (void)fprintf(stdout,
+                          "*** The ToFile block will stop logging data before\n"
+                          "    the simulation has ended, because it has reached\n"
+                          "    the maximum number of elements (100000000)\n"
+                          "    allowed in MAT-file multicore_dataRec17.mat.\n");
+          }
+        }
+      }
+    }
   }
 
   /* RateTransition: '<Root>/Rate Transition1' incorporates:
@@ -13447,105 +13334,105 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
   switch (wrBufIdx) {
    case 0:
     /* MATLAB Function: '<Root>/MATLAB Function2' */
-    raspberrypi_multicore_MPCtest_B.U_a[0] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[3] =
-      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-    raspberrypi_multicore_MPCtest_B.U_a[6] = 0.0;
-    raspberrypi_multicore_MPCtest_B.U_a[1] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-    raspberrypi_multicore_MPCtest_B.U_a[4] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[7] = 0.0;
     raspberrypi_multicore_MPCtest_B.MRz[0] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
-    raspberrypi_multicore_MPCtest_B.MRz[3] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[6] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[1] = 0.0;
-    raspberrypi_multicore_MPCtest_B.U_a[5] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[4] = 1.0;
-    raspberrypi_multicore_MPCtest_B.U_a[8] = 1.0;
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
+    raspberrypi_multicore_MPCtest_B.MRz[3] =
+      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
+    raspberrypi_multicore_MPCtest_B.MRz[6] = 0.0;
+    raspberrypi_multicore_MPCtest_B.MRz[1] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
+    raspberrypi_multicore_MPCtest_B.MRz[4] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
     raspberrypi_multicore_MPCtest_B.MRz[7] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[2] =
-      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.U_i[0] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
+    raspberrypi_multicore_MPCtest_B.U_i[3] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[6] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.MRz[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
     raspberrypi_multicore_MPCtest_B.MRz[5] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[8] =
+    raspberrypi_multicore_MPCtest_B.U_i[4] = 1.0;
+    raspberrypi_multicore_MPCtest_B.MRz[8] = 1.0;
+    raspberrypi_multicore_MPCtest_B.U_i[7] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[2] =
+      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.U_i[5] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[8] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
+          raspberrypi_multicore_MPCtest_B.i_hc;
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] =
           0.0;
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar];
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 3];
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 6];
       }
 
-      raspberrypi_multicore_MPCtest_B.MRz_i[3 *
+      raspberrypi_multicore_MPCtest_B.R_tmp[3 *
         raspberrypi_multicore_MPCtest_B.ar] =
         d[raspberrypi_multicore_MPCtest_B.ar];
     }
 
-    raspberrypi_multicore_MPCtest_B.MRz_i[1] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz_i[4] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[1] = 0.0;
+    raspberrypi_multicore_MPCtest_B.R_tmp[4] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_c;
-    raspberrypi_multicore_MPCtest_B.MRz_i[7] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[7] =
       -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_m;
-    raspberrypi_multicore_MPCtest_B.MRz_i[2] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz_i[5] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.R_tmp[5] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_m;
-    raspberrypi_multicore_MPCtest_B.MRz_i[8] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[8] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_c;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtest_B.pL_sw_c[raspberrypi_multicore_MPCtest_B.ar]
         = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
+          raspberrypi_multicore_MPCtest_B.i_hc;
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           3];
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           6];
         raspberrypi_multicore_MPCtest_B.pL_sw_c[raspberrypi_multicore_MPCtest_B.ar]
           +=
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          * (real_T)d[raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          * (real_T)d[raspberrypi_multicore_MPCtest_B.i_hc];
       }
     }
 
@@ -13588,7 +13475,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf0[raspberrypi_multicore_MPCtest_B.ar
         + 17] =
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar];
     }
 
     raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf0[29] =
@@ -13641,115 +13528,115 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf0[48] =
       -raspberrypi_multicore_MPCtest_B.b_varargout_10_idx_1;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
-         raspberrypi_multicore_MPCtest_B.ar < 6;
+         raspberrypi_multicore_MPCtest_B.ar < 12;
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf0[raspberrypi_multicore_MPCtest_B.ar
         + 49] =
-        raspberrypi_multicore_MPCtest_B.estDis[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.ar];
     }
     break;
 
    case 1:
     /* MATLAB Function: '<Root>/MATLAB Function2' */
-    raspberrypi_multicore_MPCtest_B.U_a[0] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[3] =
-      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-    raspberrypi_multicore_MPCtest_B.U_a[6] = 0.0;
-    raspberrypi_multicore_MPCtest_B.U_a[1] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-    raspberrypi_multicore_MPCtest_B.U_a[4] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[7] = 0.0;
     raspberrypi_multicore_MPCtest_B.MRz[0] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
-    raspberrypi_multicore_MPCtest_B.MRz[3] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[6] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[1] = 0.0;
-    raspberrypi_multicore_MPCtest_B.U_a[5] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[4] = 1.0;
-    raspberrypi_multicore_MPCtest_B.U_a[8] = 1.0;
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
+    raspberrypi_multicore_MPCtest_B.MRz[3] =
+      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
+    raspberrypi_multicore_MPCtest_B.MRz[6] = 0.0;
+    raspberrypi_multicore_MPCtest_B.MRz[1] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
+    raspberrypi_multicore_MPCtest_B.MRz[4] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
     raspberrypi_multicore_MPCtest_B.MRz[7] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[2] =
-      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.U_i[0] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
+    raspberrypi_multicore_MPCtest_B.U_i[3] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[6] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.MRz[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
     raspberrypi_multicore_MPCtest_B.MRz[5] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[8] =
+    raspberrypi_multicore_MPCtest_B.U_i[4] = 1.0;
+    raspberrypi_multicore_MPCtest_B.MRz[8] = 1.0;
+    raspberrypi_multicore_MPCtest_B.U_i[7] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[2] =
+      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.U_i[5] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[8] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
+          raspberrypi_multicore_MPCtest_B.i_hc;
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] =
           0.0;
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar];
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 3];
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 6];
       }
 
-      raspberrypi_multicore_MPCtest_B.MRz_i[3 *
+      raspberrypi_multicore_MPCtest_B.R_tmp[3 *
         raspberrypi_multicore_MPCtest_B.ar] =
         d[raspberrypi_multicore_MPCtest_B.ar];
     }
 
-    raspberrypi_multicore_MPCtest_B.MRz_i[1] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz_i[4] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[1] = 0.0;
+    raspberrypi_multicore_MPCtest_B.R_tmp[4] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_c;
-    raspberrypi_multicore_MPCtest_B.MRz_i[7] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[7] =
       -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_m;
-    raspberrypi_multicore_MPCtest_B.MRz_i[2] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz_i[5] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.R_tmp[5] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_m;
-    raspberrypi_multicore_MPCtest_B.MRz_i[8] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[8] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_c;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtest_B.pL_sw_c[raspberrypi_multicore_MPCtest_B.ar]
         = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
+          raspberrypi_multicore_MPCtest_B.i_hc;
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           3];
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           6];
         raspberrypi_multicore_MPCtest_B.pL_sw_c[raspberrypi_multicore_MPCtest_B.ar]
           +=
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          * (real_T)d[raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          * (real_T)d[raspberrypi_multicore_MPCtest_B.i_hc];
       }
     }
 
@@ -13792,7 +13679,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf1[raspberrypi_multicore_MPCtest_B.ar
         + 17] =
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar];
     }
 
     raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf1[29] =
@@ -13845,115 +13732,115 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf1[48] =
       -raspberrypi_multicore_MPCtest_B.b_varargout_10_idx_1;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
-         raspberrypi_multicore_MPCtest_B.ar < 6;
+         raspberrypi_multicore_MPCtest_B.ar < 12;
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf1[raspberrypi_multicore_MPCtest_B.ar
         + 49] =
-        raspberrypi_multicore_MPCtest_B.estDis[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.ar];
     }
     break;
 
    case 2:
     /* MATLAB Function: '<Root>/MATLAB Function2' */
-    raspberrypi_multicore_MPCtest_B.U_a[0] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[3] =
-      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-    raspberrypi_multicore_MPCtest_B.U_a[6] = 0.0;
-    raspberrypi_multicore_MPCtest_B.U_a[1] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
-    raspberrypi_multicore_MPCtest_B.U_a[4] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[7] = 0.0;
     raspberrypi_multicore_MPCtest_B.MRz[0] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
-    raspberrypi_multicore_MPCtest_B.MRz[3] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[6] =
-      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
-    raspberrypi_multicore_MPCtest_B.U_a[2] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[1] = 0.0;
-    raspberrypi_multicore_MPCtest_B.U_a[5] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[4] = 1.0;
-    raspberrypi_multicore_MPCtest_B.U_a[8] = 1.0;
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
+    raspberrypi_multicore_MPCtest_B.MRz[3] =
+      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
+    raspberrypi_multicore_MPCtest_B.MRz[6] = 0.0;
+    raspberrypi_multicore_MPCtest_B.MRz[1] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp_h;
+    raspberrypi_multicore_MPCtest_B.MRz[4] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_tmp;
     raspberrypi_multicore_MPCtest_B.MRz[7] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[2] =
-      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.U_i[0] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
+    raspberrypi_multicore_MPCtest_B.U_i[3] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[6] =
+      raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.MRz[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[1] = 0.0;
     raspberrypi_multicore_MPCtest_B.MRz[5] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz[8] =
+    raspberrypi_multicore_MPCtest_B.U_i[4] = 1.0;
+    raspberrypi_multicore_MPCtest_B.MRz[8] = 1.0;
+    raspberrypi_multicore_MPCtest_B.U_i[7] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[2] =
+      -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp;
+    raspberrypi_multicore_MPCtest_B.U_i[5] = 0.0;
+    raspberrypi_multicore_MPCtest_B.U_i[8] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_o;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
+          raspberrypi_multicore_MPCtest_B.i_hc;
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] =
           0.0;
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar];
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar];
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 3];
         raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.vcol] +=
-          raspberrypi_multicore_MPCtest_B.MRz[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.ar
+          raspberrypi_multicore_MPCtest_B.U_i[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.ar
           + 6];
       }
 
-      raspberrypi_multicore_MPCtest_B.MRz_i[3 *
+      raspberrypi_multicore_MPCtest_B.R_tmp[3 *
         raspberrypi_multicore_MPCtest_B.ar] =
         d[raspberrypi_multicore_MPCtest_B.ar];
     }
 
-    raspberrypi_multicore_MPCtest_B.MRz_i[1] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz_i[4] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[1] = 0.0;
+    raspberrypi_multicore_MPCtest_B.R_tmp[4] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_c;
-    raspberrypi_multicore_MPCtest_B.MRz_i[7] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[7] =
       -raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_m;
-    raspberrypi_multicore_MPCtest_B.MRz_i[2] = 0.0;
-    raspberrypi_multicore_MPCtest_B.MRz_i[5] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[2] = 0.0;
+    raspberrypi_multicore_MPCtest_B.R_tmp[5] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_m;
-    raspberrypi_multicore_MPCtest_B.MRz_i[8] =
+    raspberrypi_multicore_MPCtest_B.R_tmp[8] =
       raspberrypi_multicore_MPCtest_B.rtb_headG_tmp_c;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
          raspberrypi_multicore_MPCtest_B.ar < 3;
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtest_B.pL_sw_c[raspberrypi_multicore_MPCtest_B.ar]
         = 0.0;
-      for (raspberrypi_multicore_MPCtest_B.i_d = 0;
-           raspberrypi_multicore_MPCtest_B.i_d < 3;
-           raspberrypi_multicore_MPCtest_B.i_d++) {
+      for (raspberrypi_multicore_MPCtest_B.i_hc = 0;
+           raspberrypi_multicore_MPCtest_B.i_hc < 3;
+           raspberrypi_multicore_MPCtest_B.i_hc++) {
         raspberrypi_multicore_MPCtest_B.vcol =
           raspberrypi_multicore_MPCtest_B.ar + 3 *
-          raspberrypi_multicore_MPCtest_B.i_d;
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
+          raspberrypi_multicore_MPCtest_B.i_hc;
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
           = 0.0;
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar];
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 1] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 1] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           3];
-        raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          += raspberrypi_multicore_MPCtest_B.MRz_i[3 *
-          raspberrypi_multicore_MPCtest_B.i_d + 2] *
+        raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          += raspberrypi_multicore_MPCtest_B.R_tmp[3 *
+          raspberrypi_multicore_MPCtest_B.i_hc + 2] *
           raspberrypi_multicore_MPCtest_B.V[raspberrypi_multicore_MPCtest_B.ar +
           6];
         raspberrypi_multicore_MPCtest_B.pL_sw_c[raspberrypi_multicore_MPCtest_B.ar]
           +=
-          raspberrypi_multicore_MPCtest_B.U_a[raspberrypi_multicore_MPCtest_B.vcol]
-          * (real_T)d[raspberrypi_multicore_MPCtest_B.i_d];
+          raspberrypi_multicore_MPCtest_B.MRz[raspberrypi_multicore_MPCtest_B.vcol]
+          * (real_T)d[raspberrypi_multicore_MPCtest_B.i_hc];
       }
     }
 
@@ -13996,7 +13883,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf2[raspberrypi_multicore_MPCtest_B.ar
         + 17] =
-        raspberrypi_multicore_MPCtest_B.pArray_float_tmp[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.pArray_B[raspberrypi_multicore_MPCtest_B.ar];
     }
 
     raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf2[29] =
@@ -14049,11 +13936,11 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf2[48] =
       -raspberrypi_multicore_MPCtest_B.b_varargout_10_idx_1;
     for (raspberrypi_multicore_MPCtest_B.ar = 0;
-         raspberrypi_multicore_MPCtest_B.ar < 6;
+         raspberrypi_multicore_MPCtest_B.ar < 12;
          raspberrypi_multicore_MPCtest_B.ar++) {
       raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf2[raspberrypi_multicore_MPCtest_B.ar
         + 49] =
-        raspberrypi_multicore_MPCtest_B.estDis[raspberrypi_multicore_MPCtest_B.ar];
+        raspberrypi_multicore_MPCtest_B.PendAllLocal_st_tmp[raspberrypi_multicore_MPCtest_B.ar];
     }
     break;
   }
@@ -14102,7 +13989,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[6] =
       raspberrypi_multicore_MPCtest_B.R[3];
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[9] =
-      raspberrypi_multicore_MPCtest_B.deltaP3[0];
+      raspberrypi_multicore_MPCtest_B.deltaP2[0];
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[1] =
       raspberrypi_multicore_MPCtest_B.R[1];
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[4] =
@@ -14110,7 +13997,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[7] =
       raspberrypi_multicore_MPCtest_B.R[4];
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[10] =
-      raspberrypi_multicore_MPCtest_B.deltaP3[1];
+      raspberrypi_multicore_MPCtest_B.deltaP2[1];
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[2] =
       raspberrypi_multicore_MPCtest_B.R[2];
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[5] =
@@ -14118,7 +14005,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[8] =
       raspberrypi_multicore_MPCtest_B.R[5];
     raspberrypi_multicore_MPCtes_DW.UnitDelay6_DSTATE[11] =
-      raspberrypi_multicore_MPCtest_B.deltaP3[2];
+      raspberrypi_multicore_MPCtest_B.deltaP2[2];
   }
 
   /* End of Switch: '<Root>/Switch1' */
@@ -14381,49 +14268,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
     }
   }
 
-  /* ToFile: '<Root>/To File18' */
-  if (tid == 0 ) {
-    {
-      if (!(++raspberrypi_multicore_MPCtes_DW.ToFile18_IWORK.Decimation % 1) &&
-          (raspberrypi_multicore_MPCtes_DW.ToFile18_IWORK.Count * (12 + 1)) + 1 <
-          100000000 ) {
-        FILE *fp = (FILE *)
-          raspberrypi_multicore_MPCtes_DW.ToFile18_PWORK.FilePtr;
-        if (fp != (NULL)) {
-          real_T u[12 + 1];
-          raspberrypi_multicore_MPCtes_DW.ToFile18_IWORK.Decimation = 0;
-          u[0] = raspberrypi_multicore_MPCtes_M->Timing.taskTime0;
-          u[1] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[0];
-          u[2] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[1];
-          u[3] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[2];
-          u[4] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[3];
-          u[5] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[4];
-          u[6] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[5];
-          u[7] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[6];
-          u[8] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[7];
-          u[9] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[8];
-          u[10] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[9];
-          u[11] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[10];
-          u[12] = raspberrypi_multicore_MPCtest_B.MATLABSystem10_o1[11];
-          if (fwrite(u, sizeof(real_T), 12 + 1, fp) != 12 + 1) {
-            rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                              "Error writing to MAT-file multicore_dataRecEstC.mat");
-            return;
-          }
-
-          if (((++raspberrypi_multicore_MPCtes_DW.ToFile18_IWORK.Count) * (12 +
-                1))+1 >= 100000000) {
-            (void)fprintf(stdout,
-                          "*** The ToFile block will stop logging data before\n"
-                          "    the simulation has ended, because it has reached\n"
-                          "    the maximum number of elements (100000000)\n"
-                          "    allowed in MAT-file multicore_dataRecEstC.mat.\n");
-          }
-        }
-      }
-    }
-  }
-
   /* ToFile: '<Root>/To File2' */
   if (tid == 0 ) {
     {
@@ -14461,65 +14305,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
                           "    the simulation has ended, because it has reached\n"
                           "    the maximum number of elements (100000000)\n"
                           "    allowed in MAT-file multicore_dataRec3.mat.\n");
-          }
-        }
-      }
-    }
-  }
-
-  /* SignalConversion generated from: '<Root>/To File10' incorporates:
-   *  MATLABSystem: '<Root>/MATLAB System1'
-   */
-  raspberrypi_multicore_MPCtest_B.R[0] =
-    raspberrypi_multicore_MPCtest_B.deltaP2[0];
-  raspberrypi_multicore_MPCtest_B.R[3] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[0];
-  raspberrypi_multicore_MPCtest_B.R[6] = raspberrypi_multicore_MPCtest_B.v1[0];
-  raspberrypi_multicore_MPCtest_B.R[1] =
-    raspberrypi_multicore_MPCtest_B.deltaP2[1];
-  raspberrypi_multicore_MPCtest_B.R[4] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[1];
-  raspberrypi_multicore_MPCtest_B.R[7] = raspberrypi_multicore_MPCtest_B.v1[1];
-  raspberrypi_multicore_MPCtest_B.R[2] =
-    raspberrypi_multicore_MPCtest_B.deltaP2[2];
-  raspberrypi_multicore_MPCtest_B.R[5] =
-    raspberrypi_multicore_MPCtest_B.deltaP3[2];
-  raspberrypi_multicore_MPCtest_B.R[8] = raspberrypi_multicore_MPCtest_B.v1[2];
-
-  /* ToFile: '<Root>/To File10' */
-  if (tid == 0 ) {
-    {
-      if (!(++raspberrypi_multicore_MPCtes_DW.ToFile10_IWORK.Decimation % 1) &&
-          (raspberrypi_multicore_MPCtes_DW.ToFile10_IWORK.Count * (9 + 1)) + 1 <
-          100000000 ) {
-        FILE *fp = (FILE *)
-          raspberrypi_multicore_MPCtes_DW.ToFile10_PWORK.FilePtr;
-        if (fp != (NULL)) {
-          real_T u[9 + 1];
-          raspberrypi_multicore_MPCtes_DW.ToFile10_IWORK.Decimation = 0;
-          u[0] = raspberrypi_multicore_MPCtes_M->Timing.taskTime0;
-          u[1] = raspberrypi_multicore_MPCtest_B.R[0];
-          u[2] = raspberrypi_multicore_MPCtest_B.R[1];
-          u[3] = raspberrypi_multicore_MPCtest_B.R[2];
-          u[4] = raspberrypi_multicore_MPCtest_B.R[3];
-          u[5] = raspberrypi_multicore_MPCtest_B.R[4];
-          u[6] = raspberrypi_multicore_MPCtest_B.R[5];
-          u[7] = raspberrypi_multicore_MPCtest_B.R[6];
-          u[8] = raspberrypi_multicore_MPCtest_B.R[7];
-          u[9] = raspberrypi_multicore_MPCtest_B.R[8];
-          if (fwrite(u, sizeof(real_T), 9 + 1, fp) != 9 + 1) {
-            rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                              "Error writing to MAT-file multicore_dataRecEstA.mat");
-            return;
-          }
-
-          if (((++raspberrypi_multicore_MPCtes_DW.ToFile10_IWORK.Count) * (9 + 1))
-              +1 >= 100000000) {
-            (void)fprintf(stdout,
-                          "*** The ToFile block will stop logging data before\n"
-                          "    the simulation has ended, because it has reached\n"
-                          "    the maximum number of elements (100000000)\n"
-                          "    allowed in MAT-file multicore_dataRecEstA.mat.\n");
           }
         }
       }
@@ -14569,43 +14354,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step0(void) /* Sampl
                           "    the simulation has ended, because it has reached\n"
                           "    the maximum number of elements (100000000)\n"
                           "    allowed in MAT-file multicore_dataRec11.mat.\n");
-          }
-        }
-      }
-    }
-  }
-
-  /* ToFile: '<Root>/To File19' */
-  if (tid == 0 ) {
-    {
-      if (!(++raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Decimation % 1) &&
-          (raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count * (6 + 1)) + 1 <
-          100000000 ) {
-        FILE *fp = (FILE *)
-          raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr;
-        if (fp != (NULL)) {
-          real_T u[6 + 1];
-          raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Decimation = 0;
-          u[0] = raspberrypi_multicore_MPCtes_M->Timing.taskTime0;
-          u[1] = raspberrypi_multicore_MPCtest_B.estDis[0];
-          u[2] = raspberrypi_multicore_MPCtest_B.estDis[1];
-          u[3] = raspberrypi_multicore_MPCtest_B.estDis[2];
-          u[4] = raspberrypi_multicore_MPCtest_B.estDis[3];
-          u[5] = raspberrypi_multicore_MPCtest_B.estDis[4];
-          u[6] = raspberrypi_multicore_MPCtest_B.estDis[5];
-          if (fwrite(u, sizeof(real_T), 6 + 1, fp) != 6 + 1) {
-            rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                              "Error writing to MAT-file multicore_dataRec17.mat");
-            return;
-          }
-
-          if (((++raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count) * (6 + 1))
-              +1 >= 100000000) {
-            (void)fprintf(stdout,
-                          "*** The ToFile block will stop logging data before\n"
-                          "    the simulation has ended, because it has reached\n"
-                          "    the maximum number of elements (100000000)\n"
-                          "    allowed in MAT-file multicore_dataRec17.mat.\n");
           }
         }
       }
@@ -14828,7 +14576,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 };
 
-  static const real_T h[416] = { 0.00010416666666666669, 0.0, 0.0, 0.0,
+  static const real_T h[494] = { 0.00010416666666666669, 0.0, 0.0, 0.0,
     -0.0025709862844647486, -0.0010549824786535711, 0.0083333333333333332, 0.0,
     0.0, 0.0, -0.20567890275717984, -0.084398598292285687, 0.0, 0.0,
     0.00010416666666666669, 0.0, 0.012872628726287265, 0.0,
@@ -14859,16 +14607,19 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0083333333333333332, 0.0, 1.0298102981029811, 0.0, -0.10404224865505159,
     0.0, 0.0, 0.0, 0.00010416666666666669, -0.0057926829268292691,
     0.0014262208125399183, 0.0, 0.0, 0.0, 0.0083333333333333332,
-    -0.46341463414634143, 0.11409766500319346, 0.0, 0.0, 0.00031250000000000006,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.025, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.00031250000000000006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.025, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.00031250000000000006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.025, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.00031250000000000006, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.025, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.00031250000000000006, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.025, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.00031250000000000006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.025, 0.0, 0.0, 0.0, 0.0,
-    1.033006674779847E-18, -6.4941969577607583E-19, 0.0, 0.0, 0.0, 0.0,
-    1.3051890191934769E-16, 8.0678566067114554E-18, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    -0.46341463414634143, 0.11409766500319346, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 1.033006674779847E-18, -6.4941969577607583E-19, 0.0, 0.0,
+    0.0, 0.0, 1.3051890191934769E-16, 8.0678566067114554E-18, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -14879,9 +14630,10 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0 };
 
-  static const real_T l[416] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+  static const real_T l[494] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -14897,6 +14649,14 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
@@ -14906,66 +14666,63 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 1.0 };
+    0.0, 0.0, 0.0, 0.0, 1.0 };
 
   static const real_T n[252] = { 4.81, 4.81, 4.81, 4.81, 4.81, 4.81, 0.03, 0.03,
     0.03, 0.03, 0.03, 0.03, 42.65, 42.65, 42.65, 42.65, 42.65, 42.65, 42.65,
     42.65, 7.3500000000000005, 7.3500000000000005, 7.3500000000000005,
     7.3500000000000005, 7.3500000000000005, 7.3500000000000005,
-    7.3500000000000005, 7.3500000000000005, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003, 20.0, 20.0, 20.0,
+    7.3500000000000005, 7.3500000000000005, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004, 20.0, 20.0, 20.0,
     20.0, 20.0, 20.0, 20.0, 20.0, 52.65, 52.65, 52.65, 52.65, 12.350000000000001,
     12.350000000000001, 12.350000000000001, 12.350000000000001,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 52.65,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 52.65,
     52.65, 52.65, 52.65, 12.350000000000001, 12.350000000000001,
-    12.350000000000001, 12.350000000000001, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003, 20.0, 20.0, 20.0,
+    12.350000000000001, 12.350000000000001, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004, 20.0, 20.0, 20.0,
     20.0, 20.0, 20.0, 20.0, 20.0, 52.65, 52.65, 52.65, 52.65, 12.350000000000001,
     12.350000000000001, 12.350000000000001, 12.350000000000001,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 52.65,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 52.65,
     52.65, 52.65, 52.65, 12.350000000000001, 12.350000000000001,
-    12.350000000000001, 12.350000000000001, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003, 20.0, 20.0, 20.0,
+    12.350000000000001, 12.350000000000001, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004, 20.0, 20.0, 20.0,
     20.0, 20.0, 20.0, 20.0, 20.0, 52.65, 52.65, 52.65, 52.65, 12.350000000000001,
     12.350000000000001, 12.350000000000001, 12.350000000000001,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 52.65,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 52.65,
     52.65, 52.65, 52.65, 12.350000000000001, 12.350000000000001,
-    12.350000000000001, 12.350000000000001, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003,
-    3.6750000000000003, 3.6750000000000003, 3.6750000000000003, 20.0, 20.0, 20.0,
+    12.350000000000001, 12.350000000000001, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004,
+    2.9400000000000004, 2.9400000000000004, 2.9400000000000004, 20.0, 20.0, 20.0,
     20.0, 20.0, 20.0, 20.0, 20.0, 52.65, 52.65, 52.65, 52.65, 12.350000000000001,
     12.350000000000001, 12.350000000000001, 12.350000000000001 };
 
@@ -15247,21 +15004,21 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     -0.0037500000000000003, 0.00010416666666666669, 0.00041666666666666669,
     0.0009375, 0.0016666666666666668, 0.002604166666666667,
     0.0037500000000000003, -1.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0,
-    0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0,
-    0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0,
-    1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0,
+    0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0,
+    1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0,
-    1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0,
     0.0, 0.0, 1.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
@@ -15301,21 +15058,21 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     -0.0037500000000000003, 0.00010416666666666669, 0.00041666666666666669,
     0.0009375, 0.0016666666666666668, 0.002604166666666667,
     0.0037500000000000003, -0.0, -1.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, 0.0,
-    1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0,
-    1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5,
-    0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5,
-    0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0,
+    1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0,
+    0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0,
-    0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0,
-    0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0,
+    0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, -1.0,
     0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
@@ -15355,21 +15112,21 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     -0.0037500000000000003, 0.00010416666666666669, 0.00041666666666666669,
     0.0009375, 0.0016666666666666668, 0.002604166666666667,
     0.0037500000000000003, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, -1.0, -0.0, 0.0,
-    0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
-    -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 1.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0,
+    -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 1.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0,
-    1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, -1.0, 0.0,
-    0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5,
-    0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0,
+    1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, -1.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0,
     -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0,
@@ -15409,24 +15166,24 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     -0.0037500000000000003, 0.00010416666666666669, 0.00041666666666666669,
     0.0009375, 0.0016666666666666668, 0.002604166666666667,
     0.0037500000000000003, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, -1.0, 0.0,
-    0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5,
-    0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 1.0,
-    -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5,
-    0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0,
+    0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 1.0,
+    -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4,
+    0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
     0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-    0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0,
+    0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0,
     0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 1.0,
-    0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0,
-    0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0,
-    0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0,
-    0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0,
-    0.5, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0,
+    0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0,
+    0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0,
+    0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0,
+    0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.0, 0.0, 0.0, 0.0,
     0.0, -1.0, 0.0, 0.0, 0.0, 1.0 };
 
-  static const real_T ab[12348] = { -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
+  static const real_T ab[22932] = { -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -15460,11 +15217,549 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, -0.00031250000000000006, -0.00093750000000000018,
-    -0.0015625000000000003, -0.0021875000000000006, -0.0028125000000000003,
-    -0.0034375000000000005, 0.00031250000000000006, 0.00093750000000000018,
-    0.0015625000000000003, 0.0021875000000000006, 0.0028125000000000003,
-    0.0034375000000000005, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.025, -0.05, -0.075000000000000011, -0.1,
+    -0.125, 0.0, 0.025, 0.05, 0.075000000000000011, 0.1, 0.125, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
+    -1.0, -1.0, -1.0, -1.0, -1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -0.0, -0.0, -0.025, -0.05, -0.075000000000000011, -0.1, 0.0, 0.0, 0.025,
+    0.05, 0.075000000000000011, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -1.0, -1.0, -1.0,
+    -1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.025, -0.05, -0.075000000000000011, 0.0, 0.0, 0.0, 0.025, 0.05,
+    0.075000000000000011, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -15581,78 +15876,8 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.00031250000000000006,
-    -0.00093750000000000018, -0.0015625000000000003, -0.0021875000000000006,
-    -0.0028125000000000003, 0.0, 0.00031250000000000006, 0.00093750000000000018,
-    0.0015625000000000003, 0.0021875000000000006, 0.0028125000000000003, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
-    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -1.0, -1.0, -1.0, 0.0,
+    0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -15702,10 +15927,92 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, -0.0, -0.0, -0.00031250000000000006, -0.00093750000000000018,
-    -0.0015625000000000003, -0.0021875000000000006, 0.0, 0.0,
-    0.00031250000000000006, 0.00093750000000000018, 0.0015625000000000003,
-    0.0021875000000000006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.025,
+    -0.05, 0.0, 0.0, 0.0, 0.0, 0.025, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -15789,76 +16096,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.00031250000000000006,
-    -0.00093750000000000018, -0.0015625000000000003, 0.0, 0.0, 0.0,
-    0.00031250000000000006, 0.00093750000000000018, 0.0015625000000000003, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
-    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    -0.0, -1.0, -1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -15942,58 +16180,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, -0.0, -0.0, -0.0, -0.0, -0.00031250000000000006,
-    -0.00093750000000000018, 0.0, 0.0, 0.0, 0.0, 0.00031250000000000006,
-    0.00093750000000000018, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -16011,75 +16197,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
-    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.00031250000000000006, 0.0, 0.0, 0.0, 0.0, 0.0, 0.00031250000000000006,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.025, 0.0, 0.0, 0.0, 0.0, 0.0, 0.025, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -16197,6 +16315,124 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -16264,201 +16500,420 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 
-  static const real_T bb[625] = { 24.083339669766623, -0.012565420022470157,
-    13.347344251567369, 24.052953646770014, -0.012565420022470157,
-    13.347344251567369, 24.073339669766622, 0.012565420022470157,
-    -13.347344251567369, 24.052953646770014, 0.012565420022470157,
-    -13.347344251567369, 15.703277310271815, -0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    -8.7066002965776814, 15.689964192648985, 0.0082058631429608227,
-    -8.7066002965776814, 0.0, -0.012565420022470157, 603.20224578467173,
-    271.4284289774605, 0.012565420022470157, 603.19224578467174,
-    -271.4284289774605, -0.012565420022470157, 603.16126577834734,
-    271.4284289774605, 0.012565420022470157, 603.16126577834734,
-    -271.4284289774605, -0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, 0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, 0.0, 13.347344251567369, 271.4284289774605,
-    129.64592445990797, 13.347344251567369, 271.4284289774605,
-    -114.64966161980645, 13.347344251567369, 271.4284289774605,
-    114.82739725869533, 13.347344251567369, 271.4284289774605,
-    -129.45818882101909, 8.7066002965776814, 177.05535990481854,
-    84.562753147275714, 8.7066002965776814, 177.05535990481854,
-    -74.787070767060982, 8.7066002965776814, 177.05535990481854,
-    74.903009239283207, 8.7066002965776814, 177.05535990481854,
-    -84.446814675053488, 0.0, 24.052953646770014, 0.012565420022470157,
-    13.347344251567369, 24.083339669766623, 0.012565420022470157,
-    13.347344251567369, 24.052953646770014, -0.012565420022470157,
-    -13.347344251567369, 24.073339669766622, -0.012565420022470157,
-    -13.347344251567369, 15.689964192648985, 0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    -8.7066002965776814, 15.703277310271815, -0.0082058631429608227,
-    -8.7066002965776814, 0.0, -0.012565420022470157, 603.19224578467174,
-    271.4284289774605, 0.012565420022470157, 603.20224578467173,
-    -271.4284289774605, -0.012565420022470157, 603.16126577834734,
-    271.4284289774605, 0.012565420022470157, 603.16126577834734,
-    -271.4284289774605, -0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, 0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, 0.0, 13.347344251567369, -271.4284289774605,
-    -114.64966161980645, 13.347344251567369, -271.4284289774605,
-    129.64592445990797, 13.347344251567369, -271.4284289774605,
-    -129.45818882101909, 13.347344251567369, -271.4284289774605,
-    114.82739725869533, 8.7066002965776814, -177.05535990481854,
-    -74.787070767060982, 8.7066002965776814, -177.05535990481854,
-    84.562753147275714, 8.7066002965776814, -177.05535990481854,
-    -84.446814675053488, 8.7066002965776814, -177.05535990481854,
-    74.903009239283207, 0.0, 24.073339669766622, -0.012565420022470157,
-    13.347344251567369, 24.052953646770014, -0.012565420022470157,
-    13.347344251567369, 24.083339669766623, 0.012565420022470157,
-    -13.347344251567369, 24.052953646770014, 0.012565420022470157,
-    -13.347344251567369, 15.703277310271815, -0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    -8.7066002965776814, 15.689964192648985, 0.0082058631429608227,
-    -8.7066002965776814, 0.0, 0.012565420022470157, 603.16126577834734,
-    271.4284289774605, -0.012565420022470157, 603.16126577834734,
-    -271.4284289774605, 0.012565420022470157, 603.20224578467173,
-    271.4284289774605, -0.012565420022470157, 603.19224578467174,
-    -271.4284289774605, 0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, -0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, 0.0, -13.347344251567369, 271.4284289774605,
-    114.82739725869533, -13.347344251567369, 271.4284289774605,
-    -129.45818882101909, -13.347344251567369, 271.4284289774605,
-    129.64592445990797, -13.347344251567369, 271.4284289774605,
-    -114.64966161980645, -8.7066002965776814, 177.05535990481854,
-    74.903009239283207, -8.7066002965776814, 177.05535990481854,
-    -84.446814675053488, -8.7066002965776814, 177.05535990481854,
-    84.562753147275714, -8.7066002965776814, 177.05535990481854,
-    -74.787070767060982, 0.0, 24.052953646770014, 0.012565420022470157,
-    13.347344251567369, 24.073339669766622, 0.012565420022470157,
-    13.347344251567369, 24.052953646770014, -0.012565420022470157,
-    -13.347344251567369, 24.083339669766623, -0.012565420022470157,
-    -13.347344251567369, 15.689964192648985, 0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    -8.7066002965776814, 15.703277310271815, -0.0082058631429608227,
-    -8.7066002965776814, 0.0, 0.012565420022470157, 603.16126577834734,
-    271.4284289774605, -0.012565420022470157, 603.16126577834734,
-    -271.4284289774605, 0.012565420022470157, 603.19224578467174,
-    271.4284289774605, -0.012565420022470157, 603.20224578467173,
-    -271.4284289774605, 0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, -0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, 0.0, -13.347344251567369, -271.4284289774605,
-    -129.45818882101909, -13.347344251567369, -271.4284289774605,
-    114.82739725869533, -13.347344251567369, -271.4284289774605,
-    -114.64966161980645, -13.347344251567369, -271.4284289774605,
-    129.64592445990797, -8.7066002965776814, -177.05535990481854,
-    -84.446814675053488, -8.7066002965776814, -177.05535990481854,
-    74.903009239283207, -8.7066002965776814, -177.05535990481854,
-    -74.787070767060982, -8.7066002965776814, -177.05535990481854,
-    84.562753147275714, 0.0, 15.703277310271815, -0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    -8.7066002965776814, 15.689964192648985, 0.0082058631429608227,
-    -8.7066002965776814, 10.369550726088987, -0.0054211821914236895,
-    5.7437954240459579, 10.350755449478612, -0.0054211821914236895,
-    5.7437954240459579, 10.359550726088987, 0.0054211821914236895,
-    -5.7437954240459579, 10.350755449478612, 0.0054211821914236895,
-    -5.7437954240459579, 0.0, -0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, 0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, -0.0054211821914236895, 259.58321737704989,
-    116.80446229096437, 0.0054211821914236895, 259.5732173770499,
-    -116.80446229096437, -0.0054211821914236895, 259.55985146820842,
-    116.80446229096437, 0.0054211821914236895, 259.55985146820842,
-    -116.80446229096437, 0.0, 8.7066002965776814, 177.05535990481857,
-    84.562753147275714, 8.7066002965776814, 177.05535990481857,
-    -74.787070767060982, 8.7066002965776814, 177.05535990481857,
-    74.903009239283207, 8.7066002965776814, 177.05535990481857,
-    -84.446814675053488, 5.7437954240459579, 116.80446229096437,
-    55.796545535612317, 5.7437954240459579, 116.80446229096437,
-    -49.3374705262556, 5.7437954240459579, 116.80446229096437,
-    49.413955665144485, 5.7437954240459579, 116.80446229096437,
-    -55.710060396723428, 0.0, 15.689964192648985, 0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    -8.7066002965776814, 15.703277310271815, -0.0082058631429608227,
-    -8.7066002965776814, 10.350755449478612, 0.0054211821914236895,
-    5.7437954240459579, 10.369550726088987, 0.0054211821914236895,
-    5.7437954240459579, 10.350755449478612, -0.0054211821914236895,
-    -5.7437954240459579, 10.359550726088987, -0.0054211821914236895,
-    -5.7437954240459579, 0.0, -0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, 0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, -0.0054211821914236895, 259.5732173770499,
-    116.80446229096437, 0.0054211821914236895, 259.58321737704989,
-    -116.80446229096437, -0.0054211821914236895, 259.55985146820842,
-    116.80446229096437, 0.0054211821914236895, 259.55985146820842,
-    -116.80446229096437, 0.0, 8.7066002965776814, -177.05535990481857,
-    -74.787070767060982, 8.7066002965776814, -177.05535990481857,
-    84.562753147275714, 8.7066002965776814, -177.05535990481857,
-    -84.446814675053488, 8.7066002965776814, -177.05535990481857,
-    74.903009239283207, 5.7437954240459579, -116.80446229096437,
-    -49.3374705262556, 5.7437954240459579, -116.80446229096437,
-    55.796545535612317, 5.7437954240459579, -116.80446229096437,
-    -55.710060396723428, 5.7437954240459579, -116.80446229096437,
-    49.413955665144485, 0.0, 15.703277310271815, -0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    -8.7066002965776814, 15.689964192648985, 0.0082058631429608227,
-    -8.7066002965776814, 10.359550726088987, -0.0054211821914236895,
-    5.7437954240459579, 10.350755449478612, -0.0054211821914236895,
-    5.7437954240459579, 10.369550726088987, 0.0054211821914236895,
-    -5.7437954240459579, 10.350755449478612, 0.0054211821914236895,
-    -5.7437954240459579, 0.0, 0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, -0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, 0.0054211821914236895, 259.55985146820842,
-    116.80446229096437, -0.0054211821914236895, 259.55985146820842,
-    -116.80446229096437, 0.0054211821914236895, 259.58321737704989,
-    116.80446229096437, -0.0054211821914236895, 259.5732173770499,
-    -116.80446229096437, 0.0, -8.7066002965776814, 177.05535990481857,
-    74.903009239283207, -8.7066002965776814, 177.05535990481857,
-    -84.446814675053488, -8.7066002965776814, 177.05535990481857,
-    84.562753147275714, -8.7066002965776814, 177.05535990481857,
-    -74.787070767060982, -5.7437954240459579, 116.80446229096437,
-    49.413955665144485, -5.7437954240459579, 116.80446229096437,
-    -55.710060396723428, -5.7437954240459579, 116.80446229096437,
-    55.796545535612317, -5.7437954240459579, 116.80446229096437,
-    -49.3374705262556, 0.0, 15.689964192648985, 0.0082058631429608227,
-    8.7066002965776814, 15.703277310271815, 0.0082058631429608227,
-    8.7066002965776814, 15.689964192648985, -0.0082058631429608227,
-    -8.7066002965776814, 15.703277310271815, -0.0082058631429608227,
-    -8.7066002965776814, 10.350755449478612, 0.0054211821914236895,
-    5.7437954240459579, 10.359550726088987, 0.0054211821914236895,
-    5.7437954240459579, 10.350755449478612, -0.0054211821914236895,
-    -5.7437954240459579, 10.369550726088987, -0.0054211821914236895,
-    -5.7437954240459579, 0.0, 0.0082058631429608227, 393.44785030741531,
-    177.05535990481857, -0.0082058631429608227, 393.44785030741531,
-    -177.05535990481857, 0.0082058631429608227, 393.4680818390006,
-    177.05535990481857, -0.0082058631429608227, 393.4680818390006,
-    -177.05535990481857, 0.0054211821914236895, 259.55985146820842,
-    116.80446229096437, -0.0054211821914236895, 259.55985146820842,
-    -116.80446229096437, 0.0054211821914236895, 259.5732173770499,
-    116.80446229096437, -0.0054211821914236895, 259.58321737704989,
-    -116.80446229096437, 0.0, -8.7066002965776814, -177.05535990481857,
-    -84.446814675053488, -8.7066002965776814, -177.05535990481857,
-    74.903009239283207, -8.7066002965776814, -177.05535990481857,
-    -74.787070767060982, -8.7066002965776814, -177.05535990481857,
-    84.562753147275714, -5.7437954240459579, -116.80446229096437,
-    -55.710060396723428, -5.7437954240459579, -116.80446229096437,
-    49.413955665144485, -5.7437954240459579, -116.80446229096437,
-    -49.3374705262556, -5.7437954240459579, -116.80446229096437,
-    55.796545535612317, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+  static const real_T bb[625] = { 24.1279309574974, -0.020476240895122278,
+    13.368486106592172, 24.084710490770021, -0.020476240895122278,
+    13.368486106592172, 24.1179309574974, 0.020476240895122278,
+    -13.368486106592172, 24.084710490770021, 0.020476240895122278,
+    -13.368486106592172, 15.737578300833954, -0.014291109968077836,
+    8.7228632619813737, 15.714392534187452, -0.014291109968077836,
+    8.7228632619813737, 15.737578300833954, 0.014291109968077836,
+    -8.7228632619813737, 15.714392534187452, 0.014291109968077836,
+    -8.7228632619813737, 0.0, -0.020476240895122278, 604.167473183433,
+    271.85836472998881, 0.020476240895122278, 604.157473183433,
+    -271.85836472998881, -0.020476240895122278, 604.10698907137828,
+    271.85836472998881, 0.020476240895122278, 604.10698907137828,
+    -271.85836472998881, -0.014291109968077836, 394.21056445343237,
+    177.38607971445572, 0.014291109968077836, 394.21056445343237,
+    -177.38607971445572, -0.014291109968077836, 394.17532976359291,
+    177.38607971445572, 0.014291109968077836, 394.17532976359291,
+    -177.38607971445572, 0.0, 13.368486106592172, 271.85836472998881,
+    129.85118627693839, 13.368486106592172, 271.85836472998881,
+    -114.83134198005148, 13.368486106592172, 271.85836472998881,
+    115.00920274394035, 13.368486106592172, 271.85836472998881,
+    -129.66332551304953, 8.7228632619813755, 177.38607971445569,
+    84.720646852683728, 8.7228632619813755, 177.38607971445569,
+    -74.926824890326372, 8.7228632619813755, 177.38607971445569,
+    75.042859612548611, 8.7228632619813755, 177.38607971445569,
+    -84.6046121304615, 0.0, 24.084710490770021, 0.020476240895122278,
+    13.368486106592172, 24.1279309574974, 0.020476240895122278,
+    13.368486106592172, 24.084710490770021, -0.020476240895122278,
+    -13.368486106592172, 24.1179309574974, -0.020476240895122278,
+    -13.368486106592172, 15.714392534187452, 0.014291109968077836,
+    8.7228632619813737, 15.737578300833954, 0.014291109968077836,
+    8.7228632619813737, 15.714392534187452, -0.014291109968077836,
+    -8.7228632619813737, 15.737578300833954, -0.014291109968077836,
+    -8.7228632619813737, 0.0, -0.020476240895122278, 604.157473183433,
+    271.85836472998881, 0.020476240895122278, 604.167473183433,
+    -271.85836472998881, -0.020476240895122278, 604.10698907137828,
+    271.85836472998881, 0.020476240895122278, 604.10698907137828,
+    -271.85836472998881, -0.014291109968077836, 394.21056445343237,
+    177.38607971445572, 0.014291109968077836, 394.21056445343237,
+    -177.38607971445572, -0.014291109968077836, 394.17532976359291,
+    177.38607971445572, 0.014291109968077836, 394.17532976359291,
+    -177.38607971445572, 0.0, 13.368486106592172, -271.85836472998881,
+    -114.83134198005148, 13.368486106592172, -271.85836472998881,
+    129.85118627693839, 13.368486106592172, -271.85836472998881,
+    -129.66332551304953, 13.368486106592172, -271.85836472998881,
+    115.00920274394035, 8.7228632619813755, -177.38607971445569,
+    -74.926824890326372, 8.7228632619813755, -177.38607971445569,
+    84.720646852683728, 8.7228632619813755, -177.38607971445569,
+    -84.6046121304615, 8.7228632619813755, -177.38607971445569,
+    75.042859612548611, 0.0, 24.1179309574974, -0.020476240895122278,
+    13.368486106592172, 24.084710490770021, -0.020476240895122278,
+    13.368486106592172, 24.1279309574974, 0.020476240895122278,
+    -13.368486106592172, 24.084710490770021, 0.020476240895122278,
+    -13.368486106592172, 15.737578300833954, -0.014291109968077836,
+    8.7228632619813737, 15.714392534187452, -0.014291109968077836,
+    8.7228632619813737, 15.737578300833954, 0.014291109968077836,
+    -8.7228632619813737, 15.714392534187452, 0.014291109968077836,
+    -8.7228632619813737, 0.0, 0.020476240895122278, 604.10698907137828,
+    271.85836472998881, -0.020476240895122278, 604.10698907137828,
+    -271.85836472998881, 0.020476240895122278, 604.167473183433,
+    271.85836472998881, -0.020476240895122278, 604.157473183433,
+    -271.85836472998881, 0.014291109968077836, 394.17532976359291,
+    177.38607971445572, -0.014291109968077836, 394.17532976359291,
+    -177.38607971445572, 0.014291109968077836, 394.21056445343237,
+    177.38607971445572, -0.014291109968077836, 394.21056445343237,
+    -177.38607971445572, 0.0, -13.368486106592172, 271.85836472998881,
+    115.00920274394035, -13.368486106592172, 271.85836472998881,
+    -129.66332551304953, -13.368486106592172, 271.85836472998881,
+    129.85118627693839, -13.368486106592172, 271.85836472998881,
+    -114.83134198005148, -8.7228632619813755, 177.38607971445569,
+    75.042859612548611, -8.7228632619813755, 177.38607971445569,
+    -84.6046121304615, -8.7228632619813755, 177.38607971445569,
+    84.720646852683728, -8.7228632619813755, 177.38607971445569,
+    -74.926824890326372, 0.0, 24.084710490770021, 0.020476240895122278,
+    13.368486106592172, 24.1179309574974, 0.020476240895122278,
+    13.368486106592172, 24.084710490770021, -0.020476240895122278,
+    -13.368486106592172, 24.1279309574974, -0.020476240895122278,
+    -13.368486106592172, 15.714392534187452, 0.014291109968077836,
+    8.7228632619813737, 15.737578300833954, 0.014291109968077836,
+    8.7228632619813737, 15.714392534187452, -0.014291109968077836,
+    -8.7228632619813737, 15.737578300833954, -0.014291109968077836,
+    -8.7228632619813737, 0.0, 0.020476240895122278, 604.10698907137828,
+    271.85836472998881, -0.020476240895122278, 604.10698907137828,
+    -271.85836472998881, 0.020476240895122278, 604.157473183433,
+    271.85836472998881, -0.020476240895122278, 604.167473183433,
+    -271.85836472998881, 0.014291109968077836, 394.17532976359291,
+    177.38607971445572, -0.014291109968077836, 394.17532976359291,
+    -177.38607971445572, 0.014291109968077836, 394.21056445343237,
+    177.38607971445572, -0.014291109968077836, 394.21056445343237,
+    -177.38607971445572, 0.0, -13.368486106592172, -271.85836472998881,
+    -129.66332551304953, -13.368486106592172, -271.85836472998881,
+    115.00920274394035, -13.368486106592172, -271.85836472998881,
+    -114.83134198005148, -13.368486106592172, -271.85836472998881,
+    129.85118627693839, -8.7228632619813755, -177.38607971445569,
+    -84.6046121304615, -8.7228632619813755, -177.38607971445569,
+    75.042859612548611, -8.7228632619813755, -177.38607971445569,
+    -74.926824890326372, -8.7228632619813755, -177.38607971445569,
+    84.720646852683728, 0.0, 15.737578300833954, -0.014291109968077838,
+    8.7228632619813755, 15.714392534187452, -0.014291109968077838,
+    8.7228632619813755, 15.737578300833954, 0.014291109968077838,
+    -8.7228632619813755, 15.714392534187452, 0.014291109968077838,
+    -8.7228632619813755, 10.396501504387809, -0.010202447554015628,
+    5.7565734682917169, 10.369949146401693, -0.010202447554015628,
+    5.7565734682917169, 10.386501504387809, 0.010202447554015628,
+    -5.7565734682917169, 10.369949146401693, 0.010202447554015628,
+    -5.7565734682917169, 0.0, -0.014291109968077836, 394.21056445343237,
+    177.38607971445569, 0.014291109968077836, 394.21056445343237,
+    -177.38607971445569, -0.014291109968077836, 394.17532976359291,
+    177.38607971445569, 0.014291109968077836, 394.17532976359291,
+    -177.38607971445569, -0.010202447554015628, 260.16659657410349,
+    117.06431356996497, 0.010202447554015628, 260.1565965741035,
+    -117.06431356996497, -0.010202447554015628, 260.13144246949082,
+    117.06431356996497, 0.010202447554015628, 260.13144246949082,
+    -117.06431356996497, 0.0, 8.7228632619813737, 177.38607971445569,
+    84.720646852683728, 8.7228632619813737, 177.38607971445569,
+    -74.926824890326372, 8.7228632619813737, 177.38607971445569,
+    75.042859612548611, 8.7228632619813737, 177.38607971445569,
+    -84.6046121304615, 5.7565734682917178, 117.06431356996497,
+    55.920604875575762, 5.7565734682917178, 117.06431356996497,
+    -49.447277337392691, 5.7565734682917178, 117.06431356996497,
+    49.523838101281584, 5.7565734682917178, 117.06431356996497,
+    -55.834044111686879, 0.0, 15.714392534187452, 0.014291109968077838,
+    8.7228632619813755, 15.737578300833954, 0.014291109968077838,
+    8.7228632619813755, 15.714392534187452, -0.014291109968077838,
+    -8.7228632619813755, 15.737578300833954, -0.014291109968077838,
+    -8.7228632619813755, 10.369949146401693, 0.010202447554015628,
+    5.7565734682917169, 10.396501504387809, 0.010202447554015628,
+    5.7565734682917169, 10.369949146401693, -0.010202447554015628,
+    -5.7565734682917169, 10.386501504387809, -0.010202447554015628,
+    -5.7565734682917169, 0.0, -0.014291109968077836, 394.21056445343237,
+    177.38607971445569, 0.014291109968077836, 394.21056445343237,
+    -177.38607971445569, -0.014291109968077836, 394.17532976359291,
+    177.38607971445569, 0.014291109968077836, 394.17532976359291,
+    -177.38607971445569, -0.010202447554015628, 260.1565965741035,
+    117.06431356996497, 0.010202447554015628, 260.16659657410349,
+    -117.06431356996497, -0.010202447554015628, 260.13144246949082,
+    117.06431356996497, 0.010202447554015628, 260.13144246949082,
+    -117.06431356996497, 0.0, 8.7228632619813737, -177.38607971445569,
+    -74.926824890326372, 8.7228632619813737, -177.38607971445569,
+    84.720646852683728, 8.7228632619813737, -177.38607971445569,
+    -84.6046121304615, 8.7228632619813737, -177.38607971445569,
+    75.042859612548611, 5.7565734682917178, -117.06431356996497,
+    -49.447277337392691, 5.7565734682917178, -117.06431356996497,
+    55.920604875575762, 5.7565734682917178, -117.06431356996497,
+    -55.834044111686879, 5.7565734682917178, -117.06431356996497,
+    49.523838101281584, 0.0, 15.737578300833954, -0.014291109968077838,
+    8.7228632619813755, 15.714392534187452, -0.014291109968077838,
+    8.7228632619813755, 15.737578300833954, 0.014291109968077838,
+    -8.7228632619813755, 15.714392534187452, 0.014291109968077838,
+    -8.7228632619813755, 10.386501504387809, -0.010202447554015628,
+    5.7565734682917169, 10.369949146401693, -0.010202447554015628,
+    5.7565734682917169, 10.396501504387809, 0.010202447554015628,
+    -5.7565734682917169, 10.369949146401693, 0.010202447554015628,
+    -5.7565734682917169, 0.0, 0.014291109968077836, 394.17532976359291,
+    177.38607971445569, -0.014291109968077836, 394.17532976359291,
+    -177.38607971445569, 0.014291109968077836, 394.21056445343237,
+    177.38607971445569, -0.014291109968077836, 394.21056445343237,
+    -177.38607971445569, 0.010202447554015628, 260.13144246949082,
+    117.06431356996497, -0.010202447554015628, 260.13144246949082,
+    -117.06431356996497, 0.010202447554015628, 260.16659657410349,
+    117.06431356996497, -0.010202447554015628, 260.1565965741035,
+    -117.06431356996497, 0.0, -8.7228632619813737, 177.38607971445569,
+    75.042859612548611, -8.7228632619813737, 177.38607971445569,
+    -84.6046121304615, -8.7228632619813737, 177.38607971445569,
+    84.720646852683728, -8.7228632619813737, 177.38607971445569,
+    -74.926824890326372, -5.7565734682917178, 117.06431356996497,
+    49.523838101281584, -5.7565734682917178, 117.06431356996497,
+    -55.834044111686879, -5.7565734682917178, 117.06431356996497,
+    55.920604875575762, -5.7565734682917178, 117.06431356996497,
+    -49.447277337392691, 0.0, 15.714392534187452, 0.014291109968077838,
+    8.7228632619813755, 15.737578300833954, 0.014291109968077838,
+    8.7228632619813755, 15.714392534187452, -0.014291109968077838,
+    -8.7228632619813755, 15.737578300833954, -0.014291109968077838,
+    -8.7228632619813755, 10.369949146401693, 0.010202447554015628,
+    5.7565734682917169, 10.386501504387809, 0.010202447554015628,
+    5.7565734682917169, 10.369949146401693, -0.010202447554015628,
+    -5.7565734682917169, 10.396501504387809, -0.010202447554015628,
+    -5.7565734682917169, 0.0, 0.014291109968077836, 394.17532976359291,
+    177.38607971445569, -0.014291109968077836, 394.17532976359291,
+    -177.38607971445569, 0.014291109968077836, 394.21056445343237,
+    177.38607971445569, -0.014291109968077836, 394.21056445343237,
+    -177.38607971445569, 0.010202447554015628, 260.13144246949082,
+    117.06431356996497, -0.010202447554015628, 260.13144246949082,
+    -117.06431356996497, 0.010202447554015628, 260.1565965741035,
+    117.06431356996497, -0.010202447554015628, 260.16659657410349,
+    -117.06431356996497, 0.0, -8.7228632619813737, -177.38607971445569,
+    -84.6046121304615, -8.7228632619813737, -177.38607971445569,
+    75.042859612548611, -8.7228632619813737, -177.38607971445569,
+    -74.926824890326372, -8.7228632619813737, -177.38607971445569,
+    84.720646852683728, -5.7565734682917178, -117.06431356996497,
+    -55.834044111686879, -5.7565734682917178, -117.06431356996497,
+    49.523838101281584, -5.7565734682917178, -117.06431356996497,
+    -49.447277337392691, -5.7565734682917178, -117.06431356996497,
+    55.920604875575762, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 6.0E+6
   };
 
@@ -16506,22 +16961,22 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.00010416666666666669, 0.00041666666666666669, 0.0009375,
     0.0016666666666666668, 0.002604166666666667, 0.0037500000000000003, -1.0,
     -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-    0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0,
-    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0,
+    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0, -0.0,
-    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
+    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0,
-    -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
-    1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
+    -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
+    1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0,
     1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
@@ -16567,22 +17022,22 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.00010416666666666669, 0.00041666666666666669, 0.0009375,
     0.0016666666666666668, 0.002604166666666667, 0.0037500000000000003, -0.0,
     -1.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0,
-    0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0,
-    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0,
+    0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0,
+    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0,
-    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0,
+    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0, -0.0,
-    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
+    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0,
     -0.0, 1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
@@ -16628,22 +17083,22 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.00010416666666666669, 0.00041666666666666669, 0.0009375,
     0.0016666666666666668, 0.002604166666666667, 0.0037500000000000003, -0.0,
     -0.0, -1.0, -0.0, -0.0, -0.0, -1.0, -0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0,
-    0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0,
-    -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0,
+    0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0,
+    -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0,
-    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0,
+    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0,
-    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0,
+    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0,
     -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
@@ -16689,23 +17144,23 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.00010416666666666669, 0.00041666666666666669, 0.0009375,
     0.0016666666666666668, 0.002604166666666667, 0.0037500000000000003, -0.0,
     -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, -1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
-    1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
+    1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
     -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0,
     1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0,
     -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
     -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
@@ -16751,21 +17206,21 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.002604166666666667, -0.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 0.0,
     0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0,
-    -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
-    1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
+    -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
+    1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0,
-    1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0,
-    -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
+    1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0,
+    -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0,
     -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, -0.0,
@@ -16812,20 +17267,20 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     -1.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
-    1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
+    1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0,
-    -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0,
+    -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0,
-    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, 1.0, -0.0,
+    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -1.0, 1.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -16872,20 +17327,20 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     -0.0, -0.0, -0.0, -1.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0,
-    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
+    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0,
-    -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0,
-    -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
+    -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 1.0,
+    -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0,
     1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -16933,20 +17388,20 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0,
-    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
-    -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0,
+    -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
+    -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0,
     -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
-    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0,
-    -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0,
+    0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0,
+    -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0,
+    -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0,
     -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, -0.0, -0.0, -0.0,
-    0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5,
+    0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4,
     -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0, -0.0, -0.0, -0.0, -0.0, -1.0, -0.0,
-    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0,
-    -0.0, 0.5, -0.0, -0.0, -0.0, 0.5, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0,
+    -0.0, -0.0, 1.0, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0,
+    -0.0, 0.4, -0.0, -0.0, -0.0, 0.4, -0.0, -0.0, -0.0, -0.0, 1.0, -1.0, -0.0,
     -0.0, -0.0, -0.0, -0.0, -1.0, -0.0, -0.0, -0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
     1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -16967,14 +17422,22 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 
   static const real_T eb[78] = { 100.0, 100.0, 3600.0, 1600.0, 1600.0, 4.0,
-    0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0, 100.0, 100.0, 3600.0,
-    1600.0, 1600.0, 4.0, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0,
-    100.0, 100.0, 3600.0, 1600.0, 1600.0, 4.0, 0.0001, 0.0001, 0.0001, 0.0001,
-    0.0001, 0.0001, 0.0, 100.0, 100.0, 3600.0, 1600.0, 1600.0, 4.0, 0.0001,
-    0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0, 100.0, 100.0, 3600.0, 1600.0,
-    1600.0, 4.0, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001, 0.0, 100.0,
-    100.0, 3600.0, 1600.0, 1600.0, 4.0, 0.0001, 0.0001, 0.0001, 0.0001, 0.0001,
-    0.0001, 0.0 };
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002, 0.0, 100.0,
+    100.0, 3600.0, 1600.0, 1600.0, 4.0, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.0, 100.0, 100.0, 3600.0,
+    1600.0, 1600.0, 4.0, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.0, 100.0, 100.0, 3600.0, 1600.0, 1600.0, 4.0,
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002, 0.0, 100.0,
+    100.0, 3600.0, 1600.0, 1600.0, 4.0, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.0, 100.0, 100.0, 3600.0,
+    1600.0, 1600.0, 4.0, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.010000000000000002, 0.010000000000000002,
+    0.010000000000000002, 0.0 };
 
   static const real_T fb[1728] = { 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -17164,7 +17627,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   switch (raspberrypi_multicore_MPCtes_DW.RateTransition1_RDBuf) {
    case 0:
     for (raspberrypi_multicore_MPCtest_B.i = 0;
-         raspberrypi_multicore_MPCtest_B.i < 55;
+         raspberrypi_multicore_MPCtest_B.i < 61;
          raspberrypi_multicore_MPCtest_B.i++) {
       raspberrypi_multicore_MPCtest_B.RateTransition1[raspberrypi_multicore_MPCtest_B.i]
         =
@@ -17174,7 +17637,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
 
    case 1:
     for (raspberrypi_multicore_MPCtest_B.i = 0;
-         raspberrypi_multicore_MPCtest_B.i < 55;
+         raspberrypi_multicore_MPCtest_B.i < 61;
          raspberrypi_multicore_MPCtest_B.i++) {
       raspberrypi_multicore_MPCtest_B.RateTransition1[raspberrypi_multicore_MPCtest_B.i]
         =
@@ -17184,7 +17647,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
 
    case 2:
     for (raspberrypi_multicore_MPCtest_B.i = 0;
-         raspberrypi_multicore_MPCtest_B.i < 55;
+         raspberrypi_multicore_MPCtest_B.i < 61;
          raspberrypi_multicore_MPCtest_B.i++) {
       raspberrypi_multicore_MPCtest_B.RateTransition1[raspberrypi_multicore_MPCtest_B.i]
         =
@@ -17255,14 +17718,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
       raspberrypi_multicore_MPCtest_B.RateTransition1[15];
     raspberrypi_multicore_MPCtest_B.b_varargout_5[3] =
       raspberrypi_multicore_MPCtest_B.RateTransition1[16];
-    for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-         raspberrypi_multicore_MPCtest_B.b_k < 12;
-         raspberrypi_multicore_MPCtest_B.b_k++) {
-      raspberrypi_multicore_MPCtest_B.b_varargout_6_e[raspberrypi_multicore_MPCtest_B.b_k]
-        = raspberrypi_multicore_MPCtest_B.RateTransition1
-        [(raspberrypi_multicore_MPCtest_B.b_k + 18) - 1];
-    }
-
     raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] =
       raspberrypi_multicore_MPCtest_B.RateTransition1[29];
     raspberrypi_multicore_MPCtest_B.b_varargout_8_l[0] =
@@ -17304,8 +17759,11 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.b_varargout_16 =
       raspberrypi_multicore_MPCtest_B.RateTransition1[48];
     for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-         raspberrypi_multicore_MPCtest_B.b_k < 6;
+         raspberrypi_multicore_MPCtest_B.b_k < 12;
          raspberrypi_multicore_MPCtest_B.b_k++) {
+      raspberrypi_multicore_MPCtest_B.b_varargout_6_a[raspberrypi_multicore_MPCtest_B.b_k]
+        = raspberrypi_multicore_MPCtest_B.RateTransition1
+        [(raspberrypi_multicore_MPCtest_B.b_k + 18) - 1];
       raspberrypi_multicore_MPCtest_B.b_varargout_17[raspberrypi_multicore_MPCtest_B.b_k]
         = raspberrypi_multicore_MPCtest_B.RateTransition1
         [(raspberrypi_multicore_MPCtest_B.b_k + 50) - 1];
@@ -17343,8 +17801,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
       raspberrypi_multicore_MPCtes_DW.obj_e.SPLeg_Old[2];
     raspberrypi_multicore_MPCtest_B.b_varargout_5[3] =
       raspberrypi_multicore_MPCtes_DW.obj_e.SPLeg_Old[3];
-    memcpy(&raspberrypi_multicore_MPCtest_B.b_varargout_6_e[0],
-           &raspberrypi_multicore_MPCtes_DW.obj_e.SP_Old[0], 12U * sizeof(real_T));
     raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] =
       raspberrypi_multicore_MPCtes_DW.obj_e.surVN_Old[0];
     raspberrypi_multicore_MPCtest_B.b_varargout_8_l[0] =
@@ -17384,13 +17840,11 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
       raspberrypi_multicore_MPCtes_DW.obj_e.vyPercent_Old;
     raspberrypi_multicore_MPCtest_B.b_varargout_16 =
       raspberrypi_multicore_MPCtes_DW.obj_e.wzPercent_Old;
-    for (raspberrypi_multicore_MPCtest_B.i = 0;
-         raspberrypi_multicore_MPCtest_B.i < 6;
-         raspberrypi_multicore_MPCtest_B.i++) {
-      raspberrypi_multicore_MPCtest_B.b_varargout_17[raspberrypi_multicore_MPCtest_B.i]
-        =
-        raspberrypi_multicore_MPCtes_DW.obj_e.estDis_Old[raspberrypi_multicore_MPCtest_B.i];
-    }
+    memcpy(&raspberrypi_multicore_MPCtest_B.b_varargout_6_a[0],
+           &raspberrypi_multicore_MPCtes_DW.obj_e.SP_Old[0], 12U * sizeof(real_T));
+    memcpy(&raspberrypi_multicore_MPCtest_B.b_varargout_17[0],
+           &raspberrypi_multicore_MPCtes_DW.obj_e.estDis_Old[0], 12U * sizeof
+           (real_T));
   }
 
   raspberrypi_multicore_MPCtes_DW.obj_e.pCoM_Old[0] =
@@ -17425,9 +17879,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.b_varargout_5[2];
   raspberrypi_multicore_MPCtes_DW.obj_e.SPLeg_Old[3] =
     raspberrypi_multicore_MPCtest_B.b_varargout_5[3];
-  memcpy(&raspberrypi_multicore_MPCtes_DW.obj_e.SP_Old[0],
-         &raspberrypi_multicore_MPCtest_B.b_varargout_6_e[0], 12U * sizeof
-         (real_T));
   raspberrypi_multicore_MPCtes_DW.obj_e.surVN_Old[0] =
     raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0];
   raspberrypi_multicore_MPCtes_DW.obj_e.surV1_Old[0] =
@@ -17460,17 +17911,16 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.surVhead_idx_2;
   raspberrypi_multicore_MPCtes_DW.obj_e.phi_Old =
     raspberrypi_multicore_MPCtest_B.b_varargout_13;
-  for (raspberrypi_multicore_MPCtest_B.i = 0; raspberrypi_multicore_MPCtest_B.i <
-       6; raspberrypi_multicore_MPCtest_B.i++) {
-    raspberrypi_multicore_MPCtes_DW.obj_e.estDis_Old[raspberrypi_multicore_MPCtest_B.i]
-      =
-      raspberrypi_multicore_MPCtest_B.b_varargout_17[raspberrypi_multicore_MPCtest_B.i];
-  }
+  memcpy(&raspberrypi_multicore_MPCtes_DW.obj_e.SP_Old[0],
+         &raspberrypi_multicore_MPCtest_B.b_varargout_6_a[0], 12U * sizeof
+         (real_T));
+  memcpy(&raspberrypi_multicore_MPCtes_DW.obj_e.estDis_Old[0],
+         &raspberrypi_multicore_MPCtest_B.b_varargout_17[0], 12U * sizeof(real_T));
 
   /* MATLAB Function: '<Root>/online Constraints1' incorporates:
    *  MATLABSystem: '<Root>/MATLAB System15'
    */
-  memset(&raspberrypi_multicore_MPCtest_B.Eb2_l[0], 0, 96U * sizeof(real_T));
+  memset(&raspberrypi_multicore_MPCtest_B.Eb2_b[0], 0, 96U * sizeof(real_T));
   for (raspberrypi_multicore_MPCtest_B.i = 0; raspberrypi_multicore_MPCtest_B.i <
        4; raspberrypi_multicore_MPCtest_B.i++) {
     raspberrypi_multicore_MPCtest_B.b_k = (raspberrypi_multicore_MPCtest_B.i + 1)
@@ -17478,29 +17928,29 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.Eb2_tmp_f =
       raspberrypi_multicore_MPCtest_B.i + (raspberrypi_multicore_MPCtest_B.b_k <<
       3);
-    raspberrypi_multicore_MPCtest_B.Eb2_l[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
-      = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] +
+    raspberrypi_multicore_MPCtest_B.Eb2_b[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
+      = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] +
       raspberrypi_multicore_MPCtest_B.b_varargout_8_l[0];
-    raspberrypi_multicore_MPCtest_B.Eb2_l[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
-      + 4] = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] -
+    raspberrypi_multicore_MPCtest_B.Eb2_b[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
+      + 4] = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] -
       raspberrypi_multicore_MPCtest_B.b_varargout_8_l[0];
     raspberrypi_multicore_MPCtest_B.Eb2_tmp_f =
       raspberrypi_multicore_MPCtest_B.i + ((raspberrypi_multicore_MPCtest_B.b_k
       + 1) << 3);
-    raspberrypi_multicore_MPCtest_B.Eb2_l[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
-      = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] +
+    raspberrypi_multicore_MPCtest_B.Eb2_b[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
+      = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] +
       raspberrypi_multicore_MPCtest_B.b_varargout_8_l[1];
-    raspberrypi_multicore_MPCtest_B.Eb2_l[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
-      + 4] = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] -
+    raspberrypi_multicore_MPCtest_B.Eb2_b[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
+      + 4] = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] -
       raspberrypi_multicore_MPCtest_B.b_varargout_8_l[1];
     raspberrypi_multicore_MPCtest_B.Eb2_tmp_f =
       raspberrypi_multicore_MPCtest_B.i + ((raspberrypi_multicore_MPCtest_B.b_k
       + 2) << 3);
-    raspberrypi_multicore_MPCtest_B.Eb2_l[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
-      = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[2] +
+    raspberrypi_multicore_MPCtest_B.Eb2_b[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
+      = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[2] +
       raspberrypi_multicore_MPCtest_B.b_varargout_8_l[2];
-    raspberrypi_multicore_MPCtest_B.Eb2_l[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
-      + 4] = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[2] -
+    raspberrypi_multicore_MPCtest_B.Eb2_b[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
+      + 4] = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[2] -
       raspberrypi_multicore_MPCtest_B.b_varargout_8_l[2];
   }
 
@@ -17513,26 +17963,26 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
       raspberrypi_multicore_MPCtest_B.i + (raspberrypi_multicore_MPCtest_B.b_k <<
       3);
     raspberrypi_multicore_MPCtest_B.Eb3[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
-      = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] +
+      = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] +
       raspberrypi_multicore_MPCtest_B.b_varargout_9_o[0];
     raspberrypi_multicore_MPCtest_B.Eb3[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
-      + 4] = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] -
+      + 4] = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[0] -
       raspberrypi_multicore_MPCtest_B.b_varargout_9_o[0];
     raspberrypi_multicore_MPCtest_B.Eb2_tmp_f =
       raspberrypi_multicore_MPCtest_B.i + ((raspberrypi_multicore_MPCtest_B.b_k
       + 1) << 3);
     raspberrypi_multicore_MPCtest_B.Eb3[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f]
-      = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] +
+      = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] +
       raspberrypi_multicore_MPCtest_B.b_varargout_9_o[1];
     raspberrypi_multicore_MPCtest_B.Eb3[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f
-      + 4] = -0.5 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] -
+      + 4] = -0.4 * raspberrypi_multicore_MPCtest_B.b_varargout_7_m[1] -
       raspberrypi_multicore_MPCtest_B.b_varargout_9_o[1];
     raspberrypi_multicore_MPCtest_B.Eb3[raspberrypi_multicore_MPCtest_B.i +
-      ((raspberrypi_multicore_MPCtest_B.b_k + 2) << 3)] = -0.5 *
+      ((raspberrypi_multicore_MPCtest_B.b_k + 2) << 3)] = -0.4 *
       raspberrypi_multicore_MPCtest_B.b_varargout_7_m[2] +
       raspberrypi_multicore_MPCtest_B.b_varargout_9_o[2];
     raspberrypi_multicore_MPCtest_B.Eb3[(raspberrypi_multicore_MPCtest_B.i +
-      ((raspberrypi_multicore_MPCtest_B.b_k + 2) << 3)) + 4] = -0.5 *
+      ((raspberrypi_multicore_MPCtest_B.b_k + 2) << 3)) + 4] = -0.4 *
       raspberrypi_multicore_MPCtest_B.b_varargout_7_m[2] -
       raspberrypi_multicore_MPCtest_B.b_varargout_9_o[2];
   }
@@ -17789,6 +18239,66 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   raspberrypi_multicore_MPCtest_B.X_FB[12] =
     raspberrypi_multicore_MPCtest_P.Constant2_Value;
 
+  /* MATLABSystem: '<Root>/MATLAB System21' incorporates:
+   *  MATLABSystem: '<Root>/MATLAB System15'
+   *  SignalConversion generated from: '<Root>/MATLAB System21'
+   */
+  p = false;
+  p_0 = true;
+  raspberrypi_multicore_MPCtest_B.b_k = 0;
+  exitg1 = false;
+  while ((!exitg1) && (raspberrypi_multicore_MPCtest_B.b_k < 9)) {
+    if (!(raspberrypi_multicore_MPCtes_DW.obj_g.Inorm[raspberrypi_multicore_MPCtest_B.b_k]
+          ==
+          raspberrypi_multicore_MPCtest_P.MATLABSystem21_Inorm[raspberrypi_multicore_MPCtest_B.b_k]))
+    {
+      p_0 = false;
+      exitg1 = true;
+    } else {
+      raspberrypi_multicore_MPCtest_B.b_k++;
+    }
+  }
+
+  if (p_0) {
+    p = true;
+  }
+
+  if (!p) {
+    memcpy(&raspberrypi_multicore_MPCtes_DW.obj_g.Inorm[0],
+           &raspberrypi_multicore_MPCtest_P.MATLABSystem21_Inorm[0], 9U * sizeof
+           (real_T));
+  }
+
+  if (raspberrypi_multicore_MPCtes_DW.obj_g.m !=
+      raspberrypi_multicore_MPCtest_P.MATLABSystem21_m) {
+    raspberrypi_multicore_MPCtes_DW.obj_g.m =
+      raspberrypi_multicore_MPCtest_P.MATLABSystem21_m;
+  }
+
+  if (raspberrypi_multicore_MPCtes_DW.obj_g.Ts !=
+      raspberrypi_multicore_MPCtest_P.Ts) {
+    raspberrypi_multicore_MPCtes_DW.obj_g.Ts =
+      raspberrypi_multicore_MPCtest_P.Ts;
+  }
+
+  if (raspberrypi_multicore_MPCtes_DW.obj_g.hIni !=
+      raspberrypi_multicore_MPCtest_P.MATLABSystem21_hIni) {
+    raspberrypi_multicore_MPCtes_DW.obj_g.hIni =
+      raspberrypi_multicore_MPCtest_P.MATLABSystem21_hIni;
+  }
+
+  raspberrypi_m_SystemCore_step_a(&raspberrypi_multicore_MPCtes_DW.obj_g,
+    raspberrypi_multicore_MPCtest_B.b_varargout_6_a,
+    raspberrypi_multicore_MPCtest_B.X_FB,
+    raspberrypi_multicore_MPCtest_B.b_varargout_5,
+    raspberrypi_multicore_MPCtest_B.b_varargout_1,
+    raspberrypi_multicore_MPCtest_B.b_varargout_2_l,
+    raspberrypi_multicore_MPCtest_B.xest,
+    raspberrypi_multicore_MPCtest_B.b_varargout_6,
+    raspberrypi_multicore_MPCtest_B.b_varargout_7,
+    raspberrypi_multicore_MPCtest_B.b_varargout_8,
+    raspberrypi_multicore_MPCtest_B.b_varargout_9);
+
   /* MATLABSystem: '<Root>/MATLAB System6' incorporates:
    *  MATLABSystem: '<Root>/MATLAB System15'
    */
@@ -17950,126 +18460,61 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.b_varargout_10,
     raspberrypi_multicore_MPCtest_B.X_FB,
     raspberrypi_multicore_MPCtest_B.b_varargout_12,
-    raspberrypi_multicore_MPCtest_B.b_varargout_1_a,
+    raspberrypi_multicore_MPCtest_B.b_varargout_1_j,
     raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_n,
     raspberrypi_multicore_MPCtest_B.b_varargout_3,
     raspberrypi_multicore_MPCtest_B.b_varargout_8_l,
     raspberrypi_multicore_MPCtest_B.b_varargout_9_o);
 
-  /* MATLABSystem: '<Root>/MATLAB System21' incorporates:
-   *  MATLABSystem: '<Root>/MATLAB System15'
-   *  SignalConversion generated from: '<Root>/MATLAB System21'
-   */
-  p = false;
-  p_0 = true;
-  raspberrypi_multicore_MPCtest_B.b_k = 0;
-  exitg1 = false;
-  while ((!exitg1) && (raspberrypi_multicore_MPCtest_B.b_k < 9)) {
-    if (!(raspberrypi_multicore_MPCtes_DW.obj_g.Inorm[raspberrypi_multicore_MPCtest_B.b_k]
-          ==
-          raspberrypi_multicore_MPCtest_P.MATLABSystem21_Inorm[raspberrypi_multicore_MPCtest_B.b_k]))
-    {
-      p_0 = false;
-      exitg1 = true;
-    } else {
-      raspberrypi_multicore_MPCtest_B.b_k++;
-    }
-  }
-
-  if (p_0) {
-    p = true;
-  }
-
-  if (!p) {
-    memcpy(&raspberrypi_multicore_MPCtes_DW.obj_g.Inorm[0],
-           &raspberrypi_multicore_MPCtest_P.MATLABSystem21_Inorm[0], 9U * sizeof
-           (real_T));
-  }
-
-  if (raspberrypi_multicore_MPCtes_DW.obj_g.m !=
-      raspberrypi_multicore_MPCtest_P.MATLABSystem21_m) {
-    raspberrypi_multicore_MPCtes_DW.obj_g.m =
-      raspberrypi_multicore_MPCtest_P.MATLABSystem21_m;
-  }
-
-  if (raspberrypi_multicore_MPCtes_DW.obj_g.Ts !=
-      raspberrypi_multicore_MPCtest_P.Ts) {
-    raspberrypi_multicore_MPCtes_DW.obj_g.Ts =
-      raspberrypi_multicore_MPCtest_P.Ts;
-  }
-
-  if (raspberrypi_multicore_MPCtes_DW.obj_g.hIni !=
-      raspberrypi_multicore_MPCtest_P.MATLABSystem21_hIni) {
-    raspberrypi_multicore_MPCtes_DW.obj_g.hIni =
-      raspberrypi_multicore_MPCtest_P.MATLABSystem21_hIni;
-  }
-
-  raspberrypi_m_SystemCore_step_a(&raspberrypi_multicore_MPCtes_DW.obj_g,
-    raspberrypi_multicore_MPCtest_B.b_varargout_6_e,
-    raspberrypi_multicore_MPCtest_B.X_FB,
-    raspberrypi_multicore_MPCtest_B.b_varargout_5,
-    raspberrypi_multicore_MPCtest_B.b_varargout_1,
-    raspberrypi_multicore_MPCtest_B.b_varargout_2_d,
-    raspberrypi_multicore_MPCtest_B.xest,
-    raspberrypi_multicore_MPCtest_B.b_varargout_6,
-    raspberrypi_multicore_MPCtest_B.b_varargout_7,
-    raspberrypi_multicore_MPCtest_B.b_varargout_8,
-    raspberrypi_multicore_MPCtest_B.b_varargout_9);
-
   /* MATLAB Function: '<S46>/FixedHorizonOptimizer' */
   memset(&raspberrypi_multicore_MPCtest_B.Bu[0], 0, 1092U * sizeof(real_T));
-  memset(&raspberrypi_multicore_MPCtest_B.Bv[0], 0, 637U * sizeof(real_T));
-  memset(&raspberrypi_multicore_MPCtest_B.Dv_g[0], 0, 637U * sizeof(real_T));
+  memset(&raspberrypi_multicore_MPCtest_B.Bv[0], 0, 1183U * sizeof(real_T));
+  memset(&raspberrypi_multicore_MPCtest_B.Dv_c[0], 0, 1183U * sizeof(real_T));
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 169;
        raspberrypi_multicore_MPCtest_B.b_k++) {
     raspberrypi_multicore_MPCtest_B.b_A[raspberrypi_multicore_MPCtest_B.b_k] =
       g[raspberrypi_multicore_MPCtest_B.b_k];
-    raspberrypi_multicore_MPCtest_B.b_C_l[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.b_C_g[raspberrypi_multicore_MPCtest_B.b_k] =
       k[raspberrypi_multicore_MPCtest_B.b_k];
   }
 
   /* MATLABSystem: '<Root>/MATLAB System21' */
-  memset(&raspberrypi_multicore_MPCtest_B.dv9[0], 0, 234U * sizeof(real_T));
+  memset(&raspberrypi_multicore_MPCtest_B.dv10[0], 0, 312U * sizeof(real_T));
 
   /* MATLAB Function: '<S46>/FixedHorizonOptimizer' */
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 12;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv22[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv21[raspberrypi_multicore_MPCtest_B.b_k] =
       (real_T)raspberrypi_multicore_MPCtest_B.b_k + 1.0;
-  }
-
-  for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-       raspberrypi_multicore_MPCtest_B.b_k < 6;
-       raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv27[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv22[raspberrypi_multicore_MPCtest_B.b_k] =
       (real_T)raspberrypi_multicore_MPCtest_B.b_k + 13.0;
   }
 
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 13;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv17[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv18[raspberrypi_multicore_MPCtest_B.b_k] =
       (real_T)raspberrypi_multicore_MPCtest_B.b_k + 1.0;
   }
 
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-       raspberrypi_multicore_MPCtest_B.b_k < 18;
+       raspberrypi_multicore_MPCtest_B.b_k < 24;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv16[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv17[raspberrypi_multicore_MPCtest_B.b_k] =
       1.0;
   }
 
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 13;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv18[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv19[raspberrypi_multicore_MPCtest_B.b_k] =
       1.0;
   }
 
   /* MATLABSystem: '<Root>/MATLAB System21' */
-  memcpy(&raspberrypi_multicore_MPCtest_B.dv11[0], &tmp[0], 169U * sizeof(real_T));
+  memcpy(&raspberrypi_multicore_MPCtest_B.dv12[0], &tmp[0], 169U * sizeof(real_T));
 
   /* MATLAB Function: '<S46>/FixedHorizonOptimizer' incorporates:
    *  Constant: '<Root>/Constant2'
@@ -18077,72 +18522,67 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
    *  MATLABSystem: '<Root>/MATLAB System21'
    *  MATLABSystem: '<Root>/MATLAB System7'
    */
-  memcpy(&raspberrypi_multicore_MPCtest_B.h[0], &h[0], 416U * sizeof(real_T));
-  memcpy(&raspberrypi_multicore_MPCtest_B.l[0], &l[0], 416U * sizeof(real_T));
+  memcpy(&raspberrypi_multicore_MPCtest_B.h[0], &h[0], 494U * sizeof(real_T));
+  memcpy(&raspberrypi_multicore_MPCtest_B.l[0], &l[0], 494U * sizeof(real_T));
   raspberrypi_mul_mpc_plantupdate(raspberrypi_multicore_MPCtest_B.b_varargout_1,
-    raspberrypi_multicore_MPCtest_B.b_varargout_2_d,
-    raspberrypi_multicore_MPCtest_B.dv11, raspberrypi_multicore_MPCtest_B.dv9,
+    raspberrypi_multicore_MPCtest_B.b_varargout_2_l,
+    raspberrypi_multicore_MPCtest_B.dv12, raspberrypi_multicore_MPCtest_B.dv10,
     raspberrypi_multicore_MPCtest_B.b_A, raspberrypi_multicore_MPCtest_B.h,
-    raspberrypi_multicore_MPCtest_B.b_C_l, raspberrypi_multicore_MPCtest_B.l,
-    raspberrypi_multicore_MPCtest_B.dv22, raspberrypi_multicore_MPCtest_B.dv27,
-    raspberrypi_multicore_MPCtest_B.dv17, raspberrypi_multicore_MPCtest_B.dv16,
-    raspberrypi_multicore_MPCtest_B.dv18, &raspberrypi_multicore_MPCtest_B.Bu[0],
+    raspberrypi_multicore_MPCtest_B.b_C_g, raspberrypi_multicore_MPCtest_B.l,
+    raspberrypi_multicore_MPCtest_B.dv21, raspberrypi_multicore_MPCtest_B.dv22,
+    raspberrypi_multicore_MPCtest_B.dv18, raspberrypi_multicore_MPCtest_B.dv17,
+    raspberrypi_multicore_MPCtest_B.dv19, &raspberrypi_multicore_MPCtest_B.Bu[0],
     &raspberrypi_multicore_MPCtest_B.Bv[0], raspberrypi_multicore_MPCtest_B.d,
-    &raspberrypi_multicore_MPCtest_B.Dv_g[0],
-    raspberrypi_multicore_MPCtest_B.yseq, raspberrypi_multicore_MPCtest_B.Qk,
-    raspberrypi_multicore_MPCtest_B.Rk, raspberrypi_multicore_MPCtest_B.Nk);
+    &raspberrypi_multicore_MPCtest_B.Dv_c[0], raspberrypi_multicore_MPCtest_B.f,
+    raspberrypi_multicore_MPCtest_B.Qk, raspberrypi_multicore_MPCtest_B.Rk,
+    raspberrypi_multicore_MPCtest_B.Nk);
   memcpy(&raspberrypi_multicore_MPCtest_B.b_Mlim[0], &n[0], 252U * sizeof(real_T));
   memset(&raspberrypi_multicore_MPCtest_B.b_utarget[0], 0, 72U * sizeof(real_T));
   memcpy(&raspberrypi_multicore_MPCtest_B.xk1[0], &r[0], 13U * sizeof(real_T));
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-       raspberrypi_multicore_MPCtest_B.b_k < 18;
+       raspberrypi_multicore_MPCtest_B.b_k < 24;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv16[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv17[raspberrypi_multicore_MPCtest_B.b_k] =
       1.0;
   }
 
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 12;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv22[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv21[raspberrypi_multicore_MPCtest_B.b_k] =
       (real_T)raspberrypi_multicore_MPCtest_B.b_k + 1.0;
-  }
-
-  for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-       raspberrypi_multicore_MPCtest_B.b_k < 6;
-       raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv27[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv22[raspberrypi_multicore_MPCtest_B.b_k] =
       (real_T)raspberrypi_multicore_MPCtest_B.b_k + 13.0;
   }
 
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 13;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv17[raspberrypi_multicore_MPCtest_B.b_k] =
-      1.0;
     raspberrypi_multicore_MPCtest_B.dv18[raspberrypi_multicore_MPCtest_B.b_k] =
+      1.0;
+    raspberrypi_multicore_MPCtest_B.dv19[raspberrypi_multicore_MPCtest_B.b_k] =
       (real_T)raspberrypi_multicore_MPCtest_B.b_k + 1.0;
   }
 
   raspberry_mpc_updateFromNominal(raspberrypi_multicore_MPCtest_B.b_Mlim, o,
     raspberrypi_multicore_MPCtest_B.b_varargout_6,
-    raspberrypi_multicore_MPCtest_B.dv16, q,
-    raspberrypi_multicore_MPCtest_B.dv22, raspberrypi_multicore_MPCtest_B.dv27,
+    raspberrypi_multicore_MPCtest_B.dv17, q,
+    raspberrypi_multicore_MPCtest_B.dv21, raspberrypi_multicore_MPCtest_B.dv22,
     raspberrypi_multicore_MPCtest_B.b_utarget,
     raspberrypi_multicore_MPCtest_B.b_varargout_7,
-    raspberrypi_multicore_MPCtest_B.dv17, r,
-    raspberrypi_multicore_MPCtest_B.dv18, raspberrypi_multicore_MPCtest_B.xest,
+    raspberrypi_multicore_MPCtest_B.dv18, r,
+    raspberrypi_multicore_MPCtest_B.dv19, raspberrypi_multicore_MPCtest_B.xest,
     raspberrypi_multicore_MPCtest_B.xk1,
     raspberrypi_multicore_MPCtest_B.b_varargout_8,
     raspberrypi_multicore_MPCtest_B.Bv, raspberrypi_multicore_MPCtest_B.b_uoff,
     raspberrypi_multicore_MPCtest_B.b_voff,
     raspberrypi_multicore_MPCtest_B.b_yoff,
     raspberrypi_multicore_MPCtest_B.b_myoff);
-  memset(&raspberrypi_multicore_MPCtest_B.vseq[0], 0, 49U * sizeof(real_T));
+  memset(&raspberrypi_multicore_MPCtest_B.vseq[0], 0, 91U * sizeof(real_T));
   for (raspberrypi_multicore_MPCtest_B.i = 0; raspberrypi_multicore_MPCtest_B.i <
        7; raspberrypi_multicore_MPCtest_B.i++) {
-    raspberrypi_multicore_MPCtest_B.vseq[raspberrypi_multicore_MPCtest_B.i * 7 +
-      6] = 1.0;
+    raspberrypi_multicore_MPCtest_B.vseq[raspberrypi_multicore_MPCtest_B.i * 13
+      + 12] = 1.0;
   }
 
   for (raspberrypi_multicore_MPCtest_B.i = 0; raspberrypi_multicore_MPCtest_B.i <
@@ -18152,7 +18592,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
          raspberrypi_multicore_MPCtest_B.b_k++) {
       raspberrypi_multicore_MPCtest_B.b_varargout_3[raspberrypi_multicore_MPCtest_B.b_k
         + raspberrypi_multicore_MPCtest_B.i * 13] =
-        raspberrypi_multicore_MPCtest_B.b_varargout_1_a[6 *
+        raspberrypi_multicore_MPCtest_B.b_varargout_1_j[6 *
         raspberrypi_multicore_MPCtest_B.b_k + raspberrypi_multicore_MPCtest_B.i]
         - raspberrypi_multicore_MPCtest_B.b_yoff[raspberrypi_multicore_MPCtest_B.b_k];
     }
@@ -18161,10 +18601,10 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.i = 0; raspberrypi_multicore_MPCtest_B.i <
        7; raspberrypi_multicore_MPCtest_B.i++) {
     for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-         raspberrypi_multicore_MPCtest_B.b_k < 6;
+         raspberrypi_multicore_MPCtest_B.b_k < 12;
          raspberrypi_multicore_MPCtest_B.b_k++) {
       raspberrypi_multicore_MPCtest_B.vseq[raspberrypi_multicore_MPCtest_B.b_k +
-        raspberrypi_multicore_MPCtest_B.i * 7] =
+        raspberrypi_multicore_MPCtest_B.i * 13] =
         raspberrypi_multicore_MPCtest_B.b_varargout_17[raspberrypi_multicore_MPCtest_B.b_k]
         - raspberrypi_multicore_MPCtest_B.b_voff[raspberrypi_multicore_MPCtest_B.b_k];
     }
@@ -18230,7 +18670,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
         << 5);
       raspberrypi_multicore_MPCtest_B.Eb2[raspberrypi_multicore_MPCtest_B.Eb2_tmp]
         =
-        raspberrypi_multicore_MPCtest_B.Eb2_l[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f];
+        raspberrypi_multicore_MPCtest_B.Eb2_b[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f];
       raspberrypi_multicore_MPCtest_B.Eb2[raspberrypi_multicore_MPCtest_B.Eb2_tmp
         + 8] =
         raspberrypi_multicore_MPCtest_B.Eb3[raspberrypi_multicore_MPCtest_B.Eb2_tmp_f];
@@ -18281,7 +18721,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 384;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv6[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv8[raspberrypi_multicore_MPCtest_B.b_k] =
       raspberrypi_multicore_MPCtest_P.umin_scale4_Gain[raspberrypi_multicore_MPCtest_B.b_k]
       * raspberrypi_multicore_MPCtest_B.Eb2[raspberrypi_multicore_MPCtest_B.b_k];
   }
@@ -18292,7 +18732,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 416;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.h[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv7[raspberrypi_multicore_MPCtest_B.b_k] =
       raspberrypi_multicore_MPCtest_P.ymin_scale1_Gain[raspberrypi_multicore_MPCtest_B.b_k]
       * 0.0;
   }
@@ -18301,9 +18741,9 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
    *  MATLAB Function: '<Root>/online Constraints1'
    */
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
-       raspberrypi_multicore_MPCtest_B.b_k < 192;
+       raspberrypi_multicore_MPCtest_B.b_k < 384;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv10[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.Eb2[raspberrypi_multicore_MPCtest_B.b_k] =
       raspberrypi_multicore_MPCtest_P.ymin_scale2_Gain[raspberrypi_multicore_MPCtest_B.b_k]
       * 0.0;
   }
@@ -18326,7 +18766,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
         raspberrypi_multicore_MPCtes_DW.UnitDelay2_DSTATE[raspberrypi_multicore_MPCtest_B.b_k];
     }
 
-    raspberrypi_multicore_MPCtest_B.dv22[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv21[raspberrypi_multicore_MPCtest_B.b_k] =
       raspberrypi_multicore_MPCtest_P.extmv_scale_Gain[raspberrypi_multicore_MPCtest_B.b_k]
       * raspberrypi_multicore_MPCtest_B.b_varargout_1_idx_0 -
       raspberrypi_multicore_MPCtest_B.b_uoff[raspberrypi_multicore_MPCtest_B.b_k];
@@ -18335,29 +18775,29 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 12;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv23[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv22[raspberrypi_multicore_MPCtest_B.b_k] =
       0.010000000000000002;
-    raspberrypi_multicore_MPCtest_B.dv24[raspberrypi_multicore_MPCtest_B.b_k] =
-      0.0;
+    raspberrypi_multicore_MPCtest_B.b_varargout_17[raspberrypi_multicore_MPCtest_B.b_k]
+      = 0.0;
   }
 
   /* MATLAB Function: '<Root>/online Constraints1' */
-  raspberrypi_multicore_MPCtest_B.dv15[16] = 20.0;
-  raspberrypi_multicore_MPCtest_B.dv15[20] = 20.0;
-  raspberrypi_multicore_MPCtest_B.dv15[17] = 20.0;
-  raspberrypi_multicore_MPCtest_B.dv15[21] = 20.0;
-  raspberrypi_multicore_MPCtest_B.dv15[18] = 20.0;
-  raspberrypi_multicore_MPCtest_B.dv15[22] = 20.0;
-  raspberrypi_multicore_MPCtest_B.dv15[19] = 20.0;
-  raspberrypi_multicore_MPCtest_B.dv15[23] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[16] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[20] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[17] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[21] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[18] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[22] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[19] = 20.0;
+  raspberrypi_multicore_MPCtest_B.dv16[23] = 20.0;
   for (raspberrypi_multicore_MPCtest_B.b_k = 0;
        raspberrypi_multicore_MPCtest_B.b_k < 8;
        raspberrypi_multicore_MPCtest_B.b_k++) {
-    raspberrypi_multicore_MPCtest_B.dv15[raspberrypi_multicore_MPCtest_B.b_k] =
+    raspberrypi_multicore_MPCtest_B.dv16[raspberrypi_multicore_MPCtest_B.b_k] =
       0.0;
-    raspberrypi_multicore_MPCtest_B.dv15[raspberrypi_multicore_MPCtest_B.b_k + 8]
+    raspberrypi_multicore_MPCtest_B.dv16[raspberrypi_multicore_MPCtest_B.b_k + 8]
       = 0.0;
-    raspberrypi_multicore_MPCtest_B.dv15[raspberrypi_multicore_MPCtest_B.b_k +
+    raspberrypi_multicore_MPCtest_B.dv16[raspberrypi_multicore_MPCtest_B.b_k +
       24] =
       raspberrypi_multicore_MPCtest_B.Gb1[raspberrypi_multicore_MPCtest_B.b_k];
   }
@@ -18370,7 +18810,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   /* MATLAB Function: '<S46>/FixedHorizonOptimizer' */
   memcpy(&raspberrypi_multicore_MPCtest_B.x[0], &x[0], 3276U * sizeof(real_T));
   memcpy(&raspberrypi_multicore_MPCtest_B.y[0], &y[0], 3024U * sizeof(real_T));
-  memcpy(&raspberrypi_multicore_MPCtest_B.ab[0], &ab[0], 12348U * sizeof(real_T));
+  memcpy(&raspberrypi_multicore_MPCtest_B.ab[0], &ab[0], 22932U * sizeof(real_T));
   memcpy(&raspberrypi_multicore_MPCtest_B.bb[0], &bb[0], 625U * sizeof(real_T));
   memcpy(&raspberrypi_multicore_MPCtest_B.db[0], &db[0], 6300U * sizeof(real_T));
 
@@ -18384,7 +18824,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
   raspberrypi__mpcblock_optimizer(raspberrypi_multicore_MPCtest_B.b_varargout_3,
     raspberrypi_multicore_MPCtest_B.vseq,
     raspberrypi_multicore_MPCtest_B.b_varargout_12,
-    raspberrypi_multicore_MPCtest_B.xest, raspberrypi_multicore_MPCtest_B.dv22,
+    raspberrypi_multicore_MPCtest_B.xest, raspberrypi_multicore_MPCtest_B.dv21,
     raspberrypi_multicore_MPCtest_B.bv, raspberrypi_multicore_MPCtest_B.b_Mlim,
     raspberrypi_multicore_MPCtest_B.x, raspberrypi_multicore_MPCtest_B.y,
     raspberrypi_multicore_MPCtest_B.ab,
@@ -18393,13 +18833,13 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.b_voff,
     raspberrypi_multicore_MPCtest_B.b_yoff, raspberrypi_multic_enable_value,
     raspberrypi_multicore_MPCtest_B.bb, raspberrypi_multicore_MPCtest_B.db, eb,
-    raspberrypi_multicore_MPCtest_B.dv23, fb,
-    raspberrypi_multicore_MPCtest_B.dv24, kb,
+    raspberrypi_multicore_MPCtest_B.dv22, fb,
+    raspberrypi_multicore_MPCtest_B.b_varargout_17, kb,
     raspberrypi_multicore_MPCtest_B.b_A, raspberrypi_multicore_MPCtest_B.Bu,
-    raspberrypi_multicore_MPCtest_B.Bv, raspberrypi_multicore_MPCtest_B.b_C_l,
-    raspberrypi_multicore_MPCtest_B.Dv_g, o, raspberrypi_multicore_MPCtest_B.dv6,
-    raspberrypi_multicore_MPCtest_B.h, raspberrypi_multicore_MPCtest_B.dv10,
-    raspberrypi_multicore_MPCtest_B.dv15,
+    raspberrypi_multicore_MPCtest_B.Bv, raspberrypi_multicore_MPCtest_B.b_C_g,
+    raspberrypi_multicore_MPCtest_B.Dv_c, o, raspberrypi_multicore_MPCtest_B.dv8,
+    raspberrypi_multicore_MPCtest_B.dv7, raspberrypi_multicore_MPCtest_B.Eb2,
+    raspberrypi_multicore_MPCtest_B.dv16,
     raspberrypi_multicore_MPCtes_DW.UnitDelay2_DSTATE,
     raspberrypi_multicore_MPCtest_B.useq,
     &raspberrypi_multicore_MPCtest_B.b_varargout_1_idx_0,
@@ -18411,8 +18851,8 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtest_B.b_uoff,
     raspberrypi_multicore_MPCtest_B.b_yoff, raspberrypi_multicore_MPCtest_B.xk1,
     raspberrypi_multicore_MPCtest_B.b_A, raspberrypi_multicore_MPCtest_B.Bu,
-    raspberrypi_multicore_MPCtest_B.Bv, raspberrypi_multicore_MPCtest_B.b_C_l,
-    raspberrypi_multicore_MPCtest_B.Dv_g, raspberrypi_multicore_MPCtest_B.yseq,
+    raspberrypi_multicore_MPCtest_B.Bv, raspberrypi_multicore_MPCtest_B.b_C_g,
+    raspberrypi_multicore_MPCtest_B.Dv_c, raspberrypi_multicore_MPCtest_B.yseq,
     raspberrypi_multicore_MPCtest_B.xseq);
 
   /* SignalConversion generated from: '<Root>/To File8' incorporates:
@@ -18423,7 +18863,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
        raspberrypi_multicore_MPCtest_B.b_k < 13;
        raspberrypi_multicore_MPCtest_B.b_k++) {
     raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_p[raspberrypi_multicore_MPCtest_B.b_k]
-      = raspberrypi_multicore_MPCtest_B.b_varargout_1_a[6 *
+      = raspberrypi_multicore_MPCtest_B.b_varargout_1_j[6 *
       raspberrypi_multicore_MPCtest_B.b_k + 1];
     raspberrypi_multicore_MPCtest_B.TmpSignalConversionAtToFi_p[raspberrypi_multicore_MPCtest_B.b_k
       + 13] =
@@ -18634,7 +19074,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_step1(void) /* Sampl
     raspberrypi_multicore_MPCtes_DW.RateTransition_Buf
       [(raspberrypi_multicore_MPCtest_B.b_k + raspberrypi_multicore_MPCtest_B.i)
       + 48] =
-      raspberrypi_multicore_MPCtest_B.b_varargout_6_e[raspberrypi_multicore_MPCtest_B.b_k];
+      raspberrypi_multicore_MPCtest_B.b_varargout_6_a[raspberrypi_multicore_MPCtest_B.b_k];
   }
 
   raspberrypi_multicore_MPCtes_DW.RateTransition_Buf[raspberrypi_multicore_MPCtest_B.i
@@ -18816,10 +19256,10 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
   raspberrypi_multicore_MPCtes_M->Timing.stepSize0 = 0.005;
 
   /* External mode info */
-  raspberrypi_multicore_MPCtes_M->Sizes.checksums[0] = (3537477184U);
-  raspberrypi_multicore_MPCtes_M->Sizes.checksums[1] = (441953365U);
-  raspberrypi_multicore_MPCtes_M->Sizes.checksums[2] = (2363128554U);
-  raspberrypi_multicore_MPCtes_M->Sizes.checksums[3] = (1461594754U);
+  raspberrypi_multicore_MPCtes_M->Sizes.checksums[0] = (2439809960U);
+  raspberrypi_multicore_MPCtes_M->Sizes.checksums[1] = (1690575202U);
+  raspberrypi_multicore_MPCtes_M->Sizes.checksums[2] = (3244786942U);
+  raspberrypi_multicore_MPCtes_M->Sizes.checksums[3] = (932387550U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -18901,21 +19341,32 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
 
     static const int8_T tmp_1[9] = { 1, 0, 0, 0, 1, 0, 0, 0, 1 };
 
-    static const int8_T tmp_2[361] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+    static const int8_T tmp_2[625] = { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+      0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
 
     /* Start for MATLABSystem: '<Root>/MATLAB System' */
     /*  Constructor */
@@ -19249,17 +19700,17 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
 
     /* Start for MATLABSystem: '<Root>/MATLAB System1' */
     for (i = 0; i < 9; i++) {
-      raspberrypi_multicore_MPCtes_DW.obj.Roff[i] = tmp_1[i];
+      raspberrypi_multicore_MPCtes_DW.obj_c.Roff[i] = tmp_1[i];
     }
 
-    raspberrypi_multicore_MPCtes_DW.obj.accOff[0] = 0.0;
-    raspberrypi_multicore_MPCtes_DW.obj.sitaOld[0] = 0.0;
-    raspberrypi_multicore_MPCtes_DW.obj.accOff[1] = 0.0;
-    raspberrypi_multicore_MPCtes_DW.obj.sitaOld[1] = 0.0;
-    raspberrypi_multicore_MPCtes_DW.obj.accOff[2] = 0.0;
-    raspberrypi_multicore_MPCtes_DW.obj.sitaOld[2] = 0.0;
-    raspberrypi_multicore_MPCtes_DW.obj.yawOff = 0.0;
-    memset(&raspberrypi_multicore_MPCtes_DW.obj.accStore[0], 0, 1200U * sizeof
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[0] = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[0] = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[1] = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[1] = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj_c.accOff[2] = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj_c.sitaOld[2] = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj_c.yawOff = 0.0;
+    memset(&raspberrypi_multicore_MPCtes_DW.obj_c.accStore[0], 0, 1200U * sizeof
            (real_T));
     raspberrypi_multicore_MPCtes_DW.objisempty_iw = true;
 
@@ -19343,10 +19794,10 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
 
     /* Start for MATLABSystem: '<S15>/MATLAB System3' */
     raspberrypi_multicore_MPCtes_DW.objisempty_i5 = true;
-    raspberrypi_multicore_MPCtes_DW.obj_c.Ts =
+    raspberrypi_multicore_MPCtes_DW.obj_ch.Ts =
       raspberrypi_multicore_MPCtest_P.Ts_DynSim;
-    raspberrypi_multicore_MPCtes_DW.obj_c.isInitialized = 1;
-    KalmanFilter_DIY_Offrm_setupImp(&raspberrypi_multicore_MPCtes_DW.obj_c);
+    raspberrypi_multicore_MPCtes_DW.obj_ch.isInitialized = 1;
+    KalmanFilter_DIY_Offrm_setupImp(&raspberrypi_multicore_MPCtes_DW.obj_ch);
 
     /* Start for MATLABSystem: '<Root>/MATLAB System18' */
     raspberrypi_multicore_MPCtes_DW.obj_kb.LegState_Old[0] = 1.0;
@@ -19397,54 +19848,32 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
 
     /* Start for MATLABSystem: '<Root>/MATLAB System20' */
     raspberrypi_multicore_MPCtes_DW.objisempty_do = true;
-    raspberrypi_multicore_MPCtes_DW.obj_n.Ts =
+    raspberrypi_multicore_MPCtes_DW.obj.Ts =
       raspberrypi_multicore_MPCtest_P.Ts_DynSim;
-    raspberrypi_multicore_MPCtes_DW.obj_n.m =
+    raspberrypi_multicore_MPCtes_DW.obj.m =
       raspberrypi_multicore_MPCtest_P.MATLABSystem20_m;
-    memcpy(&raspberrypi_multicore_MPCtes_DW.obj_n.Inorm[0],
+    memcpy(&raspberrypi_multicore_MPCtes_DW.obj.Inorm[0],
            &raspberrypi_multicore_MPCtest_P.MATLABSystem20_Inorm[0], 9U * sizeof
            (real_T));
-    raspberrypi_multicore_MPCtes_DW.obj_n.isInitialized = 1;
+    raspberrypi_multicore_MPCtes_DW.obj.isInitialized = 1;
 
     /*  Perform one-time calculations, such as computing constants */
-    raspberrypi_multicore_MPCtes_DW.obj_n.count = 0.0;
-    memset(&raspberrypi_multicore_MPCtes_DW.obj_n.XOld[0], 0, 19U * sizeof
-           (real_T));
-    for (i = 0; i < 361; i++) {
-      raspberrypi_multicore_MPCtes_DW.obj_n.POld[i] = (real_T)tmp_2[i] * 1000.0;
-      raspberrypi_multicore_MPCtes_DW.obj_n.G[i] = 0.0;
+    raspberrypi_multicore_MPCtes_DW.obj.count = 0.0;
+    memset(&raspberrypi_multicore_MPCtes_DW.obj.XOld[0], 0, 25U * sizeof(real_T));
+    for (i = 0; i < 625; i++) {
+      raspberrypi_multicore_MPCtes_DW.obj.POld[i] = (real_T)tmp_2[i] * 1000.0;
+      raspberrypi_multicore_MPCtes_DW.obj.G[i] = 0.0;
     }
 
-    for (i = 0; i < 19; i++) {
-      raspberrypi_multicore_MPCtes_DW.obj_n.G[i + 19 * i] = 1.0;
+    for (i = 0; i < 25; i++) {
+      raspberrypi_multicore_MPCtes_DW.obj.G[i + 25 * i] = 1.0;
     }
 
-    for (i = 0; i < 361; i++) {
-      raspberrypi_multicore_MPCtes_DW.obj_n.P0[i] = (real_T)tmp_2[i] * 1000.0;
+    for (i = 0; i < 625; i++) {
+      raspberrypi_multicore_MPCtes_DW.obj.P0[i] = (real_T)tmp_2[i] * 1000.0;
     }
 
     /* End of Start for MATLABSystem: '<Root>/MATLAB System20' */
-
-    /* Start for ToFile: '<Root>/To File11' */
-    {
-      FILE *fp = (NULL);
-      char fileName[509] = "multicore_dataRecEstB.mat";
-      if ((fp = fopen(fileName, "wb")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error creating .mat file multicore_dataRecEstB.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 17 + 1, 0, "rt_pArrayB_EN_SW")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing mat file header to file multicore_dataRecEstB.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile11_IWORK.Count = 0;
-      raspberrypi_multicore_MPCtes_DW.ToFile11_IWORK.Decimation = -1;
-      raspberrypi_multicore_MPCtes_DW.ToFile11_PWORK.FilePtr = fp;
-    }
 
     /* Start for ToFile: '<Root>/To File6' */
     {
@@ -19465,6 +19894,27 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
       raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Count = 0;
       raspberrypi_multicore_MPCtes_DW.ToFile6_IWORK.Decimation = -1;
       raspberrypi_multicore_MPCtes_DW.ToFile6_PWORK.FilePtr = fp;
+    }
+
+    /* Start for ToFile: '<Root>/To File19' */
+    {
+      FILE *fp = (NULL);
+      char fileName[509] = "multicore_dataRec17.mat";
+      if ((fp = fopen(fileName, "wb")) == (NULL)) {
+        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
+                          "Error creating .mat file multicore_dataRec17.mat");
+        return;
+      }
+
+      if (rt_WriteMat4FileHeader(fp, 12 + 1, 0, "rt_estDis_fast")) {
+        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
+                          "Error writing mat file header to file multicore_dataRec17.mat");
+        return;
+      }
+
+      raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count = 0;
+      raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Decimation = -1;
+      raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr = fp;
     }
 
     /* Start for RateTransition: '<Root>/Rate Transition1' */
@@ -19597,27 +20047,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
       raspberrypi_multicore_MPCtes_DW.ToFile15_PWORK.FilePtr = fp;
     }
 
-    /* Start for ToFile: '<Root>/To File18' */
-    {
-      FILE *fp = (NULL);
-      char fileName[509] = "multicore_dataRecEstC.mat";
-      if ((fp = fopen(fileName, "wb")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error creating .mat file multicore_dataRecEstC.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 12 + 1, 0, "rt_uMPC")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing mat file header to file multicore_dataRecEstC.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile18_IWORK.Count = 0;
-      raspberrypi_multicore_MPCtes_DW.ToFile18_IWORK.Decimation = -1;
-      raspberrypi_multicore_MPCtes_DW.ToFile18_PWORK.FilePtr = fp;
-    }
-
     /* Start for ToFile: '<Root>/To File2' */
     {
       FILE *fp = (NULL);
@@ -19639,27 +20068,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
       raspberrypi_multicore_MPCtes_DW.ToFile2_PWORK.FilePtr = fp;
     }
 
-    /* Start for ToFile: '<Root>/To File10' */
-    {
-      FILE *fp = (NULL);
-      char fileName[509] = "multicore_dataRecEstA.mat";
-      if ((fp = fopen(fileName, "wb")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error creating .mat file multicore_dataRecEstA.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 9 + 1, 0, "rt_acc_omega_RPYOri")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing mat file header to file multicore_dataRecEstA.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile10_IWORK.Count = 0;
-      raspberrypi_multicore_MPCtes_DW.ToFile10_IWORK.Decimation = -1;
-      raspberrypi_multicore_MPCtes_DW.ToFile10_PWORK.FilePtr = fp;
-    }
-
     /* Start for ToFile: '<Root>/To File12' */
     {
       FILE *fp = (NULL);
@@ -19679,27 +20087,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
       raspberrypi_multicore_MPCtes_DW.ToFile12_IWORK.Count = 0;
       raspberrypi_multicore_MPCtes_DW.ToFile12_IWORK.Decimation = -1;
       raspberrypi_multicore_MPCtes_DW.ToFile12_PWORK.FilePtr = fp;
-    }
-
-    /* Start for ToFile: '<Root>/To File19' */
-    {
-      FILE *fp = (NULL);
-      char fileName[509] = "multicore_dataRec17.mat";
-      if ((fp = fopen(fileName, "wb")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error creating .mat file multicore_dataRec17.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 6 + 1, 0, "rt_estDis_fast")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing mat file header to file multicore_dataRec17.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count = 0;
-      raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Decimation = -1;
-      raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr = fp;
     }
 
     /* Start for ToFile: '<Root>/To File5' */
@@ -19805,6 +20192,19 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
 
     /* End of Start for MATLABSystem: '<Root>/MATLAB System15' */
 
+    /* Start for MATLABSystem: '<Root>/MATLAB System21' */
+    raspberrypi_multicore_MPCtes_DW.objisempty_f = true;
+    memcpy(&raspberrypi_multicore_MPCtes_DW.obj_g.Inorm[0],
+           &raspberrypi_multicore_MPCtest_P.MATLABSystem21_Inorm[0], 9U * sizeof
+           (real_T));
+    raspberrypi_multicore_MPCtes_DW.obj_g.m =
+      raspberrypi_multicore_MPCtest_P.MATLABSystem21_m;
+    raspberrypi_multicore_MPCtes_DW.obj_g.Ts =
+      raspberrypi_multicore_MPCtest_P.Ts;
+    raspberrypi_multicore_MPCtes_DW.obj_g.hIni =
+      raspberrypi_multicore_MPCtest_P.MATLABSystem21_hIni;
+    raspberrypi_multicore_MPCtes_DW.obj_g.isInitialized = 1;
+
     /* Start for MATLABSystem: '<Root>/MATLAB System6' */
     raspberrypi_multicore_MPCtes_DW.objisempty_gx = true;
     raspberrypi_multicore_MPCtes_DW.obj_as.vxMax =
@@ -19832,13 +20232,13 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_omega0[0];
     raspberrypi_multicore_MPCtes_DW.obj_cm.sitaErr_K[0] =
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_sitaErr_K[0];
-    raspberrypi_multicore_MPCtest_B.dv21[0] =
+    raspberrypi_multicore_MPCtest_B.dv20[0] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.r0[0];
-    raspberrypi_multicore_MPCtest_B.dv21[3] =
+    raspberrypi_multicore_MPCtest_B.dv20[3] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.theta0[0];
-    raspberrypi_multicore_MPCtest_B.dv21[6] =
+    raspberrypi_multicore_MPCtest_B.dv20[6] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.dr0[0];
-    raspberrypi_multicore_MPCtest_B.dv21[9] =
+    raspberrypi_multicore_MPCtest_B.dv20[9] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.omega0[0];
     raspberrypi_multicore_MPCtes_DW.obj_cm.r0[1] =
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_r0[1];
@@ -19850,13 +20250,13 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_omega0[1];
     raspberrypi_multicore_MPCtes_DW.obj_cm.sitaErr_K[1] =
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_sitaErr_K[1];
-    raspberrypi_multicore_MPCtest_B.dv21[1] =
+    raspberrypi_multicore_MPCtest_B.dv20[1] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.r0[1];
-    raspberrypi_multicore_MPCtest_B.dv21[4] =
+    raspberrypi_multicore_MPCtest_B.dv20[4] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.theta0[1];
-    raspberrypi_multicore_MPCtest_B.dv21[7] =
+    raspberrypi_multicore_MPCtest_B.dv20[7] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.dr0[1];
-    raspberrypi_multicore_MPCtest_B.dv21[10] =
+    raspberrypi_multicore_MPCtest_B.dv20[10] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.omega0[1];
     raspberrypi_multicore_MPCtes_DW.obj_cm.r0[2] =
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_r0[2];
@@ -19868,19 +20268,19 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_omega0[2];
     raspberrypi_multicore_MPCtes_DW.obj_cm.sitaErr_K[2] =
       raspberrypi_multicore_MPCtest_P.MATLABSystem7_sitaErr_K[2];
-    raspberrypi_multicore_MPCtest_B.dv21[2] =
+    raspberrypi_multicore_MPCtest_B.dv20[2] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.r0[2];
-    raspberrypi_multicore_MPCtest_B.dv21[5] =
+    raspberrypi_multicore_MPCtest_B.dv20[5] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.theta0[2];
-    raspberrypi_multicore_MPCtest_B.dv21[8] =
+    raspberrypi_multicore_MPCtest_B.dv20[8] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.dr0[2];
-    raspberrypi_multicore_MPCtest_B.dv21[11] =
+    raspberrypi_multicore_MPCtest_B.dv20[11] =
       raspberrypi_multicore_MPCtes_DW.obj_cm.omega0[2];
-    raspberrypi_multicore_MPCtest_B.dv21[12] = 9.8;
+    raspberrypi_multicore_MPCtest_B.dv20[12] = 9.8;
     for (i = 0; i < 6; i++) {
       for (i_0 = 0; i_0 < 13; i_0++) {
         raspberrypi_multicore_MPCtes_DW.obj_cm.refSeqOld[i + 6 * i_0] =
-          raspberrypi_multicore_MPCtest_B.dv21[i_0];
+          raspberrypi_multicore_MPCtest_B.dv20[i_0];
       }
     }
 
@@ -19890,19 +20290,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
     raspberrypi_multicore_MPCtes_DW.obj_cm.sitaZOld = 0.0;
 
     /* End of Start for MATLABSystem: '<Root>/MATLAB System7' */
-
-    /* Start for MATLABSystem: '<Root>/MATLAB System21' */
-    raspberrypi_multicore_MPCtes_DW.objisempty_f = true;
-    memcpy(&raspberrypi_multicore_MPCtes_DW.obj_g.Inorm[0],
-           &raspberrypi_multicore_MPCtest_P.MATLABSystem21_Inorm[0], 9U * sizeof
-           (real_T));
-    raspberrypi_multicore_MPCtes_DW.obj_g.m =
-      raspberrypi_multicore_MPCtest_P.MATLABSystem21_m;
-    raspberrypi_multicore_MPCtes_DW.obj_g.Ts =
-      raspberrypi_multicore_MPCtest_P.Ts;
-    raspberrypi_multicore_MPCtes_DW.obj_g.hIni =
-      raspberrypi_multicore_MPCtest_P.MATLABSystem21_hIni;
-    raspberrypi_multicore_MPCtes_DW.obj_g.isInitialized = 1;
 
     /* Start for ToFile: '<Root>/To File8' */
     {
@@ -20025,7 +20412,7 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_initialize(void)
            * sizeof(real_T));
 
     /* InitializeConditions for RateTransition: '<Root>/Rate Transition1' */
-    for (i = 0; i < 55; i++) {
+    for (i = 0; i < 61; i++) {
       raspberrypi_multicore_MPCtes_DW.RateTransition1_Buf0[i] =
         raspberrypi_multicore_MPCtest_P.RateTransition1_InitialConditio[i];
     }
@@ -20163,40 +20550,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_terminate(void)
 
   /* End of Terminate for MATLABSystem: '<S55>/Digital Read' */
 
-  /* Terminate for ToFile: '<Root>/To File11' */
-  {
-    FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile11_PWORK.FilePtr;
-    if (fp != (NULL)) {
-      char fileName[509] = "multicore_dataRecEstB.mat";
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRecEstB.mat");
-        return;
-      }
-
-      if ((fp = fopen(fileName, "r+b")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error reopening MAT-file multicore_dataRecEstB.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 17 + 1,
-           raspberrypi_multicore_MPCtes_DW.ToFile11_IWORK.Count,
-           "rt_pArrayB_EN_SW")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing header for rt_pArrayB_EN_SW to MAT-file multicore_dataRecEstB.mat");
-      }
-
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRecEstB.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile11_PWORK.FilePtr = (NULL);
-    }
-  }
-
   /* Terminate for ToFile: '<Root>/To File6' */
   {
     FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile6_PWORK.FilePtr;
@@ -20228,6 +20581,40 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_terminate(void)
       }
 
       raspberrypi_multicore_MPCtes_DW.ToFile6_PWORK.FilePtr = (NULL);
+    }
+  }
+
+  /* Terminate for ToFile: '<Root>/To File19' */
+  {
+    FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr;
+    if (fp != (NULL)) {
+      char fileName[509] = "multicore_dataRec17.mat";
+      if (fclose(fp) == EOF) {
+        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
+                          "Error closing MAT-file multicore_dataRec17.mat");
+        return;
+      }
+
+      if ((fp = fopen(fileName, "r+b")) == (NULL)) {
+        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
+                          "Error reopening MAT-file multicore_dataRec17.mat");
+        return;
+      }
+
+      if (rt_WriteMat4FileHeader(fp, 12 + 1,
+           raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count,
+           "rt_estDis_fast")) {
+        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
+                          "Error writing header for rt_estDis_fast to MAT-file multicore_dataRec17.mat");
+      }
+
+      if (fclose(fp) == EOF) {
+        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
+                          "Error closing MAT-file multicore_dataRec17.mat");
+        return;
+      }
+
+      raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr = (NULL);
     }
   }
 
@@ -20439,39 +20826,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_terminate(void)
     }
   }
 
-  /* Terminate for ToFile: '<Root>/To File18' */
-  {
-    FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile18_PWORK.FilePtr;
-    if (fp != (NULL)) {
-      char fileName[509] = "multicore_dataRecEstC.mat";
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRecEstC.mat");
-        return;
-      }
-
-      if ((fp = fopen(fileName, "r+b")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error reopening MAT-file multicore_dataRecEstC.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 12 + 1,
-           raspberrypi_multicore_MPCtes_DW.ToFile18_IWORK.Count, "rt_uMPC")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing header for rt_uMPC to MAT-file multicore_dataRecEstC.mat");
-      }
-
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRecEstC.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile18_PWORK.FilePtr = (NULL);
-    }
-  }
-
   /* Terminate for ToFile: '<Root>/To File2' */
   {
     FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile2_PWORK.FilePtr;
@@ -20506,40 +20860,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_terminate(void)
     }
   }
 
-  /* Terminate for ToFile: '<Root>/To File10' */
-  {
-    FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile10_PWORK.FilePtr;
-    if (fp != (NULL)) {
-      char fileName[509] = "multicore_dataRecEstA.mat";
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRecEstA.mat");
-        return;
-      }
-
-      if ((fp = fopen(fileName, "r+b")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error reopening MAT-file multicore_dataRecEstA.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 9 + 1,
-           raspberrypi_multicore_MPCtes_DW.ToFile10_IWORK.Count,
-           "rt_acc_omega_RPYOri")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing header for rt_acc_omega_RPYOri to MAT-file multicore_dataRecEstA.mat");
-      }
-
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRecEstA.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile10_PWORK.FilePtr = (NULL);
-    }
-  }
-
   /* Terminate for ToFile: '<Root>/To File12' */
   {
     FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile12_PWORK.FilePtr;
@@ -20571,40 +20891,6 @@ void raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis_terminate(void)
       }
 
       raspberrypi_multicore_MPCtes_DW.ToFile12_PWORK.FilePtr = (NULL);
-    }
-  }
-
-  /* Terminate for ToFile: '<Root>/To File19' */
-  {
-    FILE *fp = (FILE *) raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr;
-    if (fp != (NULL)) {
-      char fileName[509] = "multicore_dataRec17.mat";
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRec17.mat");
-        return;
-      }
-
-      if ((fp = fopen(fileName, "r+b")) == (NULL)) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error reopening MAT-file multicore_dataRec17.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 6 + 1,
-           raspberrypi_multicore_MPCtes_DW.ToFile19_IWORK.Count,
-           "rt_estDis_fast")) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error writing header for rt_estDis_fast to MAT-file multicore_dataRec17.mat");
-      }
-
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(raspberrypi_multicore_MPCtes_M,
-                          "Error closing MAT-file multicore_dataRec17.mat");
-        return;
-      }
-
-      raspberrypi_multicore_MPCtes_DW.ToFile19_PWORK.FilePtr = (NULL);
     }
   }
 

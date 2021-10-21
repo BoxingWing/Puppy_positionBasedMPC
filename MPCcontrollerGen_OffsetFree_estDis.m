@@ -57,8 +57,8 @@ C=diag(ones(13,1));
 D=zeros(13,12);
 
 % augumented input disturbance model
-Bd=[0.5*Ts^2*eye(6);Ts*eye(6);zeros(1,6)];
-Cd=zeros(13,6);
+Bd=[eye(12);zeros(1,12)];
+Cd=zeros(13,12);
 
 A2=A;
 B2=[B,Bd];
@@ -66,11 +66,11 @@ C2=C;
 D2=[D,Cd*0];
 plantDA=ss(A2,B2,C2,D2,Ts);
 plantDA.InputGroup.MV=1:12;
-plantDA.InputGroup.MD=13:18;
+plantDA.InputGroup.MD=13:24;
 plantDA.OutputGroup.MO=1:13;
 
 norminal.X=[Pc;theta;[0;0;0];[0;0;0];9.8];
-norminal.U=[0;0;1;0;0;1;0;0;1;0;0;1;zeros(6,1)]*m*9.8/4;
+norminal.U=[0;0;1;0;0;1;0;0;1;0;0;1;zeros(12,1)]*m*9.8/4;
 norminal.Y=plantDA.C*norminal.X+plantDA.D*norminal.U;
 norminal.DX=plantDA.A*norminal.X+plantDA.B*norminal.U-norminal.X;
 %% create MPC controller
@@ -92,7 +92,7 @@ numM=2; % control horizon
 %%% weights
 %%% W.OutputVariables=ones(numP,1)*[[2,10,50],[0.25,0.5,10],[0.2,0.2,0.1],[0,0,0.3],0]; %2 10 50 0.25 0.5 10
 
-W.OutputVariables=ones(numP,1)*[[10,10,60],[40,40,2],[0.01,0.01,0.01],[0.01,0.01,0.01],0];
+W.OutputVariables=ones(numP,1)*[[5,5,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.1],0];
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
@@ -162,7 +162,7 @@ OV(3).Max=5;
 
 mpcPuppy=mpc(model,Ts,numP,numM,W,MV,OV);
 %mpcPuppy.Optimizer.Algorithm='interior-point';
-mpcPuppy.Optimizer.ActiveSetOptions.MaxIterations=30;
+mpcPuppy.Optimizer.ActiveSetOptions.MaxIterations=20;
 mpcPuppy.Optimizer.UseSuboptimalSolution=true;
 modnor=tf(1,1);
 modnor2=tf(1,[1,0]);
@@ -177,12 +177,12 @@ outdist(3,3)=modnor*0.1;
 outdist(4,4)=modnor*0.1;
 outdist(5,5)=modnor*0.1;
 outdist(6,6)=modnor*0.1;
-outdist(7,7)=modnor*0;
-outdist(8,8)=modnor*0;
-outdist(9,9)=modnor*0;
-outdist(10,10)=modnor*0;
-outdist(11,11)=modnor*0;
-outdist(12,12)=modnor*0;
+outdist(7,7)=modnor*0.1;
+outdist(8,8)=modnor*0.1;
+outdist(9,9)=modnor*0.1;
+outdist(10,10)=modnor*0.1;
+outdist(11,11)=modnor*0.1;
+outdist(12,12)=modnor*0.1;
 %setoutdist(mpcPuppy,'model',outdist);
 setoutdist(mpcPuppy,'model',tf(zeros(13,1))); % remove output disturbance model
 setEstimator(mpcPuppy,'custom');
@@ -196,7 +196,7 @@ xmpc=mpcstate(mpcPuppy);
 
 %%% add constraints
 % friction pyramid and payload balance
-miu=0.5;
+miu=0.4;
 deltaFz=20; % w.r.t body coordinate
 deltaFx=20; % w.r.t body coordinate
 maxFz=60; % w.r.t. body coordinate
@@ -304,7 +304,7 @@ Vnew=[Vb2;Vb3;Vb4;Vb5;Vb1];
 % F=[];
 % G=[zeros(16,1);ones(4,1)*deltaFz;ones(4,1)*deltaFx];
 %V=[ones(16,1)*0;ones(8,1)];
-Snew=zeros(32,6);
+Snew=zeros(32,12);
 setconstraint(mpcPuppy,Enew,[],Gnew,Vnew,Snew);
 %review(mpcPuppy);
 

@@ -7,9 +7,9 @@
  *
  * Code generation for model "raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis".
  *
- * Model version              : 2.382
+ * Model version              : 2.392
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Thu Oct 21 17:55:56 2021
+ * C source code generated on : Thu Oct 21 19:49:16 2021
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -23,7 +23,7 @@
  * Code generation for Simulink model "raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis".
  *
  * Simulink Coder version                : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Thu Oct 21 17:55:56 2021
+ * C source code generated on : Thu Oct 21 19:49:16 2021
  *
  * Note that the generated code is not dependent on this header file.
  * The file is used in cojuction with the automatic build procedure.

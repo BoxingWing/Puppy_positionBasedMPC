@@ -7,9 +7,9 @@
  *
  * Code generation for model "raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis".
  *
- * Model version              : 2.382
+ * Model version              : 2.392
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Thu Oct 21 17:55:56 2021
+ * C source code generated on : Thu Oct 21 19:49:16 2021
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -153,10 +153,10 @@ typedef struct tag_rnygrDayOjkpi7zvZVk62D FK_raspberrypi_multicore_MPCt_T;
 
 #endif                             /* typedef_FK_raspberrypi_multicore_MPCt_T */
 
-#ifndef struct_tag_ZZn4ydEqPVDsseBsY0fjiD
-#define struct_tag_ZZn4ydEqPVDsseBsY0fjiD
+#ifndef struct_tag_jNaBBLaAljWBs643DJOTPH
+#define struct_tag_jNaBBLaAljWBs643DJOTPH
 
-struct tag_ZZn4ydEqPVDsseBsY0fjiD
+struct tag_jNaBBLaAljWBs643DJOTPH
 {
   int32_T isInitialized;
   real_T lateral_width;
@@ -178,15 +178,15 @@ struct tag_ZZn4ydEqPVDsseBsY0fjiD
   real_T vyPercent_Old;
   real_T wzPercent_Old;
   real_T phi_Old;
-  real_T estDis_Old[6];
+  real_T estDis_Old[12];
 };
 
-#endif                                 /* struct_tag_ZZn4ydEqPVDsseBsY0fjiD */
+#endif                                 /* struct_tag_jNaBBLaAljWBs643DJOTPH */
 
 #ifndef typedef_message_decoder_PC_raspberryp_T
 #define typedef_message_decoder_PC_raspberryp_T
 
-typedef struct tag_ZZn4ydEqPVDsseBsY0fjiD message_decoder_PC_raspberryp_T;
+typedef struct tag_jNaBBLaAljWBs643DJOTPH message_decoder_PC_raspberryp_T;
 
 #endif                             /* typedef_message_decoder_PC_raspberryp_T */
 
@@ -515,28 +515,28 @@ typedef struct tag_UN5JRbyCwE1SFrDcP2jdrF AdmittanceCtr_raspberrypi_mul_T;
 
 #endif                             /* typedef_AdmittanceCtr_raspberrypi_mul_T */
 
-#ifndef struct_tag_rRyTfTxtWo25QxHZmEmNjC
-#define struct_tag_rRyTfTxtWo25QxHZmEmNjC
+#ifndef struct_tag_cdkC5B1qPlqF5LPxUKSkcG
+#define struct_tag_cdkC5B1qPlqF5LPxUKSkcG
 
-struct tag_rRyTfTxtWo25QxHZmEmNjC
+struct tag_cdkC5B1qPlqF5LPxUKSkcG
 {
   int32_T isInitialized;
   real_T Ts;
   real_T m;
   real_T Inorm[9];
-  real_T G[361];
-  real_T XOld[19];
-  real_T POld[361];
+  real_T G[625];
+  real_T XOld[25];
+  real_T POld[625];
   real_T count;
-  real_T P0[361];
+  real_T P0[625];
 };
 
-#endif                                 /* struct_tag_rRyTfTxtWo25QxHZmEmNjC */
+#endif                                 /* struct_tag_cdkC5B1qPlqF5LPxUKSkcG */
 
 #ifndef typedef_KalmanFilter_DIY_MPCDis_raspb_T
 #define typedef_KalmanFilter_DIY_MPCDis_raspb_T
 
-typedef struct tag_rRyTfTxtWo25QxHZmEmNjC KalmanFilter_DIY_MPCDis_raspb_T;
+typedef struct tag_cdkC5B1qPlqF5LPxUKSkcG KalmanFilter_DIY_MPCDis_raspb_T;
 
 #endif                             /* typedef_KalmanFilter_DIY_MPCDis_raspb_T */
 

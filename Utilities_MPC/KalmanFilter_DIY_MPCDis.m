@@ -19,7 +19,7 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
             obj.count=0;
-            nX=19;
+            nX=25;
             obj.XOld=zeros(nX,1);
             obj.POld=eye(nX)*10^3;
             obj.G=eye(nX);
@@ -43,16 +43,16 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             
             %Bdis=zeros(13,6);
             %Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
-            Bdis=[obj.Ts*eye(6);eye(6);zeros(1,6)];
-            Cdis=[zeros(6,6);0*eye(6);zeros(1,6)];
+            Bdis=[eye(12);zeros(1,12)];
+            Cdis=zeros(13,12);
             
-            Anew=[A,Bdis;zeros(6,13),eye(6)];
-            Bnew=[B;zeros(6,12)];
+            Anew=[A,Bdis;zeros(12,13),eye(12)];
+            Bnew=[B;zeros(12,12)];
             Cnew=[C,Cdis];
-            Dnew=zeros(13,12);
+            Dnew=zeros(13,24);
             
             if obj.count<0.5
-                obj.XOld=[xFB;zeros(6,1)];
+                obj.XOld=[xFB;zeros(12,1)];
                 obj.POld=obj.P0;
                 obj.count=obj.count+1;
             end
@@ -69,10 +69,10 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             %             end
             
             xhat=Xpre+K*(xFB-Cnew*Xpre);
-            tmp=Bdis*xhat(14:19);
-            dx=tmp(1:6);
+            tmp=Bdis*xhat(14:25);
+            dx=tmp(1:12);
             if Reset>0.5
-                xhat=[xFB;zeros(6,1)];
+                xhat=[xFB;zeros(12,1)];
                 P=obj.P0;
             end
             estXbar=[xhat(1:13);dx];
