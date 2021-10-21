@@ -352,24 +352,24 @@ ylabel('Leg4');
 
 %%% check the estDis
 figure();
-subplot(3,2,1)
+subplot(2,3,1)
 plot(t_fast(startNf:endNf),estDis(1,startNf:endNf));
 ylabel('estDis\_pCoMx')
-subplot(3,2,2)
+subplot(2,3,2)
 plot(t_fast(startNf:endNf),estDis(2,startNf:endNf));
 ylabel('estDis\_pCoMy')
-subplot(3,2,3)
+subplot(2,3,3)
 plot(t_fast(startNf:endNf),estDis(3,startNf:endNf));
 ylabel('estDis\_pCoMz')
-subplot(3,2,4)
+subplot(2,3,4)
 plot(t_fast(startNf:endNf),estDis(4,startNf:endNf));
 ylabel('estDis\_RPYx')
-subplot(3,2,5)
+subplot(2,3,5)
 plot(t_fast(startNf:endNf),estDis(5,startNf:endNf));
 ylabel('estDis\_RPYy')
-subplot(3,2,6)
+subplot(2,3,6)
 plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
-ylabel('estDis\_RPYx')
+ylabel('estDis\_RPYz')
 
 
 
