@@ -165,7 +165,7 @@ classdef LegSequence_RT_v3< matlab.System
                     sta=obj.pL_LS(:,i);
                     des=desAllL(:,i);
                     des(3)=sta(3);
-                    des(3)=-0.196;
+                    des(3)=-0.19;
                     ax=[sta(1),sta(1),des(1),des(1)];
                     ay=[sta(2),sta(2),des(2),des(2)];
                     az1=[sta(3),sta(3),(sta(3)+des(3))/2+obj.StepH,(sta(3)+des(3))/2+obj.StepH];

@@ -46,8 +46,8 @@ classdef algebraicDisEstmator < matlab.System
             Cnew=[C,Cdis];
             Dnew=zeros(25,12);
             
-            Kx=0.8*eye(13); %13*13
-            Kd=0.01*[eye(12),zeros(12,1)]; % 12*13
+            Kx=1*eye(13); %13*13
+            Kd=0.5*[eye(12),zeros(12,1)]; % 12*13
             K=[Kx;Kd];
             ystar=Cnew*(Anew*obj.estXbarOld+Bnew*obj.UOld);
             estXbar=Anew*obj.estXbarOld+Bnew*obj.UOld+K*(xFB(1:13)-ystar);

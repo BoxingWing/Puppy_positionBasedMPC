@@ -25,7 +25,7 @@ L_Pend(:,4)=[0;0;-190]/1000+[0;-1;0]*roll_Off;
 SPLeg=ones(4,1);
 Ts=0.025; % smaple time for MPC, 0.025 for raspberry 4b to run adaptive mpc
 Ts_DynSim=0.005; % sample time for central dynamics
-T_gait=0.65;
+T_gait=0.6;
 
 LxM=0.2108; % distance between the fore and hind pitch axis
 LyM=0.097; % distance between the left and right roll axis
