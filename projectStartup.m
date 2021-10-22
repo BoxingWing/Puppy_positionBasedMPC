@@ -10,3 +10,5 @@ cfg.CodeGenFolder = fullfile(pwd,'Build');
 %cfg.CodeGenFolderStructure = 'TargetEnvironmentSubfolder';
 
 Simulink.fileGenControl('setConfig', 'config', cfg);
+
+clear cfg;
