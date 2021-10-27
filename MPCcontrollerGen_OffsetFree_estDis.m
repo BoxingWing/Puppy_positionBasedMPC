@@ -96,7 +96,7 @@ W.OutputVariables=ones(numP,1)*[[5,5,180],[8,8,2],[0.1,0.1,0.1],[0.1,0.1,0.1],0]
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
-%W.OutputVariables(end,:)=[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
+W.OutputVariables(end,:)=[[5,5,180],[50,50,2],[0.1,0.1,0.1],[0.1,0.1,0.1],0];
 %W.ManipulatedVariables=ones(numP,1)*[[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01]];
 %W.ManipulatedVariables(end,:)=W.ManipulatedVariables(end,:)*0;
 %W.ManipulatedVariablesRate=ones(numP,1)*[[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1]];
