@@ -352,42 +352,25 @@ ylabel('Leg4');
 
 %%% check the estDis
 figure();
-subplot(4,3,1)
+subplot(2,3,1)
 plot(t_fast(startNf:endNf),estDis(1,startNf:endNf));
 ylabel('estDis\_pCoMx')
-subplot(4,3,2)
+subplot(2,3,2)
 plot(t_fast(startNf:endNf),estDis(2,startNf:endNf));
 ylabel('estDis\_pCoMy')
-subplot(4,3,3)
+subplot(2,3,3)
 plot(t_fast(startNf:endNf),estDis(3,startNf:endNf));
 ylabel('estDis\_pCoMz')
-subplot(4,3,4)
+subplot(2,3,4)
 plot(t_fast(startNf:endNf),estDis(4,startNf:endNf));
 ylabel('estDis\_RPYx')
-subplot(4,3,5)
+subplot(2,3,5)
 plot(t_fast(startNf:endNf),estDis(5,startNf:endNf));
 ylabel('estDis\_RPYy')
-subplot(4,3,6)
+subplot(2,3,6)
 plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
 ylabel('estDis\_RPYz')
-subplot(4,3,7)
-plot(t_fast(startNf:endNf),estDis(7,startNf:endNf));
-ylabel('estDis\_vCoMx')
-subplot(4,3,8)
-plot(t_fast(startNf:endNf),estDis(8,startNf:endNf));
-ylabel('estDis\_vCoMy')
-subplot(4,3,9)
-plot(t_fast(startNf:endNf),estDis(9,startNf:endNf));
-ylabel('estDis\_vCoMz')
-subplot(4,3,10)
-plot(t_fast(startNf:endNf),estDis(10,startNf:endNf));
-ylabel('estDis\_wx')
-subplot(4,3,11)
-plot(t_fast(startNf:endNf),estDis(11,startNf:endNf));
-ylabel('estDis\_wy')
-subplot(4,3,12)
-plot(t_fast(startNf:endNf),estDis(12,startNf:endNf));
-ylabel('estDis\_wz')
+
 
 
 

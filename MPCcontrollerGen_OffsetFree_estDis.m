@@ -1,4 +1,5 @@
 %%% mpc model with measuared disturbances
+% 6 disturbances
 %%% REMEMBER to change the modelgen block in the simulink file
 
 clear variables;
@@ -23,7 +24,7 @@ L_Pend(:,2)=[0;0;-190]/1000+[0;-1;0]*roll_Off;
 L_Pend(:,3)=[0;0;-190]/1000+[0;1;0]*roll_Off;
 L_Pend(:,4)=[0;0;-190]/1000+[0;-1;0]*roll_Off;
 SPLeg=ones(4,1);
-Ts=0.025; % smaple time for MPC, 0.025 for raspberry 4b to run adaptive mpc
+Ts=0.030; % smaple time for MPC, 0.025 for raspberry 4b to run adaptive mpc
 Ts_DynSim=0.005; % sample time for central dynamics
 T_gait=0.6;
 
@@ -57,8 +58,8 @@ C=diag(ones(13,1));
 D=zeros(13,12);
 
 % augumented input disturbance model
-Bd=[eye(12);zeros(1,12)];
-Cd=zeros(13,12);
+Bd=[0*eye(6);eye(6);zeros(1,6)];
+Cd=zeros(13,6);
 
 A2=A;
 B2=[B,Bd];
@@ -66,11 +67,11 @@ C2=C;
 D2=[D,Cd*0];
 plantDA=ss(A2,B2,C2,D2,Ts);
 plantDA.InputGroup.MV=1:12;
-plantDA.InputGroup.MD=13:24;
+plantDA.InputGroup.MD=13:18;
 plantDA.OutputGroup.MO=1:13;
 
 norminal.X=[Pc;theta;[0;0;0];[0;0;0];9.8];
-norminal.U=[0;0;1;0;0;1;0;0;1;0;0;1;zeros(12,1)]*m*9.8/4;
+norminal.U=[0;0;1;0;0;1;0;0;1;0;0;1;zeros(6,1)]*m*9.8/4;
 norminal.Y=plantDA.C*norminal.X+plantDA.D*norminal.U;
 norminal.DX=plantDA.A*norminal.X+plantDA.B*norminal.U-norminal.X;
 %% create MPC controller
@@ -96,7 +97,7 @@ W.OutputVariables=ones(numP,1)*[[5,5,180],[8,8,2],[0.1,0.1,0.1],[0.1,0.1,0.1],0]
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
-%W.OutputVariables(end,:)=[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
+W.OutputVariables(end,:)=[[5,5,180],[20,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 %W.ManipulatedVariables=ones(numP,1)*[[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01]];
 %W.ManipulatedVariables(end,:)=W.ManipulatedVariables(end,:)*0;
 %W.ManipulatedVariablesRate=ones(numP,1)*[[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1]];
@@ -304,7 +305,7 @@ Vnew=[Vb2;Vb3;Vb4;Vb5;Vb1];
 % F=[];
 % G=[zeros(16,1);ones(4,1)*deltaFz;ones(4,1)*deltaFx];
 %V=[ones(16,1)*0;ones(8,1)];
-Snew=zeros(32,12);
+Snew=zeros(32,6);
 setconstraint(mpcPuppy,Enew,[],Gnew,Vnew,Snew);
 %review(mpcPuppy);
 

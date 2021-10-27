@@ -23,7 +23,7 @@ classdef message_decoder_PC< matlab.System
         vyPercent_Old=0;
         wzPercent_Old=0;
         phi_Old=0;
-        estDis_Old=zeros(12,1);
+        estDis_Old=zeros(6,1);
     end
     
     methods(Access = protected)
@@ -60,7 +60,7 @@ classdef message_decoder_PC< matlab.System
                 vxPercent=in(47);
                 vyPercent=in(48);
                 wzPercent=in(49);
-                estDis=in(50:61);
+                estDis=in(50:55);
             else
                 pCoM=obj.pCoM_Old;
                 vCoM=obj.vCoM_Old;
@@ -132,7 +132,7 @@ classdef message_decoder_PC< matlab.System
             s14=[1,1];
             s15=[1,1];
             s16=[1,1];
-            s17=[12,1];
+            s17=[6,1];
         end
         
         function [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17] = isOutputFixedSizeImpl(~)

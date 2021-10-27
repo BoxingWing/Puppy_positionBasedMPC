@@ -193,7 +193,7 @@ classdef LegSequence_RT_v3< matlab.System
             theta=X_FB(4:6);
             Pc=reshape(X_FB(1:3),3,1);
             R=Rz(theta(3))*Ry(theta(2))*Rx(theta(1));
-            interpolNUM=4;
+            interpolNUM=5;
             
             if sum(abs(obj.MPC_Count_Old-MPC_Count))<0.1
                 if obj.interpol_Count>=interpolNUM
