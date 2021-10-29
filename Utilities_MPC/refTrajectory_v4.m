@@ -14,6 +14,8 @@ classdef refTrajectory_v4< matlab.System
         refSeqOld;
         sitaErrOld;
         sitaZOld;
+        pxOld;
+        pyOld;
     end
     properties(Nontunable)
         numP=20; % prediction horizon length
@@ -24,6 +26,8 @@ classdef refTrajectory_v4< matlab.System
             obj.refSeqOld=ones(obj.numP,1)*[obj.r0;obj.theta0;obj.dr0;obj.omega0;9.8]';
             obj.sitaErrOld=[0;0;0];
             obj.sitaZOld=0;
+            obj.pxOld=0;
+            obj.pyOld=0;
         end
         
         function [refSeqOut,refP,refSeq,sitaErr,sitaNow] = stepImpl(obj,vxL,vyL,omegaZ,surVN,sura,X_FB,disable)
@@ -67,6 +71,8 @@ classdef refTrajectory_v4< matlab.System
             %             surVN=[0;0;1];
             %             sura=[0;0;0];
             obj.sitaZOld=obj.sitaZOld+omegaZ*obj.dt;
+            obj.pxOld=obj.pxOld+vxL*obj.dt;
+            obj.pyOld=obj.pyOld+vyL*obj.dt;
             %Rbody=Rz(X_FB(6))*Ry(X_FB(5))*Rx(X_FB(4));
             Rbody=Ry(X_FB(5))*Rx(X_FB(4));
             headX=Rz(obj.sitaZOld)*Rbody*[1;0;0];
@@ -104,7 +110,7 @@ classdef refTrajectory_v4< matlab.System
                 desTheta=Rot2Eul(Rbody);
                 desTheta(3)=obj.sitaZOld+omegaZ*obj.dt*(i-1);
                 if i<1.5
-                    desr=Rbody*[vxL;vyL;0]*obj.dt+curState;
+                    desr=[obj.pxOld;obj.pyOld;obj.r0(3)];
                 else
                     desr=Rbody*[vxL;vyL;0]*obj.dt+refSeq(i-1,1:3)';
                 end

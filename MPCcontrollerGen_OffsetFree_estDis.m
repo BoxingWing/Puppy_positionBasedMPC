@@ -93,11 +93,11 @@ numM=2; % control horizon
 %%% weights
 %%% W.OutputVariables=ones(numP,1)*[[2,10,50],[0.25,0.5,10],[0.2,0.2,0.1],[0,0,0.3],0]; %2 10 50 0.25 0.5 10
 
-W.OutputVariables=ones(numP,1)*[[5,5,180],[20,20,2],[0.1,0.1,0.1],[0.1,0.1,0.1],0];
+W.OutputVariables=ones(numP,1)*[[5,5,180],[5,5,2],[0.1,0.1,0.1],[0.1,0.1,0.1],0];
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
-%W.OutputVariables(end,:)=[[5,5,180],[20,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
+W.OutputVariables(end,:)=[[5,5,180],[50,50,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 %W.ManipulatedVariables=ones(numP,1)*[[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01]];
 %W.ManipulatedVariables(end,:)=W.ManipulatedVariables(end,:)*0;
 %W.ManipulatedVariablesRate=ones(numP,1)*[[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1]];
@@ -106,13 +106,13 @@ W.OutputVariables=ones(numP,1)*[[5,5,180],[20,20,2],[0.1,0.1,0.1],[0.1,0.1,0.1],
 MV(12)=struct('Min',-inf,'Max',inf);
 
 MV(3).Min=0;
-MV(3).Max=50;
+MV(3).Max=70;
 MV(6).Min=0;
-MV(6).Max=50;
+MV(6).Max=70;
 MV(9).Min=0;
-MV(9).Max=50;
+MV(9).Max=70;
 MV(12).Min=0;
-MV(12).Max=50;
+MV(12).Max=70;
 
 % MV(1).ScaleFactor=5; % should be the range of the corresponding variable
 % MV(2).ScaleFactor=5;
@@ -198,9 +198,9 @@ xmpc=mpcstate(mpcPuppy);
 %%% add constraints
 % friction pyramid and payload balance
 miu=0.4;
-deltaFz=20; % w.r.t body coordinate
-deltaFx=20; % w.r.t body coordinate
-maxFz=60; % w.r.t. body coordinate
+deltaFz=50; % w.r.t body coordinate
+deltaFx=50; % w.r.t body coordinate
+maxFz=70; % w.r.t. body coordinate
 
 % friction cone----------------------
 Eb2=zeros(8,12);

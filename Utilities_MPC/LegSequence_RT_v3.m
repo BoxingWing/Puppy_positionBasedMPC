@@ -100,7 +100,7 @@ classdef LegSequence_RT_v3< matlab.System
                 0;obj.roll_Off;-obj.r0(3); ...
                0;-obj.roll_Off;-obj.r0(3);];
             obj.MPC_Count_Old=0;
-            obj.vNowN=zeros(3,20);
+            obj.vNowN=zeros(3,5);
         end
         
         function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,zSur,OscStop,LegStateMPC)
@@ -123,11 +123,11 @@ classdef LegSequence_RT_v3< matlab.System
             desPit=ref(5);
             desYaw=ref(6);
             vDes=[desvX;desvY;0];
-            vDesL=Rz(desYaw)'*vDes; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
+            vDesL=Rx(desRoll)'*Ry(desPit)'*Rz(desYaw)'*vDes; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
             
             vNow=[X_FB(7:8);0];
             yawNow=X_FB(6);
-            vNowL=Rz(yawNow)'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
+            vNowL=Rx(X_FB(4))'*Ry(X_FB(5))'*Rz(yawNow)'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
             
             %%% next step foot-placement in the leg coordinate
             vLDZ=[0.02,0.02,0.02]; % dead zone for vNowL
@@ -143,10 +143,10 @@ classdef LegSequence_RT_v3< matlab.System
             obj.vNowN(:,1:end-1)=obj.vNowN(:,2:end);
             obj.vNowN(:,end)=vNowL;
             
-            vNowFilt=sum(obj.vNowN)/length(obj.vNowN(1,:));
+            vNowFilt=sum(obj.vNowN,2)/length(obj.vNowN(1,:));
             
-            v=vDesL+[-obj.kx*(vDesL(1)-vNowL(1)); ...
-                -obj.ky*(vDesL(2)-vNowL(2));0];
+            v=vNowFilt+[-obj.kx*(vDesL(1)-vNowFilt(1)); ...
+                -obj.ky*(vDesL(2)-vNowFilt(2));0];
             desAllL=v*obj.T/4*[1,1,1,1]+obj.pLnorm;
 %             desAll=Rz(desYaw)*Ry(desPit)*Rx(desRoll)*desAllL+[X_FB(1);X_FB(2);0]*[1,1,1,1];
 %             for i=1:1:4
