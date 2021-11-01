@@ -41,6 +41,9 @@ classdef LegSequence_RT_v3< matlab.System
         LegCorOri;
         pLnorm;
         vNowN;
+        desvxFilt_Old;
+        desvyFilt_Old;
+        deswzFilt_Old;
     end
     
     methods(Access = protected)
@@ -100,7 +103,10 @@ classdef LegSequence_RT_v3< matlab.System
                 0;obj.roll_Off;-obj.r0(3); ...
                0;-obj.roll_Off;-obj.r0(3);];
             obj.MPC_Count_Old=0;
-            obj.vNowN=zeros(3,5);
+            obj.vNowN=zeros(3,3);
+            obj.desvxFilt_Old=0;
+            obj.desvyFilt_Old=0;
+            obj.deswzFilt_Old=0;
         end
         
         function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,zSur,OscStop,LegStateMPC)
@@ -122,7 +128,18 @@ classdef LegSequence_RT_v3< matlab.System
             desRoll=ref(4);
             desPit=ref(5);
             desYaw=ref(6);
-            vDes=[desvX;desvY;0];
+            xFiltFactor=0.2;
+            yFiltFactor=0.2;
+            wzFiltFactor=0.03;
+            
+            desvxFilt=desvX*xFiltFactor+obj.desvxFilt_Old*(1-xFiltFactor);
+            desvyFilt=desvY*yFiltFactor+obj.desvyFilt_Old*(1-yFiltFactor);
+            %deswzFilt=
+            
+            obj.desvxFilt_Old=desvxFilt;
+            obj.desvyFilt_Old=desvyFilt;
+            
+            vDes=[desvxFilt;desvyFilt;0];
             vDesL=Rx(desRoll)'*Ry(desPit)'*Rz(desYaw)'*vDes; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
             
             vNow=[X_FB(7:8);0];
@@ -147,11 +164,12 @@ classdef LegSequence_RT_v3< matlab.System
             
             v=vNowFilt+[-obj.kx*(vDesL(1)-vNowFilt(1)); ...
                 -obj.ky*(vDesL(2)-vNowFilt(2));0];
-            desAllL=v*obj.T/4*[1,1,1,1]+obj.pLnorm;
-%             desAll=Rz(desYaw)*Ry(desPit)*Rx(desRoll)*desAllL+[X_FB(1);X_FB(2);0]*[1,1,1,1];
-%             for i=1:1:4
-%                 desAll(3,i)=[1,desAll(1,i),desAll(2,i)]*[surP(1);surP(2);surP(3)];
-%             end
+            
+            % cross leg compensation
+            CrossComY=[0.1,-0.1,-0.1,0.1]*vDesL(1);
+            CrossCom=[zeros(1,4);CrossComY;zeros(1,4)];
+            
+            desAllL=v*obj.T/4*[1,1,1,1]+obj.pLnorm+CrossCom;
             
             %%% next step foot-end position planning in the leg coordinate
 
