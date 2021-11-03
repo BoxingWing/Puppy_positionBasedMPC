@@ -103,13 +103,13 @@ classdef LegSequence_RT_v3< matlab.System
                 0;obj.roll_Off;-obj.r0(3); ...
                0;-obj.roll_Off;-obj.r0(3);];
             obj.MPC_Count_Old=0;
-            obj.vNowN=zeros(3,3);
+            obj.vNowN=zeros(3,2);
             obj.desvxFilt_Old=0;
             obj.desvyFilt_Old=0;
             obj.deswzFilt_Old=0;
         end
         
-        function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,zSur,OscStop,LegStateMPC)
+        function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,surVN,zSur,OscStop,LegStateMPC)
             % X_FB: system states from the estimator
             % X_mpc: predicted next step's systems states from the MPC controller
             % touchInd: indicator of wether a swing leg touches the ground
@@ -142,9 +142,10 @@ classdef LegSequence_RT_v3< matlab.System
             vDes=[desvxFilt;desvyFilt;0];
             vDesL=Rx(desRoll)'*Ry(desPit)'*Rz(desYaw)'*vDes; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
             
-            vNow=[X_FB(7:8);0];
+            vNow=[X_FB(7:8);X_FB(9)];
             yawNow=X_FB(6);
-            vNowL=Rx(X_FB(4))'*Ry(X_FB(5))'*Rz(yawNow)'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
+            Rrpy=Rz(yawNow)*Ry(X_FB(5))*Rx(X_FB(4));
+            vNowL=Rrpy'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
             
             %%% next step foot-placement in the leg coordinate
             vLDZ=[0.02,0.02,0.02]; % dead zone for vNowL
@@ -166,10 +167,21 @@ classdef LegSequence_RT_v3< matlab.System
                 -obj.ky*(vDesL(2)-vNowFilt(2));0];
             
             % cross leg compensation
-            CrossComY=[0.1,-0.1,-0.1,0.1]*vDesL(1);
+            CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1);
             CrossCom=[zeros(1,4);CrossComY;zeros(1,4)];
             
             desAllL=v*obj.T/4*[1,1,1,1]+obj.pLnorm+CrossCom;
+            
+            % terrain height compensation
+            pCoM=[X_FB(1);X_FB(2);X_FB(3)];
+            surP_L=Rrpy'*(surP-pCoM);
+            surVN_L=Rrpy'*surVN;
+            desAllL_z=zeros(4,1);
+            for i=1:1:4
+                desAllL_z(i)=(surP_L-obj.LegCorOri(:,i))'*surVN_L;
+                delta=-obj.r0(3)-desAllL_z(i);
+                desAllL_z(i)=desAllL_z(i)+delta*0.8;
+            end
             
             %%% next step foot-end position planning in the leg coordinate
 
@@ -182,8 +194,9 @@ classdef LegSequence_RT_v3< matlab.System
                     end
                     sta=obj.pL_LS(:,i);
                     des=desAllL(:,i);
-                    des(3)=sta(3);
-                    des(3)=-0.19;
+                    %des(3)=sta(3);
+                    %des(3)=-0.19;
+                    des(3)=desAllL_z(i);
                     ax=[sta(1),sta(1),des(1),des(1)];
                     ay=[sta(2),sta(2),des(2),des(2)];
                     az1=[sta(3),sta(3),(sta(3)+des(3))/2+obj.StepH,(sta(3)+des(3))/2+obj.StepH];
