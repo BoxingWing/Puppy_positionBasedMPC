@@ -93,7 +93,7 @@ numM=2; % control horizon
 %%% weights
 %%% W.OutputVariables=ones(numP,1)*[[2,10,50],[0.25,0.5,10],[0.2,0.2,0.1],[0,0,0.3],0]; %2 10 50 0.25 0.5 10
 
-W.OutputVariables=ones(numP,1)*[[20,20,180],[50,50,2],[5,10,0.1],[0.1,0.1,0.1],0];
+W.OutputVariables=ones(numP,1)*[[20,20,180],[2,2,2],[10,10,0.1],[0.1,0.1,0.1],0];
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;

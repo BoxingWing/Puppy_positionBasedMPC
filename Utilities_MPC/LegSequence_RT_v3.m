@@ -128,7 +128,7 @@ classdef LegSequence_RT_v3< matlab.System
             desRoll=ref(4);
             desPit=ref(5);
             desYaw=ref(6);
-            xFiltFactor=0.2;
+            xFiltFactor=0.1;
             yFiltFactor=0.2;
             wzFiltFactor=0.03;
             
