@@ -1,11 +1,15 @@
-pW=rand([3,4]);
-pC=rand([3,1]);
+clear variables;
+close all;
+syms x0 dx0 m real;
+syms T H g positive;
+l=sqrt(H/g);
+xT=x0*cosh(T/l)+l*dx0*sinh(T/l);
+dxT=x0/l*sinh(T/l)+dx0*cosh(T/l);
 
-M=[crossCap(pW(:,1)-pC),crossCap(pW(:,2)-pC),crossCap(pW(:,3)-pC),crossCap(pW(:,4)-pC); ...
-                eye(3),eye(3),eye(3),eye(3)];
-            
-function vcap=crossCap(v)
-vcap=[0,-v(3),v(2);
-        v(3),0,-v(1);
-       -v(2),v(1),0];
-end
+eqn1=xT==-x0;
+eqn2=dxT==dx0;
+
+S=solve(eqn1,dx0);
+
+L0=simplify(H*S*m);
+pretty(L0)
