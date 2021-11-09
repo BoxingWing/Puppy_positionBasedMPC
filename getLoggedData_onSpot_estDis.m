@@ -39,8 +39,10 @@ pArrayL=rt_PendAllLocal(2:end,:);
 touchInd=rt_touchInd_LegState(2:5,:);
 LegState=rt_touchInd_LegState(6:end,:);
 pArrayLFK=rt_pLFKfast(2:end,:);
-refOVnew=rt_refOVbew_refMVnew_slow(2:14,:);
-refMVnew=rt_refOVbew_refMVnew_slow(15:end,:);
+UFinal=rt_UFinal_virtualForce(2:13,:);
+virtualU=rt_UFinal_virtualForce(14:end,:);
+%refOVnew=rt_refOVbew_refMVnew_slow(2:14,:);
+%refMVnew=rt_refOVbew_refMVnew_slow(15:end,:);
 
 t_fast=rt_mvOut_fast(1,:);
 mvOut_fast=rt_mvOut_fast(2:end,:);
@@ -102,7 +104,29 @@ endNs=tmp(1);
 % stairs(t_fast,mvOut_fast(1,:));
 % legend('mvOut1\_slow','mvOut1\_fast');
 
-%%% check the mv
+%%% check the virutal force
+figure()
+subplot(2,2,1)
+plot(t_fast(startNf:endNf),virtualU(1,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(2,startNf:endNf),t_fast(startNf:endNf),virtualU(3,startNf:endNf));
+ylabel('Leg1');legend('fx','fy','fz')
+subplot(2,2,2)
+plot(t_fast(startNf:endNf),virtualU(4,startNf:endNf),...
+    t_fast(startNf:endNf),virtualU(5,startNf:endNf),...
+    t_fast(startNf:endNf),virtualU(6,startNf:endNf));
+ylabel('Leg2');legend('fx','fy','fz')
+subplot(2,2,3)
+plot(t_fast(startNf:endNf),virtualU(7,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(8,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(9,startNf:endNf));
+ylabel('Leg3');legend('fx','fy','fz')
+subplot(2,2,4)
+plot(t_fast(startNf:endNf),virtualU(10,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(11,startNf:endNf),...
+    t_fast(startNf:endNf),virtualU(12,startNf:endNf));
+ylabel('Leg4');legend('fx','fy','fz')
+
+%%% chekc the mv
 figure()
 subplot(2,2,1)
 plot(t_fast(startNf:endNf),mvOut_fast(1,startNf:endNf), ...

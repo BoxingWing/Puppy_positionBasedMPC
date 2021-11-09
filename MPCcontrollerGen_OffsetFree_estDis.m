@@ -105,13 +105,13 @@ W.OutputVariables=ones(numP,1)*[[20,20,180],[2,2,2],[10,10,0.1],[0.1,0.1,0.1],0]
 %%% manipulated variables
 MV(12)=struct('Min',-inf,'Max',inf);
 
-MV(3).Min=0;
+MV(3).Min=-20;
 MV(3).Max=70;
-MV(6).Min=0;
+MV(6).Min=-20;
 MV(6).Max=70;
-MV(9).Min=0;
+MV(9).Min=-20;
 MV(9).Max=70;
-MV(12).Min=0;
+MV(12).Min=-20;
 MV(12).Max=70;
 
 % MV(1).ScaleFactor=5; % should be the range of the corresponding variable
@@ -260,7 +260,7 @@ for i=1:1:4
     Eb1(i,3*i-2:3*i)=surVN;
     Eb1(i+4,3*i-2:3*i)=-surVN;
     Gb1(i)=maxFz;
-    Gb1(i+4)=5;
+    Gb1(i+4)=0;
 end
 for i=1:1:4
     if SPLeg(i)<0.5
