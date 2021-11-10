@@ -23,6 +23,7 @@ load multicore_dataRec15.mat;
 load multicore_dataRec16.mat;
 load multicore_dataRec17.mat;
 load multicore_dataRec18.mat;
+load multicore_dataRec19.mat;
 
 %%% recorded variables
 t_slow=rt_x_FB_slow(1,:);
@@ -57,6 +58,8 @@ PendAllLocal_fast=rt_PendAllLocal(2:end,:);
 spMPC_fast=rt_spMPC_fast(2:end,:);
 pArrayLnor=rt_pLnor_fast(2:end,:); % parrayL direct from mpc out
 estDis=rt_estDis_fast(2:end,:);
+estL=rt_estL_pST(2:4,:);
+pST=rt_estL_pST(5:7,:);
 
 EstOff=rt_EstOff_OscEN_mpcSTOP_ES(2,:);
 OscEN=rt_EstOff_OscEN_mpcSTOP_ES(3,:);
@@ -105,26 +108,26 @@ endNs=tmp(1);
 % legend('mvOut1\_slow','mvOut1\_fast');
 
 %%% check the virutal force
-figure()
-subplot(2,2,1)
-plot(t_fast(startNf:endNf),virtualU(1,startNf:endNf), ...
-    t_fast(startNf:endNf),virtualU(2,startNf:endNf),t_fast(startNf:endNf),virtualU(3,startNf:endNf));
-ylabel('Leg1');legend('fx','fy','fz')
-subplot(2,2,2)
-plot(t_fast(startNf:endNf),virtualU(4,startNf:endNf),...
-    t_fast(startNf:endNf),virtualU(5,startNf:endNf),...
-    t_fast(startNf:endNf),virtualU(6,startNf:endNf));
-ylabel('Leg2');legend('fx','fy','fz')
-subplot(2,2,3)
-plot(t_fast(startNf:endNf),virtualU(7,startNf:endNf), ...
-    t_fast(startNf:endNf),virtualU(8,startNf:endNf), ...
-    t_fast(startNf:endNf),virtualU(9,startNf:endNf));
-ylabel('Leg3');legend('fx','fy','fz')
-subplot(2,2,4)
-plot(t_fast(startNf:endNf),virtualU(10,startNf:endNf), ...
-    t_fast(startNf:endNf),virtualU(11,startNf:endNf),...
-    t_fast(startNf:endNf),virtualU(12,startNf:endNf));
-ylabel('Leg4');legend('fx','fy','fz')
+% figure()
+% subplot(2,2,1)
+% plot(t_fast(startNf:endNf),virtualU(1,startNf:endNf), ...
+%     t_fast(startNf:endNf),virtualU(2,startNf:endNf),t_fast(startNf:endNf),virtualU(3,startNf:endNf));
+% ylabel('Leg1');legend('fx','fy','fz')
+% subplot(2,2,2)
+% plot(t_fast(startNf:endNf),virtualU(4,startNf:endNf),...
+%     t_fast(startNf:endNf),virtualU(5,startNf:endNf),...
+%     t_fast(startNf:endNf),virtualU(6,startNf:endNf));
+% ylabel('Leg2');legend('fx','fy','fz')
+% subplot(2,2,3)
+% plot(t_fast(startNf:endNf),virtualU(7,startNf:endNf), ...
+%     t_fast(startNf:endNf),virtualU(8,startNf:endNf), ...
+%     t_fast(startNf:endNf),virtualU(9,startNf:endNf));
+% ylabel('Leg3');legend('fx','fy','fz')
+% subplot(2,2,4)
+% plot(t_fast(startNf:endNf),virtualU(10,startNf:endNf), ...
+%     t_fast(startNf:endNf),virtualU(11,startNf:endNf),...
+%     t_fast(startNf:endNf),virtualU(12,startNf:endNf));
+% ylabel('Leg4');legend('fx','fy','fz')
 
 %%% chekc the mv
 figure()
@@ -224,19 +227,19 @@ ylabel('pCoMz');
 % legend('MPC_cmd','interpolated');ylabel('Leg1z');
 
 %%% check the ref cmd
-figure();
-subplot(2,2,1)
-plot(t_slow(startNs:endNs),refSeq2_slow(4:6,startNs:endNs)/pi*180);
-ylabel('refSeq2');legend('SitaX','SitaY','SitaZ');
-subplot(2,2,2)
-plot(t_slow(startNs:endNs),refSeq2_slow(1:3,startNs:endNs));
-ylabel('refSeq2');legend('pCoMX','pCoMY','pCoMZ');
-subplot(2,2,3)
-plot(t_slow(startNs:endNs),refP_slow(4:6,startNs:endNs));
-ylabel('refP');legend('SitaX','SitaY','SitaZ');
-subplot(2,2,4)
-plot(t_slow(startNs:endNs),refP_slow(1:3,startNs:endNs));
-ylabel('refP');legend('pCoMX','pCoMY','pCoMZ');
+% figure();
+% subplot(2,2,1)
+% plot(t_slow(startNs:endNs),refSeq2_slow(4:6,startNs:endNs)/pi*180);
+% ylabel('refSeq2');legend('SitaX','SitaY','SitaZ');
+% subplot(2,2,2)
+% plot(t_slow(startNs:endNs),refSeq2_slow(1:3,startNs:endNs));
+% ylabel('refSeq2');legend('pCoMX','pCoMY','pCoMZ');
+% subplot(2,2,3)
+% plot(t_slow(startNs:endNs),refP_slow(4:6,startNs:endNs));
+% ylabel('refP');legend('SitaX','SitaY','SitaZ');
+% subplot(2,2,4)
+% plot(t_slow(startNs:endNs),refP_slow(1:3,startNs:endNs));
+% ylabel('refP');legend('pCoMX','pCoMY','pCoMZ');
 
 %%% check foot position
 figure();
@@ -282,27 +285,27 @@ ylabel('leg4\_pL');
 legend('x','y','z','LegState','touchInd');
 
 %%% check the swing trajectory tracking
-figure();
-subplot(2,2,1)
-plot(t_fast(startNf:endNf),pArrayLAdm(3,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(3,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(3,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg1');
-subplot(2,2,2)
-plot(t_fast(startNf:endNf),pArrayLAdm(6,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(6,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(6,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg2');
-subplot(2,2,3)
-plot(t_fast(startNf:endNf),pArrayLAdm(9,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(9,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(9,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg3');
-subplot(2,2,4)
-plot(t_fast(startNf:endNf),pArrayLAdm(12,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(12,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(12,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg4');
+% figure();
+% subplot(2,2,1)
+% plot(t_fast(startNf:endNf),pArrayLAdm(3,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(3,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(3,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg1');
+% subplot(2,2,2)
+% plot(t_fast(startNf:endNf),pArrayLAdm(6,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(6,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(6,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg2');
+% subplot(2,2,3)
+% plot(t_fast(startNf:endNf),pArrayLAdm(9,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(9,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(9,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg3');
+% subplot(2,2,4)
+% plot(t_fast(startNf:endNf),pArrayLAdm(12,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(12,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(12,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg4');
 
 %%% check joystick input command
 % figure();
@@ -394,6 +397,36 @@ ylabel('estDis\_RPYy')
 subplot(2,3,6)
 plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
 ylabel('estDis\_RPYz')
+
+%%% check estL and pST
+figure();
+subplot(2,3,1);
+plot(t_fast(startNf:endNf),estL(1,startNf:endNf)/m/0.19);
+hold on;
+plot(t_fast(startNf:endNf),vCoM_fast(2,startNf:endNf));
+legend('estL\_x/m/H','vY');
+subplot(2,3,2);
+plot(t_fast(startNf:endNf),estL(2,startNf:endNf));
+hold on;
+plot(t_fast(startNf:endNf),vCoM_fast(1,startNf:endNf));
+legend('estL\_y','vX');
+subplot(2,3,3);
+plot(t_fast(startNf:endNf),estL(3,startNf:endNf));
+ylabel('estL\_z');
+subplot(2,3,4);
+plot(t_fast(startNf:endNf),pST(1,startNf:endNf));
+ylabel('pST\_x');
+subplot(2,3,5);
+plot(t_fast(startNf:endNf),pST(2,startNf:endNf));
+ylabel('pST\_y');
+subplot(2,3,6);
+plot(t_fast(startNf:endNf),pST(3,startNf:endNf));
+ylabel('pST\_z');
+
+
+
+
+
 
 
 

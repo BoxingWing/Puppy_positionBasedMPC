@@ -1,6 +1,6 @@
-classdef LegSequence_RT_v3< matlab.System
+classdef LegSequence_RT_v4< matlab.System
     % adjust supporting legs, foot-hold points, and CoM state for MPC
-    % based on CoM velocity
+    % based on momentum
     properties
         r0=[0;0;0.19];
         theta0=[0;0;0];
@@ -110,7 +110,7 @@ classdef LegSequence_RT_v3< matlab.System
             obj.deswzFilt_Old=0;
         end
         
-        function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,surVN,zSur,OscStop,LegStateMPC)
+        function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,surVN,zSur,OscStop,LegStateMPC,Lest,pST)
             % X_FB: system states from the estimator
             % X_mpc: predicted next step's systems states from the MPC controller
             % touchInd: indicator of wether a swing leg touches the ground
@@ -148,30 +148,42 @@ classdef LegSequence_RT_v3< matlab.System
             Rrpy=Rz(yawNow)*Ry(X_FB(5))*Rx(X_FB(4));
             vNowL=Rrpy'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
             
-            %%% next step foot-placement in the leg coordinate
-            vLDZ=[0.02,0.02,0.02]; % dead zone for vNowL
-            for i=1:1:3
-                if abs(vNowL(i))>=abs(vLDZ(i))
-                    vNowL(i)=vNowL(i)-sign(vNowL(i))*abs(vLDZ(i));
-                else
-                    vNowL(i)=0;
-                end
+            %%% next step foot-placement in the world coordinate
+            H=abs(obj.r0(3));
+            l=sqrt(9.8/H);
+            if phi>=pi
+                tRem=(2*pi-phi)/2/pi*obj.T;
+            else
+                tRem=(pi-phi)/2/pi*obj.T;
             end
-            %v=vNow+[-obj.kx*(vDesL(1)-vNowL(1)); ...
-            %    -obj.ky*(vDesL(2)-vNowL(2));0];
-            obj.vNowN(:,1:end-1)=obj.vNowN(:,2:end);
-            obj.vNowN(:,end)=vNowL;
+            Lpre_y=obj.m*H*l*sinh(l*tRem)*pST(1)+cosh(l*tRem)*Lest(2); % for heading direction
+            Lpre_x=obj.m*H*l*sinh(l*tRem)*pST(2)+cosh(l*tRem)*Lest(1); % for lateral direction
+            %Lpre_y=Lest(2);
+            %Lpre_x=Lest(1);
             
-            vNowFilt=sum(obj.vNowN,2)/length(obj.vNowN(1,:));
             
-            v=vNowFilt+[-obj.kx*(vDesL(1)-vNowFilt(1)); ...
-                -obj.ky*(vDesL(2)-vNowFilt(2));0];
+            Wx=(vNow(1)+(-obj.kx)*(vDes(1)-vNow(1)))*obj.T/2;
+            Wy=(vNow(2)+(-obj.ky)*(vDes(2)-vNow(2)))*obj.T/2;
+            Ldes_y=obj.m*Wx*l*H*sinh(obj.T/2*l)/(2*(-cosh(obj.T/2*l)^2+cosh(obj.T/2*l)+sinh(obj.T/2*l)^2));
+            Ldes_x=obj.m*Wy*l*H*sinh(obj.T/2*l)/(2*(-cosh(obj.T/2*l)^2+cosh(obj.T/2*l)+sinh(obj.T/2*l)^2));
+%             Ldes_y=(vNow(1)+(-obj.kx)*(vDes(1)-vNow(1)))*obj.m*H;
+%             Ldes_x=(vNow(2)+(-obj.ky)*(vDes(2)-vNow(2)))*obj.m*H;
+            if LegState(1)>0.5
+                Ldes_x=0.5*obj.m*H*0.005*l*sinh(l*obj.T/2)/(1+cosh(l*obj.T/2));
+            else
+                Ldes_x=-0.5*obj.m*H*0.005*l*sinh(l*obj.T/2)/(1+cosh(l*obj.T/2));
+            end
+            
+            desAllW=zeros(3,1);
+            desAllW(1)=(Ldes_y-cosh(l*obj.T/2)*Lpre_y)/(obj.m*H*l*sinh(l*obj.T/2));
+            desAllW(2)=(Ldes_x-cosh(l*obj.T/2)*Lpre_x)/(obj.m*H*l*sinh(l*obj.T/2));
+            
             
             % cross leg compensation
-            CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1);
+            CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1)*0;
             CrossCom=[zeros(1,4);CrossComY;zeros(1,4)];
             
-            desAllL=v*obj.T/4*[1,1,1,1]+obj.pLnorm+CrossCom;
+            desAllL=Rrpy'*desAllW*[1,1,1,1]+obj.pLnorm+CrossCom;
             
             % terrain height compensation
             pCoM=[X_FB(1);X_FB(2);X_FB(3)];
