@@ -151,33 +151,28 @@ classdef LegSequence_RT_v4< matlab.System
             %%% next step foot-placement in the world coordinate
             H=abs(obj.r0(3));
             l=sqrt(9.8/H);
-            if phi>=pi
+            if phi>pi
                 tRem=(2*pi-phi)/2/pi*obj.T;
             else
                 tRem=(pi-phi)/2/pi*obj.T;
             end
-            Lpre_y=obj.m*H*l*sinh(l*tRem)*pST(1)+cosh(l*tRem)*Lest(2); % for heading direction
-            Lpre_x=obj.m*H*l*sinh(l*tRem)*pST(2)+cosh(l*tRem)*Lest(1); % for lateral direction
-            %Lpre_y=Lest(2);
-            %Lpre_x=Lest(1);
+            pseudo_dx=Lest(2)/obj.m/H;
+            pseudo_dy=Lest(1)/obj.m/H;
             
-            
-            Wx=(vNow(1)+(-obj.kx)*(vDes(1)-vNow(1)))*obj.T/2;
-            Wy=(vNow(2)+(-obj.ky)*(vDes(2)-vNow(2)))*obj.T/2;
-            Ldes_y=obj.m*Wx*l*H*sinh(obj.T/2*l)/(2*(-cosh(obj.T/2*l)^2+cosh(obj.T/2*l)+sinh(obj.T/2*l)^2));
-            Ldes_x=obj.m*Wy*l*H*sinh(obj.T/2*l)/(2*(-cosh(obj.T/2*l)^2+cosh(obj.T/2*l)+sinh(obj.T/2*l)^2));
-%             Ldes_y=(vNow(1)+(-obj.kx)*(vDes(1)-vNow(1)))*obj.m*H;
-%             Ldes_x=(vNow(2)+(-obj.ky)*(vDes(2)-vNow(2)))*obj.m*H;
-            if LegState(1)>0.5
-                Ldes_x=0.5*obj.m*H*0.005*l*sinh(l*obj.T/2)/(1+cosh(l*obj.T/2));
-            else
-                Ldes_x=-0.5*obj.m*H*0.005*l*sinh(l*obj.T/2)/(1+cosh(l*obj.T/2));
-            end
+            MT=[cosh(l*tRem),l^(-1)*sinh(l*tRem);
+                l*sinh(l*tRem),cosh(l*tRem)];
+            tmp=MT*[pST(1);pseudo_dx];
+            x_this=tmp(1);
+            dx_this=tmp(2);
+            tmp=MT*[pST(2);pseudo_dy];
+            y_this=tmp(1);
+            dy_this=tmp(2);
             
             desAllW=zeros(3,1);
-            desAllW(1)=(Ldes_y-cosh(l*obj.T/2)*Lpre_y)/(obj.m*H*l*sinh(l*obj.T/2));
-            desAllW(2)=(Ldes_x-cosh(l*obj.T/2)*Lpre_x)/(obj.m*H*l*sinh(l*obj.T/2));
-            
+            %desAllW(1)=(vDes(1)-dx_this*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2));
+            %desAllW(2)=(vDes(2)-dy_this*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2));
+            desAllW(1)=(vDes(1)-(dx_this+vNow(3)*x_this*H^-1)*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2)-vNow(3)*H^(-1)*cosh(l*obj.T/2));
+            desAllW(2)=(vDes(2)-(dy_this+vNow(3)*y_this*H^-1)*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2)-vNow(3)*H^(-1)*cosh(l*obj.T/2));
             
             % cross leg compensation
             CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1)*0;

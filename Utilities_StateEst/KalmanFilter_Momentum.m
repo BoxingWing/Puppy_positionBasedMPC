@@ -54,7 +54,7 @@ classdef KalmanFilter_Momentum < matlab.System
             if norm(pFoot)>1e-5
                 pFoot=pFoot/norm(pFoot);
             end
-            pST=pC-(pFoot'*(pC-p1))*pFoot;
+            pST=(pC-p1)-(pFoot'*(pC-p1))*pFoot;
             pSTcap=[0,-pST(3),pST(2);
                 pST(3),0,-pST(1);
                 -pST(2),pST(1),0];
