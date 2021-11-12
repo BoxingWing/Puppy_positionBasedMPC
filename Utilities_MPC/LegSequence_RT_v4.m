@@ -45,6 +45,10 @@ classdef LegSequence_RT_v4< matlab.System
         desvxFilt_Old;
         desvyFilt_Old;
         deswzFilt_Old;
+        dx_this_Filt;
+        dy_this_Filt;
+        pseudo_dxOld;
+        pseudo_dyOld;
     end
     
     methods(Access = protected)
@@ -108,6 +112,10 @@ classdef LegSequence_RT_v4< matlab.System
             obj.desvxFilt_Old=0;
             obj.desvyFilt_Old=0;
             obj.deswzFilt_Old=0;
+            obj.dx_this_Filt=zeros(1,5);
+            obj.dy_this_Filt=zeros(1,5);
+            obj.pseudo_dxOld=0;
+            obj.pseudo_dyOld=0;
         end
         
         function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,surVN,zSur,OscStop,LegStateMPC,Lest,pST)
@@ -156,8 +164,15 @@ classdef LegSequence_RT_v4< matlab.System
             else
                 tRem=(pi-phi)/2/pi*obj.T;
             end
-            pseudo_dx=Lest(2)/obj.m/H;
-            pseudo_dy=Lest(1)/obj.m/H;
+            if tRem<0.2*obj.T/2 || tRem>0.8*obj.T/2
+                pseudo_dx=obj.pseudo_dxOld;
+                pseudo_dy=obj.pseudo_dyOld;
+            else
+                pseudo_dx=Lest(2)/obj.m/H;
+                pseudo_dy=Lest(1)/obj.m/H;
+                obj.pseudo_dxOld=pseudo_dx;
+                obj.pseudo_dyOld=pseudo_dy;
+            end
             
             MT=[cosh(l*tRem),l^(-1)*sinh(l*tRem);
                 l*sinh(l*tRem),cosh(l*tRem)];
@@ -168,14 +183,23 @@ classdef LegSequence_RT_v4< matlab.System
             y_this=tmp(1);
             dy_this=tmp(2);
             
+            obj.dx_this_Filt(1:end-1)=obj.dx_this_Filt(2:end);
+            obj.dx_this_Filt(end)=dx_this;
+            obj.dy_this_Filt(1:end-1)=obj.dy_this_Filt(2:end);
+            obj.dy_this_Filt(end)=dy_this;
+            
+            v=[-obj.kx*(vDes(1)-dx_this); ...
+                -obj.ky*(vDes(2)-dy_this);0];
+            
             desAllW=zeros(3,1);
-            %desAllW(1)=(vDes(1)-dx_this*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2));
-            %desAllW(2)=(vDes(2)-dy_this*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2));
-            desAllW(1)=(vDes(1)-(dx_this+vNow(3)*x_this*H^-1)*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2)-vNow(3)*H^(-1)*cosh(l*obj.T/2));
-            desAllW(2)=(vDes(2)-(dy_this+vNow(3)*y_this*H^-1)*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2)-vNow(3)*H^(-1)*cosh(l*obj.T/2));
+            desAllW(1)=(vDes(1)-dx_this*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2))+v(1)*obj.T/4;
+            desAllW(2)=(vDes(2)-dy_this*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2))+v(2)*obj.T/4;
+            
+            %desAllW(1)=(vDes(1)-(dx_this+vNow(3)*x_this*H^-1)*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2)-vNow(3)*H^(-1)*cosh(l*obj.T/2));
+            %desAllW(2)=(vDes(2)-(dy_this+vNow(3)*y_this*H^-1)*cosh(l*obj.T/2))/(l*sinh(l*obj.T/2)-vNow(3)*H^(-1)*cosh(l*obj.T/2));
             
             % cross leg compensation
-            CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1)*0;
+            CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1)*1;
             CrossCom=[zeros(1,4);CrossComY;zeros(1,4)];
             
             desAllL=Rrpy'*desAllW*[1,1,1,1]+obj.pLnorm+CrossCom;
