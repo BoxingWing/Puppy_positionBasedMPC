@@ -399,29 +399,29 @@ plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
 ylabel('estDis\_RPYz')
 
 %%% check estL and pST
-figure();
-subplot(2,3,1);
-plot(t_fast(startNf:endNf),estL(1,startNf:endNf)/m/0.19);
-hold on;
-plot(t_fast(startNf:endNf),vCoM_fast(2,startNf:endNf));
-legend('estL\_x/m/H','vY');
-subplot(2,3,2);
-plot(t_fast(startNf:endNf),estL(2,startNf:endNf));
-hold on;
-plot(t_fast(startNf:endNf),vCoM_fast(1,startNf:endNf));
-legend('estL\_y','vX');
-subplot(2,3,3);
-plot(t_fast(startNf:endNf),estL(3,startNf:endNf));
-ylabel('estL\_z');
-subplot(2,3,4);
-plot(t_fast(startNf:endNf),pST(1,startNf:endNf));
-ylabel('pST\_x');
-subplot(2,3,5);
-plot(t_fast(startNf:endNf),pST(2,startNf:endNf));
-ylabel('pST\_y');
-subplot(2,3,6);
-plot(t_fast(startNf:endNf),pST(3,startNf:endNf));
-ylabel('pST\_z');
+% figure();
+% subplot(2,3,1);
+% plot(t_fast(startNf:endNf),estL(1,startNf:endNf)/m/0.19);
+% hold on;
+% plot(t_fast(startNf:endNf),vCoM_fast(2,startNf:endNf));
+% legend('estL\_x/m/H','vY');
+% subplot(2,3,2);
+% plot(t_fast(startNf:endNf),estL(2,startNf:endNf));
+% hold on;
+% plot(t_fast(startNf:endNf),vCoM_fast(1,startNf:endNf));
+% legend('estL\_y','vX');
+% subplot(2,3,3);
+% plot(t_fast(startNf:endNf),estL(3,startNf:endNf));
+% ylabel('estL\_z');
+% subplot(2,3,4);
+% plot(t_fast(startNf:endNf),pST(1,startNf:endNf));
+% ylabel('pST\_x');
+% subplot(2,3,5);
+% plot(t_fast(startNf:endNf),pST(2,startNf:endNf));
+% ylabel('pST\_y');
+% subplot(2,3,6);
+% plot(t_fast(startNf:endNf),pST(3,startNf:endNf));
+% ylabel('pST\_z');
 
 
 
