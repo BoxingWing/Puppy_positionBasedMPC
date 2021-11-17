@@ -88,16 +88,16 @@ headV=[1;0;0]; % heading direction of the robot, MUST be a unit vector
 
 model=struct('Plant',plantDA,'Nominal',norminal);
 
-numP=7; % prediction horizon: 6 step for 15 ms, 7 step for 20 ms, 8 step for 25 ms.
+numP=6; % prediction horizon: 6 step for 15 ms, 7 step for 20 ms, 8 step for 25 ms.
 numM=2; % control horizon
 %%% weights
 %%% W.OutputVariables=ones(numP,1)*[[2,10,50],[0.25,0.5,10],[0.2,0.2,0.1],[0,0,0.3],0]; %2 10 50 0.25 0.5 10
 
-W.OutputVariables=ones(numP,1)*[[20,20,180],[2,2,2],[10,10,0.1],[0.1,0.1,0.1],0];
+W.OutputVariables=ones(numP,1)*[[20,20,180],[2,2,5],[10,10,0.1],[0.1,0.1,0.1],0];
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
-%W.OutputVariables(end,:)=[[20,20,180],[50,50,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
+%W.OutputVariables(end,:)=[[20,20,180],[5,5,5],[10,10,0.1],[0.1,0.1,0.1],0];
 %W.ManipulatedVariables=ones(numP,1)*[[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01]];
 %W.ManipulatedVariables(end,:)=W.ManipulatedVariables(end,:)*0;
 %W.ManipulatedVariablesRate=ones(numP,1)*[[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1],[0.1,0.1,0.1]];
@@ -162,8 +162,10 @@ OV(3).Max=5;
 % OV(11).Max=3/180*pi;
 
 mpcPuppy=mpc(model,Ts,numP,numM,W,MV,OV);
-%mpcPuppy.Optimizer.Algorithm='interior-point';
+%setCustomSolver(mpcPuppy,'quadprog')
 mpcPuppy.Optimizer.ActiveSetOptions.MaxIterations=25;
+% mpcPuppy.Optimizer.CustomSolver=true;
+% mpcPuppy.Optimizer.CustomSolverCodeGen=true;
 mpcPuppy.Optimizer.UseSuboptimalSolution=true;
 modnor=tf(1,1);
 modnor2=tf(1,[1,0]);

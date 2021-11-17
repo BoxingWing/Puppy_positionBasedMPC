@@ -1,7 +1,7 @@
 %% fetch data from raspberry pi
 mypi=raspberrypi;
 getFile(mypi,'multicore_dataRec*.mat');
-getFile(mypi,'~/MATLAB_ws/R2021a/raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis.log'); % get the log file
+getFile(mypi,'~/MATLAB_ws/R2021b/raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis.log'); % get the log file
 
 %% data plot
 close all;
@@ -227,19 +227,19 @@ ylabel('pCoMz');
 % legend('MPC_cmd','interpolated');ylabel('Leg1z');
 
 %%% check the ref cmd
-% figure();
-% subplot(2,2,1)
-% plot(t_slow(startNs:endNs),refSeq2_slow(4:6,startNs:endNs)/pi*180);
-% ylabel('refSeq2');legend('SitaX','SitaY','SitaZ');
-% subplot(2,2,2)
-% plot(t_slow(startNs:endNs),refSeq2_slow(1:3,startNs:endNs));
-% ylabel('refSeq2');legend('pCoMX','pCoMY','pCoMZ');
-% subplot(2,2,3)
-% plot(t_slow(startNs:endNs),refP_slow(4:6,startNs:endNs));
-% ylabel('refP');legend('SitaX','SitaY','SitaZ');
-% subplot(2,2,4)
-% plot(t_slow(startNs:endNs),refP_slow(1:3,startNs:endNs));
-% ylabel('refP');legend('pCoMX','pCoMY','pCoMZ');
+figure();
+subplot(2,2,1)
+plot(t_slow(startNs:endNs),refSeq2_slow(4:6,startNs:endNs)/pi*180);
+ylabel('refSeq2');legend('SitaX','SitaY','SitaZ');
+subplot(2,2,2)
+plot(t_slow(startNs:endNs),refSeq2_slow(1:3,startNs:endNs));
+ylabel('refSeq2');legend('pCoMX','pCoMY','pCoMZ');
+subplot(2,2,3)
+plot(t_slow(startNs:endNs),refP_slow(4:6,startNs:endNs));
+ylabel('refP');legend('SitaX','SitaY','SitaZ');
+subplot(2,2,4)
+plot(t_slow(startNs:endNs),refP_slow(1:3,startNs:endNs));
+ylabel('refP');legend('pCoMX','pCoMY','pCoMZ');
 
 %%% check foot position
 figure();

@@ -66,7 +66,12 @@ classdef refTrajectory_v4< matlab.System
             else
                 sitaNow=obj.sitaErrOld;
             end
-            
+            if disable>0.5
+                obj.pxOld=0;
+                obj.pyOld=0;
+                obj.sitaZOld=0;
+                obj.sitaErrOld=[0;0;0];
+            end
             
             %             surVN=[0;0;1];
             %             sura=[0;0;0];

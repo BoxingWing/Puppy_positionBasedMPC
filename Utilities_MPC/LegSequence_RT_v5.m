@@ -134,7 +134,7 @@ classdef LegSequence_RT_v5< matlab.System
             desPit=ref(5);
             desYaw=ref(6);
             xFiltFactor=0.1;
-            yFiltFactor=0.2;
+            yFiltFactor=0.1;
             wzFiltFactor=0.03;
             
             desvxFilt=desvX*xFiltFactor+obj.desvxFilt_Old*(1-xFiltFactor);
@@ -160,8 +160,8 @@ classdef LegSequence_RT_v5< matlab.System
                 tRem=(pi-phi)/2/pi*obj.T;
             end
             
-            p41=obj.pLnorm(:,4)-obj.pLnorm(:,1);
-            p32=obj.pLnorm(:,3)-obj.pLnorm(:,2);
+            p41=-obj.pLnorm(:,4)+obj.pLnorm(:,1);
+            p32=-obj.pLnorm(:,3)+obj.pLnorm(:,2);
             p41=p41/norm(p41);
             p32=p32/norm(p32);
             
@@ -180,7 +180,7 @@ classdef LegSequence_RT_v5< matlab.System
             obj.v_ac_Store(:,1:end-1)=obj.v_ac_Store(:,2:end);
             obj.v_ac_Store(:,end)=v_ac;
             
-            p_a=-obj.k_ac*sum(obj.v_ac_Store,2)/length(obj.v_ac_Store(1,:))*obj.T/2+v_adc*obj.T/4;
+            p_a=-obj.k_ac*sum(obj.v_ac_Store,2)/length(obj.v_ac_Store(1,:))*obj.T/4+v_adc*obj.T/4;
             p_ua=v_uac*obj.T/4+obj.k_uac*(v_uac-v_uadc)*obj.T/4;
             
             p_ftL=p_a+p_ua;
@@ -205,7 +205,7 @@ classdef LegSequence_RT_v5< matlab.System
             for i=1:1:4
                 desAllL_z(i)=(surP_L-obj.LegCorOri(:,i))'*surVN_L;
                 delta=-obj.r0(3)-desAllL_z(i);
-                desAllL_z(i)=desAllL_z(i)+delta*0.8;
+                desAllL_z(i)=desAllL_z(i)+delta*0.95;
             end
             
             %%% next step foot-end position planning in the leg coordinate
