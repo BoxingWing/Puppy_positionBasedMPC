@@ -180,7 +180,9 @@ classdef LegSequence_RT_v5< matlab.System
             obj.v_ac_Store(:,1:end-1)=obj.v_ac_Store(:,2:end);
             obj.v_ac_Store(:,end)=v_ac;
             
-            p_a=-obj.k_ac*sum(obj.v_ac_Store,2)/length(obj.v_ac_Store(1,:))*obj.T/4+v_adc*obj.T/4;
+            %p_a=-obj.k_ac*sum(obj.v_ac_Store,2)/length(obj.v_ac_Store(1,:))*obj.T/4+v_adc*obj.T/4; % obj.k_ac=-0.05
+            
+            p_a=obj.k_ac*v_ac*obj.T/4;
             p_ua=v_uac*obj.T/4+obj.k_uac*(v_uac-v_uadc)*obj.T/4;
             
             p_ftL=p_a+p_ua;
