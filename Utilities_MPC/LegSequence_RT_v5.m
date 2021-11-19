@@ -187,7 +187,7 @@ classdef LegSequence_RT_v5< matlab.System
             
             p_ftL=p_a+p_ua;
             
-            if  tRem>0.9*obj.T/2
+            if  tRem>0.8*obj.T/2
                 p_ftL=obj.p_ftL_Old;
             end
             

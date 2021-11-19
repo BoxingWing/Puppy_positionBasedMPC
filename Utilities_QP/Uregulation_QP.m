@@ -6,6 +6,7 @@ classdef Uregulation_QP< matlab.System
     properties
         miu=0.5;
         maxFz=50;
+        minFz=6;
     end
     
     properties(Access=private)
@@ -44,7 +45,7 @@ classdef Uregulation_QP< matlab.System
                 A3(i,3*i-2:3*i)=surVN;
                 A3(i+4,3*i-2:3*i)=-surVN;
                 b3(i)=obj.maxFz;
-                b3(i+4)=0;
+                b3(i+4)=obj.minFz;
             end
             for i=1:1:4
                 if LegState(i)<0.5
