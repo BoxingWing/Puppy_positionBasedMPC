@@ -12,7 +12,7 @@ classdef LegSequence_RT_v5< matlab.System
         m=3.5;
         k_ac=0;
         k_uac=0;
-        kRz=0;
+        k_wz=0;
         T=0.8; % gait duration
         StepH=0.04;
         SampleTime = 0.005; % Sample Time
@@ -130,28 +130,39 @@ classdef LegSequence_RT_v5< matlab.System
             end
             desvX=ref(7);
             desvY=ref(8);
+            desvZ=ref(9);
+            deswX=ref(10);
+            deswY=ref(11);
+            deswZ=ref(12);
             desRoll=ref(4);
             desPit=ref(5);
             desYaw=ref(6);
             xFiltFactor=0.1;
             yFiltFactor=0.1;
-            wzFiltFactor=0.03;
+            wzFiltFactor=0.1;
             
             desvxFilt=desvX*xFiltFactor+obj.desvxFilt_Old*(1-xFiltFactor);
             desvyFilt=desvY*yFiltFactor+obj.desvyFilt_Old*(1-yFiltFactor);
+            deswzFilt=deswZ*wzFiltFactor+obj.deswzFilt_Old*(1-wzFiltFactor);
             %deswzFilt=
             
             obj.desvxFilt_Old=desvxFilt;
             obj.desvyFilt_Old=desvyFilt;
+            obj.deswzFilt_Old=deswzFilt;
             
-            vDes=[desvxFilt;desvyFilt;0];
-            vDesL=Rx(desRoll)'*Ry(desPit)'*Rz(desYaw)'*vDes; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
+            vDes=[desvxFilt;desvyFilt;desvZ];
+            wDes=[deswX;deswY;deswzFilt];
+            RrpyDes=Rz(desYaw)*Ry(desPit)*Rx(desRoll);
+            vDesL=RrpyDes'*vDes; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
+            wDesL=RrpyDes'*wDes;
             
             vNow=[X_FB(7:8);X_FB(9)];
+            wNow=[X_FB(10);X_FB(11);X_FB(12);];
             yawNow=X_FB(6);
             Rrpy=Rz(yawNow)*Ry(X_FB(5))*Rx(X_FB(4));
             vNowL=Rrpy'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
-            
+            wNowL=Rrpy'*wNow;
+
             %%% next step foot-placement in the leg coordinate
             
             if phi>pi
@@ -183,13 +194,13 @@ classdef LegSequence_RT_v5< matlab.System
             %p_a=-obj.k_ac*sum(obj.v_ac_Store,2)/length(obj.v_ac_Store(1,:))*obj.T/4+v_adc*obj.T/4; % obj.k_ac=-0.05
             
             p_a=obj.k_ac*v_ac*obj.T/4;
-            p_ua=v_uac*obj.T/4+obj.k_uac*(v_uac-v_uadc)*obj.T/4;
+            p_ua=0.4*v_uac*obj.T/4+obj.k_uac*(v_uac-v_uadc)*obj.T/4;
             
             p_ftL=p_a+p_ua;
             
-            if  tRem>0.8*obj.T/2
-                p_ftL=obj.p_ftL_Old;
-            end
+%             if  tRem>0.8*obj.T/2
+%                 p_ftL=obj.p_ftL_Old;
+%             end
             
             obj.p_ftL_Old=p_ftL;
             
@@ -197,7 +208,13 @@ classdef LegSequence_RT_v5< matlab.System
             CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1)*0;
             CrossCom=[zeros(1,4);CrossComY;zeros(1,4)];
             
-            desAllL=p_ftL*[1,1,1,1]+obj.pLnorm+CrossCom;
+            % rotation compensation
+            %sitaZ=0.1*wNowL(3)*obj.T/4+obj.k_wz*(wNowL(3)-wDesL(3))*obj.T/4;
+            sitaZ=obj.k_wz*wDesL(3)*obj.T/4;
+            p_wz=Rz(sitaZ)*obj.pLnorm-obj.pLnorm;
+
+            % final foot placement
+            desAllL=p_ftL*[1,1,1,1]+p_wz+obj.pLnorm+CrossCom;
             
             % terrain height compensation
             pCoM=[X_FB(1);X_FB(2);X_FB(3)];
@@ -207,7 +224,7 @@ classdef LegSequence_RT_v5< matlab.System
             for i=1:1:4
                 desAllL_z(i)=(surP_L-obj.LegCorOri(:,i))'*surVN_L;
                 delta=-obj.r0(3)-desAllL_z(i);
-                desAllL_z(i)=desAllL_z(i)+delta*0.95;
+                desAllL_z(i)=desAllL_z(i)+delta*0.8;
             end
             
             %%% next step foot-end position planning in the leg coordinate
@@ -215,7 +232,7 @@ classdef LegSequence_RT_v5< matlab.System
             pL_sw=zeros(3,4);
             for i=1:1:4
                 if LegState(i)<0.5
-                    s=s*1.2; % to accelerate the swing trajectory tracing
+                    s=s*1.1; % to accelerate the swing trajectory tracing
                     if s>=1
                         s=1;
                     end
@@ -223,9 +240,10 @@ classdef LegSequence_RT_v5< matlab.System
                     des=desAllL(:,i);
                     %des(3)=sta(3);
                     %des(3)=-0.19;
+                    kv=obj.T/2;
                     des(3)=desAllL_z(i);
-                    ax=[sta(1),sta(1),des(1),des(1)];
-                    ay=[sta(2),sta(2),des(2),des(2)];
+                    ax=[sta(1),sta(1)+(-vNowL(1))/3*kv,des(1)-(-vNowL(1))/3*kv,des(1)];
+                    ay=[sta(2),sta(2)+(-vNowL(2))/3*kv,des(2)-(-vNowL(2))/3*kv,des(2)];
                     az1=[sta(3),sta(3),(sta(3)+des(3))/2+obj.StepH,(sta(3)+des(3))/2+obj.StepH];
                     az2=[(sta(3)+des(3))/2+obj.StepH,(sta(3)+des(3))/2+obj.StepH,des(3),des(3)];
                     px=BezierCurve(ax,s);
@@ -245,9 +263,8 @@ classdef LegSequence_RT_v5< matlab.System
             end
             
             %%% generate the foot-end position cmd via interploating the MPC's predicted states
-            % As foot-end positions are planned as above, this part only
-            % interploate the pCoM to derive the foot-end positions in leg
-            % coordinates
+            % As foot-end positions are planned as above, this part only interploate the pCoM to derive the foot-end positions in leg coordinates...
+            % But ONLY when any legs enter the stance phase.
             theta=X_FB(4:6);
             Pc=reshape(X_FB(1:3),3,1);
             R=Rz(theta(3))*Ry(theta(2))*Rx(theta(1));
@@ -257,6 +274,7 @@ classdef LegSequence_RT_v5< matlab.System
                 if obj.interpol_Count>=interpolNUM
                     obj.interpol_Count=interpolNUM;
                 end
+                obj.pArray_L_Adm_Now=pArray_L_Adm/1000;
                 PendAllLocal_st_tmp=(interpolNUM-obj.interpol_Count)/interpolNUM*obj.pArray_L_Adm_Old+obj.interpol_Count/interpolNUM*obj.pArray_L_Adm_Now;
                 obj.interpol_Count=obj.interpol_Count+1;
             else
@@ -271,6 +289,7 @@ classdef LegSequence_RT_v5< matlab.System
                 obj.interpol_Count=1;
             end
             
+            %PendAllLocal_st_tmp=pArray_L_Adm/1000;
             PendAllLocal=zeros(3,4);
             PendAllLocal_st=reshape(PendAllLocal_st_tmp,3,4);
             PendAllLocal_sw=pL_sw;

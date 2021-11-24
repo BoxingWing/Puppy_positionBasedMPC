@@ -1,15 +1,16 @@
 clear variables;
 close all;
-syms x0 dx0 m real;
-syms T H g positive;
-l=sqrt(H/g);
-xT=x0*cosh(T/l)+l*dx0*sinh(T/l);
-dxT=x0/l*sinh(T/l)+dx0*cosh(T/l);
+W=diag([1,2,3]);
+R=Rz(0.1);
+Wnew=R'*W*R
 
-eqn1=xT==-x0;
-eqn2=dxT==dx0;
 
-S=solve(eqn1,dx0);
 
-L0=simplify(H*S*m);
-pretty(L0)
+
+
+% subfunction
+function R=Rz(theta)
+R=[cos(theta),-sin(theta),0;
+      sin(theta),cos(theta),0;
+      0,0,1];
+end

@@ -62,7 +62,7 @@ classdef Uregulation_QP< matlab.System
             H=diag(ones(12,1));
             f=zeros(12,1);
             
-            opts = optimoptions('quadprog','Algorithm','active-set','MaxIterations',4);
+            opts = optimoptions('quadprog','Algorithm','active-set','MaxIterations',3);
             [Udelta,~,exitflag] = quadprog(H,f,A,bdelta,[],[],[],[],zeros(12,1),opts);
             
             Unew=Uadd+Udelta;

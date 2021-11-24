@@ -35,8 +35,6 @@ classdef refTrajectory_v4< matlab.System
             % refSeq: ref sequence excluding sitaErr compensation
             % refP: ref of the first prediciton horizon excluding sitaErr
             % disable: sitaErr will not be accumulated, ref will not be updated
-            vxL=vxL*1;
-            vyL=vyL*1;
             
             curState=X_FB(1:13); curState(13)=9.8;
             refSeq=zeros(obj.numP,13);
@@ -76,8 +74,9 @@ classdef refTrajectory_v4< matlab.System
             %             surVN=[0;0;1];
             %             sura=[0;0;0];
             obj.sitaZOld=obj.sitaZOld+omegaZ*obj.dt;
-            obj.pxOld=obj.pxOld+vxL*obj.dt;
-            obj.pyOld=obj.pyOld+vyL*obj.dt;
+            tmp=Rz(obj.sitaZOld)*[vxL;vyL;0];
+            obj.pxOld=obj.pxOld+tmp(1)*obj.dt;
+            obj.pyOld=obj.pyOld+tmp(2)*obj.dt;
             %Rbody=Rz(X_FB(6))*Ry(X_FB(5))*Rx(X_FB(4));
             Rbody=Ry(X_FB(5))*Rx(X_FB(4));
             headX=Rz(obj.sitaZOld)*Rbody*[1;0;0];
