@@ -16,9 +16,6 @@ classdef ovWeight< matlab.System
         numP=6;
     end
 
-    properties(Access=private)
-
-    end
 
     methods(Access = protected)
 

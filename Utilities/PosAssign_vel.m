@@ -46,20 +46,12 @@ classdef PosAssign_vel < matlab.System
             num = 2;
         end
         
-        function flag = isOutputSizeLockedImpl(~,~)
-            flag{1} = true;
-            flag{2} = true;
-        end
         
         function varargout = isOutputFixedSizeImpl(~,~)
             varargout{1} = true;
             varargout{2} = true;
         end
         
-        function flag = isOutputComplexityLockedImpl(~,~)
-            flag{1} = true;
-            flag{2} = true;
-        end
         %
         function varargout = isOutputComplexImpl(~)
             varargout{1} = false;

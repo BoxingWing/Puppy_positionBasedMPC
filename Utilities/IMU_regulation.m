@@ -57,12 +57,6 @@ classdef IMU_regulation < matlab.System
             num = 4;
         end
         
-        function flag = isOutputSizeLockedImpl(~,~)
-            flag{1} = true;
-            flag{2} = true;
-            flag{3} = true;
-            flag{4} = true;
-        end
         
         function varargout = isOutputFixedSizeImpl(~,~)
             varargout{1} = true;
@@ -71,12 +65,6 @@ classdef IMU_regulation < matlab.System
             varargout{4} = true;
         end
         
-        function flag = isOutputComplexityLockedImpl(~,~)
-            flag{1} = true;
-            flag{2} = true;
-            flag{3} = true;
-            flag{4} = true;
-        end
 %         
         function varargout = isOutputComplexImpl(~)
             varargout{1} = false;
