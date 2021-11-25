@@ -41,9 +41,9 @@ classdef message_decoder_PC< matlab.System
             obj.SPLeg_Old=[1;0;0;1];
         end
         
-        function [pCoM,vCoM,RPYnew,OmegaW,SPLeg,SP,surVN,surV1,surV2,surP,headG,mpcStop,phi,vxPercent,vyPercent,wzPercent,estDis] = stepImpl(obj,in)
+        function [pCoM,vCoM,RPYnew,OmegaW,SPLeg,SP,surVN,surV1,surV2,surP,headG,mpcStop,phi,vxPercent,vyPercent,wzPercent,estDis,Uava] = stepImpl(obj,in)
             header=in(1);
-            if abs(header-66)<0.1
+%             if abs(header-66)<0.1
                 pCoM=in(2:4);
                 vCoM=in(5:7);
                 RPYnew=in(8:10);
@@ -61,25 +61,26 @@ classdef message_decoder_PC< matlab.System
                 vyPercent=in(48);
                 wzPercent=in(49);
                 estDis=in(50:55);
-            else
-                pCoM=obj.pCoM_Old;
-                vCoM=obj.vCoM_Old;
-                RPYnew=obj.RPYnew_Old;
-                OmegaW=obj.OmegaW_Old;
-                SPLeg=obj.SPLeg_Old;
-                SP=obj.SP_Old;
-                surVN=obj.surVN_Old;
-                surV1=obj.surV1_Old;
-                surV2=obj.surV2_Old;
-                surP=obj.surP_Old;
-                headG=obj.headG_Old;
-                mpcStop=1;
-                phi=obj.phi_Old;
-                vxPercent=obj.vxPercent_Old;
-                vyPercent=obj.vyPercent_Old;
-                wzPercent=obj.wzPercent_Old;
-                estDis=obj.estDis_Old;
-            end
+                Uava=in(56:67);
+%             else
+%                 pCoM=obj.pCoM_Old;
+%                 vCoM=obj.vCoM_Old;
+%                 RPYnew=obj.RPYnew_Old;
+%                 OmegaW=obj.OmegaW_Old;
+%                 SPLeg=obj.SPLeg_Old;
+%                 SP=obj.SP_Old;
+%                 surVN=obj.surVN_Old;
+%                 surV1=obj.surV1_Old;
+%                 surV2=obj.surV2_Old;
+%                 surP=obj.surP_Old;
+%                 headG=obj.headG_Old;
+%                 mpcStop=1;
+%                 phi=obj.phi_Old;
+%                 vxPercent=obj.vxPercent_Old;
+%                 vyPercent=obj.vyPercent_Old;
+%                 wzPercent=obj.wzPercent_Old;
+%                 estDis=obj.estDis_Old;
+%             end
             obj.pCoM_Old=pCoM;
             obj.vCoM_Old=vCoM;
             obj.RPYnew_Old=RPYnew;
@@ -95,7 +96,7 @@ classdef message_decoder_PC< matlab.System
             obj.estDis_Old=estDis;
         end
         
-        function [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17] = getOutputDataTypeImpl(~)
+        function [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14,d15,d16,d17,d18] = getOutputDataTypeImpl(~)
             d1 = 'double';
             d2 = 'double';
             d3 = 'double';
@@ -113,9 +114,10 @@ classdef message_decoder_PC< matlab.System
             d15='double';
             d16='double';
             d17='double';
+            d18='double';
         end
         
-        function [s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17] = getOutputSizeImpl(~)
+        function [s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18] = getOutputSizeImpl(~)
             s1 = [3,1];
             s2=[3,1];
             s3=[3,1];
@@ -133,9 +135,10 @@ classdef message_decoder_PC< matlab.System
             s15=[1,1];
             s16=[1,1];
             s17=[6,1];
+            s18=[12,1];
         end
         
-        function [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17] = isOutputFixedSizeImpl(~)
+        function [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18] = isOutputFixedSizeImpl(~)
             f1=true;
             f2=true;
             f3=true;
@@ -153,9 +156,10 @@ classdef message_decoder_PC< matlab.System
             f15=true;
             f16=true;
             f17=true;
+            f18=true;
         end
         
-        function [c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17] = isOutputComplexImpl(~)
+        function [c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16,c17,c18] = isOutputComplexImpl(~)
             c1=false;
             c2=false;
             c3=false;
@@ -173,6 +177,7 @@ classdef message_decoder_PC< matlab.System
             c15=false;
             c16=false;
             c17=false;
+            c18=false;
         end
         
         function resetImpl(obj)

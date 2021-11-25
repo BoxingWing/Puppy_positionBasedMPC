@@ -40,8 +40,8 @@ pArrayL=rt_PendAllLocal(2:end,:);
 touchInd=rt_touchInd_LegState(2:5,:);
 LegState=rt_touchInd_LegState(6:end,:);
 pArrayLFK=rt_pLFKfast(2:end,:);
-UFinal=rt_UFinal_virtualForce(2:13,:);
-virtualU=rt_UFinal_virtualForce(14:end,:);
+% UFinal=rt_UFinal_virtualForce(2:13,:);
+% virtualU=rt_UFinal_virtualForce(14:end,:);
 %refOVnew=rt_refOVbew_refMVnew_slow(2:14,:);
 %refMVnew=rt_refOVbew_refMVnew_slow(15:end,:);
 
@@ -378,25 +378,25 @@ legend('x','y','z','LegState','touchInd');
 % legend('qpLeg4z','mpcLeg4z')
 
 %%% check the estDis
-figure();
-subplot(2,3,1)
-plot(t_fast(startNf:endNf),estDis(1,startNf:endNf));
-ylabel('estDis\_pCoMx')
-subplot(2,3,2)
-plot(t_fast(startNf:endNf),estDis(2,startNf:endNf));
-ylabel('estDis\_pCoMy')
-subplot(2,3,3)
-plot(t_fast(startNf:endNf),estDis(3,startNf:endNf));
-ylabel('estDis\_pCoMz')
-subplot(2,3,4)
-plot(t_fast(startNf:endNf),estDis(4,startNf:endNf));
-ylabel('estDis\_RPYx')
-subplot(2,3,5)
-plot(t_fast(startNf:endNf),estDis(5,startNf:endNf));
-ylabel('estDis\_RPYy')
-subplot(2,3,6)
-plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
-ylabel('estDis\_RPYz')
+% figure();
+% subplot(2,3,1)
+% plot(t_fast(startNf:endNf),estDis(1,startNf:endNf));
+% ylabel('estDis\_pCoMx')
+% subplot(2,3,2)
+% plot(t_fast(startNf:endNf),estDis(2,startNf:endNf));
+% ylabel('estDis\_pCoMy')
+% subplot(2,3,3)
+% plot(t_fast(startNf:endNf),estDis(3,startNf:endNf));
+% ylabel('estDis\_pCoMz')
+% subplot(2,3,4)
+% plot(t_fast(startNf:endNf),estDis(4,startNf:endNf));
+% ylabel('estDis\_RPYx')
+% subplot(2,3,5)
+% plot(t_fast(startNf:endNf),estDis(5,startNf:endNf));
+% ylabel('estDis\_RPYy')
+% subplot(2,3,6)
+% plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
+% ylabel('estDis\_RPYz')
 
 %%% check estL and pST
 % figure();

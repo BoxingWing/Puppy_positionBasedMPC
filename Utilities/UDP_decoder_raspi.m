@@ -69,6 +69,9 @@ classdef UDP_decoder_raspi< matlab.System
                 MPCtime=0;
                 EN=0;
             end
+            if sum(isnan(U))>0.5 % seems that first output of MPC is always NaN, need further check
+                U=obj.U_Old;
+            end
             obj.U_Old=U;
             obj.SP_MPC_Old=SP_MPC;
             obj.X_mpc_Old=X_mpc;
