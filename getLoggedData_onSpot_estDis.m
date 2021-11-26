@@ -57,9 +57,8 @@ wzPercent_fast=rt_vxPercent_vyPercent_wzPercent(4,:);
 PendAllLocal_fast=rt_PendAllLocal(2:end,:);
 spMPC_fast=rt_spMPC_fast(2:end,:);
 pArrayLnor=rt_pLnor_fast(2:end,:); % parrayL direct from mpc out
-estDis=rt_estDis_fast(2:end,:);
-estL=rt_estL_pST(2:4,:);
-pST=rt_estL_pST(5:7,:);
+estXbar=rt_estXbar_slow(2:end,:);
+estDis=estXbar(14:19,:);
 
 EstOff=rt_EstOff_OscEN_mpcSTOP_ES(2,:);
 OscEN=rt_EstOff_OscEN_mpcSTOP_ES(3,:);
@@ -101,11 +100,11 @@ end
 endNs=tmp(1);
 
 %%% check the multirate delay
-% figure();
-% stairs(t_slow,mvOut_slow(1,:));
-% hold on;
-% stairs(t_fast,mvOut_fast(1,:));
-% legend('mvOut1\_slow','mvOut1\_fast');
+figure();
+stairs(t_slow,mvOut_slow(1,:));
+hold on;
+stairs(t_fast,mvOut_fast(1,:));
+legend('mvOut1\_slow','mvOut1\_fast');
 
 %%% check the virutal force
 % figure()
@@ -378,25 +377,25 @@ legend('x','y','z','LegState','touchInd');
 % legend('qpLeg4z','mpcLeg4z')
 
 %%% check the estDis
-% figure();
-% subplot(2,3,1)
-% plot(t_fast(startNf:endNf),estDis(1,startNf:endNf));
-% ylabel('estDis\_pCoMx')
-% subplot(2,3,2)
-% plot(t_fast(startNf:endNf),estDis(2,startNf:endNf));
-% ylabel('estDis\_pCoMy')
-% subplot(2,3,3)
-% plot(t_fast(startNf:endNf),estDis(3,startNf:endNf));
-% ylabel('estDis\_pCoMz')
-% subplot(2,3,4)
-% plot(t_fast(startNf:endNf),estDis(4,startNf:endNf));
-% ylabel('estDis\_RPYx')
-% subplot(2,3,5)
-% plot(t_fast(startNf:endNf),estDis(5,startNf:endNf));
-% ylabel('estDis\_RPYy')
-% subplot(2,3,6)
-% plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
-% ylabel('estDis\_RPYz')
+figure();
+subplot(2,3,1)
+plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
+ylabel('estDis\_pCoMx')
+subplot(2,3,2)
+plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
+ylabel('estDis\_pCoMy')
+subplot(2,3,3)
+plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
+ylabel('estDis\_pCoMz')
+subplot(2,3,4)
+plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
+ylabel('estDis\_RPYx')
+subplot(2,3,5)
+plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
+ylabel('estDis\_RPYy')
+subplot(2,3,6)
+plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
+ylabel('estDis\_RPYz')
 
 %%% check estL and pST
 % figure();

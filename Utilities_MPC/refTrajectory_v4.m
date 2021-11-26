@@ -134,7 +134,7 @@ classdef refTrajectory_v4< matlab.System
             if disable>0.5
                 refSeq=obj.refSeqOld;
             end
-            refP=refSeq(1,:);
+            refP=refSeq(1,:)';
             
             refSeqOut=refSeq;
             for i=1:1:obj.numP

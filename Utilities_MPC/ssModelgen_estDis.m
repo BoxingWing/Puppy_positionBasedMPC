@@ -47,13 +47,14 @@ classdef ssModelgen_estDis< matlab.System
             
             [A,B]=DS_gen(obj.Ts,obj.m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
             
-            Bd=[0*eye(6);eye(6);zeros(1,6)];
+            %Bd=[0*eye(6);eye(6);zeros(1,6)];
+            Bd=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
             Cd=zeros(13,6);
             
-            Anew=A;
-            Bnew=[B,Bd];
-            Cnew=eye(13);
-            Dnew=[zeros(13,12),Cd*0];
+            Anew=[A,Bd;zeros(6,13),eye(6)];
+            Bnew=[B;zeros(6,12)];
+            Cnew=[diag(ones(13,1)),Cd];
+            Dnew=zeros(13,12);
             
             Unow=zeros(12,1);
             for i=1:1:4
@@ -62,7 +63,6 @@ classdef ssModelgen_estDis< matlab.System
                 end
             end
             Unow=Unow*obj.m*9.8/sum(SPLeg);
-            Unow=[Unow;zeros(6,1)];
             
             X=xFB;
             U=Unow;
@@ -83,14 +83,14 @@ classdef ssModelgen_estDis< matlab.System
         end
         
         function [s1,s2,s3,s4,s5,s6,s7,s8,s9] = getOutputSizeImpl(~)
-            s1=[13,13];
-            s2=[13,18];
-            s3=[13,13];
-            s4=[13,18];
-            s5=[13,1];
-            s6=[18,1];
+            s1=[19,19];
+            s2=[19,12];
+            s3=[13,19];
+            s4=[13,12];
+            s5=[19,1];
+            s6=[12,1];
             s7=[13,1];
-            s8=[13,1];
+            s8=[19,1];
             s9=[3,3];
         end
         

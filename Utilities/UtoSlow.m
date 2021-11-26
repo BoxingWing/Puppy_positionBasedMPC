@@ -5,7 +5,7 @@ classdef UtoSlow< matlab.System
 %     end
     
     properties(Access=private)
-        UOld=zeros(12,5);
+        UOld=zeros(12,3);
     end
     
     methods(Access = protected)
@@ -16,12 +16,12 @@ classdef UtoSlow< matlab.System
         
         function USlow = stepImpl(obj,U,disable)
             if disable>0.5
-                obj.UOld=U*ones(1,5);
+                obj.UOld=U*ones(1,3);
                 USlow=U;
             else
                 obj.UOld(:,1:end-1)=obj.UOld(:,2:end);
                 obj.UOld(:,end)=U;
-                USlow=sum(obj.UOld,2)/5;
+                USlow=sum(obj.UOld,2)/length(obj.UOld(1,:));
             end
 
         end

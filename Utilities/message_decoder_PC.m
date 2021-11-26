@@ -24,6 +24,7 @@ classdef message_decoder_PC< matlab.System
         wzPercent_Old=0;
         phi_Old=0;
         estDis_Old=zeros(6,1);
+        Uava_Old=zeros(12,1);
     end
     
     methods(Access = protected)
@@ -43,7 +44,7 @@ classdef message_decoder_PC< matlab.System
         
         function [pCoM,vCoM,RPYnew,OmegaW,SPLeg,SP,surVN,surV1,surV2,surP,headG,mpcStop,phi,vxPercent,vyPercent,wzPercent,estDis,Uava] = stepImpl(obj,in)
             header=in(1);
-%             if abs(header-66)<0.1
+            if abs(header-66)<0.1
                 pCoM=in(2:4);
                 vCoM=in(5:7);
                 RPYnew=in(8:10);
@@ -62,25 +63,27 @@ classdef message_decoder_PC< matlab.System
                 wzPercent=in(49);
                 estDis=in(50:55);
                 Uava=in(56:67);
-%             else
-%                 pCoM=obj.pCoM_Old;
-%                 vCoM=obj.vCoM_Old;
-%                 RPYnew=obj.RPYnew_Old;
-%                 OmegaW=obj.OmegaW_Old;
-%                 SPLeg=obj.SPLeg_Old;
-%                 SP=obj.SP_Old;
-%                 surVN=obj.surVN_Old;
-%                 surV1=obj.surV1_Old;
-%                 surV2=obj.surV2_Old;
-%                 surP=obj.surP_Old;
-%                 headG=obj.headG_Old;
-%                 mpcStop=1;
-%                 phi=obj.phi_Old;
-%                 vxPercent=obj.vxPercent_Old;
-%                 vyPercent=obj.vyPercent_Old;
-%                 wzPercent=obj.wzPercent_Old;
-%                 estDis=obj.estDis_Old;
-%             end
+            else
+                pCoM=obj.pCoM_Old;
+                vCoM=obj.vCoM_Old;
+                RPYnew=obj.RPYnew_Old;
+                OmegaW=obj.OmegaW_Old;
+                SPLeg=obj.SPLeg_Old;
+                SP=obj.SP_Old;
+                surVN=obj.surVN_Old;
+                surV1=obj.surV1_Old;
+                surV2=obj.surV2_Old;
+                surP=obj.surP_Old;
+                headG=obj.headG_Old;
+                mpcStop=1;
+                phi=obj.phi_Old;
+                vxPercent=obj.vxPercent_Old;
+                vyPercent=obj.vyPercent_Old;
+                wzPercent=obj.wzPercent_Old;
+                estDis=obj.estDis_Old;
+                Uava=obj.Uava_Old;
+            end
+            obj.Uava_Old=Uava;
             obj.pCoM_Old=pCoM;
             obj.vCoM_Old=vCoM;
             obj.RPYnew_Old=RPYnew;

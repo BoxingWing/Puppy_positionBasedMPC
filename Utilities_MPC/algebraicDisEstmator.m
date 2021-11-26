@@ -39,14 +39,14 @@ classdef algebraicDisEstmator < matlab.System
             C=diag(ones(13,1));
             
             %Bdis=zeros(13,6);
-            %Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
-            Bdis=[0*eye(6);eye(6);zeros(1,6)];
+            Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
+            %Bdis=[0*eye(6);eye(6);zeros(1,6)];
             Cdis=zeros(13,6);
             
             Anew=[A,Bdis;zeros(6,13),eye(6)];
             Bnew=[B;zeros(6,12)];
             Cnew=[C,Cdis];
-            Dnew=zeros(25,12);
+            %Dnew=zeros(length(Anew(:,1)),12);
             
             Kx=obj.Kx_scale*eye(13); %13*13
             Kd=obj.Kd_scale*[eye(6),zeros(6,7)]; % 6*13
