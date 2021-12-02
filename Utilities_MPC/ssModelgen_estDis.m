@@ -42,6 +42,7 @@ classdef ssModelgen_estDis< matlab.System
                 0,0,1];
             R=Rz*Ry*Rx; % Consider to replace this !!!!
             R=Rz;
+            R=eye(3);
             Inow=R*obj.Inorm*R';
             Iinv=inv(Inow);
             

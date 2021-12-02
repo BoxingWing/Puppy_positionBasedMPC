@@ -32,7 +32,7 @@ classdef groundAdaptionP1 < matlab.System
         end
         
         function [pW,pW_LS] = stepImpl(obj,LegState,SP,touchInd,OscStop)
-            pW=round(SP*10^4)/10^4; % round to 0.1 mm
+            pW=round(SP*10^4)/(10^4); % round to 0.1 mm
             pW_LS=obj.pW_LS;
             
             for i=1:1:4
