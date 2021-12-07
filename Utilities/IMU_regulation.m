@@ -29,7 +29,8 @@ classdef IMU_regulation < matlab.System
                 obj.accOff(2)=-sum(obj.accStore(2,:))/length(obj.accStore(1,:));
                 obj.accOff(3)=-sum(obj.accStore(3,:))/length(obj.accStore(1,:));
             end
-            obj.accOff=[0.007216;-0.002464;0.02254];
+            %obj.accOff=[0.007216;-0.002464;0.02254]; % for jy901
+            obj.accOff=[0;0;-0.0541];
             Rnow=obj.Roff*(MRz*MRy*MRx);
             RPY=Rot2Eul(Rnow);
             accL_W=Rnow*(acc+obj.accOff);
