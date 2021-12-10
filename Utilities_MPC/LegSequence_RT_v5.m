@@ -12,8 +12,8 @@ classdef LegSequence_RT_v5< matlab.System
         m=3.5;
         k_ac=0;
         k_uac=0;
-        k_wz=0;
         pen_kuac=0.4;
+        k_wz=0;
         T=0.8; % gait duration
         StepH=0.04;
         SampleTime = 0.005; % Sample Time

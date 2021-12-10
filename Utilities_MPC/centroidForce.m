@@ -24,8 +24,8 @@ classdef centroidForce < matlab.System
             obj.yawOld(1:end-1)=obj.yawOld(2:end);
             obj.yawOld(end)=xFB(6);
             yawFilt=sum(obj.yawOld)/length(obj.yawOld);
-            Rz=[cos(yawFilt),-sin(yawFilt),0;sin(yawFilt),cos(yawFilt),0;0,0,1];
-            
+            %Rz=[cos(yawFilt),-sin(yawFilt),0;sin(yawFilt),cos(yawFilt),0;0,0,1];
+            Rz=[cos(xFB(6)),-sin(xFB(6)),0;sin(xFB(6)),cos(xFB(6)),0;0,0,1];
             %Rz=eye(3);
 
             T=[cos(sita(2))*cos(sita(3)),-sin(sita(3)),0;

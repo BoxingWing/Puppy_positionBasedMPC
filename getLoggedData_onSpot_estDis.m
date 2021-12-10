@@ -425,20 +425,18 @@ ylabel('estDis\_RPYz')
 % ylabel('pST\_z');
 
 %%% plot foot end in the world frame
-figure();
-p1=plot(estSP_fast(1,startNf:endNf-200),estSP_fast(2,startNf:endNf-200),'color',[0 0.4470 0.7410]);
-axis equal; grid on;
-hold on;
-p2=plot(estSP_fast(4,startNf:endNf-200),estSP_fast(5,startNf:endNf-200),'color',[0.8500 0.3250 0.0980]);
-p3=plot(estSP_fast(7,startNf:endNf-200),estSP_fast(8,startNf:endNf-200),'color',[0.9290 0.6940 0.1250]);
-p4=plot(estSP_fast(10,startNf:endNf-200),estSP_fast(11,startNf:endNf-200),'color',[0.4940 0.1840 0.5560]);
-plot(estSP_fast(1,startNf),estSP_fast(2,startNf),'o','color',[0 0.4470 0.7410],'markersize',10);
-plot(estSP_fast(4,startNf),estSP_fast(5,startNf),'o','color',[0.8500 0.3250 0.0980],'markersize',10);
-plot(estSP_fast(7,startNf),estSP_fast(8,startNf),'o','color',[0.9290 0.6940 0.1250],'markersize',10);
-plot(estSP_fast(10,startNf),estSP_fast(11,startNf),'o','color',[0.4940 0.1840 0.5560],'markersize',10);
-
-
-legend([p1 p2 p3 p4],{'1','2','3','4'});
+% figure();
+% p1=plot(estSP_fast(1,startNf:endNf-200),estSP_fast(2,startNf:endNf-200),'color',[0 0.4470 0.7410]);
+% axis equal; grid on;
+% hold on;
+% p2=plot(estSP_fast(4,startNf:endNf-200),estSP_fast(5,startNf:endNf-200),'color',[0.8500 0.3250 0.0980]);
+% p3=plot(estSP_fast(7,startNf:endNf-200),estSP_fast(8,startNf:endNf-200),'color',[0.9290 0.6940 0.1250]);
+% p4=plot(estSP_fast(10,startNf:endNf-200),estSP_fast(11,startNf:endNf-200),'color',[0.4940 0.1840 0.5560]);
+% plot(estSP_fast(1,startNf),estSP_fast(2,startNf),'o','color',[0 0.4470 0.7410],'markersize',10);
+% plot(estSP_fast(4,startNf),estSP_fast(5,startNf),'o','color',[0.8500 0.3250 0.0980],'markersize',10);
+% plot(estSP_fast(7,startNf),estSP_fast(8,startNf),'o','color',[0.9290 0.6940 0.1250],'markersize',10);
+% plot(estSP_fast(10,startNf),estSP_fast(11,startNf),'o','color',[0.4940 0.1840 0.5560],'markersize',10);
+% legend([p1 p2 p3 p4],{'1','2','3','4'});
 
 
 

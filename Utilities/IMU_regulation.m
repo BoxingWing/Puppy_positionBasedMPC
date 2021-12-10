@@ -1,5 +1,10 @@
 classdef IMU_regulation < matlab.System
     % IMU output regulator, the output acc is the decoupled linear acc. All outputs are in the world coordinate. omega and sita are in radian.
+    properties 
+        rollOff=0; %IMU roll offset (degree)
+        pitOff=0; %IMU pitch offset (degree)
+    end
+    
     properties (Access=private)
         Roff=eye(3);
         accOff=zeros(3,1);
@@ -17,10 +22,16 @@ classdef IMU_regulation < matlab.System
             % the output accL_W is the decoupled linear acc
             % acc and omega is in the world coordinate
             % omega is in radian
-            RPY=rpy;
-            MRx=Rx(RPY(1));
-            MRy=Ry(RPY(2));
-            MRz=Rz(RPY(3));
+            %RPY=rpy;
+            RxOff=Rx(obj.rollOff/180*pi);
+            RyOff=Ry(obj.pitOff/180*pi);
+            Roff_imu=(RyOff*RxOff)';
+            Rnow=Rz(rpy(3))*Ry(rpy(2))*Rx(rpy(1))*Roff_imu;
+            eulNew=rotm2eul(Rnow);
+
+            MRx=Rx(eulNew(3));
+            MRy=Ry(eulNew(2));
+            MRz=Rz(eulNew(1));
             Gnow=(MRz*MRy*MRx)'*[0;0;-9.8];
             acc=acc+Gnow;
             if OffEN>0.5
