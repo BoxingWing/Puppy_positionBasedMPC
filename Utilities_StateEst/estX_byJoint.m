@@ -25,7 +25,8 @@ classdef estX_byJoint < matlab.System
             % pArray_B is the foot-end position in body coordinate
             updateEN=1;
             %KF_R=0.5*eye(6);
-            KF_R=diag([0.214e-6,0.137e-6,0.0357e-6,2.071e-3,5.364e-4,3.997e-4]);
+            %KF_R=diag([0.214e-6,0.137e-6,0.0357e-6,2.071e-3,5.364e-4,3.997e-4]);
+            KF_R=diag([0.214e-4,0.137e-6,0.0357e-6,2.071e-3,5.364e-4,3.997e-4]);
             pArray_B=reshape(pArray_B,3,4)/1000;
             R=Rz(RPY(3))*Ry(RPY(2))*Rx(RPY(1));
             vArray=(pArray_B-obj.pArrayOld)/dt;

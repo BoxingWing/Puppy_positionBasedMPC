@@ -173,7 +173,7 @@ subplot(2,1,2)
 stairs(t_slow,qpStatus_slow);
 ylabel('qpStatus');
 
-%%% check orientation control
+%%% check predicted precision on orientation control
 figure();
 subplot(3,1,1)
 plot(t_slow(startNs:endNs),RPY_slow(1,startNs:endNs), ...
@@ -191,7 +191,7 @@ plot(t_slow(startNs:endNs),RPY_slow(3,startNs:endNs), ...
 legend('real','predicted')
 ylabel('yaw');
 
-%%% check the CoM control
+%%% check predicted precision on CoM control
 figure();
 subplot(3,1,1)
 plot(t_slow(startNs:endNs),pCoM_slow(1,startNs:endNs), ...
@@ -208,6 +208,27 @@ plot(t_slow(startNs:endNs),pCoM_slow(3,startNs:endNs), ...
     t_slow(startNs:endNs),pCoM_mpcPre_slow(3,startNs:endNs))
 legend('real','predicted')
 ylabel('pCoMz');
+
+% check com track error
+figure();
+subplot(2,3,1);
+plot(t_slow(startNs:endNs),refP_slow(1,startNs:endNs),t_fast(startNf:endNf),pCoM_fast(1,startNf:endNf));
+ylabel('CoMx');legend('ref','actual');
+subplot(2,3,2);
+plot(t_slow(startNs:endNs),refP_slow(2,startNs:endNs),t_fast(startNf:endNf),pCoM_fast(2,startNf:endNf));
+ylabel('CoMy');
+subplot(2,3,3);
+plot(t_slow(startNs:endNs),refP_slow(3,startNs:endNs),t_fast(startNf:endNf),pCoM_fast(3,startNf:endNf));
+ylabel('CoMz');
+subplot(2,3,4);
+plot(t_slow(startNs:endNs),refP_slow(7,startNs:endNs),t_fast(startNf:endNf),vCoM_fast(1,startNf:endNf));
+ylabel('VX')
+subplot(2,3,5);
+plot(t_slow(startNs:endNs),refP_slow(8,startNs:endNs),t_fast(startNf:endNf),vCoM_fast(2,startNf:endNf));
+ylabel('VY')
+subplot(2,3,6);
+plot(t_slow(startNs:endNs),refP_slow(9,startNs:endNs),t_fast(startNf:endNf),vCoM_fast(3,startNf:endNf));
+ylabel('VZ')
 
 %%% check foot position interpolation
 % figure();
@@ -379,25 +400,25 @@ legend('x','y','z','LegState','touchInd');
 % legend('qpLeg4z','mpcLeg4z')
 
 %%% check the estDis
-figure();
-subplot(2,3,1)
-plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
-ylabel('estDis\_pCoMx')
-subplot(2,3,2)
-plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
-ylabel('estDis\_pCoMy')
-subplot(2,3,3)
-plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
-ylabel('estDis\_pCoMz')
-subplot(2,3,4)
-plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
-ylabel('estDis\_RPYx')
-subplot(2,3,5)
-plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
-ylabel('estDis\_RPYy')
-subplot(2,3,6)
-plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
-ylabel('estDis\_RPYz')
+% figure();
+% subplot(2,3,1)
+% plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
+% ylabel('estDis\_pCoMx')
+% subplot(2,3,2)
+% plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
+% ylabel('estDis\_pCoMy')
+% subplot(2,3,3)
+% plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
+% ylabel('estDis\_pCoMz')
+% subplot(2,3,4)
+% plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
+% ylabel('estDis\_RPYx')
+% subplot(2,3,5)
+% plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
+% ylabel('estDis\_RPYy')
+% subplot(2,3,6)
+% plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
+% ylabel('estDis\_RPYz')
 
 %%% check estL and pST
 % figure();
