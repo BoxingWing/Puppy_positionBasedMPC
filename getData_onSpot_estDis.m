@@ -1,7 +1,7 @@
 %% fetch data from raspberry pi
 mypi=raspberrypi;
 getFile(mypi,'multicore_dataRec*.mat');
-getFile(mypi,'~/MATLAB_ws/R2021b/raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis.log'); % get the log file
+getFile(mypi,'~/MATLAB_ws/R2021b/raspi_multicore_MPCtest_estDis.log'); % get the log file
 
 %% data plot
 close all;
