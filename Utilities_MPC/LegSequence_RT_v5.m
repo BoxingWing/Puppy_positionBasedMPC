@@ -13,6 +13,8 @@ classdef LegSequence_RT_v5< matlab.System
         k_ac=0;
         k_uac=0;
         k_wz=0;
+        k_roll=0;
+        k_pitch=0;
         pen_kuac=0.4;
         T=0.8; % gait duration
         StepH=0.04;
@@ -209,6 +211,9 @@ classdef LegSequence_RT_v5< matlab.System
             CrossComY=[0.03,-0.03,-0.03,0.03]*vDesL(1)*0;
             CrossCom=[zeros(1,4);CrossComY;zeros(1,4)];
             
+            % pitch and roll compensation
+            posCom=obj.k_roll*[0;-X_FB(4);0]+obj.k_pitch*[X_FB(5);0;0];  % need to add xRef
+
             % rotation compensation
             %sitaZ=0.1*wNowL(3)*obj.T/4+obj.k_wz*(wNowL(3)-wDesL(3))*obj.T/4;
             sitaZ=obj.k_wz*wDesL(3)*obj.T/4;
@@ -216,7 +221,7 @@ classdef LegSequence_RT_v5< matlab.System
             p_wz2=0.5*sqrt(0.19/9.8)*cross(vNowL,[0;0;wDesL(3)]);
 
             % final foot placement
-            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm+CrossCom;
+            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm+CrossCom+posCom;
             
             % terrain height compensation
             pCoM=[X_FB(1);X_FB(2);X_FB(3)];
