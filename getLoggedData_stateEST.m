@@ -18,7 +18,8 @@ pArrayB=rt_pArrayB_EN_SW(2:13,:);
 EN=rt_pArrayB_EN_SW(14,:);
 SW=rt_pArrayB_EN_SW(15:18,:);
 
-uMPC=rt_uMPC(2:end,:);
+uMPC=rt_uMPC(2:13,:);
+LegState=rt_uMPC(14:end,:);
 
 tEnd=time(end);
 
@@ -30,10 +31,11 @@ sim_pArrayB=timeseries(pArrayB,time);
 sim_EN=timeseries(EN,time);
 sim_SW=timeseries(SW,time);
 sim_uMPC=timeseries(uMPC,time);
+sim_LegState=timeseries(LegState,time);
 
 FileName=datestr(now,30);
 save(FileName,'sim_acc','sim_omega','sim_RPY','sim_pArrayB',...
-    'sim_EN','sim_SW','sim_uMPC','tEnd');
+    'sim_EN','sim_SW','sim_uMPC','sim_LegState','tEnd');
 
 
 % startT=11;

@@ -24,7 +24,7 @@ L_Pend(:,4)=[0;0;-190]/1000+[0;-1;0]*roll_Off;
 SPLeg=ones(4,1);
 Ts=0.025; % smaple time for MPC, 0.025 for raspberry 4b to run adaptive mpc
 Ts_DynSim=0.005; % sample time for central dynamics
-T_gait=0.7;
+T_gait=0.6;
 
 LxM=0.2108; % distance between the fore and hind pitch axis
 LyM=0.097; % distance between the left and right roll axis
@@ -97,12 +97,13 @@ headV=[1;0;0]; % heading direction of the robot, MUST be a unit vector
 
 model=struct('Plant',plantD,'Nominal',norminal);
 
-numP=9; % prediction horizon
+numP=7; % prediction horizon
 numM=2; % control horizon
 %%% weights
 %%% W.OutputVariables=ones(numP,1)*[[2,10,50],[0.25,0.5,10],[0.2,0.2,0.1],[0,0,0.3],0]; %2 10 50 0.25 0.5 10
 
-W.OutputVariables=ones(numP,1)*[[2,2,10],[8,8,1],[1,1,1],[1,1,1],0];
+%W.OutputVariables=ones(numP,1)*[[2,2,60],[8,8,1],[0.1,0.1,0.1],[0.1,0.1,0.1],0];
+W.OutputVariables=ones(numP,1)*[[5,5,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.1],0];
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
 
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
@@ -123,36 +124,36 @@ MV(9).Max=50;
 MV(12).Min=-50;
 MV(12).Max=50;
 
-MV(1).ScaleFactor=5; % should be the range of the corresponding variable
-MV(2).ScaleFactor=5;
-MV(3).ScaleFactor=20;
-MV(4).ScaleFactor=5;
-MV(5).ScaleFactor=5;
-MV(6).ScaleFactor=20;
-MV(7).ScaleFactor=5;
-MV(8).ScaleFactor=5;
-MV(9).ScaleFactor=20;
-MV(10).ScaleFactor=5;
-MV(11).ScaleFactor=5;
-MV(12).ScaleFactor=20;
+% MV(1).ScaleFactor=5; % should be the range of the corresponding variable
+% MV(2).ScaleFactor=5;
+% MV(3).ScaleFactor=20;
+% MV(4).ScaleFactor=5;
+% MV(5).ScaleFactor=5;
+% MV(6).ScaleFactor=20;
+% MV(7).ScaleFactor=5;
+% MV(8).ScaleFactor=5;
+% MV(9).ScaleFactor=20;
+% MV(10).ScaleFactor=5;
+% MV(11).ScaleFactor=5;
+% MV(12).ScaleFactor=20;
 
 %%% output variables
 OV(13)=struct('Min',-inf,'Max',inf);
 OV(3).Min=0.16;
 OV(3).Max=5;
 
-OV(1).ScaleFactor=10;
-OV(2).ScaleFactor=10;
-OV(3).ScaleFactor=0.4;
-OV(4).ScaleFactor=10/180*pi;
-OV(5).ScaleFactor=10/180*pi;
-OV(6).ScaleFactor=10/180*pi;
-OV(7).ScaleFactor=1;
-OV(8).ScaleFactor=1;
-OV(9).ScaleFactor=0.2;
-OV(10).ScaleFactor=5;
-OV(11).ScaleFactor=2;
-OV(12).ScaleFactor=1;
+% OV(1).ScaleFactor=10;
+% OV(2).ScaleFactor=10;
+% OV(3).ScaleFactor=0.4;
+% OV(4).ScaleFactor=10/180*pi;
+% OV(5).ScaleFactor=10/180*pi;
+% OV(6).ScaleFactor=10/180*pi;
+% OV(7).ScaleFactor=1;
+% OV(8).ScaleFactor=1;
+% OV(9).ScaleFactor=0.2;
+% OV(10).ScaleFactor=5;
+% OV(11).ScaleFactor=2;
+% OV(12).ScaleFactor=1;
 
 
 % OV(4).Min=-10/180*pi;  % roll
@@ -187,12 +188,12 @@ outdist(3,3)=modnor*0.1;
 outdist(4,4)=modnor*0.1;
 outdist(5,5)=modnor*0.1;
 outdist(6,6)=modnor*0.1;
-outdist(7,7)=modnor*0;
-outdist(8,8)=modnor*0;
-outdist(9,9)=modnor*0;
-outdist(10,10)=modnor*0;
-outdist(11,11)=modnor*0;
-outdist(12,12)=modnor*0;
+outdist(7,7)=modnor*0.1;
+outdist(8,8)=modnor*0.1;
+outdist(9,9)=modnor*0.1;
+outdist(10,10)=modnor*0.1;
+outdist(11,11)=modnor*0.1;
+outdist(12,12)=modnor*0.1;
 %setoutdist(mpcPuppy,'model',outdist);
 setoutdist(mpcPuppy,'model',tf(zeros(13,1))); % remove output disturbance model
 setEstimator(mpcPuppy,'custom');
@@ -200,7 +201,7 @@ xmpc=mpcstate(mpcPuppy);
 
 %%% add constraints
 % friction pyramid and payload balance
-miu=0.6;
+miu=0.4;
 deltaFz=10; % w.r.t body coordinate
 deltaFx=10; % w.r.t body coordinate
 maxFz=60; % w.r.t. body coordinate
@@ -314,7 +315,12 @@ setconstraint(mpcPuppy,Enew,[],Gnew,Vnew);
 
 
 
-
+%%%%%%%% subfunction
+function vcap=crossCap(v)
+vcap=[0,-v(3),v(2);
+        v(3),0,-v(1);
+       -v(2),v(1),0];
+end
 
 
 

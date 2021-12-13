@@ -1,7 +1,7 @@
 %% fetch data from raspberry pi
 mypi=raspberrypi;
 getFile(mypi,'multicore_dataRec*.mat');
-getFile(mypi,'~/MATLAB_ws/R2021a/raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis.log'); % get the log file
+getFile(mypi,'~/MATLAB_ws/R2021b/raspberrypi_multicore_MPCtest_OnSpot_OffsetFree_estDis.log'); % get the log file
 
 %% data plot
 close all;
@@ -23,6 +23,7 @@ load multicore_dataRec15.mat;
 load multicore_dataRec16.mat;
 load multicore_dataRec17.mat;
 load multicore_dataRec18.mat;
+load multicore_dataRec19.mat;
 
 %%% recorded variables
 t_slow=rt_x_FB_slow(1,:);
@@ -39,8 +40,10 @@ pArrayL=rt_PendAllLocal(2:end,:);
 touchInd=rt_touchInd_LegState(2:5,:);
 LegState=rt_touchInd_LegState(6:end,:);
 pArrayLFK=rt_pLFKfast(2:end,:);
-refOVnew=rt_refOVbew_refMVnew_slow(2:14,:);
-refMVnew=rt_refOVbew_refMVnew_slow(15:end,:);
+UFinal=rt_UFinal_virtualForce(2:13,:);
+virtualU=rt_UFinal_virtualForce(14:end,:);
+%refOVnew=rt_refOVbew_refMVnew_slow(2:14,:);
+%refMVnew=rt_refOVbew_refMVnew_slow(15:end,:);
 
 t_fast=rt_mvOut_fast(1,:);
 mvOut_fast=rt_mvOut_fast(2:end,:);
@@ -54,7 +57,10 @@ wzPercent_fast=rt_vxPercent_vyPercent_wzPercent(4,:);
 PendAllLocal_fast=rt_PendAllLocal(2:end,:);
 spMPC_fast=rt_spMPC_fast(2:end,:);
 pArrayLnor=rt_pLnor_fast(2:end,:); % parrayL direct from mpc out
-estDis=rt_estDis_fast(2:end,:);
+estSPLeg_fast=rt_estSPLeg_estSP(2:5,:);
+estSP_fast=rt_estSPLeg_estSP(6:end,:);
+estXbar=rt_estXbar_slow(2:end,:);
+estDis=estXbar(14:19,:);
 
 EstOff=rt_EstOff_OscEN_mpcSTOP_ES(2,:);
 OscEN=rt_EstOff_OscEN_mpcSTOP_ES(3,:);
@@ -102,7 +108,29 @@ endNs=tmp(1);
 % stairs(t_fast,mvOut_fast(1,:));
 % legend('mvOut1\_slow','mvOut1\_fast');
 
-%%% check the mv
+%%% check the virutal force
+figure()
+subplot(2,2,1)
+plot(t_fast(startNf:endNf),virtualU(1,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(2,startNf:endNf),t_fast(startNf:endNf),virtualU(3,startNf:endNf));
+ylabel('virtualF_Leg1');legend('fx','fy','fz')
+subplot(2,2,2)
+plot(t_fast(startNf:endNf),virtualU(4,startNf:endNf),...
+    t_fast(startNf:endNf),virtualU(5,startNf:endNf),...
+    t_fast(startNf:endNf),virtualU(6,startNf:endNf));
+ylabel('virtualF_Leg2');legend('fx','fy','fz')
+subplot(2,2,3)
+plot(t_fast(startNf:endNf),virtualU(7,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(8,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(9,startNf:endNf));
+ylabel('virtualF_Leg3');legend('fx','fy','fz')
+subplot(2,2,4)
+plot(t_fast(startNf:endNf),virtualU(10,startNf:endNf), ...
+    t_fast(startNf:endNf),virtualU(11,startNf:endNf),...
+    t_fast(startNf:endNf),virtualU(12,startNf:endNf));
+ylabel('virtualF_Leg4');legend('fx','fy','fz')
+
+%%% chekc the mv
 figure()
 subplot(2,2,1)
 plot(t_fast(startNf:endNf),mvOut_fast(1,startNf:endNf), ...
@@ -258,27 +286,27 @@ ylabel('leg4\_pL');
 legend('x','y','z','LegState','touchInd');
 
 %%% check the swing trajectory tracking
-figure();
-subplot(2,2,1)
-plot(t_fast(startNf:endNf),pArrayLAdm(3,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(3,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(3,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg1');
-subplot(2,2,2)
-plot(t_fast(startNf:endNf),pArrayLAdm(6,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(6,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(6,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg2');
-subplot(2,2,3)
-plot(t_fast(startNf:endNf),pArrayLAdm(9,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(9,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(9,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg3');
-subplot(2,2,4)
-plot(t_fast(startNf:endNf),pArrayLAdm(12,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(12,startNf:endNf), ...
-    t_fast(startNf:endNf),pArrayLFK(12,startNf:endNf)/1000);
-legend('Adm','pL','pLFK');
-ylabel('Leg4');
+% figure();
+% subplot(2,2,1)
+% plot(t_fast(startNf:endNf),pArrayLAdm(3,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(3,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(3,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg1');
+% subplot(2,2,2)
+% plot(t_fast(startNf:endNf),pArrayLAdm(6,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(6,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(6,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg2');
+% subplot(2,2,3)
+% plot(t_fast(startNf:endNf),pArrayLAdm(9,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(9,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(9,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg3');
+% subplot(2,2,4)
+% plot(t_fast(startNf:endNf),pArrayLAdm(12,startNf:endNf)/1000,t_fast(startNf:endNf),pArrayL(12,startNf:endNf), ...
+%     t_fast(startNf:endNf),pArrayLFK(12,startNf:endNf)/1000);
+% legend('Adm','pL','pLFK');
+% ylabel('Leg4');
 
 %%% check joystick input command
 % figure();
@@ -353,23 +381,69 @@ ylabel('Leg4');
 %%% check the estDis
 figure();
 subplot(2,3,1)
-plot(t_fast(startNf:endNf),estDis(1,startNf:endNf));
+plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
 ylabel('estDis\_pCoMx')
 subplot(2,3,2)
-plot(t_fast(startNf:endNf),estDis(2,startNf:endNf));
+plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
 ylabel('estDis\_pCoMy')
 subplot(2,3,3)
-plot(t_fast(startNf:endNf),estDis(3,startNf:endNf));
+plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
 ylabel('estDis\_pCoMz')
 subplot(2,3,4)
-plot(t_fast(startNf:endNf),estDis(4,startNf:endNf));
+plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
 ylabel('estDis\_RPYx')
 subplot(2,3,5)
-plot(t_fast(startNf:endNf),estDis(5,startNf:endNf));
+plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
 ylabel('estDis\_RPYy')
 subplot(2,3,6)
-plot(t_fast(startNf:endNf),estDis(6,startNf:endNf));
+plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
 ylabel('estDis\_RPYz')
+
+%%% check estL and pST
+% figure();
+% subplot(2,3,1);
+% plot(t_fast(startNf:endNf),estL(1,startNf:endNf)/m/0.19);
+% hold on;
+% plot(t_fast(startNf:endNf),vCoM_fast(2,startNf:endNf));
+% legend('estL\_x/m/H','vY');
+% subplot(2,3,2);
+% plot(t_fast(startNf:endNf),estL(2,startNf:endNf));
+% hold on;
+% plot(t_fast(startNf:endNf),vCoM_fast(1,startNf:endNf));
+% legend('estL\_y','vX');
+% subplot(2,3,3);
+% plot(t_fast(startNf:endNf),estL(3,startNf:endNf));
+% ylabel('estL\_z');
+% subplot(2,3,4);
+% plot(t_fast(startNf:endNf),pST(1,startNf:endNf));
+% ylabel('pST\_x');
+% subplot(2,3,5);
+% plot(t_fast(startNf:endNf),pST(2,startNf:endNf));
+% ylabel('pST\_y');
+% subplot(2,3,6);
+% plot(t_fast(startNf:endNf),pST(3,startNf:endNf));
+% ylabel('pST\_z');
+
+%%% plot foot end in the world frame
+figure();
+p1=plot(estSP_fast(1,startNf:endNf-200),estSP_fast(2,startNf:endNf-200),'color',[0 0.4470 0.7410]);
+axis equal; grid on;
+hold on;
+p2=plot(estSP_fast(4,startNf:endNf-200),estSP_fast(5,startNf:endNf-200),'color',[0.8500 0.3250 0.0980]);
+p3=plot(estSP_fast(7,startNf:endNf-200),estSP_fast(8,startNf:endNf-200),'color',[0.9290 0.6940 0.1250]);
+p4=plot(estSP_fast(10,startNf:endNf-200),estSP_fast(11,startNf:endNf-200),'color',[0.4940 0.1840 0.5560]);
+plot(estSP_fast(1,startNf),estSP_fast(2,startNf),'o','color',[0 0.4470 0.7410],'markersize',10);
+plot(estSP_fast(4,startNf),estSP_fast(5,startNf),'o','color',[0.8500 0.3250 0.0980],'markersize',10);
+plot(estSP_fast(7,startNf),estSP_fast(8,startNf),'o','color',[0.9290 0.6940 0.1250],'markersize',10);
+plot(estSP_fast(10,startNf),estSP_fast(11,startNf),'o','color',[0.4940 0.1840 0.5560],'markersize',10);
+
+
+legend([p1 p2 p3 p4],{'1','2','3','4'});
+
+
+
+
+
 
 
 

@@ -10,6 +10,10 @@ classdef AdmittanceCtr < matlab.System
         ks1=100; % ks1 (Nm/degree)
         ks2=100; % ks2 (Nm/degree)
         ks3=100; % ks3 (Nm/degree)
+        bs1=0.1;
+        bs2=0.1;
+        bs3=0.1;
+        dt=0.005;
     end
     properties (Access=private)
         AB=44.5;
@@ -19,6 +23,19 @@ classdef AdmittanceCtr < matlab.System
         OR=37; % roll axis offset
         LastInput=[0;0;-190;0;0;-190;0;0;-190;0;0;-190];
         PendAllnorm=zeros(3,4);
+        pArray_L_Old=zeros(3,4);
+        pArray_L_Now=zeros(3,4);
+        interpol_Count=1;
+        MPC_Count_Old=1;
+        LegStateOld=zeros(4,1);
+        deltaP1Old;
+        deltaP2Old;
+        deltaP3Old;
+        deltaP4Old;
+        deltaP1OOld;
+        deltaP2OOld;
+        deltaP3OOld;
+        deltaP4OOld;
     end
     
     methods(Access = protected)
@@ -36,9 +53,18 @@ classdef AdmittanceCtr < matlab.System
             PendAlltmp(10:12)=[-xW;-yW;0]/2;
             PendAlltmp=PendAlltmp;%+[0;1;0;0;-1;0;0;1;0;0;-1;0]*obj.roll_Off;
             obj.PendAllnorm=reshape(PendAlltmp,3,4);
+            obj.deltaP1Old=zeros(3,1);
+            obj.deltaP2Old=zeros(3,1);
+            obj.deltaP3Old=zeros(3,1);
+            obj.deltaP4Old=zeros(3,1);
+            obj.deltaP1OOld=zeros(3,1);
+            obj.deltaP2OOld=zeros(3,1);
+            obj.deltaP3OOld=zeros(3,1);
+            obj.deltaP4OOld=zeros(3,1);
+            obj.interpol_Count=1;
         end
         
-        function [pArray_L_Adm,pLnor] = stepImpl(obj,U,X_mpc,SP_MPC,MPC_STOP)
+        function [pArray_L_Adm,pLnor] = stepImpl(obj,U,X_mpc,SP_MPC,MPC_STOP,x_FB)
             % Implement algorithm of admittance ctr, refer to md file for more info.
             % PArray:=[Px_i,Py_i,Pz_i], 12*1, foot-end position in leg coordinate
             % AngleArray:=[Mi1,Mi2,Mi3]
@@ -48,36 +74,73 @@ classdef AdmittanceCtr < matlab.System
             R=Rz(theta(3))*Ry(theta(2))*Rx(theta(1));
             PendAll=reshape(SP_MPC,3,4); % foot position in the world coordinate
             pArray_L=(R'*(PendAll-rC*[1,1,1,1])-obj.PendAllnorm)*1000; % foot position in the leg coordinate
+
+            thetaFB=x_FB(4:6);
+            RFB=Rz(thetaFB(3))*Ry(thetaFB(2))*Rx(thetaFB(1));
             if MPC_STOP>0.5
                 pArray_L=[0,0,0,0;
                     obj.roll_Off,-obj.roll_Off,obj.roll_Off,-obj.roll_Off;
                     -obj.hIni,-obj.hIni,-obj.hIni,-obj.hIni]*1000;
+                obj.pArray_L_Old=pArray_L;
+                obj.pArray_L_Now=pArray_L;
                 U=[0;0;1;0;0;1;0;0;1;0;0;1]*9.8*obj.m/4;
             end
             
             pLnor=pArray_L;
             pLnor=reshape(pLnor,12,1);
-            
-            [Angle1,Flag1]=obj.IK_one(pArray_L(:,1),1);
-            [Angle2,Flag2]=obj.IK_one(pArray_L(:,2),2);
-            [Angle3,Flag3]=obj.IK_one(pArray_L(:,3),3);
-            [Angle4,Flag4]=obj.IK_one(pArray_L(:,4),4);
+
+%             interpolNum=5;
+%             if abs(obj.MPC_Count_Old-MPC_Count)<0.1
+%                 if obj.interpol_Count>=interpolNum
+%                     obj.interpol_Count=interpolNum;
+%                 end
+%                 pArray_L_tmp=(interpolNum-obj.interpol_Count)/interpolNum*obj.pArray_L_Old+obj.interpol_Count/interpolNum*obj.pArray_L_Now;
+%                 obj.interpol_Count=obj.interpol_Count+1;
+%             else
+%                 obj.pArray_L_Old=obj.pArray_L_Now;
+%                 for i=1:1:4
+%                     if LegState(i)>0.5 && obj.LegStateOld(i)<0.5
+%                         obj.pArray_L_Old(:,i)=pArrayLOld(:,i);
+%                     end
+%                 end
+%                 obj.pArray_L_Now=pArray_L;
+%                 pArray_L_tmp=obj.pArray_L_Old;
+%                 obj.interpol_Count=1;
+%             end
+
+            pArray_L_tmp=pArray_L;
+
+            [Angle1,Flag1]=obj.IK_one(pArray_L_tmp(:,1),1);
+            [Angle2,Flag2]=obj.IK_one(pArray_L_tmp(:,2),2);
+            [Angle3,Flag3]=obj.IK_one(pArray_L_tmp(:,3),3);
+            [Angle4,Flag4]=obj.IK_one(pArray_L_tmp(:,4),4);
             
             J1=autoGen_Jacobi_1(obj.OR,obj.AB,obj.BC,obj.DP,obj.CDP,Angle1(1),Angle1(2),Angle1(3));
             J2=autoGen_Jacobi_2(obj.OR,obj.AB,obj.BC,obj.DP,obj.CDP,Angle2(1),Angle2(2),Angle2(3));
             J3=autoGen_Jacobi_3(obj.OR,obj.AB,obj.BC,obj.DP,obj.CDP,Angle3(1),Angle3(2),Angle3(3));
             J4=autoGen_Jacobi_4(obj.OR,obj.AB,obj.BC,obj.DP,obj.CDP,Angle4(1),Angle4(2),Angle4(3));
             
+            Md=diag([obj.bs1,obj.bs2,obj.bs3]);
+            d_deltaP1=Md*(obj.deltaP1Old-obj.deltaP1OOld)/obj.dt;
+            d_deltaP2=Md*(obj.deltaP2Old-obj.deltaP2OOld)/obj.dt;
+            d_deltaP3=Md*(obj.deltaP3Old-obj.deltaP3OOld)/obj.dt;
+            d_deltaP4=Md*(obj.deltaP4Old-obj.deltaP4OOld)/obj.dt;
+%             dqNew=reshape(dq,3,4);
+%             d_deltaP1=Md*dqNew(:,1);
+%             d_deltaP2=Md*dqNew(:,2);
+%             d_deltaP3=Md*dqNew(:,3);
+%             d_deltaP4=Md*dqNew(:,4);
+
             if abs(obj.ks1)<10^-9 || abs(obj.ks2)<10^-9 || abs(obj.ks3)<10^-9
                 deltaP1=[0;0;0];
                 deltaP2=[0;0;0];
                 deltaP3=[0;0;0];
                 deltaP4=[0;0;0];
             else
-                deltaP1=-diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*J1'*R'*[U(1);U(2);U(3)];
-                deltaP2=-diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*J2'*R'*[U(4);U(5);U(6)];
-                deltaP3=-diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*J3'*R'*[U(7);U(8);U(9)];
-                deltaP4=-diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*J4'*R'*[U(10);U(11);U(12)];
+                deltaP1=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J1'*RFB'*[U(1);U(2);U(3)]-d_deltaP1);
+                deltaP2=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J2'*RFB'*[U(4);U(5);U(6)]-d_deltaP2);
+                deltaP3=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J3'*RFB'*[U(7);U(8);U(9)]-d_deltaP3);
+                deltaP4=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J4'*RFB'*[U(10);U(11);U(12)]-d_deltaP4);
             end
             
             Angle1new=Angle1+deltaP1;
@@ -94,6 +157,16 @@ classdef AdmittanceCtr < matlab.System
             
             errFlag=[Flag1;Flag2;Flag3;Flag4];
             obj.LastInput=pArray_L;
+            obj.deltaP1OOld=obj.deltaP1Old;
+            obj.deltaP2OOld=obj.deltaP2Old;
+            obj.deltaP3OOld=obj.deltaP3Old;
+            obj.deltaP4OOld=obj.deltaP4Old;
+            obj.deltaP1Old=deltaP1;
+            obj.deltaP2Old=deltaP2;
+            obj.deltaP3Old=deltaP3;
+            obj.deltaP3Old=deltaP4;
+            %obj.MPC_Count_Old=MPC_Count;
+            %obj.LegStateOld=LegState;
         end
         
         function resetImpl(obj)

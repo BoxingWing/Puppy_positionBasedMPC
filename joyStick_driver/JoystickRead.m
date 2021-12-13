@@ -1,7 +1,5 @@
-classdef JoystickRead < realtime.internal.SourceSampleTime ...
-        & coder.ExternalDependency ...
-        & matlab.system.mixin.Propagates ...
-        & matlab.system.mixin.CustomIcon
+classdef JoystickRead < realtime.internal.SourceSampleTime & ...
+        coder.ExternalDependency
     %
     % to read the joystick input of a raspberry pi. The device must be mounted to '/dev/input/js0'
     % 
@@ -17,17 +15,8 @@ classdef JoystickRead < realtime.internal.SourceSampleTime ...
     %#codegen
     %#ok<*EMCA>
     
-    properties
-        % Public, tunable properties.
-    end
     
-    properties (Nontunable)
-        % Public, non-tunable properties.
-    end
     
-    properties (Access = private)
-        % Pre-computed constants.
-    end
     
     methods
         % Constructor
@@ -84,9 +73,6 @@ classdef JoystickRead < realtime.internal.SourceSampleTime ...
             num = 5;
         end
         
-        function flag = isOutputSizeLockedImpl(~,~)
-            flag = true;
-        end
         
         function varargout = isOutputFixedSizeImpl(~,~)
             varargout{1} = true;
@@ -96,9 +82,6 @@ classdef JoystickRead < realtime.internal.SourceSampleTime ...
             varargout{5} = true;
         end
         
-        function flag = isOutputComplexityLockedImpl(~,~)
-            flag = true;
-        end
         
         function varargout = isOutputComplexImpl(~)
             varargout{1} = false;

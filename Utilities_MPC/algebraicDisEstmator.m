@@ -4,6 +4,8 @@ classdef algebraicDisEstmator < matlab.System
         Ts=0.005;
         m=3;
         Inorm=eye(3);
+        Kd_scale=0.2;
+        Kx_scale=1;
     end
     
     properties (Access=private)
@@ -16,7 +18,7 @@ classdef algebraicDisEstmator < matlab.System
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
             obj.count=0;
-            nX=19;
+            nX=19; % 13+6
             obj.estXbarOld=zeros(nX,1);
             obj.UOld=zeros(12,1);
         end
@@ -37,17 +39,17 @@ classdef algebraicDisEstmator < matlab.System
             C=diag(ones(13,1));
             
             %Bdis=zeros(13,6);
-            %Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
-            Bdis=[obj.Ts*eye(6);eye(6);zeros(1,6)];
-            Cdis=[zeros(6,6);0*eye(6);zeros(1,6)];
+            Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
+            %Bdis=[0*eye(6);eye(6);zeros(1,6)];
+            Cdis=zeros(13,6);
             
             Anew=[A,Bdis;zeros(6,13),eye(6)];
             Bnew=[B;zeros(6,12)];
             Cnew=[C,Cdis];
-            Dnew=zeros(13,12);
+            %Dnew=zeros(length(Anew(:,1)),12);
             
-            Kx=eye(13); %13*13
-            Kd=[zeros(6,6),eye(6),zeros(6,1)]; % 6*13
+            Kx=obj.Kx_scale*eye(13); %13*13
+            Kd=obj.Kd_scale*[eye(6),zeros(6,7)]; % 6*13
             K=[Kx;Kd];
             ystar=Cnew*(Anew*obj.estXbarOld+Bnew*obj.UOld);
             estXbar=Anew*obj.estXbarOld+Bnew*obj.UOld+K*(xFB(1:13)-ystar);
