@@ -242,6 +242,41 @@ subplot(2,2,4)
 plot(t_slow(startNs:endNs),refP_slow(1:3,startNs:endNs));
 ylabel('refP');legend('pCoMX','pCoMY','pCoMZ');
 
+%%% check xFB vs xRef
+figure();
+subplot(2,3,1)
+plot(t_slow(startNs:endNs),refP_slow(1,startNs:endNs));
+hold on;
+plot(t_fast(startNf:endNf),pCoM_fast(1,startNf:endNf));
+ylabel('pCoMx vx Ref');
+subplot(2,3,2)
+plot(t_slow(startNs:endNs),refP_slow(2,startNs:endNs));
+hold on;
+plot(t_fast(startNf:endNf),pCoM_fast(2,startNf:endNf));
+ylabel('pCoMy vx Ref');
+subplot(2,3,3)
+plot(t_slow(startNs:endNs),refP_slow(3,startNs:endNs));
+hold on;
+plot(t_fast(startNf:endNf),pCoM_fast(3,startNf:endNf));
+ylabel('pCoMz vx Ref');
+subplot(2,3,4)
+plot(t_slow(startNs:endNs),refP_slow(4,startNs:endNs));
+hold on;
+plot(t_fast(startNf:endNf),RPY_fast(1,startNf:endNf));
+ylabel('roll vx Ref');
+subplot(2,3,5)
+plot(t_slow(startNs:endNs),refP_slow(5,startNs:endNs));
+hold on;
+plot(t_fast(startNf:endNf),RPY_fast(2,startNf:endNf));
+ylabel('pitch vx Ref');
+subplot(2,3,6)
+plot(t_slow(startNs:endNs),refP_slow(6,startNs:endNs));
+hold on;
+plot(t_fast(startNf:endNf),RPY_fast(3,startNf:endNf));
+ylabel('yaw vx Ref');
+
+
+
 %%% check foot position
 figure();
 subplot(2,2,1)
@@ -379,25 +414,25 @@ legend('x','y','z','LegState','touchInd');
 % legend('qpLeg4z','mpcLeg4z')
 
 %%% check the estDis
-figure();
-subplot(2,3,1)
-plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
-ylabel('estDis\_pCoMx')
-subplot(2,3,2)
-plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
-ylabel('estDis\_pCoMy')
-subplot(2,3,3)
-plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
-ylabel('estDis\_pCoMz')
-subplot(2,3,4)
-plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
-ylabel('estDis\_RPYx')
-subplot(2,3,5)
-plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
-ylabel('estDis\_RPYy')
-subplot(2,3,6)
-plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
-ylabel('estDis\_RPYz')
+% figure();
+% subplot(2,3,1)
+% plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
+% ylabel('estDis\_pCoMx')
+% subplot(2,3,2)
+% plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
+% ylabel('estDis\_pCoMy')
+% subplot(2,3,3)
+% plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
+% ylabel('estDis\_pCoMz')
+% subplot(2,3,4)
+% plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
+% ylabel('estDis\_RPYx')
+% subplot(2,3,5)
+% plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
+% ylabel('estDis\_RPYy')
+% subplot(2,3,6)
+% plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
+% ylabel('estDis\_RPYz')
 
 %%% check estL and pST
 % figure();
@@ -425,20 +460,20 @@ ylabel('estDis\_RPYz')
 % ylabel('pST\_z');
 
 %%% plot foot end in the world frame
-figure();
-p1=plot(estSP_fast(1,startNf:endNf-200),estSP_fast(2,startNf:endNf-200),'color',[0 0.4470 0.7410]);
-axis equal; grid on;
-hold on;
-p2=plot(estSP_fast(4,startNf:endNf-200),estSP_fast(5,startNf:endNf-200),'color',[0.8500 0.3250 0.0980]);
-p3=plot(estSP_fast(7,startNf:endNf-200),estSP_fast(8,startNf:endNf-200),'color',[0.9290 0.6940 0.1250]);
-p4=plot(estSP_fast(10,startNf:endNf-200),estSP_fast(11,startNf:endNf-200),'color',[0.4940 0.1840 0.5560]);
-plot(estSP_fast(1,startNf),estSP_fast(2,startNf),'o','color',[0 0.4470 0.7410],'markersize',10);
-plot(estSP_fast(4,startNf),estSP_fast(5,startNf),'o','color',[0.8500 0.3250 0.0980],'markersize',10);
-plot(estSP_fast(7,startNf),estSP_fast(8,startNf),'o','color',[0.9290 0.6940 0.1250],'markersize',10);
-plot(estSP_fast(10,startNf),estSP_fast(11,startNf),'o','color',[0.4940 0.1840 0.5560],'markersize',10);
-
-
-legend([p1 p2 p3 p4],{'1','2','3','4'});
+% figure();
+% p1=plot(estSP_fast(1,startNf:endNf-200),estSP_fast(2,startNf:endNf-200),'color',[0 0.4470 0.7410]);
+% axis equal; grid on;
+% hold on;
+% p2=plot(estSP_fast(4,startNf:endNf-200),estSP_fast(5,startNf:endNf-200),'color',[0.8500 0.3250 0.0980]);
+% p3=plot(estSP_fast(7,startNf:endNf-200),estSP_fast(8,startNf:endNf-200),'color',[0.9290 0.6940 0.1250]);
+% p4=plot(estSP_fast(10,startNf:endNf-200),estSP_fast(11,startNf:endNf-200),'color',[0.4940 0.1840 0.5560]);
+% plot(estSP_fast(1,startNf),estSP_fast(2,startNf),'o','color',[0 0.4470 0.7410],'markersize',10);
+% plot(estSP_fast(4,startNf),estSP_fast(5,startNf),'o','color',[0.8500 0.3250 0.0980],'markersize',10);
+% plot(estSP_fast(7,startNf),estSP_fast(8,startNf),'o','color',[0.9290 0.6940 0.1250],'markersize',10);
+% plot(estSP_fast(10,startNf),estSP_fast(11,startNf),'o','color',[0.4940 0.1840 0.5560],'markersize',10);
+% 
+% 
+% legend([p1 p2 p3 p4],{'1','2','3','4'});
 
 
 
