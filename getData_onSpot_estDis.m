@@ -40,8 +40,9 @@ pArrayL=rt_PendAllLocal(2:end,:);
 touchInd=rt_touchInd_LegState(2:5,:);
 LegState=rt_touchInd_LegState(6:end,:);
 pArrayLFK=rt_pLFKfast(2:end,:);
-UFinal=rt_UFinal_virtualForce(2:13,:);
-virtualU=rt_UFinal_virtualForce(14:end,:);
+UFinal=rt_UFinal_virtualForce_qpStatus(2:13,:);
+virtualU=rt_UFinal_virtualForce_qpStatus(14:25,:);
+qpStatus=rt_UFinal_virtualForce_qpStatus(end,:);
 %refOVnew=rt_refOVbew_refMVnew_slow(2:14,:);
 %refMVnew=rt_refOVbew_refMVnew_slow(15:end,:);
 

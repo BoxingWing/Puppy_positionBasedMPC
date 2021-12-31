@@ -283,7 +283,27 @@ for i=1:1:4
     end
 end
 
+% restrictions for roll and pitch angle
+% maxPit=10/180*pi;
+% minPit=-10/180*pi;
+% maxRoll=10/180*pi;
+% minRoll=-10/180*pi;
+% 
+% EA=zeros(4,12);
+% GA=zeros(4,1);
+% FA=zeros(4,13);
+% FA(1,:)=[0,0,0,1,0,0,0,0,0,0,0,0,0];
+% FA(2,:)=[0,0,0,-1,0,0,0,0,0,0,0,0,0];
+% FA(3,:)=[0,0,0,0,1,0,0,0,0,0,0,0,0];
+% FA(4,:)=[0,0,0,0,-1,0,0,0,0,0,0,0,0];
+% GA(1)=maxPit;
+% GA(2)=-minPit;
+% GA(3)=maxRoll;
+% GA(4)=-minRoll;
+% VA=ones(4,1)*5;
+
 Enew=[Eb2;Eb3;Eb4;Eb5;Eb1];
+Fnew=[zeros(32,13);];
 Gnew=[Gb2;Gb3;Gb4;Gb5;Gb1];
 Vnew=[Vb2;Vb3;Vb4;Vb5;Vb1];
 
@@ -320,7 +340,7 @@ Vnew=[Vb2;Vb3;Vb4;Vb5;Vb1];
 % G=[zeros(16,1);ones(4,1)*deltaFz;ones(4,1)*deltaFx];
 %V=[ones(16,1)*0;ones(8,1)];
 %Snew=zeros(32,6); % add if measured disturbance is used
-setconstraint(mpcPuppy,Enew,[],Gnew,Vnew);
+setconstraint(mpcPuppy,Enew,Fnew,Gnew,Vnew);
 %review(mpcPuppy);
 
 
