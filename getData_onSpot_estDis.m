@@ -72,6 +72,20 @@ RPY_mpcPre_slow=rt_xMPCOut_slow(5:7,:);
 vCoM_mpcPre_slow=rt_xMPCOut_slow(8:10,:);
 omegaW_mpcPre_slow=rt_xMPCOut_slow(11:13,:);
 
+pWRec=estSP_fast;
+LegStateRec=LegState;
+xRefRec=refP_slow; % t_slow
+xFBRec=rt_x_FB_fast(2:13,:);
+DisableRec=mpcSTOP;
+
+sim_pW=timeseries(pWRec,t_fast);
+sim_LegState=timeseries(LegStateRec,t_fast);
+sim_xRef=timeseries(xRefRec,t_slow);
+sim_xFB=timeseries(xFBRec,t_fast);
+sim_disable=timeseries(DisableRec,t_fast);
+sim_tEnd=t_fast(end);
+save('CentroidTestData','sim_pW','sim_LegState','sim_xRef','sim_xFB','sim_disable','sim_tEnd');
+
 % qpXnew=rt_qpXnew_qpUnew_qpExitFlag_fast(2:14,:);
 % qpUnew=rt_qpXnew_qpUnew_qpExitFlag_fast(15:26,:);
 % qpExitFlag=rt_qpXnew_qpUnew_qpExitFlag_fast(27,:);

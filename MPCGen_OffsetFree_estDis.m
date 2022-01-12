@@ -53,7 +53,8 @@ Rz=[cos(theta(3)),-sin(theta(3)),0;
 R=Rz*Ry*Rx;
 Inow=R*I*R';
 Iinv=inv(Inow);
-[A,B]=DS_gen(Ts,m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
+%[A,B]=DS_gen(Ts,m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
+[A,B]=DS_gen(0.005,m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
 C=diag(ones(13,1));
 D=zeros(13,12);
 

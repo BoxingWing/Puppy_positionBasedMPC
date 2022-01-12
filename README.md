@@ -1,1 +1,9 @@
 # Puppy_positionBasedMPC
+
+本项目基于的版本为Matlab 2021b。目前的主程序为raspi_multicore_MPCtest_estDis.slx。
+
+具体查看本项目代码之前建议运行MultiCoreTest.prj，该程序会配置相关文件搜索路径。该文件在某些情况下运行会报警告，这时需要在运行前手动打开simulink的start page，然后再运行该程序即可。
+
+查看主程序raspi_multicore_MPCtest_estDis.slx之前需要运行MPCGen_OffsetFree_estDis.m，该文件会生成一些主程序运行所需的关键变量，也可以避免在查看主程序代码时出现找不到相关变量的错误。
+
+getData_onSpot_estDis.m是针对实验数据的画图程序。本项目已经包含的若干mat文件均为实验采集数据，运行getData_onSpot_estDis.m的第二个大程序块会自动载入相关mat文件并绘制各状态变量及输入输出等的分析图。

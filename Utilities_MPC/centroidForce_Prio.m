@@ -35,53 +35,55 @@ classdef centroidForce_Prio < matlab.System
             obj.yawOld(end)=xFB(6);
             yawFilt=sum(obj.yawOld)/length(obj.yawOld);
 
-            errt1=[obj.krz;obj.krol;obj.kpit;obj.kyaw].*([xRef(3);xRef(4);xRef(5);xRef(6)]-[xFB(3);xFB(4);xFB(5);xFB(6)]);
-            errt2=[obj.kwx;obj.kwy].*([xRef(10);xRef(11)]-[xFB(10);xFB(11)]);
-
-
             Rz=[cos(sita(3)),-sin(sita(3)),0;
                 sin(sita(3)),cos(sita(3)),0;
                 0,0,1];
             Inow=Rz*obj.Inorm*Rz';
             Iinv=inv(Inow);
-            [~,B]=DS_gen(obj.Ts,3,sita,Iinv,(pW(:,1)-pC),(pW(:,2)-pC),(pW(:,3)-pC),(pW(:,4)-pC));
+            [A,B]=DS_gen(obj.Ts,3,sita,Iinv,(pW(:,1)-pC),(pW(:,2)-pC),(pW(:,3)-pC),(pW(:,4)-pC));
+
+            xCor=A*[xFB(1:12);9.8]*0;
+
+            errt1=[obj.krz;obj.krol;obj.kpit;obj.kyaw].*([xRef(3);xRef(4);xRef(5);xRef(6)]-[xFB(3);xFB(4);xFB(5);xFB(6)])-reshape(xCor([3,4,5,6]),4,1);
+            errt2=[obj.kwx;obj.kwy].*([xRef(10);xRef(11)]-[xFB(10);xFB(11)])-reshape(xCor([10,11]),2,1);
 
             Bt1=zeros(4,6);
-            Bt2=zeros(2,6);
+            Bt2=zeros(1,6);
             Bc=zeros(12,6);
 
             Bt1_All=B([3,4,5,6],1:12);
-            Bt2_All=B([7,8],1:12);
+            Bt2_All=B([10,11],1:12);
             Bc_All=B(1:12,1:12);
 
             if LegState(1)>0.5 && LegState(2)<0.5
                 Bt1=B([3,4,5,6],[1:3,10:12]);
-                Bt2=B([7,8],[1:3,10:12]);
+                Bt2=B([10,11],[1:3,10:12]);
                 Bc=B(1:12,[1:3,10:12]);
             elseif LegState(1)<0.5 && LegState(2)>0.5
                 Bt1=B([3,4,5,6],4:9);
-                Bt2=B([7,8],4:9);
+                Bt2=B([10,11],4:9);
                 Bc=B(1:12,4:9);
             end
 
             % task priority projection
+            thred=0.001;
 
             if sum(LegState)>3.5
-                N0=eye(length(Bc_All(1,:)))-pinv(Bc_All)*Bc_All;
-                J10=Bt1_All*N0;
-                N10=eye(length(J10(1,:)))-pinv(J10)*J10;
-                N1=N0*N10;
-                J21=Bt2_All*N1;
-                deltaP1=pinv(J10)*errt1;
-                deltaP2=deltaP1+pinv(J21)*(errt2-Bt2_All*deltaP1);
+                N0=eye(length(Bt1_All(1,:)));
+                J1pre=Bt1_All*N0;
+                N10=eye(length(J1pre(1,:)))-pinv(J1pre,thred)*J1pre;
+                N1=N10;
+                J2pre=Bt2_All*N1;
+                deltaP1=pinv(Bt1_All,thred)*errt1;
+                deltaP2=deltaP1+pinv(J2pre,thred)*(errt2-Bt2_All*deltaP1);
             else
-                N0=eye(length(Bc(1,:)))-pinv(Bc)*Bc;
-                J10=Bt1*N0;
-                N10=eye(length(J10(1,:)))-pinv(J10)*J10;
-                N1=N0*N10;
-                J21=Bt2*N1;
-                deltaP1=pinv(J10)*errt1;
-                deltaP2=deltaP1+pinv(J21)*(errt2-Bt2*deltaP1);
+                N0=eye(length(Bt1(1,:)));
+                J1pre=Bt1*N0;
+                N10=eye(length(J1pre(1,:)))-pinv(J1pre,thred)*J1pre;
+                N1=N10;
+                J2pre=Bt2*N1;
+                deltaP1=pinv(Bt1,thred)*errt1;
+                deltaP2=deltaP1+pinv(J2pre,thred)*(errt2-Bt2*deltaP1);
             end
             
             U=zeros(12,1);
