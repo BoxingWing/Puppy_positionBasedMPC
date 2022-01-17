@@ -12,6 +12,7 @@ classdef centroidForce < matlab.System
         ki_err_Old=zeros(6,1);
         sitaStore=zeros(3,400);
         yawOld=zeros(1,10);
+        LegStateOld=ones(4,1);
     end
     
     methods(Access = protected)
@@ -19,7 +20,7 @@ classdef centroidForce < matlab.System
             % Perform one-time calculations, such as computing constants
         end
         
-        function [U,sitaAva,sitaStd] = stepImpl(obj,LegState,pW,touchInd,xRef,xFB,Disable)
+        function [U,S14,S23] = stepImpl(obj,LegState,pW,touchInd,xRef,xFB,Disable)
             pC=xFB(1:3);
             sita=xFB(4:6);
 
@@ -44,6 +45,13 @@ classdef centroidForce < matlab.System
             Ki=diag(obj.ki);
             obj.ki_err_Old=obj.ki_err_Old+Ki*[errpCoM;errSita];
             %err=Kp*reshape(xRef(1:6)-xFB(1:6),6,1)+Kd*reshape(xRef(7:12)-xFB(7:12),6,1)+obj.ki_err_Old;
+            if LegState(1)+obj.LegStateOld(1)>0.8 && LegState(1)+obj.LegStateOld(1)<1.2
+                obj.ki_err_Old=obj.ki_err_Old*0;
+            end
+            if LegState(2)+obj.LegStateOld(2)>0.8 && LegState(2)+obj.LegStateOld(2)<1.2
+                obj.ki_err_Old=obj.ki_err_Old*0;
+            end
+
             errP1=Kp*[errpCoM;errSita]+obj.ki_err_Old;
             errP2=Kd*[errvCoM;errdSita];
             
@@ -73,7 +81,10 @@ classdef centroidForce < matlab.System
 %                     col=col+3;
 %                 end
 %             end
-            
+            S14=zeros(6,1);
+            S23=zeros(6,1);
+            thred=0.0001;
+
             if Disable>0.5
                 U=zeros(12,1);
                 obj.ki_err_Old=zeros(6,1);
@@ -81,12 +92,14 @@ classdef centroidForce < matlab.System
                 obj.yawOld=zeros(1,10);
             else
                 if LegState(1)>0.5
-                    U14=pinv(B14)*[errP1;errP2];
+                    U14=pinv(B14,  thred)*[errP1;errP2];
+                    S14=svd(B14);
                 else
                     U14=zeros(6,1);
                 end
                 if LegState(2)>0.5
-                    U23=pinv(B23)*[errP1;errP2];
+                    U23=pinv(B23,thred)*[errP1;errP2];
+                    S23=svd(B23);
                 else
                     U23=zeros(6,1);
                 end
@@ -103,6 +116,7 @@ classdef centroidForce < matlab.System
             sitaAva=zeros(3,1);%mean(obj.sitaStore,2)/pi*180;
             sitaStd=zeros(3,1);%std(obj.sitaStore,0,2)/pi*180;
             obj.UOld=U;
+            obj.LegStateOld=LegState;
         end
         
         function resetImpl(obj)
