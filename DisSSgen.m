@@ -19,10 +19,10 @@ B(7:9,1:3)=diag([1,1,1])/m;
 B(7:9,4:6)=diag([1,1,1])/m;
 B(7:9,7:9)=diag([1,1,1])/m;
 B(7:9,10:12)=diag([1,1,1])/m;
-B(10:12,1:3)=crossCap(Iinv*r1);
-B(10:12,4:6)=crossCap(Iinv*r2);
-B(10:12,7:9)=crossCap(Iinv*r3);
-B(10:12,10:12)=crossCap(Iinv*r4);
+B(10:12,1:3)=Iinv*crossCap(r1);
+B(10:12,4:6)=Iinv*crossCap(r2);
+B(10:12,7:9)=Iinv*crossCap(r3);
+B(10:12,10:12)=Iinv*crossCap(r4);
 B(9,13)=-1;
 
 faiT=expm(A*t);
@@ -57,6 +57,14 @@ Bd=int(faiT*B,t,0,Ts);
 Ad=subs(faiT,t,Ts);
 
 matlabFunction(Ad,Bd,'file','DS_gen','vars',{Ts,m,theta,Iinv,r1,r2,r3,r4});
+%matlabFunction(Ad,Bd,'file','DS_gen');
+
+%% subfunction
+function M=crossCap(v)
+M=[0,-v(3),v(2);
+    v(3),0,-v(1);
+    -v(2),v(1),0];
+end
 
 
 

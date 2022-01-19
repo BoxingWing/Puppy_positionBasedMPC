@@ -44,7 +44,7 @@ classdef ssModelgen_estDis< matlab.System
             R=Rz;
             %R=eye(3);
             Inow=R*obj.Inorm*R';
-            Iinv=inv(Inow);
+            Iinv=R*diag([1/obj.Inorm(1,1),1/obj.Inorm(2,2),1/obj.Inorm(3,3)])*R';
             
             [A,B]=DS_gen(obj.Ts,obj.m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
             
