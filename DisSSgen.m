@@ -57,6 +57,7 @@ Bd=int(faiT*B,t,0,Ts);
 Ad=subs(faiT,t,Ts);
 
 matlabFunction(Ad,Bd,'file','DS_gen','vars',{Ts,m,theta,Iinv,r1,r2,r3,r4});
+matlabFunction(A,B,'file','SS_gen','vars',{m,theta,Iinv,r1,r2,r3,r4});
 %matlabFunction(Ad,Bd,'file','DS_gen');
 
 %% subfunction
