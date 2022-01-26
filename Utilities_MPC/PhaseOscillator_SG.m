@@ -48,7 +48,7 @@ classdef PhaseOscillator_SG< matlab.System
             obj.PauseFlag=false;
         end
         
-        function [phaseNow,OscStopFlag] = stepImpl(obj,omega,EN)
+        function [phaseNow,OscStopFlag,LegState] = stepImpl(obj,omega,EN)
             phaseNow=omega*obj.SampleTime*obj.tCount+obj.startPhase;
             phaseNow=mod(phaseNow,2*pi);
             OscStopFlag=0;
@@ -58,6 +58,13 @@ classdef PhaseOscillator_SG< matlab.System
             end
             if EN<0.5 && phaseNow<0.08
                 OscStopFlag=1;
+            end
+            LegState=[1;0;0;1];
+            if phaseNow>pi
+                LegState=[0;1;1;0];
+            end
+            if OscStopFlag>0.5
+                LegState=[1;1;1;1];
             end
         end
 
@@ -85,24 +92,28 @@ classdef PhaseOscillator_SG< matlab.System
             end
         end
         
-        function [d1,d2] = getOutputDataTypeImpl(~)
+        function [d1,d2,d3] = getOutputDataTypeImpl(~)
             d1 = 'double';
             d2 = 'double';
+            d3='double';
         end
         
-        function [s1,s2] = getOutputSizeImpl(~)
+        function [s1,s2,s3] = getOutputSizeImpl(~)
             s1 = [1,1];
             s2=[1,1];
+            s3=[4,1];
         end
         
-        function [f1,f2] = isOutputFixedSizeImpl(~)
+        function [f1,f2,f3] = isOutputFixedSizeImpl(~)
             f1 = true;
             f2 = true;
+            f3=true;
         end
         
-        function [cpl1,cpl2] = isOutputComplexImpl(~)
+        function [cpl1,cpl2,cpl3] = isOutputComplexImpl(~)
             cpl1 = false;
             cpl2=false;
+            cpl3=false;
         end
         
     end

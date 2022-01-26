@@ -3,6 +3,8 @@ classdef LegStateIndicator < matlab.System
     properties (Access=private)
         SWOld=[0;0;0;0];
         SPOld=zeros(3,4);
+        SPCom=zeros(3,4); % SP compensation for swing leg
+        SWStore=zeros(4,2);
         count=0;
     end
     
@@ -21,27 +23,49 @@ classdef LegStateIndicator < matlab.System
             SP=zeros(3,4);
             if obj.count<0.5 || reset>0.5
                 obj.SPOld=reshape(pArray_W0,3,4);
+                obj.SPCom=reshape(pArray_W0,3,4);
                 obj.count=obj.count+1;
             end
             pArray_W=reshape(pArray_W,3,4);
+            
+            SWnow=zeros(4,1);
             for i=1:1:4
-                if SW(i)>0.5
-                    SPLeg(i)=1;
+                if SW(i)>0.5 && sum(obj.SWStore(i,:))>length(obj.SWStore(i,:))-0.5
+                    SWnow(i)=1;
+                elseif SW(i)<0.5 && sum(obj.SWStore(i,:))<0.5
+                    SWnow(i)=0;
+                else
+                    SWnow(i)=obj.SWOld(i);
+                end
+            end
+            obj.SWStore(:,1:end-1)=obj.SWStore(:,2:end);
+            obj.SWStore(:,end)=SW;
+            %SWnow=SW; % disable tacktile switch deshake
+            SPLeg=SWnow;
+            
+            for i=1:1:4
+                if obj.SWOld(i)>0.5 && SWnow(i)<0.5
+                    obj.SPCom(:,i)=-pArray_W(:,i)+obj.SPOld(:,i);
+                    obj.SPCom(3,i)=0;
+                end
+            end
+            
+            for i=1:1:4
+                if SWnow(i)>0.5
                     if obj.SWOld(i)>0.5
                         SP(:,i)=obj.SPOld(:,i);
                     else
-                        SP(:,i)=pArray_W(:,i);
+                        SP(:,i)=pArray_W(:,i)+obj.SPCom(:,i);
                     end
 %                     SP(:,i)=pArray_W(:,i);
                 else
-                    SPLeg(i)=0;
-                    SP(:,i)=pArray_W(:,i);
+                    SP(:,i)=pArray_W(:,i)+obj.SPCom(:,i);
                 end
             end
             if reset>0.5
                 SP=obj.SPOld;
             end
-            obj.SWOld=SPLeg;
+            obj.SWOld=SWnow;
             obj.SPOld=SP;
         end
         

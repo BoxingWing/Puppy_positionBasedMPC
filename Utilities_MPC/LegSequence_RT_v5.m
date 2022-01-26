@@ -11,11 +11,11 @@ classdef LegSequence_RT_v5< matlab.System
         roll_Off=0.037;
         m=3.5;
         k_ac=0;
-        k_uac=0;
+        kdv_uac=0;
+        pen_kuac=0.4;
         k_wz=0;
         k_roll=0;
         k_pitch=0;
-        pen_kuac=0.4;
         T=0.8; % gait duration
         StepH=0.04;
         SampleTime = 0.005; % Sample Time
@@ -140,8 +140,8 @@ classdef LegSequence_RT_v5< matlab.System
             desRoll=ref(4);
             desPit=ref(5);
             desYaw=ref(6);
-            xFiltFactor=0.1;
-            yFiltFactor=0.1;
+            xFiltFactor=0.5;%0.1
+            yFiltFactor=0.5; %0.1
             wzFiltFactor=0.1;
             
             desvxFilt=desvX*xFiltFactor+obj.desvxFilt_Old*(1-xFiltFactor);
@@ -163,8 +163,8 @@ classdef LegSequence_RT_v5< matlab.System
             wNow=[X_FB(10);X_FB(11);X_FB(12);];
             yawNow=X_FB(6);
             Rrpy=Rz(yawNow)*Ry(X_FB(5))*Rx(X_FB(4));
-            vNowL=Rrpy'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
-            wNowL=Rrpy'*wNow;
+            vNowL=RrpyDes'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
+            wNowL=RrpyDes'*wNow;
 
             %%% next step foot-placement in the leg coordinate
             
@@ -197,7 +197,7 @@ classdef LegSequence_RT_v5< matlab.System
             %p_a=-obj.k_ac*sum(obj.v_ac_Store,2)/length(obj.v_ac_Store(1,:))*obj.T/4+v_adc*obj.T/4; % obj.k_ac=-0.05
             
             p_a=obj.k_ac*v_ac*obj.T/4+(1-obj.k_ac)*v_adc*obj.T/4;
-            p_ua=obj.pen_kuac*v_uac*obj.T/4+obj.k_uac*(v_uac-v_uadc)*obj.T/4;
+            p_ua=obj.pen_kuac*v_uac*obj.T/4+obj.kdv_uac*(v_uac-v_uadc)*obj.T/4;
             
             p_ftL=p_a+p_ua;
             
@@ -220,8 +220,11 @@ classdef LegSequence_RT_v5< matlab.System
             p_wz1=Rz(sitaZ)*obj.pLnorm-obj.pLnorm;
             p_wz2=0.5*sqrt(0.19/9.8)*cross(vNowL,[0;0;wDesL(3)]);
 
+            % vx compensation
+            vxCom=[ones(1,4);zeros(2,4)]*0.1*vNowL(1);
+
             % final foot placement
-            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm+CrossCom+posCom;
+            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm+CrossCom+posCom+vxCom;
             
             % terrain height compensation
             pCoM=[X_FB(1);X_FB(2);X_FB(3)];

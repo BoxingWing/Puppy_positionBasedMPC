@@ -275,20 +275,20 @@ hold on;
 plot(t_fast(startNf:endNf),pCoM_fast(3,startNf:endNf));
 ylabel('pCoMz vx Ref');
 subplot(2,3,4)
-plot(t_slow(startNs:endNs),refP_slow(4,startNs:endNs));
+plot(t_slow(startNs:endNs),refSeq2_slow(4,startNs:endNs));
 hold on;
 plot(t_fast(startNf:endNf),RPY_fast(1,startNf:endNf));
-ylabel('roll vx Ref');
+ylabel('roll Ref');
 subplot(2,3,5)
-plot(t_slow(startNs:endNs),refP_slow(5,startNs:endNs));
+plot(t_slow(startNs:endNs),refSeq2_slow(5,startNs:endNs));
 hold on;
 plot(t_fast(startNf:endNf),RPY_fast(2,startNf:endNf));
-ylabel('pitch vx Ref');
+ylabel('pitch Ref');
 subplot(2,3,6)
-plot(t_slow(startNs:endNs),refP_slow(6,startNs:endNs));
+plot(t_slow(startNs:endNs),refSeq2_slow(6,startNs:endNs));
 hold on;
 plot(t_fast(startNf:endNf),RPY_fast(3,startNf:endNf));
-ylabel('yaw vx Ref');
+ylabel('yaw Ref');
 
 
 

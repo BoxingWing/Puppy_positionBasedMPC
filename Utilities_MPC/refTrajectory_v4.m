@@ -62,7 +62,7 @@ classdef refTrajectory_v4< matlab.System
             if disable<0.5
                 sitaNow=obj.sitaErrOld+diag(obj.sitaErr_K)*sitaErr;
             else
-                sitaNow=obj.sitaErrOld;
+                sitaNow=[0;0;0];
             end
             if disable>0.5
                 obj.pxOld=0;
