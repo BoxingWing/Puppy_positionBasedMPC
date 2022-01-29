@@ -108,7 +108,7 @@ numM=2; % control horizon
 
 W.OutputVariables=ones(numP,1)*[[20,20,180],[2,2,5],[10,10,0.1],[0.1,0.1,0.1],0];
 %W.OutputVariables=ones(numP,1)*[[10,10,60],[15,20,2],[0.1,0.1,0.1],[0.2,0.2,0.01],0];
-
+% weight in MIT cheetah : Q[12] = {2, 2, 50,0.25, 0.25, 10,   0.2, 0.2, 0.1,0, 0, 0.3,};
 %W.OutputVariables(1,:)=W.OutputVariables(1,:)*1;
 %W.OutputVariables(end,:)=[[20,20,180],[5,5,5],[10,10,0.1],[0.1,0.1,0.1],0];
 %W.ManipulatedVariables=ones(numP,1)*[[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01],[0.01,0.01,0.01]];

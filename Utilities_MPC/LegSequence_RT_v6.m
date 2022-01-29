@@ -51,7 +51,7 @@ classdef LegSequence_RT_v6< matlab.System
         deswzFilt_Old;
         v_ac_Store;
         p_ftL_Old;
-        vNowL;
+        vNowLF;
     end
     
     methods(Access = protected)
@@ -117,7 +117,7 @@ classdef LegSequence_RT_v6< matlab.System
             obj.deswzFilt_Old=0;
             obj.v_ac_Store=zeros(3,50);
             obj.p_ftL_Old=zeros(3,1);
-            obj.vNowL=zeros(3,100);
+            obj.vNowLF=zeros(3,30);
         end
         
         function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,surVN,zSur,OscStop,LegStateMPC)
@@ -167,8 +167,10 @@ classdef LegSequence_RT_v6< matlab.System
             yawNow=X_FB(6);
             Rrpy=Rz(yawNow)*Ry(X_FB(5))*Rx(X_FB(4));
             vNowL=RrpyDes'*vNow; % Yet to ADD Rx and Ry !!!!!!!!!!!!!!!!!
-            wNowL=RrpyDes'*wNow;
-
+            %wNowL=RrpyDes'*wNow;
+            obj.vNowLF(:,1:end-1)=obj.vNowLF(:,2:end);
+            obj.vNowLF(:,end)=vNowL;
+            vNowL_LF=sum(obj.vNowLF,2)/length(obj.vNowLF(1,:));
             %%% next step foot-placement in the leg coordinate
             
             if phi>pi
@@ -202,8 +204,8 @@ classdef LegSequence_RT_v6< matlab.System
 %             p_a=obj.k_ac*v_ac*obj.T/4+(1-obj.k_ac)*v_adc*obj.T/4;
 %             p_ua=obj.pen_kuac*v_uac*obj.T/4+obj.kdv_uac*(v_uac-v_uadc)*obj.T/4;
             
-            px=obj.kx_cv*vNowL(1)*obj.T/4+obj.kx_dv*(vNowL(1)-vDesL(1));
-            py=obj.ky_cv*vNowL(2)*obj.T/4+obj.ky_dv*(vNowL(2)-vDesL(2));
+            px=obj.kx_cv*vNowL_LF(1)*obj.T/4+obj.kx_dv*(vNowL_LF(1)-vDesL(1));
+            py=obj.ky_cv*vNowL_LF(2)*obj.T/4+obj.ky_dv*(vNowL_LF(2)-vDesL(2));
 
 
             p_ftL=[px;py;0];

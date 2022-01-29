@@ -5,8 +5,10 @@ classdef estX_byJoint < matlab.System
         xWidth=210.8/1000; % distance between fore and hind pitch axis, i.e. distance between fore and hind leg coordinates
         pArrayOld=zeros(3,4);
         piOFF=zeros(3,4); % offset pos vec from leg coordinate to world coordinate
-        vCoMRec=zeros(3,100);
-        pCoMRec=zeros(3,100);
+        vCoMRec=zeros(3,5);
+        vCoMRecZ=zeros(1,10);
+        pCoMRec=zeros(3,5);
+        pCoMRecZ=zeros(1,10);
         ymOld=zeros(6,1);
         iniCount=0;
         SPLegOld=zeros(4,1);
@@ -27,8 +29,8 @@ classdef estX_byJoint < matlab.System
             % pArray_B is the foot-end position in body coordinate
             updateEN=1;
             %KF_R=0.5*eye(6);
-            KF_R=diag([0.214e-5,0.137e-5,0.0357e-5,2.071e-2,5.364e-3,3.997e-3]); % ori
-            %KF_R=diag([0.214e-9,0.137e-9,0.0357e-9,2.071e-6,5.364e-7,3.997e-7]);
+            %KF_R=diag([0.214e-5,0.137e-5,0.0357e-5,2.071e-2,5.364e-3,3.997e-3]); % ori
+            KF_R=diag([0.214e-7,0.137e-7,0.0357e-7,2.071e-5,5.364e-6,3.997e-6]);
             pArray_B=reshape(pArray_B,3,4)/1000;
             R=Rz(RPY(3))*Ry(RPY(2))*Rx(RPY(1));
             vArray=(pArray_B-obj.pArrayOld)/dt;
@@ -61,19 +63,26 @@ classdef estX_byJoint < matlab.System
             else
                 vCoM=obj.ymOld(4:6);
                 pCoM=obj.ymOld(1:3);
-                %KF_R=10^-2*eye(6);
+                KF_R=10^-2*eye(6);
                 updateEN=0;
             end
             obj.vCoMRec(:,1:end-1)=obj.vCoMRec(:,2:end);
             obj.vCoMRec(:,end)=vCoM;
+            obj.vCoMRecZ(:,1:end-1)=obj.vCoMRecZ(:,2:end);
+            obj.vCoMRecZ(:,end)=vCoM(3);
             obj.pCoMRec(:,1:end-1)=obj.pCoMRec(:,2:end);
             obj.pCoMRec(:,end)=pCoM;
+            obj.pCoMRecZ(:,1:end-1)=obj.pCoMRecZ(:,2:end);
+            obj.pCoMRecZ(:,end)=pCoM(3);
             vCoMOut=sum(obj.vCoMRec,2)/length(obj.vCoMRec(1,:));
             pCoMOut=sum(obj.pCoMRec,2)/length(obj.pCoMRec(1,:));
+            vCoMOutZ=sum(obj.vCoMRecZ,2)/length(obj.vCoMRecZ);
+            pCoMOutZ=sum(obj.pCoMRecZ,2)/length(obj.pCoMRecZ);
+
             %vCoMFiltered=sgolayfilt(obj.vCoMRec',3,21);
             %vCoMFiltered=vCoMFiltered';
             %ym=[pCoM;vCoMFiltered(:,end)];
-            ym=[pCoM;vCoM];
+            ym=[pCoMOut;vCoMOut];
             obj.pArrayOld=pArray_B;
             obj.ymOld=ym;
         end

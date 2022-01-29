@@ -45,7 +45,11 @@ classdef LegStateIndicator < matlab.System
             
             for i=1:1:4
                 if obj.SWOld(i)>0.5 && SWnow(i)<0.5
-                    obj.SPCom(:,i)=-pArray_W(:,i)+obj.SPOld(:,i);
+                    obj.SPCom(1:2,i)=-pArray_W(1:2,i)+obj.SPOld(1:2,i);
+                    obj.SPCom(3,i)=0;
+                end
+                if obj.SWOld(i)<0.5 && SWnow(i)>0.5
+                    obj.SPCom(1:2,i)=-pArray_W(1:2,i)+obj.SPOld(1:2,i);
                     obj.SPCom(3,i)=0;
                 end
             end
