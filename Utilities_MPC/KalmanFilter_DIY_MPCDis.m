@@ -8,7 +8,6 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
     end
     
     properties (Access=private)
-        G;
         XOld;
         POld;
         count;
@@ -19,10 +18,9 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
             obj.count=0;
-            nX=25;
+            nX=19;
             obj.XOld=zeros(nX,1);
             obj.POld=eye(nX)*10^3;
-            obj.G=eye(nX);
             obj.P0=eye(nX)*10^3;
         end
         
@@ -41,23 +39,27 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             [A,B]=DS_gen(obj.Ts,obj.m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
             C=diag(ones(13,1));
             
-            %Bdis=zeros(13,6);
-            %Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
-            Bdis=[eye(12);zeros(1,12)];
-            Cdis=zeros(13,12);
+            Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
+            Cdis=zeros(13,6);
+            Anew=[A,Bdis;zeros(6,13),eye(6)];
+            Bnew=[B;zeros(6,12)];
+            Cnew=[diag(ones(13,1)),Cdis];
+
+%         Bdis=[eye(12);zeros(1,12)];
+%         Cdis=zeros(13,12);
             
-            Anew=[A,Bdis;zeros(12,13),eye(12)];
-            Bnew=[B;zeros(12,12)];
-            Cnew=[C,Cdis];
-            Dnew=zeros(13,24);
+%             Anew=[A,Bdis;zeros(12,13),eye(12)];
+%             Bnew=[B;zeros(12,12)];
+%             Cnew=[C,Cdis];
+%             Dnew=zeros(13,24);
             
             if obj.count<0.5
-                obj.XOld=[xFB;zeros(12,1)];
+                obj.XOld=[xFB;zeros(6,1)];
                 obj.POld=obj.P0;
                 obj.count=obj.count+1;
             end
             Xpre=Anew*obj.XOld+Bnew*U_MPC;
-            Ppre=Anew*obj.POld*Anew'+obj.G*Q*obj.G';
+            Ppre=Anew*obj.POld*Anew'+Q;
             K=Ppre*Cnew'/(Cnew*Ppre*Cnew'+R);
             %P=Ppre;
             P=(eye(length(obj.XOld))-K*Cnew)*Ppre;

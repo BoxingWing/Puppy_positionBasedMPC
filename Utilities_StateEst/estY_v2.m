@@ -1,40 +1,36 @@
 classdef estY_v2 < matlab.System
     % get CoM velocity and relative foot position from joints position feedback
+    properties
+        Ts=0.005;
+    end
     properties (Access=private)
         yWidth=97/1000; % distantce between left and right roll axis, i.e. distance between left and right leg coordinates
         xWidth=210.8/1000; % distance between fore and hind pitch axis, i.e. distance between fore and hind leg coordinates
         pArrayOld=zeros(3,4);
-        piOFF=zeros(3,4); % offset pos vec from leg coordinate to world coordinate
         vCoMRec=zeros(3,5);
-        vCoMRecZ=zeros(1,10);
-        pCoMRec=zeros(3,5);
-        pCoMRecZ=zeros(1,10);
-        ymOld=zeros(6,1);
+%         vCoMRecZ=zeros(1,10);
+        pCoMRec=zeros(12,5);
+%         pCoMRecZ=zeros(1,10);
         iniCount=0;
-        SPLegOld=zeros(4,1);
     end
     
     methods(Access = protected)
         function setupImpl(obj)
             % Perform one-time calculations, such as computing constants
-            obj.piOFF(:,1)=[obj.xWidth;obj.yWidth;0]/2;
-            obj.piOFF(:,2)=[obj.xWidth;-obj.yWidth;0]/2;
-            obj.piOFF(:,3)=[-obj.xWidth;obj.yWidth;0]/2;
-            obj.piOFF(:,4)=[-obj.xWidth;-obj.yWidth;0]/2;
             obj.iniCount=0;
         end
         
-        function [Yext,updateEN,KF_R] = stepImpl(obj,pArray_B,RPY,omegaB,SPLeg,SP,dt,surPara)
+        function [Yext,updateEN] = stepImpl(obj,pArray_B,RPY,omegaB,SPLeg,SP,surPara)
             % omegaB must be the world coordinate
             % pArray_B is the foot-end position in body coordinate
             updateEN=1;
             pArray_B=reshape(pArray_B,3,4)/1000;
             R=Rz(RPY(3))*Ry(RPY(2))*Rx(RPY(1));
-
+            
             % ------------
             % get foot end velocity in the world frame: vBM
             % ------------
-            vArray=(pArray_B-obj.pArrayOld)/dt;
+            vArray=(pArray_B-obj.pArrayOld)/obj.Ts;
             if obj.iniCount<0.5
                 vArray=zeros(3,4);
                 obj.iniCount=1;
@@ -66,20 +62,19 @@ classdef estY_v2 < matlab.System
             for i=1:1:4
                 pRel(:,i)=R*pArray_B(:,i);
             end
-            
-            hGround=zeros(1,4);
+            obj.pCoMRec(:,1:end-1)=obj.pCoMRec(:,2:end);
+            obj.pCoMRec(:,end)=reshape(pRel,12,1);
+            pCoMOut=sum(obj.pCoMRec,2)/length(obj.pCoMRec(1,:));
+
+            hGround=zeros(4,1);
             for i=1:1:4
                 hGround(i)=surPara(1)+surPara(2)*SP(1,i)+surPara(3)*SP(2,i);
             end
 
-            %vCoMFiltered=sgolayfilt(obj.vCoMRec',3,21);
-            %vCoMFiltered=vCoMFiltered';
-            %ym=[pCoM;vCoMFiltered(:,end)];
-            Yext=[reshape(pRel,1,12);hGround;vCoM];
+            %Yext=[reshape(pRel,12,1);hGround;vCoMOut];
+            Yext=[pCoMOut;hGround;vCoMOut];
 
-            ym=[pCoMOut;vCoMOut];
             obj.pArrayOld=pArray_B;
-            obj.ymOld=ym;
         end
         
         function resetImpl(obj)
