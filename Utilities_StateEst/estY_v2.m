@@ -9,7 +9,7 @@ classdef estY_v2 < matlab.System
         pArrayOld=zeros(3,4);
         vCoMRec=zeros(3,5);
 %         vCoMRecZ=zeros(1,10);
-        pCoMRec=zeros(12,5);
+        pRelRec=zeros(12,5);
 %         pCoMRecZ=zeros(1,10);
         iniCount=0;
     end
@@ -62,9 +62,9 @@ classdef estY_v2 < matlab.System
             for i=1:1:4
                 pRel(:,i)=R*pArray_B(:,i);
             end
-            obj.pCoMRec(:,1:end-1)=obj.pCoMRec(:,2:end);
-            obj.pCoMRec(:,end)=reshape(pRel,12,1);
-            pCoMOut=sum(obj.pCoMRec,2)/length(obj.pCoMRec(1,:));
+            obj.pRelRec(:,1:end-1)=obj.pRelRec(:,2:end);
+            obj.pRelRec(:,end)=reshape(pRel,12,1);
+            pCoMOut=sum(obj.pRelRec,2)/length(obj.pRelRec(1,:));
 
             hGround=zeros(4,1);
             for i=1:1:4

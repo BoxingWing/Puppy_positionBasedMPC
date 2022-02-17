@@ -429,25 +429,25 @@ legend('x','y','z','LegState','touchInd');
 % legend('qpLeg4z','mpcLeg4z')
 
 %%% check the estDis
-% figure();
-% subplot(2,3,1)
-% plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
-% ylabel('estDis\_pCoMx')
-% subplot(2,3,2)
-% plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
-% ylabel('estDis\_pCoMy')
-% subplot(2,3,3)
-% plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
-% ylabel('estDis\_pCoMz')
-% subplot(2,3,4)
-% plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
-% ylabel('estDis\_RPYx')
-% subplot(2,3,5)
-% plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
-% ylabel('estDis\_RPYy')
-% subplot(2,3,6)
-% plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
-% ylabel('estDis\_RPYz')
+figure();
+subplot(2,3,1)
+plot(t_slow(startNs:endNs),estDis(1,startNs:endNs));
+ylabel('estDis\_pCoMx')
+subplot(2,3,2)
+plot(t_slow(startNs:endNs),estDis(2,startNs:endNs));
+ylabel('estDis\_pCoMy')
+subplot(2,3,3)
+plot(t_slow(startNs:endNs),estDis(3,startNs:endNs));
+ylabel('estDis\_pCoMz')
+subplot(2,3,4)
+plot(t_slow(startNs:endNs),estDis(4,startNs:endNs));
+ylabel('estDis\_RPYx')
+subplot(2,3,5)
+plot(t_slow(startNs:endNs),estDis(5,startNs:endNs));
+ylabel('estDis\_RPYy')
+subplot(2,3,6)
+plot(t_slow(startNs:endNs),estDis(6,startNs:endNs));
+ylabel('estDis\_RPYz')
 
 %%% check estL and pST
 % figure();

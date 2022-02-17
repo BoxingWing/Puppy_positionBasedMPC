@@ -24,7 +24,7 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             obj.P0=eye(nX)*10^3;
         end
         
-        function [estXbar,P] = stepImpl(obj,U_MPC,xFB,pW,Q,R,Reset)
+        function [estXbar,P] = stepImpl(obj,U_MPC,xFB,pW,Q,R,Reset,Hold)
             % note Q, R must be matrixes
             % Q for process noise
             % R for measurement noise
@@ -40,10 +40,12 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             C=diag(ones(13,1));
             
             Bdis=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
-            Cdis=zeros(13,6);
+            Cdis=[zeros(6,6);0*eye(6);zeros(1,6)];
+            
             Anew=[A,Bdis;zeros(6,13),eye(6)];
             Bnew=[B;zeros(6,12)];
-            Cnew=[diag(ones(13,1)),Cdis];
+            Cnew=[C,Cdis];
+            Dnew=zeros(13,12);
 
 %         Bdis=[eye(12);zeros(1,12)];
 %         Cdis=zeros(13,12);
@@ -71,13 +73,14 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             %             end
             
             xhat=Xpre+K*(xFB-Cnew*Xpre);
-            tmp=Bdis*xhat(14:25);
-            dx=tmp(1:12);
             if Reset>0.5
-                xhat=[xFB;zeros(12,1)];
+                xhat=[xFB;zeros(6,1)];
                 P=obj.P0;
             end
-            estXbar=[xhat(1:13);dx];
+            if Hold>0.5
+                xhat=obj.XOld;
+            end
+            estXbar=xhat;
             obj.XOld=xhat;
             obj.POld=P;
         end

@@ -1,9 +1,10 @@
 classdef nosieControl < matlab.System
     % adjust the measurement (R) and pocess (Q) noise according to the leg state
     properties
-        R_preli=[0.2,0.1,0.05]*10^-7;
+        R_preli=[1.0752,1.1534,0.3108,1.1410,1.4025,0.4953,1.0752,1.5684,0.3992,1.3367, ...
+            1.1690,0.6264]*10^-4;
         R_h=0.05*10^-7;
-        R_v=[200,50,40]*10^-7;
+        R_v=[2.4541,1.5699,2.3092]*10^-3
         scaleh=1000;
 
         Q_r=[10,5,1]*10^-8;
@@ -34,7 +35,7 @@ classdef nosieControl < matlab.System
                     scalepi_i(i)=obj.scale_pi;
                 end
             end
-            KF_R=[obj.R_preli,obj.R_preli,obj.R_preli,obj.R_preli,scaleh_i(1)*obj.R_h,scaleh_i(2)*obj.R_h,...
+            KF_R=[obj.R_preli,scaleh_i(1)*obj.R_h,scaleh_i(2)*obj.R_h,...
                 scaleh_i(3)*obj.R_h,scaleh_i(4)*obj.R_h,obj.R_v];
             KF_Q=[obj.Q_r,obj.Q_v,scalepi_i(1)*obj.Q_pi,scalepi_i(2)*obj.Q_pi,scalepi_i(3)*obj.Q_pi,...
                 scalepi_i(4)*obj.Q_pi,obj.Q_abar];

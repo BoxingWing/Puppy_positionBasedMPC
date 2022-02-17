@@ -8,69 +8,91 @@ classdef ssModelgen_estDis< matlab.System
         m=3.5;
         Ts=0.04;
         hIni=0.19;
+        numP=6;
     end
-    
+
     properties(Access=private)
         U_stand;
     end
-    
+
     methods(Access = protected)
-        
+
         function setupImpl(obj)
             obj.U_stand=[0;0;1;0;0;1;0;0;1;0;0;1]*obj.m/4*9.8;
         end
-        
-        function [Anew,Bnew,Cnew,Dnew,X,U,Y,DX,Inow] = stepImpl(obj,PendAll,xFB,SPLeg)
-            %Pc=XOld(1:3);
-            Pc=xFB(1:3);
-            theta=xFB(4:6);
-            
-            %             if disable<0.5
-            %                 Unow=UOld;
-            %             else
-            %                 Unow=obj.U_stand;
-            %             end
-            
-            Rx=[1,0,0;
-                0,cos(theta(1)),-sin(theta(1));
-                0,sin(theta(1)),cos(theta(1))];
-            Ry=[cos(theta(2)),0,sin(theta(2));
-                0,1,0;
-                -sin(theta(2)),0,cos(theta(2))];
-            Rz=[cos(theta(3)),-sin(theta(3)),0;
-                sin(theta(3)),cos(theta(3)),0;
-                0,0,1];
-            R=Rz*Ry*Rx; % Consider to replace this !!!!
-            R=Rz;
-            %R=eye(3);
-            Inow=R*obj.Inorm*R';
-            Iinv=R*diag([1/obj.Inorm(1,1),1/obj.Inorm(2,2),1/obj.Inorm(3,3)])*R';
-            
-            [A,B]=DS_gen(obj.Ts,obj.m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
-            
-            %Bd=[0*eye(6);eye(6);zeros(1,6)];
-            Bd=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
-            Cd=zeros(13,6);
-            
-            Anew=[A,Bd;zeros(6,13),eye(6)];
-            Bnew=[B;zeros(6,12)];
-            Cnew=[diag(ones(13,1)),Cd];
-            Dnew=zeros(13,12);
-            
-            Unow=zeros(12,1);
-            for i=1:1:4
-                if SPLeg(i)>0.5
-                    Unow(3*i)=1;
+
+        function [Anew,Bnew,Cnew,Dnew,X,U,Y,DX,Inow] = stepImpl(obj,PendAll,xFB,SPLeg,refSeq)
+            Anew=zeros(19,19,7);
+            Bnew=zeros(19,12,7);
+            Cnew=zeros(13,19,7);
+            Dnew=zeros(13,12,7);
+            X=zeros(19,1,7);
+            U=zeros(12,1,7);
+            Y=zeros(13,1,7);
+            DX=zeros(19,1,7);
+            Inow=eye(3);
+            for i=1:1:7
+                if i<1.5
+                    Pc=xFB(1:3);
+                    theta=xFB(4:6);
+                    xNow=xFB;
+                else
+                    Pc=xFB(1:3)+(refSeq(2,1:3)'-refSeq(1,1:3)')*(i-1);
+                    theta=xFB(4:6);
+                    xNow=[Pc;theta;xFB(7:12);9.8;xFB(14:19)];
                 end
+                Pc=xFB(1:3);
+                theta=xFB(4:6);
+                xNow=xFB;
+
+%                 if i<6.5
+%                     Pc=refSeq(i,1:3)';
+%                     theta=refSeq(i,4:6)';
+%                 else
+%                     Pc=refSeq(6,1:3)';
+%                     theta=refSeq(6,4:6)';
+%                 end
+                Rx=[1,0,0;
+                    0,cos(theta(1)),-sin(theta(1));
+                    0,sin(theta(1)),cos(theta(1))];
+                Ry=[cos(theta(2)),0,sin(theta(2));
+                    0,1,0;
+                    -sin(theta(2)),0,cos(theta(2))];
+                Rz=[cos(theta(3)),-sin(theta(3)),0;
+                    sin(theta(3)),cos(theta(3)),0;
+                    0,0,1];
+                R=Rz*Ry*Rx; % Consider to replace this !!!!
+                R=Rz;
+                %R=eye(3);
+                Inow=R*obj.Inorm*R';
+                Iinv=R*diag([1/obj.Inorm(1,1),1/obj.Inorm(2,2),1/obj.Inorm(3,3)])*R';
+
+                [A,B]=DS_gen(obj.Ts,obj.m,theta,Iinv,PendAll(:,1)-Pc,PendAll(:,2)-Pc,PendAll(:,3)-Pc,PendAll(:,4)-Pc);
+
+                %Bd=[0*eye(6);eye(6);zeros(1,6)];
+                Bd=[0.5*obj.Ts^2*eye(6);obj.Ts*eye(6);zeros(1,6)];
+                Cd=zeros(13,6);
+
+                Anew(:,:,i)=[A,Bd;zeros(6,13),eye(6)];
+                Bnew(:,:,i)=[B;zeros(6,12)];
+                Cnew(:,:,i)=[diag(ones(13,1)),Cd];
+                Dnew(:,:,i)=zeros(13,12);
+
+                Unow=zeros(12,1);
+                for ii=1:1:4
+                    if SPLeg(ii)>0.5
+                        Unow(3*ii)=1;
+                    end
+                end
+                Unow=Unow*obj.m*9.8/sum(SPLeg);
+
+                X(:,:,i)=xNow;
+                U(:,:,i)=Unow;
+                Y(:,:,i)=Cnew(:,:,i)*X(:,:,i)+Dnew(:,:,i)*Unow(:,:,i);
+                DX(:,:,i)=Anew(:,:,i)*X(:,:,i)+Bnew(:,:,i)*Unow(:,:,i)-X(:,:,i);
             end
-            Unow=Unow*obj.m*9.8/sum(SPLeg);
-            
-            X=xFB;
-            U=Unow;
-            Y=Cnew*X+Dnew*Unow;
-            DX=Anew*X+Bnew*Unow-X;
         end
-        
+
         function [d1,d2,d3,d4,d5,d6,d7,d8,d9] = getOutputDataTypeImpl(~)
             d1 = 'double';
             d2 = 'double';
@@ -82,19 +104,19 @@ classdef ssModelgen_estDis< matlab.System
             d8 = 'double';
             d9 = 'double';
         end
-        
+
         function [s1,s2,s3,s4,s5,s6,s7,s8,s9] = getOutputSizeImpl(~)
-            s1=[19,19];
-            s2=[19,12];
-            s3=[13,19];
-            s4=[13,12];
-            s5=[19,1];
-            s6=[12,1];
-            s7=[13,1];
-            s8=[19,1];
+            s1=[19,19,7];
+            s2=[19,12,7];
+            s3=[13,19,7];
+            s4=[13,12,7];
+            s5=[19,1,7];
+            s6=[12,1,7];
+            s7=[13,1,7];
+            s8=[19,1,7];
             s9=[3,3];
         end
-        
+
         function [f1,f2,f3,f4,f5,f6,f7,f8,f9] = isOutputFixedSizeImpl(~)
             f1=true;
             f2=true;
@@ -106,7 +128,7 @@ classdef ssModelgen_estDis< matlab.System
             f8=true;
             f9=true;
         end
-        
+
         function [c1,c2,c3,c4,c5,c6,c7,c8,c9] = isOutputComplexImpl(~)
             c1=false;
             c2=false;
@@ -118,11 +140,11 @@ classdef ssModelgen_estDis< matlab.System
             c8=false;
             c9=false;
         end
-        
+
         function resetImpl(obj)
             % Initialize / reset discrete-state properties
         end
-        
+
     end
 end
 %% subfunction

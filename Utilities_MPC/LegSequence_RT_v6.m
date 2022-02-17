@@ -117,7 +117,7 @@ classdef LegSequence_RT_v6< matlab.System
             obj.deswzFilt_Old=0;
             obj.v_ac_Store=zeros(3,50);
             obj.p_ftL_Old=zeros(3,1);
-            obj.vNowLF=zeros(3,30);
+            obj.vNowLF=zeros(3,50);
         end
         
         function [LegState,PendAllLocal] = stepImpl(obj,phi,pArray_L_Adm,X_FB,MPC_Count,touchInd,ref,surP,surVN,zSur,OscStop,LegStateMPC)
