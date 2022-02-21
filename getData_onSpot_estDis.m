@@ -117,11 +117,11 @@ end
 endNs=tmp(1);
 
 %%% check the multirate delay
-% figure();
-% stairs(t_slow,mvOut_slow(1,:));
-% hold on;
-% stairs(t_fast,mvOut_fast(1,:));
-% legend('mvOut1\_slow','mvOut1\_fast');
+figure();
+stairs(t_slow,mvOut_slow(1,:));
+hold on;
+stairs(t_fast,mvOut_fast(1,:));
+legend('mvOut1\_slow','mvOut1\_fast');
 
 %%% check the virutal force
 figure()

@@ -4,6 +4,8 @@ classdef LegStateIndicator_Compound < matlab.System
         SWOld=[0;0;0;0];
         SPOld=zeros(3,4);
         SWStore=zeros(4,2);
+        SP_td=zeros(3,4);
+        LegStateOld=ones(4,1);
         count=0;
     end
     
@@ -13,14 +15,17 @@ classdef LegStateIndicator_Compound < matlab.System
 
         end
         
-        function [SPLeg,SP] = stepImpl(obj,SW,pArray_W0,pArray_W,reset)
+        function [SPLeg,SP,SP_Pse] = stepImpl(obj,SW,pArray_W0,pArray_W,reset,LegState)
             % SW: [4,1], indicates the touch state of four legs
             % pArray_W:[3,4], the foot-end position in the world coordinate
             % SP: [3,4], the foot-end position in the world coordinate
             % SPLeg: [4,1], on or off gournd indicator
+            % SP_Pse: [3,4], foot-end positions in the world coordinate with strict contact costraint
 
             if obj.count<0.5 || reset>0.5
                 obj.SPOld=reshape(pArray_W0,3,4);
+                obj.SP_td=reshape(pArray_W0,3,4);
+                obj.LegStateOld=LegState;
                 obj.count=obj.count+1;
             end
             SP=reshape(pArray_W,3,4);
@@ -40,9 +45,21 @@ classdef LegStateIndicator_Compound < matlab.System
             %SWnow=SW; % disable tacktile switch deshake
             SPLeg=SWnow;
             
+            SP_Pse=SP;
+            for i=1:1:4
+                if LegState(i)>0.5 && obj.LegStateOld(i)<0.5
+                    obj.SP_td(:,i)=SP(:,i);
+                end
+                if LegState(i)>0.5
+                    SP_Pse(:,i)=obj.SP_td(:,i);
+                end
+            end
+
+
             if reset>0.5
                 SP=obj.SPOld;
             end
+            obj.LegStateOld=LegState;
             obj.SWOld=SWnow;
             obj.SPOld=SP;
         end

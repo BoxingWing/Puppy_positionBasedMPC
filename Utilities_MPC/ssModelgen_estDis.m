@@ -37,9 +37,9 @@ classdef ssModelgen_estDis< matlab.System
                     theta=xFB(4:6);
                     xNow=xFB;
                 else
-                    Pc=xFB(1:3)+(refSeq(2,1:3)'-refSeq(1,1:3)')*(i-1);
-                    theta=xFB(4:6);
-                    xNow=[Pc;theta;xFB(7:12);9.8;xFB(14:19)];
+                    Pc=refSeq(1,1:3)';
+                    theta=refSeq(1,4:6)';
+                    xNow=xFB;
                 end
                 Pc=xFB(1:3);
                 theta=xFB(4:6);

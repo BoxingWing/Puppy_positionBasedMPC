@@ -55,6 +55,9 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
 %             Cnew=[C,Cdis];
 %             Dnew=zeros(13,24);
             
+            Deq=[zeros(6,13),eye(6)];
+            deq=obj.XOld(14:19);
+
             if obj.count<0.5
                 obj.XOld=[xFB;zeros(6,1)];
                 obj.POld=obj.P0;
@@ -65,6 +68,7 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
             K=Ppre*Cnew'/(Cnew*Ppre*Cnew'+R);
             %P=Ppre;
             P=(eye(length(obj.XOld))-K*Cnew)*Ppre;
+
             
             %             if updateEN<0.5
             %                 K=K*0;
@@ -78,10 +82,12 @@ classdef KalmanFilter_DIY_MPCDis < matlab.System
                 P=obj.P0;
             end
             if Hold>0.5
-                xhat=obj.XOld;
+                xOut=xhat-Deq'*pinv(Deq*Deq')*(Deq*xhat-deq);
+            else
+                xOut=xhat;
             end
-            estXbar=xhat;
-            obj.XOld=xhat;
+            estXbar=xOut;
+            obj.XOld=xOut;
             obj.POld=P;
         end
         
