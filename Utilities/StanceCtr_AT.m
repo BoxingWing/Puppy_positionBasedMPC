@@ -3,6 +3,13 @@ classdef StanceCtr_AT< matlab.System
     properties
         tSW=0.3;
         tSample=0.005;
+        r0=0.19;
+        lateral_width=0.097;
+        sagetial_width=0.2108;
+        roll_Off=0.037;
+        kp=zeros(1,6);
+        kd=zeros(1,6);
+        ki=zeros(1,6);
     end
 
     properties(Access=private)
@@ -11,8 +18,10 @@ classdef StanceCtr_AT< matlab.System
         swCount_LF=0;
         swCount_RF=0;
         swN=1;
+        yawOld=zeros(1,10);
         LegStateOld=[1;1;1;1];
         vCoM_sw=[1;1;1]; % CoM velocity at the beginning of the last swing phase
+        ki_err_Old=zeros(6,1);
     end
 
     methods(Access = protected)
@@ -28,88 +37,72 @@ classdef StanceCtr_AT< matlab.System
             obj.vCoM_sw=[1;1;1];
         end
 
-        function [p_L,f_L] = stepImpl(obj,p_L_norm,xFB,EN)
-            % X_FB: system states from the estimator
-            % X_mpc: predicted next step's systems states from the MPC controller
-            % touchInd: indicator of wether a swing leg touches the ground
-            % T is the moving period
+        function [p_L,f_L] = stepImpl(obj,p_L_old,pW,xFB,xDes,LegState,Disable)
+            % p_L_old: norminal p_L in the last step
+            % xDes: [vx,vy,wz], in the local body frame
 
-            Rrpy=Rz(xFB(6))*Ry(xFB(5))*Rx(xFB(4));
-            vCoM_L=Rrpy'*xFB(7:9);
-
-            vxDead=0.02;
-            vyDead=0.02;
-            if abs(vCoM_L(1))>abs(vxDead)
-                vCoM_L(1)=vCoM_L(1)-sign(vCoM_L(1))*abs(vxDead);
+            % norminal foot end positions
+            p_L_old=reshape(p_L_old,3,4);
+            xDes=-xDes;
+            if Disable>0.5
+                p_L=reshape([0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;],3,4);
             else
-                vCoM_L(1)=0;
+                p_L=p_L_old+[xDes(1);xDes(2);0]*[1,1,1,1]*obj.tSample+...
+                    [cross(p_L_old(:,1),[0;0;xDes(3)]),cross(p_L_old(:,2),[0;0;xDes(3)]), ...
+                    cross(p_L_old(:,3),[0;0;xDes(3)]),cross(p_L_old(:,4),[0;0;xDes(3)])]*obj.tSample;
             end
-            if abs(vCoM_L(2))>abs(vyDead)
-                vCoM_L(2)=vCoM_L(2)-sign(vCoM_L(2))*abs(vyDead);
+
+            % contact forces roughly control
+            pC=xFB(1:3);
+            sita=xFB(4:6);
+
+            obj.yawOld(1:end-1)=obj.yawOld(2:end);
+            obj.yawOld(end)=xFB(6);
+            yawFilt=sum(obj.yawOld)/length(obj.yawOld);
+            Rz=[cos(yawFilt),-sin(yawFilt),0;sin(yawFilt),cos(yawFilt),0;0,0,1];
+            %Rz=eye(3);
+
+            T=[cos(sita(2))*cos(sita(3)),-sin(sita(3)),0;
+                cos(sita(2))*sin(sita(3)),cos(sita(3)),0;
+                -sin(sita(2)),0,1];
+            %dsita=T\[xFB(10);xFB(11);xFB(12)];
+            errSita=([xRef(4);xRef(5);xRef(6)]-[xFB(4);xFB(5);xFB(6)]);
+            errdSita=T\([xRef(10);xRef(11);xRef(12)]-[xFB(10);xFB(11);xFB(12)]);
+            errpCoM=Rz'*([xRef(1);xRef(2);xRef(3)]-[xFB(1);xFB(2);xFB(3)]);
+            errvCoM=Rz'*([xRef(7);xRef(8);xRef(9)]-[xFB(7);xFB(8);xFB(9)]);
+
+            Kp=diag(obj.kp);
+            Kd=diag(obj.kd);
+            Ki=diag(obj.ki);
+            %             obj.ki_err_Old=obj.ki_err_Old+Ki*reshape(xRef(1:6)-xFB(1:6),6,1);
+            %             err=Kp*reshape(xRef(1:6)-xFB(1:6),6,1)+Kd*reshape(xRef(7:12)-xFB(7:12),6,1)+obj.ki_err_Old;
+            obj.ki_err_Old=obj.ki_err_Old+Ki*[errpCoM;errSita];
+            %err=Kp*reshape(xRef(1:6)-xFB(1:6),6,1)+Kd*reshape(xRef(7:12)-xFB(7:12),6,1)+obj.ki_err_Old;
+            if LegState(1)+obj.LegStateOld(1)>0.8 && LegState(1)+obj.LegStateOld(1)<1.2
+                obj.ki_err_Old=obj.ki_err_Old*0;
+            end
+            if LegState(2)+obj.LegStateOld(2)>0.8 && LegState(2)+obj.LegStateOld(2)<1.2
+                obj.ki_err_Old=obj.ki_err_Old*0;
+            end
+            err=Kp*[errpCoM;errSita]+Kd*[errvCoM;errdSita]+obj.ki_err_Old;
+
+            M=[LegState(1).*eye(3),LegState(2).*eye(3),LegState(3).*eye(3),LegState(4).*eye(3);...
+                LegState(1).*crossCap(Rz'*(pW(:,1)-pC)),LegState(2).*crossCap(Rz'*(pW(:,2)-pC)),LegState(3).*crossCap(Rz'*(pW(:,3)-pC)),LegState(4).*crossCap(Rz'*(pW(:,4)-pC));];
+
+            Minv=pinv(M,10^-7);
+            if Disable>0.5
+                U=zeros(12,1);
+                obj.ki_err_Old=zeros(6,1);
+                obj.yawOld=zeros(1,10);
             else
-                vCoM_L(2)=0;
+                U=Minv*err;
             end
-
-            if vCoM_L(1)*obj.vCoM_sw(1)<0 || vCoM_L(2)*obj.vCoM_sw(2)<0
-                obj.isLFnext=~obj.isLFnext;
-                obj.isRFnext=~obj.isRFnext;
+            for i=1:1:4
+                U(3*i-2:3*i)=Rz*U(3*i-2:3*i);
             end
+            f_L=U;
 
-            tRem_LFx=(p_L(1)+p_L(10))/2/vCoM_L(1);
-            tRem_LFy=(p_L(2)+p_L(11))/2/vCoM_L(2);
-            tRem_RFx=(p_L(4)+p_L(7))/2/vCoM_L(1);
-            tRem_RFy=(p_L(5)+p_L(8))/2/vCoM_L(2);
-
-            if obj.isLFnext==true
-                tRem=min(tRem_LFx,tRem_LFy);
-            else
-                tRem=min(tRem_RFx,tRem_RFy);
-            end
-
-            LegState=obj.LegStateOld;
-            if tRem<0 && sum(LegState)>3.5 && EN>0.5
-                if obj.isLFnext==true
-                    LegState(1)=0;
-                    LegState(4)=0;
-                    obj.isLFnext=false;
-                    obj.isRFnext=true;
-                    obj.swCount_LF=0;
-                    obj.vCoM_sw=vCoM_L;
-                elseif obj.isRFnext==true
-                    LegState(2)=0;
-                    LegState(3)=0;
-                    obj.isLFnext=true;
-                    obj.isRFnext=false;
-                    obj.swCount_RF=0;
-                    obj.vCoM_sw=vCoM_L;
-                end
-            end
-
-            LegPhase=ones(4,1);
-            if LegState(1)<0.5
-                obj.swCount_LF=obj.swCount_LF+1;
-                LegPhase(1)=obj.swCount_LF/obj.swN;
-                LegPhase(4)=LegPhase(1);
-                if obj.swCount_LF>obj.swN
-                    %                     obj.swCount_LF=0;
-                    LegState(1)=1;
-                    LegState(4)=1;
-                end
-            end
-            if LegState(2)<0.5
-                obj.swCount_RF=obj.swCount_RF+1;
-                LegPhase(2)=obj.swCount_RF/obj.swN;
-                LegPhase(3)=LegPhase(2);
-                if obj.swCount_RF>obj.swN
-                    %                     obj.swCount_RF=0;
-                    LegState(2)=1;
-                    LegState(3)=1;
-                end
-            end
-
-            %%% data update
             obj.LegStateOld=LegState;
-
         end
 
         function resetImpl(obj)
@@ -119,6 +112,10 @@ classdef StanceCtr_AT< matlab.System
     end
 end
 
-
+function vcap=crossCap(v)
+vcap=[0,-v(3),v(2);
+        v(3),0,-v(1);
+       -v(2),v(1),0];
+end
 
 

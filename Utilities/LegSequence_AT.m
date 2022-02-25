@@ -2,7 +2,6 @@ classdef LegSequence_AT< matlab.System
     % generate appropriate leg sequence
     properties
         tSW=0.3;
-        %--------------------------------
         SampleTime = 0.005; % Sample Time
         OffsetTime = 0; % Offset Time
         TickTime = 0;
