@@ -1,7 +1,7 @@
 classdef SWST_combinator< matlab.System
     % combine the swing and stance leg control commands
     properties
-        r0=0.19;
+        
     end
 
     properties(Access=private)
@@ -34,9 +34,13 @@ classdef SWST_combinator< matlab.System
                     pL_LF(:,i)=obj.pL_LF_Old(:,i);
                 end
             end
-
+            
             obj.pL_LF_Old=pL_LF;
             obj.LegStateOld=LegState;
+
+            fL_res=reshape(fL_res,12,1);
+            pL_bas=reshape(pL_bas,12,1);
+            pL_LF=reshape(pL_LF,12,1);
         end
 
         function resetImpl(obj)

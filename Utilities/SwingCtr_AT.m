@@ -3,7 +3,8 @@ classdef SwingCtr_AT< matlab.System
     properties
         tSW=0.3;
         tSample=0.005;
-        r0=0.19;
+        r0=[0;0;0.19];
+        StepH=0.05;
         lateral_width=0.097;
         sagetial_width=0.2108;
         roll_Off=0.037;
@@ -24,11 +25,10 @@ classdef SwingCtr_AT< matlab.System
         LegStateOld=[1;1;1;1];
         vCoM_sw=[1;1;1]; % CoM velocity at the beginning of the last swing phase
         ki_err_Old=zeros(6,1);
-
+        LegCorOri;
         desvxFilt_Old=0;
         desvyFilt_Old=0;
         deswzFilt_Old=0;
-        v_ac_Store=zeros(3,50);
         p_ftL_Old=zeros(3,1);
         vNowLF=zeros(3,50);
         pLnorm;
@@ -37,7 +37,7 @@ classdef SwingCtr_AT< matlab.System
     methods(Access = protected)
 
         function setupImpl(obj)
-            obj.swN=floor(obj.tSW/obj.SampleTime);
+            obj.swN=floor(obj.tSW/obj.tSample);
             obj.isLFnext=true;
             obj.isRFnext=false;
             obj.swCount_LF=0;
@@ -46,9 +46,23 @@ classdef SwingCtr_AT< matlab.System
             obj.LegStateOld=[1;1;1;1];
             obj.vCoM_sw=[1;1;1];
             obj.pLnorm=[0;0;-obj.r0(3)]*[1,1,1,1]+reshape([0;1;0;0;-1;0;0;1;0;0;-1;0],3,4)*obj.roll_Off; % norminal foot position in the leg coordinate
+            yW=obj.lateral_width;
+            xW=obj.sagetial_width;
+            %             obj.PendAllnorm=[0.1075,0.1075,-0.1075,-0.1075;
+            %                 0.0750,-0.0750,0.0750,-0.0750;
+            %                 0,0,0,0];
+            PendAlltmp=zeros(12,1);
+            PendAlltmp(1:3)=[xW;yW;0]/2;
+            PendAlltmp(4:6)=[xW;-yW;0]/2;
+            PendAlltmp(7:9)=[-xW;yW;0]/2;
+            PendAlltmp(10:12)=[-xW;-yW;0]/2;
+            PendAlltmp=PendAlltmp+[0;1;0;0;-1;0;0;1;0;0;-1;0]*obj.roll_Off;
+            obj.LegCorOri=reshape(PendAlltmp-[0;1;0;0;-1;0;0;1;0;0;-1;0]*obj.roll_Off,3,4);
         end
 
-        function pL_sw = stepImpl(obj,xFB,xRef,LegState,LegPhase,pL_LF)
+        function pL_sw = stepImpl(obj,xFB,xRef,LegState,LegPhase,pL_LF,surP,surVN)
+            % surP: origin point on the terrain surface
+            % surVN: normal vector of the terrain surface
             pL_LF=reshape(pL_LF,3,4);
             desvX=xRef(7);
             desvY=xRef(8);
@@ -88,18 +102,16 @@ classdef SwingCtr_AT< matlab.System
             vNowL_LF=sum(obj.vNowLF,2)/length(obj.vNowLF(1,:));
 
             %%% next step foot-placement in the leg coordinate
-            obj.v_ac_Store(:,1:end-1)=obj.v_ac_Store(:,2:end);
-            obj.v_ac_Store(:,end)=v_ac;
             
-            px=obj.kx_cv*vNowL_LF(1)*obj.T/4+obj.kx_dv*(vNowL_LF(1)-vDesL(1));
-            py=obj.ky_cv*vNowL_LF(2)*obj.T/4+obj.ky_dv*(vNowL_LF(2)-vDesL(2));
+            px=obj.kx_cv*vNowL_LF(1)*obj.tSW/2+obj.kx_dv*(vNowL_LF(1)-vDesL(1));
+            py=obj.ky_cv*vNowL_LF(2)*obj.tSW/2+obj.ky_dv*(vNowL_LF(2)-vDesL(2));
 
             p_ftL=[px;py;0];
             obj.p_ftL_Old=p_ftL;
 
             % rotation compensation
             %sitaZ=0.1*wNowL(3)*obj.T/4+obj.k_wz*(wNowL(3)-wDesL(3))*obj.T/4;
-            sitaZ=obj.k_wz*wDesL(3)*obj.T/4;
+            sitaZ=obj.k_wz*wDesL(3)*obj.tSW/4;
             p_wz1=Rz(sitaZ)*obj.pLnorm-obj.pLnorm;
             p_wz2=0.5*sqrt(0.19/9.8)*cross(vNowL,[0;0;wDesL(3)]);
 
@@ -151,6 +163,24 @@ classdef SwingCtr_AT< matlab.System
             end
 
             obj.LegStateOld=LegState;
+
+            pL_sw=reshape(pL_sw,12,1);
+        end
+        
+        function d1 = getOutputDataTypeImpl(~)
+            d1 = 'double';
+        end
+
+        function s1 = getOutputSizeImpl(~)
+            s1 = [12,1];
+        end
+
+        function f1 = isOutputFixedSizeImpl(~)
+            f1 = true;
+        end
+
+        function cpl1 = isOutputComplexImpl(~)
+            cpl1 = false;
         end
 
         function resetImpl(obj)

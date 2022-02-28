@@ -51,7 +51,6 @@ classdef LegSequence_AT< matlab.System
             obj.isRFnext=false;
             obj.swCount_LF=0;
             obj.swCount_RF=0;
-            obj.swN=1;
             obj.LegStateOld=[1;1;1;1];
             obj.vCoM_sw=[1;1;1];
         end
@@ -77,10 +76,10 @@ classdef LegSequence_AT< matlab.System
                 vCoM_L(2)=0;
             end
 
-            if vCoM_L(1)*obj.vCoM_sw(1)<0 || vCoM_L(2)*obj.vCoM_sw(2)<0
-                obj.isLFnext=~obj.isLFnext;
-                obj.isRFnext=~obj.isRFnext;
-            end
+%             if vCoM_L(1)*obj.vCoM_sw(1)<0 || vCoM_L(2)*obj.vCoM_sw(2)<0
+%                 obj.isLFnext=~obj.isLFnext;
+%                 obj.isRFnext=~obj.isRFnext;
+%             end
 
             tRem_LFx=(pL_m(1)+pL_m(10))/2/vCoM_L(1);
             tRem_LFy=(pL_m(2)+pL_m(11))/2/vCoM_L(2);
@@ -94,7 +93,7 @@ classdef LegSequence_AT< matlab.System
             end
 
             LegState=obj.LegStateOld;
-            if tRem<0 && sum(LegState)>3.5 && EN>0.5
+            if tRem<=0 && sum(LegState)>3.5 && EN>0.5
                 if obj.isLFnext==true
                     LegState(1)=0;
                     LegState(4)=0;
@@ -166,6 +165,32 @@ classdef LegSequence_AT< matlab.System
     end
 end
 
+function M=Rx(sita)
+% 3D rotation matrix, vb=M*v:
+% rotate a vector in one frame,
+% or change the vector 'v' in rotated frame to 'vb' in world frame
+M=[1,0,0;
+    0,cos(sita),-sin(sita);
+    0,sin(sita),cos(sita)];
+end
+
+function M=Ry(sita)
+% 3D rotation matrix, vb=M*v:
+% rotate a vector in one frame,
+% or change the vector 'v' in rotated frame to 'vb' in world frame
+M=[cos(sita),0,sin(sita);
+    0,1,0;
+    -sin(sita),0,cos(sita)];
+end
+
+function M=Rz(sita)
+% 3D rotation matrix, vb=M*v:
+% rotate a vector in one frame,
+% or change the vector 'v' in rotated frame to 'vb' in world frame
+M=[cos(sita),-sin(sita),0;
+    sin(sita),cos(sita),0;
+    0,0,1];
+end
 
 
 

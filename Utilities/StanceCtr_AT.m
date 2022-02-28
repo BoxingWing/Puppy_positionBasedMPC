@@ -27,7 +27,7 @@ classdef StanceCtr_AT< matlab.System
     methods(Access = protected)
 
         function setupImpl(obj)
-            obj.swN=floor(obj.tSW/obj.SampleTime);
+            obj.swN=floor(obj.tSW/obj.tSample);
             obj.isLFnext=true;
             obj.isRFnext=false;
             obj.swCount_LF=0;
@@ -46,13 +46,14 @@ classdef StanceCtr_AT< matlab.System
 
             % norminal foot end positions
             pL_old=reshape(pL_old,3,4);
+            pB_old=reshape(pB_old,3,4);
             xRef=-xRef;
             if Disable>0.5
                 pL_st=reshape([0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;],3,4);
             else
-                pL_st=pL_old+[xRef(1);xRef(2);0]*[1,1,1,1]*obj.tSample+...
-                    [cross(pB_old(:,1),[0;0;xRef(3)]),cross(pB_old(:,2),[0;0;xRef(3)]), ...
-                    cross(pB_old(:,3),[0;0;xRef(3)]),cross(pB_old(:,4),[0;0;xRef(3)])]*obj.tSample;
+                pL_st=pL_old+[xRef(7);xRef(8);0]*[1,1,1,1]*obj.tSample+...
+                    [cross(pB_old(:,1),[0;0;xRef(12)]),cross(pB_old(:,2),[0;0;xRef(12)]), ...
+                    cross(pB_old(:,3),[0;0;xRef(12)]),cross(pB_old(:,4),[0;0;xRef(12)])]*obj.tSample;
             end
 
             % contact forces control
@@ -106,6 +107,29 @@ classdef StanceCtr_AT< matlab.System
             fL=U;
 
             obj.LegStateOld=LegState;
+
+            pL_st=reshape(pL_st,12,1);
+            fL=reshape(fL,12,1);
+        end
+        
+        function [d1,d2] = getOutputDataTypeImpl(~)
+            d1 = 'double';
+            d2 = 'double';
+        end
+
+        function [s1,s2] = getOutputSizeImpl(~)
+            s1 = [12,1];
+            s2=[12,1];
+        end
+
+        function [f1,f2] = isOutputFixedSizeImpl(~)
+            f1 = true;
+            f2 = true;
+        end
+
+        function [cpl1,cpl2] = isOutputComplexImpl(~)
+            cpl1 = false;
+            cpl2=false;
         end
 
         function resetImpl(obj)

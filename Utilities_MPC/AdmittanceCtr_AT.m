@@ -67,7 +67,8 @@ classdef AdmittanceCtr_AT < matlab.System
         function pL_Adm = stepImpl(obj,fL,pL_bas,Disable)
             % Implement algorithm of admittance ctr, refer to md file for more info.
             % pL_bas:=[Px_i,Py_i,Pz_i], 12*1, foot-end position in leg coordinate
-
+            pL_bas=reshape(pL_bas,3,4);
+            fL=reshape(fL,12,1);
             if Disable>0.5
                 pL_bas=[0,0,0,0;
                     obj.roll_Off,-obj.roll_Off,obj.roll_Off,-obj.roll_Off;
@@ -77,7 +78,9 @@ classdef AdmittanceCtr_AT < matlab.System
                 fL=[0;0;1;0;0;1;0;0;1;0;0;1]*9.8*obj.m/4;
             end
 
-            pArray_L_tmp=pL_bas;
+            pArray_L_tmp=pL_bas*1000+[0,0,0,0;
+                    obj.roll_Off,-obj.roll_Off,obj.roll_Off,-obj.roll_Off;
+                    0,0,0,0]*1000;
 
             [Angle1,Flag1]=obj.IK_one(pArray_L_tmp(:,1),1);
             [Angle2,Flag2]=obj.IK_one(pArray_L_tmp(:,2),2);
@@ -152,6 +155,10 @@ classdef AdmittanceCtr_AT < matlab.System
             Angle=[0;0;0];
             switch LegNum
                 case {1,3}
+                    if p(2)^2+p(3)^2-obj.OR^2<0
+                        Flag=1;
+                        return;
+                    end
                     RP=sqrt(p(2)^2+p(3)^2-obj.OR^2);
                     [pRy,pRz,errFlag]=Get1From2(0,0,p(2),p(3),obj.OR,RP,3);
                     roll=acos([1,0]*[pRy;pRz]/obj.OR)*sign(pRz); % angle for 13 angle
@@ -180,6 +187,10 @@ classdef AdmittanceCtr_AT < matlab.System
                     end
                     Angle=[alpha;beta;roll];
                 case {2,4}
+                    if p(2)^2+p(3)^2-obj.OR^2<0
+                        Flag=1;
+                        return;
+                    end
                     RP=sqrt(p(2)^2+p(3)^2-obj.OR^2);
                     [pRy,pRz,errFlag]=Get1From2(0,0,p(2),p(3),obj.OR,RP,2);
                     roll=acos([-1,0]*[pRy;pRz]/obj.OR)*sign(-pRz); % angle for 13 servo
