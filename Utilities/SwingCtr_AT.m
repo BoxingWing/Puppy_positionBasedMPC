@@ -48,8 +48,8 @@ classdef SwingCtr_AT< matlab.System
             obj.pLnorm=[0;0;-obj.r0(3)]*[1,1,1,1]+reshape([0;1;0;0;-1;0;0;1;0;0;-1;0],3,4)*obj.roll_Off; % norminal foot position in the leg coordinate
         end
 
-        function pL_sw = stepImpl(obj,xFB,xRef,LegState,LegPhase,pL_LS)
-            pL_LS=reshape(pL_LS,3,4);
+        function pL_sw = stepImpl(obj,xFB,xRef,LegState,LegPhase,pL_LF)
+            pL_LF=reshape(pL_LF,3,4);
             desvX=xRef(7);
             desvY=xRef(8);
             desvZ=xRef(9);
@@ -104,7 +104,7 @@ classdef SwingCtr_AT< matlab.System
             p_wz2=0.5*sqrt(0.19/9.8)*cross(vNowL,[0;0;wDesL(3)]);
 
             % final foot placement
-            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm+CrossCom+posCom+vxCom;
+            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm;
             
             % terrain height compensation
             pCoM=[xFB(1);xFB(2);xFB(3)];
@@ -126,7 +126,7 @@ classdef SwingCtr_AT< matlab.System
                     if sLeg>=1
                         sLeg=1;
                     end
-                    sta=pL_LS(:,i);
+                    sta=pL_LF(:,i);
                     des=desAllL(:,i);
                     %des(3)=sta(3);
                     %des(3)=-0.19;

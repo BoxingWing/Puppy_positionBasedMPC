@@ -37,22 +37,25 @@ classdef StanceCtr_AT< matlab.System
             obj.vCoM_sw=[1;1;1];
         end
 
-        function [p_L,f_L] = stepImpl(obj,p_L_old,pW,xFB,xDes,LegState,Disable)
-            % p_L_old: norminal p_L in the last step
+        function [pL_st,fL] = stepImpl(obj,pL_old,pB_old,pW_m,xFB,xRef,LegState,Disable)
+            % pL_old: [3,4] baseline pL in the last step
+            % pB_old: [3,4] baseline pB in the last step
+            % pW_m : measured pW
+            % fL: foot end contact forces in the leg coordinate
             % xDes: [vx,vy,wz], in the local body frame
 
             % norminal foot end positions
-            p_L_old=reshape(p_L_old,3,4);
-            xDes=-xDes;
+            pL_old=reshape(pL_old,3,4);
+            xRef=-xRef;
             if Disable>0.5
-                p_L=reshape([0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;],3,4);
+                pL_st=reshape([0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;],3,4);
             else
-                p_L=p_L_old+[xDes(1);xDes(2);0]*[1,1,1,1]*obj.tSample+...
-                    [cross(p_L_old(:,1),[0;0;xDes(3)]),cross(p_L_old(:,2),[0;0;xDes(3)]), ...
-                    cross(p_L_old(:,3),[0;0;xDes(3)]),cross(p_L_old(:,4),[0;0;xDes(3)])]*obj.tSample;
+                pL_st=pL_old+[xRef(1);xRef(2);0]*[1,1,1,1]*obj.tSample+...
+                    [cross(pB_old(:,1),[0;0;xRef(3)]),cross(pB_old(:,2),[0;0;xRef(3)]), ...
+                    cross(pB_old(:,3),[0;0;xRef(3)]),cross(pB_old(:,4),[0;0;xRef(3)])]*obj.tSample;
             end
 
-            % contact forces roughly control
+            % contact forces control
             pC=xFB(1:3);
             sita=xFB(4:6);
 
@@ -87,7 +90,7 @@ classdef StanceCtr_AT< matlab.System
             err=Kp*[errpCoM;errSita]+Kd*[errvCoM;errdSita]+obj.ki_err_Old;
 
             M=[LegState(1).*eye(3),LegState(2).*eye(3),LegState(3).*eye(3),LegState(4).*eye(3);...
-                LegState(1).*crossCap(Rz'*(pW(:,1)-pC)),LegState(2).*crossCap(Rz'*(pW(:,2)-pC)),LegState(3).*crossCap(Rz'*(pW(:,3)-pC)),LegState(4).*crossCap(Rz'*(pW(:,4)-pC));];
+                LegState(1).*crossCap(Rz'*(pW_m(:,1)-pC)),LegState(2).*crossCap(Rz'*(pW_m(:,2)-pC)),LegState(3).*crossCap(Rz'*(pW_m(:,3)-pC)),LegState(4).*crossCap(Rz'*(pW_m(:,4)-pC));];
 
             Minv=pinv(M,10^-7);
             if Disable>0.5
@@ -97,10 +100,10 @@ classdef StanceCtr_AT< matlab.System
             else
                 U=Minv*err;
             end
-            for i=1:1:4
-                U(3*i-2:3*i)=Rz*U(3*i-2:3*i);
-            end
-            f_L=U;
+%             for i=1:1:4
+%                 U(3*i-2:3*i)=Rz*U(3*i-2:3*i);
+%             end
+            fL=U;
 
             obj.LegStateOld=LegState;
         end

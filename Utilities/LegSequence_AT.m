@@ -56,10 +56,9 @@ classdef LegSequence_AT< matlab.System
             obj.vCoM_sw=[1;1;1];
         end
 
-        function [LegState,LegPhase] = stepImpl(obj,p_L,xFB,EN)
+        function [LegState,LegPhase] = stepImpl(obj,pL_m,xFB,EN)
             % X_FB: system states from the estimator
-            % X_mpc: predicted next step's systems states from the MPC controller
-            % touchInd: indicator of wether a swing leg touches the ground
+            % pL_m: measured foot end position in leg coordinate
             % T is the moving period
 
             Rrpy=Rz(xFB(6))*Ry(xFB(5))*Rx(xFB(4));
@@ -83,10 +82,10 @@ classdef LegSequence_AT< matlab.System
                 obj.isRFnext=~obj.isRFnext;
             end
 
-            tRem_LFx=(p_L(1)+p_L(10))/2/vCoM_L(1);
-            tRem_LFy=(p_L(2)+p_L(11))/2/vCoM_L(2);
-            tRem_RFx=(p_L(4)+p_L(7))/2/vCoM_L(1);
-            tRem_RFy=(p_L(5)+p_L(8))/2/vCoM_L(2);
+            tRem_LFx=(pL_m(1)+pL_m(10))/2/vCoM_L(1);
+            tRem_LFy=(pL_m(2)+pL_m(11))/2/vCoM_L(2);
+            tRem_RFx=(pL_m(4)+pL_m(7))/2/vCoM_L(1);
+            tRem_RFy=(pL_m(5)+pL_m(8))/2/vCoM_L(2);
 
             if obj.isLFnext==true
                 tRem=min(tRem_LFx,tRem_LFy);

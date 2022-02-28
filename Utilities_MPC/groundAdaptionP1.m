@@ -31,7 +31,7 @@ classdef groundAdaptionP1 < matlab.System
             obj.pW_LS=reshape(PendAlltmp,3,4);
         end
         
-        function [pW,pW_LS] = stepImpl(obj,LegState,SP,touchInd,OscStop)
+        function [pW,pW_LS] = stepImpl(obj,LegState,SP,Disable)
             pW=round(SP*10^5)/(10^5); % round to 0.1 mm
             pW_LS=obj.pW_LS;
             
@@ -41,7 +41,7 @@ classdef groundAdaptionP1 < matlab.System
                 end
             end
             
-            if OscStop>0.5
+            if Disable>0.5
                 pW=obj.pWnorm;
                 pW_LS=obj.pWnorm;
             end

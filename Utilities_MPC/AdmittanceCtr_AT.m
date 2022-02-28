@@ -1,4 +1,4 @@
-classdef AdmittanceCtr < matlab.System
+classdef AdmittanceCtr_AT < matlab.System
     % Inverse kinematics for Puppy quadruped robot w.r.t leg coordinates. Note that the output is in mm.
     % Angle offset must be considered outside
     properties
@@ -64,51 +64,20 @@ classdef AdmittanceCtr < matlab.System
             obj.interpol_Count=1;
         end
         
-        function [pArray_L_Adm,pLnor] = stepImpl(obj,U,X_mpc,pW,Disable,x_FB)
+        function pL_Adm = stepImpl(obj,fL,pL_bas,Disable)
             % Implement algorithm of admittance ctr, refer to md file for more info.
-            % PArray:=[Px_i,Py_i,Pz_i], 12*1, foot-end position in leg coordinate
-            % AngleArray:=[Mi1,Mi2,Mi3]
-            
-            rC=reshape(X_mpc(1:3),3,1); % CoM position
-            theta=reshape(X_mpc(4:6),3,1); % euler angles
-            R=Rz(theta(3))*Ry(theta(2))*Rx(theta(1));
-            PendAll=reshape(pW,3,4); % foot position in the world coordinate
-            pArray_L=(R'*(PendAll-rC*[1,1,1,1])-obj.PendAllnorm)*1000; % foot position in the leg coordinate
+            % pL_bas:=[Px_i,Py_i,Pz_i], 12*1, foot-end position in leg coordinate
 
-            thetaFB=x_FB(4:6);
-            RFB=Rz(thetaFB(3))*Ry(thetaFB(2))*Rx(thetaFB(1));
             if Disable>0.5
-                pArray_L=[0,0,0,0;
+                pL_bas=[0,0,0,0;
                     obj.roll_Off,-obj.roll_Off,obj.roll_Off,-obj.roll_Off;
                     -obj.hIni,-obj.hIni,-obj.hIni,-obj.hIni]*1000;
-                obj.pArray_L_Old=pArray_L;
-                obj.pArray_L_Now=pArray_L;
-                U=[0;0;1;0;0;1;0;0;1;0;0;1]*9.8*obj.m/4;
+                obj.pArray_L_Old=pL_bas;
+                obj.pArray_L_Now=pL_bas;
+                fL=[0;0;1;0;0;1;0;0;1;0;0;1]*9.8*obj.m/4;
             end
-            
-            pLnor=pArray_L;
-            pLnor=reshape(pLnor,12,1);
 
-%             interpolNum=5;
-%             if abs(obj.MPC_Count_Old-MPC_Count)<0.1
-%                 if obj.interpol_Count>=interpolNum
-%                     obj.interpol_Count=interpolNum;
-%                 end
-%                 pArray_L_tmp=(interpolNum-obj.interpol_Count)/interpolNum*obj.pArray_L_Old+obj.interpol_Count/interpolNum*obj.pArray_L_Now;
-%                 obj.interpol_Count=obj.interpol_Count+1;
-%             else
-%                 obj.pArray_L_Old=obj.pArray_L_Now;
-%                 for i=1:1:4
-%                     if LegState(i)>0.5 && obj.LegStateOld(i)<0.5
-%                         obj.pArray_L_Old(:,i)=pArrayLOld(:,i);
-%                     end
-%                 end
-%                 obj.pArray_L_Now=pArray_L;
-%                 pArray_L_tmp=obj.pArray_L_Old;
-%                 obj.interpol_Count=1;
-%             end
-
-            pArray_L_tmp=pArray_L;
+            pArray_L_tmp=pL_bas;
 
             [Angle1,Flag1]=obj.IK_one(pArray_L_tmp(:,1),1);
             [Angle2,Flag2]=obj.IK_one(pArray_L_tmp(:,2),2);
@@ -125,11 +94,6 @@ classdef AdmittanceCtr < matlab.System
             d_deltaP2=Md*(obj.deltaP2Old-obj.deltaP2OOld)/obj.dt;
             d_deltaP3=Md*(obj.deltaP3Old-obj.deltaP3OOld)/obj.dt;
             d_deltaP4=Md*(obj.deltaP4Old-obj.deltaP4OOld)/obj.dt;
-%             dqNew=reshape(dq,3,4);
-%             d_deltaP1=Md*dqNew(:,1);
-%             d_deltaP2=Md*dqNew(:,2);
-%             d_deltaP3=Md*dqNew(:,3);
-%             d_deltaP4=Md*dqNew(:,4);
 
             if abs(obj.ks1)<10^-9 || abs(obj.ks2)<10^-9 || abs(obj.ks3)<10^-9
                 deltaP1=[0;0;0];
@@ -137,10 +101,10 @@ classdef AdmittanceCtr < matlab.System
                 deltaP3=[0;0;0];
                 deltaP4=[0;0;0];
             else
-                deltaP1=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J1'*RFB'*[U(1);U(2);U(3)]-d_deltaP1);
-                deltaP2=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J2'*RFB'*[U(4);U(5);U(6)]-d_deltaP2);
-                deltaP3=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J3'*RFB'*[U(7);U(8);U(9)]-d_deltaP3);
-                deltaP4=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J4'*RFB'*[U(10);U(11);U(12)]-d_deltaP4);
+                deltaP1=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J1'*[fL(1);fL(2);fL(3)]-d_deltaP1);
+                deltaP2=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J2'*[fL(4);fL(5);fL(6)]-d_deltaP2);
+                deltaP3=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J3'*[fL(7);fL(8);fL(9)]-d_deltaP3);
+                deltaP4=diag([1/obj.ks1,1/obj.ks2,1/obj.ks3])/1000*(-J4'*[fL(10);fL(11);fL(12)]-d_deltaP4);
             end
             
             Angle1new=Angle1+deltaP1;
@@ -153,10 +117,10 @@ classdef AdmittanceCtr < matlab.System
             P3new=autoGen_fk_3(obj.OR,obj.AB,obj.BC,obj.DP,obj.CDP,Angle3new(1),Angle3new(2),Angle3new(3));
             P4new=autoGen_fk_4(obj.OR,obj.AB,obj.BC,obj.DP,obj.CDP,Angle4new(1),Angle4new(2),Angle4new(3));
             
-            pArray_L_Adm=[P1new;P2new;P3new;P4new];
+            pL_Adm=[P1new;P2new;P3new;P4new];
             
             errFlag=[Flag1;Flag2;Flag3;Flag4];
-            obj.LastInput=pArray_L;
+            obj.LastInput=pL_bas;
             obj.deltaP1OOld=obj.deltaP1Old;
             obj.deltaP2OOld=obj.deltaP2Old;
             obj.deltaP3OOld=obj.deltaP3Old;
