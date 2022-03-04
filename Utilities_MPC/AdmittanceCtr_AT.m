@@ -66,21 +66,23 @@ classdef AdmittanceCtr_AT < matlab.System
         
         function pL_Adm = stepImpl(obj,fL,pL_bas,Disable)
             % Implement algorithm of admittance ctr, refer to md file for more info.
-            % pL_bas:=[Px_i,Py_i,Pz_i], 12*1, foot-end position in leg coordinate
+            % pL_bas:=[Px_i,Py_i,Pz_i], 12*1, foot-end position in leg coordinate, unit:m
+            % pL_Adm: [12,1], unit:mm
             pL_bas=reshape(pL_bas,3,4);
             fL=reshape(fL,12,1);
             if Disable>0.5
                 pL_bas=[0,0,0,0;
                     obj.roll_Off,-obj.roll_Off,obj.roll_Off,-obj.roll_Off;
-                    -obj.hIni,-obj.hIni,-obj.hIni,-obj.hIni]*1000;
+                    -obj.hIni,-obj.hIni,-obj.hIni,-obj.hIni];
                 obj.pArray_L_Old=pL_bas;
                 obj.pArray_L_Now=pL_bas;
                 fL=[0;0;1;0;0;1;0;0;1;0;0;1]*9.8*obj.m/4;
             end
 
-            pArray_L_tmp=pL_bas*1000+[0,0,0,0;
-                    obj.roll_Off,-obj.roll_Off,obj.roll_Off,-obj.roll_Off;
-                    0,0,0,0]*1000;
+            pArray_L_tmp=pL_bas*1000;
+%             +[0,0,0,0;
+%                     obj.roll_Off,-obj.roll_Off,obj.roll_Off,-obj.roll_Off;
+%                     0,0,0,0]*1000;
 
             [Angle1,Flag1]=obj.IK_one(pArray_L_tmp(:,1),1);
             [Angle2,Flag2]=obj.IK_one(pArray_L_tmp(:,2),2);

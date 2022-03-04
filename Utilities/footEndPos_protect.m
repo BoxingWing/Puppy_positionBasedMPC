@@ -12,7 +12,7 @@ classdef footEndPos_protect< matlab.System
         end
         
         function pArray_L = stepImpl(obj,PendAllL,ES)
-            pArray_L=reshape(PendAllL,12,1)*1000;%+[0;37;0;0;-37;0;0;37;0;0;-37;0];
+            pArray_L=reshape(PendAllL,12,1);%+[0;37;0;0;-37;0;0;37;0;0;-37;0];
             if ES>0.5 
                 pArray_L=obj.pArray_L_Old;
             end

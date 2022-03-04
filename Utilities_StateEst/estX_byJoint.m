@@ -26,7 +26,7 @@ classdef estX_byJoint < matlab.System
         
         function [ym,updateEN,KF_R] = stepImpl(obj,pArray_B,RPY,omegaB,SPLeg,SP,dt,surPara)
             % omegaB must be the world coordinate
-            % pArray_B is the foot-end position in body coordinate
+            % pArray_B is the foot-end position in body coordinate, unit: m
             updateEN=1;
             %KF_R=0.5*eye(6);
             %KF_R=diag([0.214e-5,0.137e-5,0.0357e-5,2.071e-2,5.364e-3,3.997e-3]); % ori

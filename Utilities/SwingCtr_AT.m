@@ -73,9 +73,9 @@ classdef SwingCtr_AT< matlab.System
             desRoll=xRef(4);
             desPit=xRef(5);
             desYaw=xRef(6);
-            xFiltFactor=0.5;%0.1
-            yFiltFactor=0.5; %0.1
-            wzFiltFactor=0.1;
+            xFiltFactor=0.9;%0.1
+            yFiltFactor=0.9; %0.1
+            wzFiltFactor=0.9;
             
             desvxFilt=desvX*xFiltFactor+obj.desvxFilt_Old*(1-xFiltFactor);
             desvyFilt=desvY*yFiltFactor+obj.desvyFilt_Old*(1-yFiltFactor);
@@ -103,8 +103,11 @@ classdef SwingCtr_AT< matlab.System
 
             %%% next step foot-placement in the leg coordinate
             
-            px=obj.kx_cv*vNowL_LF(1)*obj.tSW/2+obj.kx_dv*(vNowL_LF(1)-vDesL(1));
-            py=obj.ky_cv*vNowL_LF(2)*obj.tSW/2+obj.ky_dv*(vNowL_LF(2)-vDesL(2));
+%             px=obj.kx_cv*vNowL_LF(1)*obj.tSW/2+obj.kx_dv*(vNowL_LF(1)-vDesL(1))*obj.tSW/2;
+%             py=obj.ky_cv*vNowL_LF(2)*obj.tSW/2+obj.ky_dv*(vNowL_LF(2)-vDesL(2))*obj.tSW/2;
+
+            px=obj.kx_cv*vNowL_LF(1)*obj.tSW/2+obj.kx_dv*vDesL(1)*obj.tSW/2;
+            py=obj.ky_cv*vNowL_LF(2)*obj.tSW/2+obj.ky_dv*vDesL(2)*obj.tSW/2;
 
             p_ftL=[px;py;0];
             obj.p_ftL_Old=p_ftL;

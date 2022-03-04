@@ -49,9 +49,17 @@ classdef StanceCtr_AT< matlab.System
             pB_old=reshape(pB_old,3,4);
             xRef=-xRef;
             if Disable>0.5
-                pL_st=reshape([0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;0;0;-obj.r0;],3,4);
+                pL_st=reshape([0;obj.roll_Off;-obj.r0;0;-obj.roll_Off;-obj.r0; ...
+                    0;obj.roll_Off;-obj.r0;0;-obj.roll_Off;-obj.r0;],3,4);
             else
-                pL_st=pL_old+[xRef(7);xRef(8);0]*[1,1,1,1]*obj.tSample+...
+                
+%                 if xRef(7)<10^-3 && xRef(8)<10^-3 % to clear the foot position when Vdef=0
+%                     
+%                 else
+%                     linAct=[xRef(7);xRef(8);0]*[1,1,1,1]*obj.tSample;
+%                 end
+                linAct=[xRef(7);xRef(8);0]*[1,1,1,1]*obj.tSample;
+                pL_st=pL_old+linAct+...
                     [cross(pB_old(:,1),[0;0;xRef(12)]),cross(pB_old(:,2),[0;0;xRef(12)]), ...
                     cross(pB_old(:,3),[0;0;xRef(12)]),cross(pB_old(:,4),[0;0;xRef(12)])]*obj.tSample;
             end

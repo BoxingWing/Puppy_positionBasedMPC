@@ -18,6 +18,7 @@ classdef LegSequence_AT< matlab.System
         swCount_LF=0;
         swCount_RF=0;
         swN=1;
+        xRefOld;
         LegStateOld=[1;1;1;1];
         vCoM_sw=[1;1;1]; % CoM velocity at the beginning of the last swing phase
     end
@@ -53,9 +54,10 @@ classdef LegSequence_AT< matlab.System
             obj.swCount_RF=0;
             obj.LegStateOld=[1;1;1;1];
             obj.vCoM_sw=[1;1;1];
+            obj.xRefOld=zeros(13,1);
         end
 
-        function [LegState,LegPhase] = stepImpl(obj,pL_m,xFB,EN)
+        function [LegState,LegPhase] = stepImpl(obj,pL_m,xFB,xRef,EN)
             % X_FB: system states from the estimator
             % pL_m: measured foot end position in leg coordinate
             % T is the moving period
@@ -80,11 +82,24 @@ classdef LegSequence_AT< matlab.System
 %                 obj.isLFnext=~obj.isLFnext;
 %                 obj.isRFnext=~obj.isRFnext;
 %             end
-
-            tRem_LFx=(pL_m(1)+pL_m(10))/2/vCoM_L(1);
-            tRem_LFy=(pL_m(2)+pL_m(11))/2/vCoM_L(2);
-            tRem_RFx=(pL_m(4)+pL_m(7))/2/vCoM_L(1);
-            tRem_RFy=(pL_m(5)+pL_m(8))/2/vCoM_L(2);
+            
+            % change the leg sequence order if CoM velocity cross zero
+            if xRef(7)*obj.xRefOld(7)<0 || xRef(8)*obj.xRefOld(8)<0
+                obj.isLFnext=~obj.isLFnext;
+                obj.isRFnext=~obj.isRFnext;
+            end
+            
+            if vCoM_L(1)==0 && vCoM_L(2)==0
+                tRem_LFx=999;
+                tRem_LFy=999;
+                tRem_RFx=999;
+                tRem_RFy=999;
+            else
+                tRem_LFx=(pL_m(1)+pL_m(10))/2/vCoM_L(1);
+                tRem_LFy=(pL_m(2)+pL_m(11))/2/vCoM_L(2);
+                tRem_RFx=(pL_m(4)+pL_m(7))/2/vCoM_L(1);
+                tRem_RFy=(pL_m(5)+pL_m(8))/2/vCoM_L(2);
+            end
 
             if obj.isLFnext==true
                 tRem=min(tRem_LFx,tRem_LFy);
@@ -93,19 +108,19 @@ classdef LegSequence_AT< matlab.System
             end
 
             LegState=obj.LegStateOld;
-            if tRem<=0 && sum(LegState)>3.5 && EN>0.5
+            if tRem<=obj.tSW/2 && sum(LegState)>3.5 && EN>0.5
                 if obj.isLFnext==true
                     LegState(1)=0;
                     LegState(4)=0;
-                    obj.isLFnext=false;
-                    obj.isRFnext=true;
+                    obj.isLFnext=~obj.isLFnext;
+                    obj.isRFnext=~obj.isRFnext;
                     obj.swCount_LF=0;
                     obj.vCoM_sw=vCoM_L;
                 elseif obj.isRFnext==true
                     LegState(2)=0;
                     LegState(3)=0;
-                    obj.isLFnext=true;
-                    obj.isRFnext=false;
+                    obj.isLFnext=~obj.isLFnext;
+                    obj.isRFnext=~obj.isRFnext;
                     obj.swCount_RF=0;
                     obj.vCoM_sw=vCoM_L;
                 end
@@ -135,7 +150,7 @@ classdef LegSequence_AT< matlab.System
 
             %%% data update
             obj.LegStateOld=LegState;
-
+            obj.xRefOld=xRef;
         end
 
         function [d1,d2] = getOutputDataTypeImpl(~)

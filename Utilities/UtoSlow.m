@@ -18,7 +18,6 @@ classdef UtoSlow< matlab.System
             USlow=zeros(12,1);
             if disable>0.5
                 obj.UOld=U*ones(1,4);
-                USlow=U;
                 for i=1:1:12
                     USlow(i)=U(i);
                 end
