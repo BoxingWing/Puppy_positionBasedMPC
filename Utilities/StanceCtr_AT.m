@@ -47,7 +47,7 @@ classdef StanceCtr_AT< matlab.System
             % norminal foot end positions
             pL_old=reshape(pL_old,3,4);
             pB_old=reshape(pB_old,3,4);
-            xRef=-xRef;
+
             if Disable>0.5
                 pL_st=reshape([0;obj.roll_Off;-obj.r0;0;-obj.roll_Off;-obj.r0; ...
                     0;obj.roll_Off;-obj.r0;0;-obj.roll_Off;-obj.r0;],3,4);
@@ -58,10 +58,10 @@ classdef StanceCtr_AT< matlab.System
 %                 else
 %                     linAct=[xRef(7);xRef(8);0]*[1,1,1,1]*obj.tSample;
 %                 end
-                linAct=[xRef(7);xRef(8);0]*[1,1,1,1]*obj.tSample;
+                linAct=[-xRef(7);-xRef(8);0]*[1,1,1,1]*obj.tSample;
                 pL_st=pL_old+linAct+...
-                    [cross(pB_old(:,1),[0;0;xRef(12)]),cross(pB_old(:,2),[0;0;xRef(12)]), ...
-                    cross(pB_old(:,3),[0;0;xRef(12)]),cross(pB_old(:,4),[0;0;xRef(12)])]*obj.tSample;
+                    [cross(pB_old(:,1),[0;0;-xRef(12)]),cross(pB_old(:,2),[0;0;-xRef(12)]), ...
+                    cross(pB_old(:,3),[0;0;-xRef(12)]),cross(pB_old(:,4),[0;0;-xRef(12)])]*obj.tSample;
             end
 
             % contact forces control
@@ -137,7 +137,7 @@ classdef StanceCtr_AT< matlab.System
 
         function [cpl1,cpl2] = isOutputComplexImpl(~)
             cpl1 = false;
-            cpl2=false;
+            cpl2 = false;
         end
 
         function resetImpl(obj)

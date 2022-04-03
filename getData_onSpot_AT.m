@@ -112,34 +112,33 @@ end
 endNs=tmp(1);
 
 %%% check the multirate delay
-figure();
-stairs(t_slow,mvOut_slow(1,:));
-hold on;
-stairs(t_fast,mvOut_fast(1,:));
-legend('mvOut1\_slow','mvOut1\_fast');
+% figure();
+% stairs(t_slow,mvOut_slow(1,:));
+% hold on;
+% stairs(t_fast,mvOut_fast(1,:));
+% legend('mvOut1\_slow','mvOut1\_fast');
 
-%%% check the virutal force
-% to be modified
-% figure()
-% subplot(2,2,1)
-% plot(t_fast(startNf:endNf),virtualU(1,startNf:endNf), ...
-%     t_fast(startNf:endNf),virtualU(2,startNf:endNf),t_fast(startNf:endNf),virtualU(3,startNf:endNf));
-% ylabel('virtualF_Leg1');legend('fx','fy','fz')
-% subplot(2,2,2)
-% plot(t_fast(startNf:endNf),virtualU(4,startNf:endNf),...
-%     t_fast(startNf:endNf),virtualU(5,startNf:endNf),...
-%     t_fast(startNf:endNf),virtualU(6,startNf:endNf));
-% ylabel('virtualF_Leg2');legend('fx','fy','fz')
-% subplot(2,2,3)
-% plot(t_fast(startNf:endNf),virtualU(7,startNf:endNf), ...
-%     t_fast(startNf:endNf),virtualU(8,startNf:endNf), ...
-%     t_fast(startNf:endNf),virtualU(9,startNf:endNf));
-% ylabel('virtualF_Leg3');legend('fx','fy','fz')
-% subplot(2,2,4)
-% plot(t_fast(startNf:endNf),virtualU(10,startNf:endNf), ...
-%     t_fast(startNf:endNf),virtualU(11,startNf:endNf),...
-%     t_fast(startNf:endNf),virtualU(12,startNf:endNf));
-% ylabel('virtualF_Leg4');legend('fx','fy','fz')
+%%% check the fLst
+figure()
+subplot(2,2,1)
+plot(t_fast(startNf:endNf),fLst(1,startNf:endNf), ...
+    t_fast(startNf:endNf),fLst(2,startNf:endNf),t_fast(startNf:endNf),fLst(3,startNf:endNf));
+ylabel('virtualF_Leg1');legend('fx','fy','fz')
+subplot(2,2,2)
+plot(t_fast(startNf:endNf),fLst(4,startNf:endNf),...
+    t_fast(startNf:endNf),fLst(5,startNf:endNf),...
+    t_fast(startNf:endNf),fLst(6,startNf:endNf));
+ylabel('virtualF_Leg2');legend('fx','fy','fz')
+subplot(2,2,3)
+plot(t_fast(startNf:endNf),fLst(7,startNf:endNf), ...
+    t_fast(startNf:endNf),fLst(8,startNf:endNf), ...
+    t_fast(startNf:endNf),fLst(9,startNf:endNf));
+ylabel('virtualF_Leg3');legend('fx','fy','fz')
+subplot(2,2,4)
+plot(t_fast(startNf:endNf),fLst(10,startNf:endNf), ...
+    t_fast(startNf:endNf),fLst(11,startNf:endNf),...
+    t_fast(startNf:endNf),fLst(12,startNf:endNf));
+ylabel('virtualF_Leg4');legend('fx','fy','fz')
 
 %%% chekc the mv
 figure()
