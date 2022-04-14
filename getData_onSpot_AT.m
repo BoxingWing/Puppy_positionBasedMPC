@@ -29,11 +29,11 @@ mvOut_slow=rt_mvOut_qpStatus_slow(2:13,:);
 qpStatus_slow=rt_mvOut_qpStatus_slow(end,:);
 refSeq2_slow=rt_refSeq2_refP_slow(2:14,:);
 refP_slow=rt_refSeq2_refP_slow(15:end,:);
-pLbas=rt_pLbas_fLst_fLRes_pLAdm(2:13,:);
-fLst=rt_pLbas_fLst_fLRes_pLAdm(14:25,:);
-fLRes=rt_pLbas_fLst_fLRes_pLAdm(26:37,:);
-pLAdm=rt_pLbas_fLst_fLRes_pLAdm(38:49,:);
-
+pLbas=rt_pLbas_fLst_fLRes_pLAdm_pLDelta(2:13,:);
+fLst=rt_pLbas_fLst_fLRes_pLAdm_pLDelta(14:25,:);
+fLRes=rt_pLbas_fLst_fLRes_pLAdm_pLDelta(26:37,:);
+pLAdm=rt_pLbas_fLst_fLRes_pLAdm_pLDelta(38:49,:);
+pLDelta=rt_pLbas_fLst_fLRes_pLAdm_pLDelta(50:61,:);
 touchInd=rt_estSPLeg_estSP_LegState(2:5,:);
 LegState=rt_estSPLeg_estSP_LegState(end-3:end,:);
 pArrayLFK=rt_pLm(2:end,:);
@@ -118,27 +118,51 @@ endNs=tmp(1);
 % stairs(t_fast,mvOut_fast(1,:));
 % legend('mvOut1\_slow','mvOut1\_fast');
 
-%%% check the fLst
+%%% check the fLst and the pLDelta, fLst is the output of the balance control module
 figure()
-subplot(2,2,1)
+subplot(2,4,1)
 plot(t_fast(startNf:endNf),fLst(1,startNf:endNf), ...
-    t_fast(startNf:endNf),fLst(2,startNf:endNf),t_fast(startNf:endNf),fLst(3,startNf:endNf));
+    t_fast(startNf:endNf),fLst(2,startNf:endNf), ...
+    t_fast(startNf:endNf),fLst(3,startNf:endNf));
 ylabel('virtualF_Leg1');legend('fx','fy','fz')
-subplot(2,2,2)
+subplot(2,4,2)
+plot(t_fast(startNf:endNf),pLDelta(1,startNf:endNf), ...
+    t_fast(startNf:endNf),pLDelta(2,startNf:endNf), ...
+    t_fast(startNf:endNf),pLDelta(3,startNf:endNf));
+ylabel('virtualF_Leg1');legend('pLdeX','pLdeY','pLdeZ')
+
+subplot(2,4,3)
 plot(t_fast(startNf:endNf),fLst(4,startNf:endNf),...
     t_fast(startNf:endNf),fLst(5,startNf:endNf),...
     t_fast(startNf:endNf),fLst(6,startNf:endNf));
 ylabel('virtualF_Leg2');legend('fx','fy','fz')
-subplot(2,2,3)
+subplot(2,4,4)
+plot(t_fast(startNf:endNf),pLDelta(4,startNf:endNf),...
+    t_fast(startNf:endNf),pLDelta(5,startNf:endNf),...
+    t_fast(startNf:endNf),pLDelta(6,startNf:endNf));
+ylabel('virtualF_Leg2');legend('pLdeX','pLdeY','pLdeZ');
+
+subplot(2,4,5)
 plot(t_fast(startNf:endNf),fLst(7,startNf:endNf), ...
     t_fast(startNf:endNf),fLst(8,startNf:endNf), ...
     t_fast(startNf:endNf),fLst(9,startNf:endNf));
 ylabel('virtualF_Leg3');legend('fx','fy','fz')
-subplot(2,2,4)
+subplot(2,4,6)
+plot(t_fast(startNf:endNf),pLDelta(7,startNf:endNf), ...
+    t_fast(startNf:endNf),pLDelta(8,startNf:endNf), ...
+    t_fast(startNf:endNf),pLDelta(9,startNf:endNf));
+ylabel('virtualF_Leg3');legend('pLdeX','pLdeY','pLdeZ');
+
+subplot(2,4,7)
 plot(t_fast(startNf:endNf),fLst(10,startNf:endNf), ...
     t_fast(startNf:endNf),fLst(11,startNf:endNf),...
     t_fast(startNf:endNf),fLst(12,startNf:endNf));
 ylabel('virtualF_Leg4');legend('fx','fy','fz')
+subplot(2,4,8)
+plot(t_fast(startNf:endNf),pLDelta(10,startNf:endNf), ...
+    t_fast(startNf:endNf),pLDelta(11,startNf:endNf),...
+    t_fast(startNf:endNf),pLDelta(12,startNf:endNf));
+ylabel('virtualF_Leg4');legend('pLdeX','pLdeY','pLdeZ')
 
 %%% chekc the mv
 figure()

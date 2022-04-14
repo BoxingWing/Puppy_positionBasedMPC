@@ -129,7 +129,7 @@ classdef SwingCtr_AT< matlab.System
             for i=1:1:4
                 desAllL_z(i)=(surP_L-obj.LegCorOri(:,i))'*surVN_L;
                 delta=-obj.r0(3)-desAllL_z(i);
-                desAllL_z(i)=desAllL_z(i)+delta*0.8;
+                desAllL_z(i)=desAllL_z(i)+delta*1;
             end
             
             %%% next step foot-end position planning in the leg coordinate
