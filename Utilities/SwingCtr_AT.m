@@ -13,6 +13,8 @@ classdef SwingCtr_AT< matlab.System
         ky_cv=0;
         ky_dv=0;
         k_wz=0.8;
+        k_fst_x=1;
+        k_fst_y=0.5;
     end
 
     properties(Access=private)
@@ -32,6 +34,10 @@ classdef SwingCtr_AT< matlab.System
         p_ftL_Old=zeros(3,1);
         vNowLF=zeros(3,50);
         pLnorm;
+        fw_res_res=zeros(12,100);
+        avaF_lastST=zeros(12,1);
+        p_Fst14=zeros(3,1);
+        p_Fst23=zeros(3,1);
     end
 
     methods(Access = protected)
@@ -58,9 +64,11 @@ classdef SwingCtr_AT< matlab.System
             PendAlltmp(10:12)=[-xW;-yW;0]/2;
             PendAlltmp=PendAlltmp+[0;1;0;0;-1;0;0;1;0;0;-1;0]*obj.roll_Off;
             obj.LegCorOri=reshape(PendAlltmp-[0;1;0;0;-1;0;0;1;0;0;-1;0]*obj.roll_Off,3,4);
+            obj.fw_res_res=zeros(12,100);
+            obj.avaF_lastST=zeros(12,1);
         end
 
-        function pL_sw = stepImpl(obj,xFB,xRef,LegState,LegPhase,pL_LF,surP,surVN)
+        function [pL_sw,p_Fst] = stepImpl(obj,xFB,xRef,LegState,LegPhase,pL_LF,surP,surVN,fw_res)
             % surP: origin point on the terrain surface
             % surVN: normal vector of the terrain surface
             pL_LF=reshape(pL_LF,3,4);
@@ -118,8 +126,41 @@ classdef SwingCtr_AT< matlab.System
             p_wz1=Rz(sitaZ)*obj.pLnorm-obj.pLnorm;
             p_wz2=0.5*sqrt(0.19/9.8)*cross(vNowL,[0;0;wDesL(3)]);
 
+            % supporting force compensation
+            Nsw=floor(obj.tSW/obj.tSample);
+            avaF=sum(obj.fw_res_res(:,1:Nsw),2)/Nsw;
+            for i=1:1:4
+                if obj.LegStateOld(i)>0.5 && LegState(i)<0.5
+                    obj.avaF_lastST(3*i-2:3*i)=avaF(3*i-2:3*i);
+                end
+            end
+            obj.p_Fst14=zeros(3,1);
+            obj.p_Fst23=zeros(3,1);
+            p_Fst=zeros(3,1);
+            if LegState(1)<0.5
+                err=obj.avaF_lastST(6)-obj.avaF_lastST(9);
+                if abs(err)>1
+                    err=err-sign(err)*1;
+                else
+                    err=0;
+                end
+                err=err/1000;
+                obj.p_Fst14=[err*obj.k_fst_x;-err*obj.k_fst_y;0];
+                p_Fst=obj.p_Fst14;
+            elseif LegState(2)<0.5
+                err=obj.avaF_lastST(3)-obj.avaF_lastST(12);
+                if abs(err)>1
+                    err=err-sign(err)*1;
+                else
+                    err=0;
+                end
+                err=err/1000;
+                obj.p_Fst23=[err*obj.k_fst_x;err*obj.k_fst_y;0];
+                p_Fst=obj.p_Fst23;
+            end
+
             % final foot placement
-            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm;
+            desAllL=p_ftL*[1,1,1,1]+p_wz1+p_wz2+obj.pLnorm+p_Fst*[1,1,1,1];
             
             % terrain height compensation
             pCoM=[xFB(1);xFB(2);xFB(3)];
@@ -164,26 +205,32 @@ classdef SwingCtr_AT< matlab.System
                     pL_sw(:,i)=[px;py;pz];
                 end
             end
-
+            
+            obj.fw_res_res(:,1:Nsw-1)=obj.fw_res_res(:,2:Nsw);
+            obj.fw_res_res(:,Nsw)=fw_res;
             obj.LegStateOld=LegState;
 
             pL_sw=reshape(pL_sw,12,1);
         end
         
-        function d1 = getOutputDataTypeImpl(~)
+        function [d1,d2] = getOutputDataTypeImpl(~)
             d1 = 'double';
+            d2 = 'double';
         end
 
-        function s1 = getOutputSizeImpl(~)
+        function [s1,s2] = getOutputSizeImpl(~)
             s1 = [12,1];
+            s2 = [3,1];
         end
 
-        function f1 = isOutputFixedSizeImpl(~)
+        function [f1,f2] = isOutputFixedSizeImpl(~)
             f1 = true;
+            f2 = true;
         end
 
-        function cpl1 = isOutputComplexImpl(~)
+        function [cpl1,cpl2] = isOutputComplexImpl(~)
             cpl1 = false;
+            cpl2 = false;
         end
 
         function resetImpl(obj)

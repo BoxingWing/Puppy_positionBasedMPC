@@ -20,7 +20,8 @@ classdef SWST_combinator< matlab.System
             fL=reshape(fL,3,4);
             fW=reshape(fW,3,4);
             Rdef=Rz(xRef(6))*Ry(xRef(5))*Rx(xRef(4));
-            fW2L=Rdef'*fW;
+            Rnow=Rz(xFB(6))*Ry(xFB(5))*Rx(xFB(4));
+            fW2L=Rnow'*fW;
             pL_st=reshape(pL_st,3,4);
             pL_sw=reshape(pL_sw,3,4);
             fL_res=zeros(3,4);
@@ -37,7 +38,6 @@ classdef SWST_combinator< matlab.System
                 end
             end
             
-            Rnow=Rz(xFB(6))*Ry(xFB(5))*Rx(xFB(4));
             fw_res=Rnow*fL_res;
             obj.pL_LF_Old=pL_LF;
             obj.LegStateOld=LegState;

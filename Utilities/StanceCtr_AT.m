@@ -92,12 +92,15 @@ classdef StanceCtr_AT< matlab.System
             %             err=Kp*reshape(xRef(1:6)-xFB(1:6),6,1)+Kd*reshape(xRef(7:12)-xFB(7:12),6,1)+obj.ki_err_Old;
             obj.ki_err_Old=obj.ki_err_Old+Ki*[errpCoM;errSita];
             %err=Kp*reshape(xRef(1:6)-xFB(1:6),6,1)+Kd*reshape(xRef(7:12)-xFB(7:12),6,1)+obj.ki_err_Old;
+            
+            % clear the intergal item at touch down and take off events
             if LegState(1)+obj.LegStateOld(1)>0.8 && LegState(1)+obj.LegStateOld(1)<1.2
                 obj.ki_err_Old=obj.ki_err_Old*0;
             end
             if LegState(2)+obj.LegStateOld(2)>0.8 && LegState(2)+obj.LegStateOld(2)<1.2
                 obj.ki_err_Old=obj.ki_err_Old*0;
             end
+           
             err=Kp*[errpCoM;errSita]+Kd*[errvCoM;errdSita]+obj.ki_err_Old;
             
             pFloat=[Rz'*(pW_m(:,1)-pC),Rz'*(pW_m(:,2)-pC), ...

@@ -84,10 +84,10 @@ classdef LegSequence_AT< matlab.System
 %             end
             
             % change the leg sequence order if CoM velocity cross zero
-            if xRef(7)*obj.xRefOld(7)<0 || xRef(8)*obj.xRefOld(8)<0
-                obj.isLFnext=~obj.isLFnext;
-                obj.isRFnext=~obj.isRFnext;
-            end
+%             if xRef(7)*obj.xRefOld(7)<0 || xRef(8)*obj.xRefOld(8)<0
+%                 obj.isLFnext=~obj.isLFnext;
+%                 obj.isRFnext=~obj.isRFnext;
+%             end
             
             if vCoM_L(1)==0 && vCoM_L(2)==0
                 tRem_LFx=999;

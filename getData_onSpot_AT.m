@@ -186,6 +186,19 @@ plot(t_fast(startNf:endNf),mvOut_fast(10,startNf:endNf), ...
     t_fast(startNf:endNf),mvOut_fast(12,startNf:endNf));
 ylabel('Leg4');legend('fx','fy','fz')
 
+%%% check payload balance in z direction
+figure();
+subplot(2,1,1)
+plot(t_fast(startNf:endNf),fLRes(3,startNf:endNf));
+hold on;
+plot(t_fast(startNf:endNf),fLRes(12,startNf:endNf));
+legend('leg1z','leg4z');ylabel('payload in leg frame(N)')
+subplot(2,1,2)
+plot(t_fast(startNf:endNf),fLRes(6,startNf:endNf));
+hold on;
+plot(t_fast(startNf:endNf),fLRes(9,startNf:endNf));
+legend('leg2z','leg3z');ylabel('payload in leg frame(N)')
+
 %%% check the trunk state
 figure();
 subplot(2,2,1)
