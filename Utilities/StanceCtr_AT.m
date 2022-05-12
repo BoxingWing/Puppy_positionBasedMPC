@@ -49,6 +49,13 @@ classdef StanceCtr_AT< matlab.System
             % norminal foot end positions
             pL_old=reshape(pL_old,3,4);
             pB_old=reshape(pB_old,3,4);
+            
+            sita0=xFB(4:6);
+            pC0=xFB(1:3);
+            Rx0=[1,0,0;0,cos(sita0(1)),-sin(sita0(1));0,sin(sita0(1)),cos(sita0(1))];
+            Ry0=[cos(sita0(2)),0,sin(sita0(2));0,1,0;-sin(sita0(2)),0,cos(sita0(2))];
+            Rz0=[cos(sita0(3)),-sin(sita0(3)),0;sin(sita0(3)),cos(sita0(3)),0;0,0,1];
+            R0=Rz0*Ry0*Rx0;
 
             if Disable>0.5
                 pL_st=reshape([0;obj.roll_Off;-obj.r0;0;-obj.roll_Off;-obj.r0; ...
@@ -61,9 +68,12 @@ classdef StanceCtr_AT< matlab.System
 %                     linAct=[xRef(7);xRef(8);0]*[1,1,1,1]*obj.tSample;
 %                 end
                 linAct=[-xRef(7);-xRef(8);0]*[1,1,1,1]*obj.tSample;
-                pL_st=pL_old+linAct+...
-                    [cross(pB_old(:,1),[0;0;-xRef(12)]),cross(pB_old(:,2),[0;0;-xRef(12)]), ...
-                    cross(pB_old(:,3),[0;0;-xRef(12)]),cross(pB_old(:,4),[0;0;-xRef(12)])]*obj.tSample;
+                wAxis=R0'*[0;0;-xRef(12)]*obj.tSample;
+                Rw=Rodrigues(wAxis);
+%                 rotAct=[cross([pB_old(1:2,1);0],wAxis),cross([pB_old(1:2,2);0],wAxis), ...
+%                     cross([pB_old(1:2,3);0],wAxis),cross([pB_old(1:2,4);0],wAxis)]*obj.tSample;
+                rotAct=Rw*pB_old-pB_old;
+                pL_st=pL_old+linAct+rotAct;
             end
 
             % contact forces control
@@ -107,8 +117,8 @@ classdef StanceCtr_AT< matlab.System
                 Rz'*(pW_m(:,3)-pC),Rz'*(pW_m(:,4)-pC)]; % foot-end positions in the float-base coordinate
             
             % jaocibian matrix for both position and orientation
-            M=[LegState(1).*eye(3),LegState(2).*eye(3),LegState(3).*eye(3),LegState(4).*eye(3);...
-                LegState(1).*crossCap(pFloat(:,1)),LegState(2).*crossCap(pFloat(:,2)),LegState(3).*crossCap(pFloat(:,3)),LegState(4).*crossCap(pFloat(:,4));];
+%             M=[LegState(1).*eye(3),LegState(2).*eye(3),LegState(3).*eye(3),LegState(4).*eye(3);...
+%                 LegState(1).*crossCap(pFloat(:,1)),LegState(2).*crossCap(pFloat(:,2)),LegState(3).*crossCap(pFloat(:,3)),LegState(4).*crossCap(pFloat(:,4));];
             % jacobian matrix for only orientation
             M=[LegState(1).*crossCap(pFloat(:,1)),LegState(2).*crossCap(pFloat(:,2)),LegState(3).*crossCap(pFloat(:,3)),LegState(4).*crossCap(pFloat(:,4))];
             err=err(4:6);
@@ -148,12 +158,13 @@ classdef StanceCtr_AT< matlab.System
                 R1'*(pW_m(:,3)-pC1),R1'*(pW_m(:,4)-pC1)];
             pL_New = pB2L(pB_New);
             
-            sita0=xFB(4:6);
-            pC0=xFB(1:3);
-            Rx0=[1,0,0;0,cos(sita0(1)),-sin(sita0(1));0,sin(sita0(1)),cos(sita0(1))];
-            Ry0=[cos(sita0(2)),0,sin(sita0(2));0,1,0;-sin(sita0(2)),0,cos(sita0(2))];
-            Rz0=[cos(sita0(3)),-sin(sita0(3)),0;sin(sita0(3)),cos(sita0(3)),0;0,0,1];
-            R0=Rz0*Ry0*Rx0;
+%             % defined at the begining            
+%             sita0=xFB(4:6);
+%             pC0=xFB(1:3);
+%             Rx0=[1,0,0;0,cos(sita0(1)),-sin(sita0(1));0,sin(sita0(1)),cos(sita0(1))];
+%             Ry0=[cos(sita0(2)),0,sin(sita0(2));0,1,0;-sin(sita0(2)),0,cos(sita0(2))];
+%             Rz0=[cos(sita0(3)),-sin(sita0(3)),0;sin(sita0(3)),cos(sita0(3)),0;0,0,1];
+%             R0=Rz0*Ry0*Rx0;
             pB0=[R0'*(pW_m(:,1)-pC0),R0'*(pW_m(:,2)-pC0), ...
                 R0'*(pW_m(:,3)-pC0),R0'*(pW_m(:,4)-pC0)];
             pL0 = pB2L(pB0);
@@ -423,3 +434,21 @@ function pArray_L = pB2L(pArray_B)
     piOFF(10:12)=[-xWidth;-yWidth;0]/2;
     pArray_L=reshape(pArray_B,12,1)-piOFF;
 end
+
+function R=Rodrigues(w)
+% Rodrigues' formula
+    if norm(w)>10^-5
+        a=w/norm(w);
+        sita=norm(w);
+    else
+        a=[0;0;0];
+        sita=0;
+    end
+    cap_a=[0,-a(3),a(2);
+    a(3),0,-a(1);
+    -a(2),a(1),0];
+    R=eye(3)+cap_a*sin(sita)+cap_a*cap_a*(1-cos(sita));
+end
+
+
+

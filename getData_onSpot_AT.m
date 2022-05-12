@@ -51,7 +51,12 @@ vxPercent_fast=rt_vxPercent_vyPercent_wzPercent(2,:);
 vyPercent_fast=rt_vxPercent_vyPercent_wzPercent(3,:);
 wzPercent_fast=rt_vxPercent_vyPercent_wzPercent(4,:);
 % PendAllLocal_fast=rt_PendAllLocal(2:end,:);
-spMPC_fast=rt_spMPC_fast(2:end,:);
+spMPC_fast=rt_spMPC_surVN_surV1_surV2_surP_headG(2:13,:);
+surVNrec=rt_spMPC_surVN_surV1_surV2_surP_headG(14:16,:);
+surV1rec=rt_spMPC_surVN_surV1_surV2_surP_headG(17:19,:);
+surV2rec=rt_spMPC_surVN_surV1_surV2_surP_headG(20:22,:);
+surPrec=rt_spMPC_surVN_surV1_surV2_surP_headG(23:25,:);
+headGrec=rt_spMPC_surVN_surV1_surV2_surP_headG(26:28,:);
 
 estSPLeg_fast=rt_estSPLeg_estSP_LegState(2:5,:);
 estSP_fast=rt_estSPLeg_estSP_LegState(6:17,:);

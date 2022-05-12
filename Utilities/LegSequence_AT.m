@@ -21,6 +21,7 @@ classdef LegSequence_AT< matlab.System
         xRefOld;
         LegStateOld=[1;1;1;1];
         vCoM_sw=[1;1;1]; % CoM velocity at the beginning of the last swing phase
+        bodyYaw=0;
     end
 
     methods(Access = protected)
@@ -55,6 +56,7 @@ classdef LegSequence_AT< matlab.System
             obj.LegStateOld=[1;1;1;1];
             obj.vCoM_sw=[1;1;1];
             obj.xRefOld=zeros(13,1);
+            obj.bodyYaw=0; % body yaw angle at the begining of the step
         end
 
         function [LegState,LegPhase] = stepImpl(obj,pL_m,xFB,xRef,EN)
@@ -64,6 +66,7 @@ classdef LegSequence_AT< matlab.System
 
             Rrpy=Rz(xFB(6))*Ry(xFB(5))*Rx(xFB(4));
             vCoM_L=Rrpy'*xFB(7:9);
+            wCoM_L=Rrpy'*xFB(10:12);
 
             vxDead=0.02;
             vyDead=0.02;
@@ -146,6 +149,12 @@ classdef LegSequence_AT< matlab.System
                     LegState(2)=1;
                     LegState(3)=1;
                 end
+            end
+            
+            if LegState(1)>0.5 && obj.LegStateOld(1)<0.5
+                obj.bodyYaw=xFB(3);
+            elseif LegState(2)>0.5 && obj.LegStateOld(2)<0.5
+                obj.bodyYaw=xFB(3);
             end
 
             %%% data update
