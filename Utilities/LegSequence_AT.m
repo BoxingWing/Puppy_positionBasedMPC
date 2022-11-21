@@ -102,6 +102,7 @@ classdef LegSequence_AT< matlab.System
                 tRem_LFy=(pL_m(2)+pL_m(11))/2/vCoM_L(2);
                 tRem_RFx=(pL_m(4)+pL_m(7))/2/vCoM_L(1);
                 tRem_RFy=(pL_m(5)+pL_m(8))/2/vCoM_L(2);
+                
             end
 
             if obj.isLFnext==true
