@@ -2,6 +2,9 @@ classdef KalmanFilter_DIY_Offrm < matlab.System
     % Coventional kalman filter for single-rigid-body state estimation, offset variable are included.
     properties
         Ts=0.005;
+        Q_wPCoM=[1e-7;5e-8;1e-8];
+        Q_wVCoM=[1e-7,1e-9,1e-5];
+        Q_wfe=ones(12,1)*(1e-6);
     end
     
     properties (Access=private)
