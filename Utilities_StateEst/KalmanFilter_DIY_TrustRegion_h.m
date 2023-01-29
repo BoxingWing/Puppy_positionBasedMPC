@@ -1,4 +1,4 @@
-classdef KalmanFilter_DIY_TrustRegion < matlab.System
+classdef KalmanFilter_DIY_TrustRegion_h < matlab.System
     % Coventional kalman filter for single-rigid-body state estimation, offset variable are included.
     properties
         dt=0.006;
@@ -8,6 +8,7 @@ classdef KalmanFilter_DIY_TrustRegion < matlab.System
         Q_waL=ones(3,1)*(1e-3);
         R_wfeL=ones(12,1)*(1e-6);
         R_wdfeL=ones(12,1)*(1e-3);
+        R_wh=ones(4,1)*(1e-6);
     end
     
     properties (Access=private)
@@ -15,8 +16,8 @@ classdef KalmanFilter_DIY_TrustRegion < matlab.System
         B;
         C;
         G;
-        XOld=zeros(18,1);
-        POld=zeros(18,18);
+        XOld;
+        POld;
         count;
     end
     
@@ -48,7 +49,12 @@ classdef KalmanFilter_DIY_TrustRegion < matlab.System
                 -eye(3)*obj.dt;
                 -eye(3)*obj.dt
                 ];
-            obj.C=[blkC1,eye(12),blkCa1;blkC2,zeros(12,12),blkCa2];
+            e3=zeros(1,12);e3(3)=1;
+            e6=zeros(1,12);e6(6)=1;
+            e9=zeros(1,12);e9(9)=1;
+            e12=zeros(1,12);e12(12)=1;
+            obj.C=[blkC1,eye(12),blkCa1;blkC2,zeros(12,12),blkCa2; ...
+                zeros(4,3),zeros(4,3),[e3;e6;e9;e12],zeros(4,3)];
             obj.count=0;
             [nX,~]=size(obj.A);
             obj.XOld=zeros(nX,1);
@@ -56,7 +62,7 @@ classdef KalmanFilter_DIY_TrustRegion < matlab.System
             obj.G=eye(nX);
         end
         
-        function [xhat,P] = stepImpl(obj,u,y,x0,p0,Xi,Reset)
+        function [xhat,P] = stepImpl(obj,u,y,x0,p0,Xi,Xih,Reset)
             % note Q, R must be matrixes
             % Q for process noise
             % R for measurement noise
@@ -72,7 +78,8 @@ classdef KalmanFilter_DIY_TrustRegion < matlab.System
             Q=blkdiag(blkQ1,blkQ2,blkQ3,blkQ4);
             blkR1=diag(obj.R_wfeL)*Xi*eye(12);
             blkR2=diag(obj.R_wdfeL)*Xi*eye(12);
-            R=blkdiag(blkR1,blkR2);
+            blkR3=diag(obj.R_wh)*Xih*eye(4);
+            R=blkdiag(blkR1,blkR2,blkR3);
             
             Xpre=obj.A*obj.XOld+obj.B*u;
             Ppre=obj.A*obj.POld*obj.A'+obj.G*Q*obj.G';
